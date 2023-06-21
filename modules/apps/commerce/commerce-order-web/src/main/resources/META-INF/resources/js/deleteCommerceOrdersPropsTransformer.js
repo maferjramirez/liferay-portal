@@ -11,6 +11,8 @@ import {
 	sub,
 } from 'frontend-js-web';
 
+import {CommerceStatusDataRenderer} from './CommerceStatusDataRenderer';
+
 export default function propsTransformer({
 	additionalProps: {namespace},
 	formName,
@@ -73,6 +75,9 @@ export default function propsTransformer({
 
 	return {
 		...otherProps,
+		customDataRenderers: {
+			commerceStatusDataRenderer: CommerceStatusDataRenderer,
+		},
 		onActionDropdownItemClick({action, itemData, loadData}) {
 			if (action.data.id === 'delete') {
 				openConfirmModal({
