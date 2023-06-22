@@ -117,6 +117,11 @@ public class UpgradeSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testUpgradeJavaOnAfterUpdateParameterCheck() throws Exception {
+		test("upgrade/UpgradeJavaOnAfterUpdateParameterCheck.testjava");
+	}
+
+	@Test
 	public void testUpgradeJavaPortletSharedSearchSettingsCheck()
 		throws Exception {
 
