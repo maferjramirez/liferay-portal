@@ -126,8 +126,6 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 			}
 		}
 
-		_storePluginPackageProperties(pluginPackageProperties);
-
 		Stream<ClientExtension> stream = _clientExtensions.stream();
 
 		Map<String, String> substitutionMap = stream.flatMap(
@@ -159,6 +157,8 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 		_writeToOutputFile(
 			classificationGrouping, getInputLcpJsonFile(), getLcpJsonFile(),
 			substitutionMap);
+
+		_storePluginPackageProperties(pluginPackageProperties);
 
 		_createClientExtensionConfigFile(jsonMap);
 	}
