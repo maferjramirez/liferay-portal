@@ -149,7 +149,7 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 		);
 
 		substitutionMap.put(
-			"__CLIENT_EXTENSION_ID__",
+			"__PROJECT_ID__",
 			StringUtil.toAlphaNumericLowerCase(_project.getName()));
 
 		_writeToOutputFile(
