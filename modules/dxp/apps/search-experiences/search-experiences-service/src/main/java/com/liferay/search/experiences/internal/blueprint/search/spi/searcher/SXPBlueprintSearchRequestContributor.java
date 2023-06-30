@@ -56,7 +56,7 @@ public class SXPBlueprintSearchRequestContributor
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Search experiences blueprint External Reference Code " +
+				"Search experiences blueprint external reference code " +
 					object);
 		}
 
@@ -70,8 +70,8 @@ public class SXPBlueprintSearchRequestContributor
 		}
 		else if (object != null) {
 			throw new IllegalArgumentException(
-				"Invalid search experiences blueprint External Reference " +
-					"Code " + object);
+				"Invalid search experiences blueprint external reference " +
+					"code " + object);
 		}
 	}
 
