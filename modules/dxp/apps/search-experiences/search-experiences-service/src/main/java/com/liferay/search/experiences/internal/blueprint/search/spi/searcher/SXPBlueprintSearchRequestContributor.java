@@ -52,7 +52,7 @@ public class SXPBlueprintSearchRequestContributor
 
 		Object object = searchRequestBuilder.withSearchContextGet(
 			searchContext -> searchContext.getAttribute(
-				"search.experiences.blueprint.erc"));
+				"search.experiences.blueprint.external.reference.code"));
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
