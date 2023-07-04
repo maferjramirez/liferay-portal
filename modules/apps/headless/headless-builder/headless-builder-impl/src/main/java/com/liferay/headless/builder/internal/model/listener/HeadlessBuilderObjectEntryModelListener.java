@@ -161,7 +161,7 @@ public class HeadlessBuilderObjectEntryModelListener
 		return null;
 	}
 
-	private void _schedulePublication(ObjectEntry objectEntry) {
+	private synchronized void _schedulePublication(ObjectEntry objectEntry) {
 		Long apiApplicationId = _getAPIApplicationId(objectEntry);
 
 		if (apiApplicationId == null) {
