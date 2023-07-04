@@ -125,6 +125,13 @@ public class UpgradeSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testUpgradeJavaSchedulerEntryImplConstructorCheck()
+		throws Exception {
+
+		test("upgrade/UpgradeJavaSchedulerEntryImplConstructorCheck.testjava");
+	}
+
+	@Test
 	public void testUpgradeJavaServiceReferenceAnnotationCheck()
 		throws Exception {
 
