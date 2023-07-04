@@ -623,7 +623,8 @@ public class CommerceProductPriceCalculationV2Impl
 		CommerceTierPriceEntry commerceTierPriceEntry =
 			_commerceTierPriceEntryLocalService.
 				findClosestCommerceTierPriceEntry(
-					commercePriceEntry.getCommercePriceEntryId(), quantity);
+					commercePriceEntry.getCommercePriceEntryId(),
+					BigDecimal.valueOf(quantity));
 
 		if ((commerceTierPriceEntry == null) ||
 			commerceTierPriceEntry.isDiscountDiscovery()) {
@@ -716,7 +717,8 @@ public class CommerceProductPriceCalculationV2Impl
 			CommerceTierPriceEntry commerceTierPriceEntry =
 				_commerceTierPriceEntryLocalService.
 					findClosestCommerceTierPriceEntry(
-						commercePriceEntry.getCommercePriceEntryId(), quantity);
+						commercePriceEntry.getCommercePriceEntryId(),
+						BigDecimal.valueOf(quantity));
 
 			if (commerceTierPriceEntry == null) {
 				return commercePriceEntry.getPrice();
@@ -748,7 +750,8 @@ public class CommerceProductPriceCalculationV2Impl
 
 		List<CommerceTierPriceEntry> commerceTierPriceEntries =
 			_commerceTierPriceEntryLocalService.findCommerceTierPriceEntries(
-				commercePriceEntry.getCommercePriceEntryId(), quantity);
+				commercePriceEntry.getCommercePriceEntryId(),
+				BigDecimal.valueOf(quantity));
 
 		if (commerceTierPriceEntries.isEmpty()) {
 			return commercePrice;
@@ -761,8 +764,9 @@ public class CommerceProductPriceCalculationV2Impl
 
 		int totalTierCounter = 0;
 
-		int tierCounter =
-			commerceTierPriceEntry1.getMinQuantity() - totalTierCounter - 1;
+		BigDecimal minQuantity1 = commerceTierPriceEntry1.getMinQuantity();
+
+		int tierCounter = minQuantity1.intValue() - totalTierCounter - 1;
 
 		BigDecimal currentPrice = commercePriceEntry.getPrice();
 
@@ -781,8 +785,9 @@ public class CommerceProductPriceCalculationV2Impl
 			CommerceTierPriceEntry commerceTierPriceEntry3 =
 				commerceTierPriceEntries.get(i + 1);
 
-			tierCounter =
-				commerceTierPriceEntry3.getMinQuantity() - totalTierCounter - 1;
+			BigDecimal minQuantity = commerceTierPriceEntry3.getMinQuantity();
+
+			tierCounter = minQuantity.intValue() - totalTierCounter - 1;
 
 			currentPrice = currentPrice.multiply(
 				BigDecimal.valueOf(tierCounter));
