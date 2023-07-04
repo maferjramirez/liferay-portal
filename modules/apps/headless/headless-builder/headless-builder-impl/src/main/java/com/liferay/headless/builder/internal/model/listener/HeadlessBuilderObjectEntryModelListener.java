@@ -22,6 +22,8 @@ import com.liferay.object.model.ObjectEntry;
 import com.liferay.object.service.ObjectDefinitionLocalService;
 import com.liferay.object.service.ObjectEntryLocalService;
 import com.liferay.portal.kernel.exception.ModelListenerException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
@@ -31,7 +33,6 @@ import java.io.Serializable;
 
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 import org.osgi.service.component.annotations.Component;
@@ -59,83 +60,161 @@ public class HeadlessBuilderObjectEntryModelListener
 		_schedulePublication(objectEntry);
 	}
 
-	private long _getAPIApplicationId(ObjectEntry objectEntry) {
-		if (_isObjectDefinition("L_API_APPLICATION", objectEntry)) {
+	@Override
+	public void onBeforeRemove(ObjectEntry objectEntry)
+		throws ModelListenerException {
+
+		try {
+			ObjectDefinition objectDefinition =
+				_objectDefinitionLocalService.fetchObjectDefinition(
+					objectEntry.getObjectDefinitionId());
+
+			if (StringUtil.equals(
+					objectDefinition.getExternalReferenceCode(),
+					"L_API_APPLICATION")) {
+
+				_unPublishAPIApplication(
+					_objectEntryLocalService.getObjectEntry(
+						objectEntry.getObjectEntryId()));
+			}
+			else if (StringUtil.equals(
+						objectDefinition.getExternalReferenceCode(),
+						"L_API_ENDPOINT")) {
+
+				ObjectEntry apiEndpointObjectEntry =
+					_objectEntryLocalService.getObjectEntry(
+						objectEntry.getObjectEntryId());
+
+				Map<String, Serializable> values =
+					apiEndpointObjectEntry.getValues();
+
+				long apiApplicationId = (long)values.get(
+					"r_apiApplicationToAPIEndpoints_c_apiApplicationId");
+
+				_unPublishAPIApplication(
+					_objectEntryLocalService.getObjectEntry(apiApplicationId));
+			}
+		}
+		catch (Exception exception) {
+			throw new ModelListenerException(exception);
+		}
+	}
+
+	private Long _getAPIApplicationId(ObjectEntry objectEntry) {
+		ObjectDefinition objectDefinition =
+			_objectDefinitionLocalService.fetchObjectDefinition(
+				objectEntry.getObjectDefinitionId());
+
+		String externalReferenceCode =
+			objectDefinition.getExternalReferenceCode();
+
+		if (StringUtil.equals(externalReferenceCode, "L_API_APPLICATION")) {
 			return objectEntry.getObjectEntryId();
 		}
-		else if (_isObjectDefinition("L_API_SCHEMA", objectEntry)) {
+		else if (StringUtil.equals(externalReferenceCode, "L_API_SCHEMA")) {
 			Map<String, Serializable> values = objectEntry.getValues();
 
 			return (long)values.get(
 				"r_apiApplicationToAPISchemas_c_apiApplicationId");
 		}
-		else if (_isObjectDefinition("L_API_ENDPOINT", objectEntry)) {
+		else if (StringUtil.equals(externalReferenceCode, "L_API_ENDPOINT")) {
 			Map<String, Serializable> values = objectEntry.getValues();
 
 			return (long)values.get(
 				"r_apiApplicationToAPIEndpoints_c_apiApplicationId");
 		}
+		else if (StringUtil.equals(externalReferenceCode, "L_API_FILTER")) {
+			Map<String, Serializable> apiFilterObjectEntryValues =
+				objectEntry.getValues();
 
-		throw new UnsupportedOperationException("Invalid object definition");
-	}
+			ObjectEntry apiEndpointObjectEntry =
+				_objectEntryLocalService.fetchObjectEntry(
+					(long)apiFilterObjectEntryValues.get(
+						"r_apiEndpointToAPIFilters_c_apiEndpointId"));
 
-	private boolean _isObjectDefinition(
-		String objectDefinitionExternalReferenceCode, ObjectEntry objectEntry) {
+			Map<String, Serializable> apiEndpointObjectEntryValues =
+				apiEndpointObjectEntry.getValues();
 
-		ObjectDefinition objectDefinition =
-			_objectDefinitionLocalService.fetchObjectDefinition(
-				objectEntry.getObjectDefinitionId());
+			return (long)apiEndpointObjectEntryValues.get(
+				"r_apiApplicationToAPIEndpoints_c_apiApplicationId");
+		}
+		else if (StringUtil.equals(externalReferenceCode, "L_API_SORT")) {
+			Map<String, Serializable> apiSortObjectEntryValues =
+				objectEntry.getValues();
 
-		return Objects.equals(
-			objectDefinition.getExternalReferenceCode(),
-			objectDefinitionExternalReferenceCode);
+			ObjectEntry apiEndpointObjectEntry =
+				_objectEntryLocalService.fetchObjectEntry(
+					(long)apiSortObjectEntryValues.get(
+						"r_apiEndpointToAPISorts_c_apiEndpointId"));
+
+			Map<String, Serializable> apiEndpointObjectEntryValues =
+				apiEndpointObjectEntry.getValues();
+
+			return (long)apiEndpointObjectEntryValues.get(
+				"r_apiApplicationToAPIEndpoints_c_apiApplicationId");
+		}
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("No API Application ID is available");
+		}
+
+		return null;
 	}
 
 	private void _schedulePublication(ObjectEntry objectEntry) {
-		ObjectDefinition objectDefinition =
-			_objectDefinitionLocalService.fetchObjectDefinition(
-				objectEntry.getObjectDefinitionId());
+		Long apiApplicationId = _getAPIApplicationId(objectEntry);
 
-		if (StringUtil.startsWith(
-				objectDefinition.getExternalReferenceCode(), "L_API_")) {
-
-			long apiApplicationId = _getAPIApplicationId(objectEntry);
-
-			_pendingAPIApplications.add(apiApplicationId);
-
-			TransactionCommitCallbackUtil.registerCallback(
-				() -> {
-					if (_pendingAPIApplications.contains(apiApplicationId)) {
-						ObjectEntry apiApplicationObjectEntry =
-							_objectEntryLocalService.getObjectEntry(
-								apiApplicationId);
-
-						Map<String, Serializable> values =
-							apiApplicationObjectEntry.getValues();
-
-						APIApplication apiApplication =
-							_apiApplicationProvider.fetchAPIApplication(
-								(String)values.get("baseURL"),
-								apiApplicationObjectEntry.getCompanyId());
-
-						if (StringUtil.equals(
-								(String)values.get("applicationStatus"),
-								"published")) {
-
-							_apiApplicationPublisher.unpublish(apiApplication);
-							_apiApplicationPublisher.publish(apiApplication);
-						}
-						else {
-							_apiApplicationPublisher.unpublish(apiApplication);
-						}
-
-						_pendingAPIApplications.remove(apiApplicationId);
-					}
-
-					return null;
-				});
+		if (apiApplicationId == null) {
+			return;
 		}
+
+		_pendingAPIApplications.add(apiApplicationId);
+
+		TransactionCommitCallbackUtil.registerCallback(
+			() -> {
+				if (_pendingAPIApplications.remove(apiApplicationId)) {
+					ObjectEntry apiApplicationObjectEntry =
+						_objectEntryLocalService.getObjectEntry(
+							apiApplicationId);
+
+					Map<String, Serializable> values =
+						apiApplicationObjectEntry.getValues();
+
+					APIApplication apiApplication =
+						_apiApplicationProvider.fetchAPIApplication(
+							(String)values.get("baseURL"),
+							apiApplicationObjectEntry.getCompanyId());
+
+					_apiApplicationPublisher.unpublish(apiApplication);
+
+					if (StringUtil.equals(
+							(String)values.get("applicationStatus"),
+							"published")) {
+
+						_apiApplicationPublisher.publish(apiApplication);
+					}
+				}
+
+				return null;
+			});
 	}
+
+	private void _unPublishAPIApplication(ObjectEntry apiApplicationObjectEntry)
+		throws Exception {
+
+		Map<String, Serializable> apiApplicationObjectEntryValues =
+			apiApplicationObjectEntry.getValues();
+
+		APIApplication apiApplication =
+			_apiApplicationProvider.fetchAPIApplication(
+				(String)apiApplicationObjectEntryValues.get("baseURL"),
+				apiApplicationObjectEntry.getCompanyId());
+
+		_apiApplicationPublisher.unpublish(apiApplication);
+	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		HeadlessBuilderObjectEntryModelListener.class);
 
 	@Reference
 	private APIApplicationProvider _apiApplicationProvider;
