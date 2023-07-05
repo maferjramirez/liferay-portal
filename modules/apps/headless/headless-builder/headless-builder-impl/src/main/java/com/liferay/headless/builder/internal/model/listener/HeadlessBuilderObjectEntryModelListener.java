@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.Serializable;
@@ -82,11 +83,13 @@ public class HeadlessBuilderObjectEntryModelListener
 			}
 		}
 		catch (Exception exception) {
-			throw new ModelListenerException(exception);
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception);
+			}
 		}
 	}
 
-	private Long _getAPIApplicationId(ObjectEntry objectEntry) {
+	private long _getAPIApplicationId(ObjectEntry objectEntry) {
 		ObjectDefinition objectDefinition =
 			_objectDefinitionLocalService.fetchObjectDefinition(
 				objectEntry.getObjectDefinitionId());
@@ -100,14 +103,15 @@ public class HeadlessBuilderObjectEntryModelListener
 		else if (StringUtil.equals(externalReferenceCode, "L_API_SCHEMA")) {
 			Map<String, Serializable> values = objectEntry.getValues();
 
-			return (long)values.get(
-				"r_apiApplicationToAPISchemas_c_apiApplicationId");
+			return GetterUtil.getLong(
+				values.get("r_apiApplicationToAPISchemas_c_apiApplicationId"));
 		}
 		else if (StringUtil.equals(externalReferenceCode, "L_API_ENDPOINT")) {
 			Map<String, Serializable> values = objectEntry.getValues();
 
-			return (long)values.get(
-				"r_apiApplicationToAPIEndpoints_c_apiApplicationId");
+			return GetterUtil.getLong(
+				values.get(
+					"r_apiApplicationToAPIEndpoints_c_apiApplicationId"));
 		}
 		else if (StringUtil.equals(externalReferenceCode, "L_API_FILTER")) {
 			Map<String, Serializable> apiFilterObjectEntryValues =
@@ -115,14 +119,16 @@ public class HeadlessBuilderObjectEntryModelListener
 
 			ObjectEntry apiEndpointObjectEntry =
 				_objectEntryLocalService.fetchObjectEntry(
-					(long)apiFilterObjectEntryValues.get(
-						"r_apiEndpointToAPIFilters_c_apiEndpointId"));
+					GetterUtil.getLong(
+						apiFilterObjectEntryValues.get(
+							"r_apiEndpointToAPIFilters_c_apiEndpointId")));
 
 			Map<String, Serializable> apiEndpointObjectEntryValues =
 				apiEndpointObjectEntry.getValues();
 
-			return (long)apiEndpointObjectEntryValues.get(
-				"r_apiApplicationToAPIEndpoints_c_apiApplicationId");
+			return GetterUtil.getLong(
+				apiEndpointObjectEntryValues.get(
+					"r_apiApplicationToAPIEndpoints_c_apiApplicationId"));
 		}
 		else if (StringUtil.equals(externalReferenceCode, "L_API_SORT")) {
 			Map<String, Serializable> apiSortObjectEntryValues =
@@ -130,27 +136,29 @@ public class HeadlessBuilderObjectEntryModelListener
 
 			ObjectEntry apiEndpointObjectEntry =
 				_objectEntryLocalService.fetchObjectEntry(
-					(long)apiSortObjectEntryValues.get(
-						"r_apiEndpointToAPISorts_c_apiEndpointId"));
+					GetterUtil.getLong(
+						apiSortObjectEntryValues.get(
+							"r_apiEndpointToAPISorts_c_apiEndpointId")));
 
 			Map<String, Serializable> apiEndpointObjectEntryValues =
 				apiEndpointObjectEntry.getValues();
 
-			return (long)apiEndpointObjectEntryValues.get(
-				"r_apiApplicationToAPIEndpoints_c_apiApplicationId");
+			return GetterUtil.getLong(
+				apiEndpointObjectEntryValues.get(
+					"r_apiApplicationToAPIEndpoints_c_apiApplicationId"));
 		}
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("No API Application ID is available");
 		}
 
-		return null;
+		return 0;
 	}
 
 	private synchronized void _schedulePublication(ObjectEntry objectEntry) {
-		Long apiApplicationId = _getAPIApplicationId(objectEntry);
+		long apiApplicationId = _getAPIApplicationId(objectEntry);
 
-		if (apiApplicationId == null) {
+		if (apiApplicationId == 0) {
 			return;
 		}
 
@@ -160,8 +168,12 @@ public class HeadlessBuilderObjectEntryModelListener
 			() -> {
 				if (_pendingAPIApplications.remove(apiApplicationId)) {
 					ObjectEntry apiApplicationObjectEntry =
-						_objectEntryLocalService.getObjectEntry(
+						_objectEntryLocalService.fetchObjectEntry(
 							apiApplicationId);
+
+					if (apiApplicationObjectEntry == null) {
+						return null;
+					}
 
 					Map<String, Serializable> values =
 						apiApplicationObjectEntry.getValues();
