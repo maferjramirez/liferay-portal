@@ -32,9 +32,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.Serializable;
 
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -156,7 +156,7 @@ public class HeadlessBuilderObjectEntryModelListener
 		return 0;
 	}
 
-	private synchronized void _schedulePublication(ObjectEntry objectEntry) {
+	private void _schedulePublication(ObjectEntry objectEntry) {
 		long apiApplicationId = _getAPIApplicationId(objectEntry);
 
 		if (apiApplicationId == 0) {
@@ -213,6 +213,7 @@ public class HeadlessBuilderObjectEntryModelListener
 	@Reference
 	private ObjectEntryLocalService _objectEntryLocalService;
 
-	private final Set<Long> _pendingAPIApplications = new HashSet<>();
+	private final Set<Long> _pendingAPIApplications =
+		new CopyOnWriteArraySet<>();
 
 }
