@@ -49,6 +49,8 @@ const PREVIEW_OPTIONS = [
 	},
 ];
 
+const SEGMENT_SIMULATION_EVENT = 'SegmentSimulation:changeSegment';
+
 const MAXIMUM_DROPDOWN_ENTRIES = 8;
 
 function PageContentSelectors({
@@ -93,6 +95,12 @@ function PageContentSelectors({
 
 	const simulateSegmentsEntries = useCallback(() => {
 		if (formRef.current) {
+			Liferay.fire(SEGMENT_SIMULATION_EVENT, {
+				message: sub(
+					Liferay.Language.get('showing-content-for-the-segment-x'),
+					selectedSegmentEntry.name
+				),
+			});
 			fetch(simulateSegmentsEntriesURL, {
 				body: new FormData(
 					formRef.current ? formRef.current : undefined
@@ -106,18 +114,30 @@ function PageContentSelectors({
 				}
 			});
 		}
-	}, [simulateSegmentsEntriesURL]);
+	}, [selectedSegmentEntry, simulateSegmentsEntriesURL]);
 
-	const simulateSegmentsExperiment = useCallback((experience) => {
-		const iframe = document.querySelector('iframe');
+	const simulateSegmentsExperiment = useCallback(
+		(experience) => {
+			const iframe = document.querySelector('iframe');
 
-		if (iframe?.contentWindow) {
-			const url = new URL(iframe.contentWindow.location.href);
+			if (iframe?.contentWindow) {
+				Liferay.fire(SEGMENT_SIMULATION_EVENT, {
+					message: sub(
+						Liferay.Language.get(
+							'showing-content-for-the-experience-x'
+						),
+						selectedSegmentsExperience.segmentsExperienceName
+					),
+				});
 
-			url.searchParams.set('segmentsExperienceId', experience);
-			iframe.src = url.toString();
-		}
-	}, []);
+				const url = new URL(iframe.contentWindow.location.href);
+
+				url.searchParams.set('segmentsExperienceId', experience);
+				iframe.src = url.toString();
+			}
+		},
+		[selectedSegmentsExperience]
+	);
 
 	const handleMoreSegmentEntriesButtonClick = () => {
 		openSelectionModal({
