@@ -838,6 +838,10 @@ public class ObjectDefinitionLocalServiceImpl
 		ObjectDefinition objectDefinition =
 			objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId);
 
+		_validateExternalReferenceCode(
+			false, externalReferenceCode, objectDefinition.isModifiable(),
+			objectDefinition.getName(), objectDefinition.isSystem());
+
 		objectDefinition.setExternalReferenceCode(externalReferenceCode);
 
 		return objectDefinitionPersistence.update(objectDefinition);
