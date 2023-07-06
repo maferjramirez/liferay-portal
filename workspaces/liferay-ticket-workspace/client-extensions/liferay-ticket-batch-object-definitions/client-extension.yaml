@@ -1,14 +1,14 @@
 assemble:
     - from: batch
       into: batch
-liferay-ticket-batch-object-definition:
-    name: Liferay Ticket Batch Object Definition
+liferay-ticket-batch-object-definitions:
+    name: Liferay Ticket Batch Object Definitions
     oAuthApplicationHeadlessServer: liferay-ticket-batch-object-oauth
     type: batch
-liferay-ticket-batch-object-definition-oauth-application-headless-server:
+liferay-ticket-batch-object-definitions-oauth-application-headless-server:
     .serviceAddress: localhost:8080
     .serviceScheme: http
-    name: Liferay Ticket Batch Object OAuth Application Headless Server
+    name: Liferay Ticket Batch Object Definitions OAuth Application Headless Server
     scopes:
         - Liferay.Headless.Batch.Engine.everything
         - Liferay.Object.Admin.REST.everything
