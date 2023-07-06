@@ -7,8 +7,8 @@ package com.liferay.saml.web.internal.struts;
 
 import com.liferay.portal.kernel.struts.StrutsAction;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.saml.helper.SamlHttpRequestHelper;
 import com.liferay.saml.runtime.configuration.SamlProviderConfigurationHelper;
-import com.liferay.saml.util.SamlHttpRequestUtil;
 
 import java.io.PrintWriter;
 
@@ -41,7 +41,7 @@ public class MetadataAction extends BaseSamlStrutsAction {
 
 		PrintWriter printWriter = httpServletResponse.getWriter();
 
-		String metadata = _samlHttpRequestUtil.getEntityDescriptorString(
+		String metadata = _samlHttpRequestHelper.getEntityDescriptorString(
 			httpServletRequest);
 
 		printWriter.print(metadata);
@@ -50,7 +50,7 @@ public class MetadataAction extends BaseSamlStrutsAction {
 	}
 
 	@Reference
-	private SamlHttpRequestUtil _samlHttpRequestUtil;
+	private SamlHttpRequestHelper _samlHttpRequestHelper;
 
 	@Reference
 	private SamlProviderConfigurationHelper _samlProviderConfigurationHelper;

@@ -12,9 +12,9 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.saml.constants.SamlWebKeys;
+import com.liferay.saml.helper.SamlHttpRequestHelper;
 import com.liferay.saml.runtime.configuration.SamlProviderConfigurationHelper;
 import com.liferay.saml.runtime.servlet.profile.SingleLogoutProfile;
-import com.liferay.saml.util.SamlHttpRequestUtil;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -73,7 +73,7 @@ public class IdpSsoSamlPortalFilter extends BaseSamlPortalFilter {
 			}
 		}
 
-		String requestPath = _samlHttpRequestUtil.getRequestPath(
+		String requestPath = _samlHttpRequestHelper.getRequestPath(
 			httpServletRequest);
 
 		if (requestPath.equals("/c/portal/logout")) {
@@ -89,7 +89,7 @@ public class IdpSsoSamlPortalFilter extends BaseSamlPortalFilter {
 			HttpServletResponse httpServletResponse, FilterChain filterChain)
 		throws Exception {
 
-		String requestPath = _samlHttpRequestUtil.getRequestPath(
+		String requestPath = _samlHttpRequestHelper.getRequestPath(
 			httpServletRequest);
 
 		if (requestPath.equals("/c/portal/logout")) {
@@ -121,7 +121,7 @@ public class IdpSsoSamlPortalFilter extends BaseSamlPortalFilter {
 	private Portal _portal;
 
 	@Reference
-	private SamlHttpRequestUtil _samlHttpRequestUtil;
+	private SamlHttpRequestHelper _samlHttpRequestHelper;
 
 	@Reference
 	private SamlProviderConfigurationHelper _samlProviderConfigurationHelper;
