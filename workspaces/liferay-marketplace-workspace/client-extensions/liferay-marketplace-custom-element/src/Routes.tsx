@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-import { Liferay } from "./liferay/liferay";
-import { AppCreationFlow } from "./pages/AppCreationFlow/AppCreationFlow";
-import { CustomerGatePage } from "./pages/CustomerGatePage/CustomerGatePage";
-import GetAppPage from "./pages/GetAppPage/GetAppPage";
-import { NextStepPage } from "./pages/NextStepPage/NextStepPage";
-import { PublishedAppsDashboardPage } from "./pages/PublishedAppsDashboardPage/PublishedAppsDashboardPage";
-import { PurchasedAppsDashboardPage } from "./pages/PurchasedAppsDashboardPage/PurchasedAppsDashboardPage";
-import { PurchasedGetAppPage } from "./pages/PurchasedGetAppPage/PurchasedGetAppPage";
+import {Liferay} from './liferay/liferay';
+import {AppCreationFlow} from './pages/AppCreationFlow/AppCreationFlow';
+import {CustomerGatePage} from './pages/CustomerGatePage/CustomerGatePage';
+import GetAppPage from './pages/GetAppPage/GetAppPage';
+import {NextStepPage} from './pages/NextStepPage/NextStepPage';
+import {PublishedAppsDashboardPage} from './pages/PublishedAppsDashboardPage/PublishedAppsDashboardPage';
+import {PurchasedAppsDashboardPage} from './pages/PurchasedAppsDashboardPage/PurchasedAppsDashboardPage';
+import {PurchasedGetAppPage} from './pages/PurchasedGetAppPage/PurchasedGetAppPage';
 
 interface AppRoutesProps {
 	route: string;
@@ -35,6 +35,9 @@ export default function AppRoutes({route}: AppRoutesProps) {
 		}
 		else if (route === 'customer-gate') {
 			return <CustomerGatePage />;
+		}
+		else if (route === 'purchased-get-app') {
+			return <PurchasedGetAppPage />;
 		}
 	}
 
