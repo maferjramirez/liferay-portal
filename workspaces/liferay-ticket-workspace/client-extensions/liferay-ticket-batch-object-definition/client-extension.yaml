@@ -3,7 +3,7 @@ assemble:
       into: batch
 liferay-ticket-batch-object-definition:
     name: Liferay Ticket Batch Object Definition
-    oAuthApplicationHeadlessServer: liferay-ticket-batch-object-oauth
+    oAuthApplicationHeadlessServer: liferay-ticket-batch-object-definition-oauth-application-headless-server
     type: batch
 liferay-ticket-batch-object-definition-oauth-application-headless-server:
     .serviceAddress: localhost:8080
