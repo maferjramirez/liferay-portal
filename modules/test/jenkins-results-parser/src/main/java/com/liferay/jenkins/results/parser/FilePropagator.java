@@ -92,7 +92,7 @@ public class FilePropagator {
 			"File propagation starting with " + threadCount + " threads.");
 
 		try {
-			String previousLog = null;
+			String previousString = null;
 			long start = JenkinsResultsParserUtil.getCurrentTimeMillis();
 
 			while (!_targetSlaves.isEmpty() || !_busySlaves.isEmpty()) {
@@ -128,9 +128,9 @@ public class FilePropagator {
 				sb.append("\nTarget slaves:");
 				sb.append(_targetSlaves.size());
 
-				String currentLog = sb.toString();
+				String currentString = sb.toString();
 
-				if (Objects.equals(previousLog, currentLog)) {
+				if (Objects.equals(previousString, currentString)) {
 					continue;
 				}
 
@@ -147,7 +147,7 @@ public class FilePropagator {
 
 				System.out.println(sb.toString());
 
-				previousLog = currentLog;
+				previousString = currentString;
 
 				JenkinsResultsParserUtil.sleep(5000);
 			}
