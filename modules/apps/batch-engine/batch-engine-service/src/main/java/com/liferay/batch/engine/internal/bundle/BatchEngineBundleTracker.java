@@ -121,64 +121,63 @@ public class BatchEngineBundleTracker {
 			Dictionary<String, String> headers = bundle.getHeaders(
 				StringPool.BLANK);
 
-			if ((headers.get("Liferay-Client-Extension-Batch") != null) &&
-				!_isAlreadyProcessed(bundle)) {
+			if ((headers.get("Liferay-Client-Extension-Batch") == null) ||
+				_isAlreadyProcessed(bundle)) {
 
-				List<BatchEngineUnit> multiCompanyBatchEngineUnits =
-					new ArrayList<>();
-				List<BatchEngineUnit> singleCompanyBatchEngineUnits =
-					new ArrayList<>();
-
-				Iterable<BatchEngineUnit> batchEngineUnits =
-					_batchEngineUnitReader.getBatchEngineUnits(bundle);
-
-				for (BatchEngineUnit batchEngineUnit : batchEngineUnits) {
-					try {
-						BatchEngineUnitConfiguration
-							batchEngineUnitConfiguration =
-								batchEngineUnit.
-									getBatchEngineUnitConfiguration();
-
-						if (batchEngineUnitConfiguration.isMultiCompany()) {
-							multiCompanyBatchEngineUnits.add(batchEngineUnit);
-						}
-						else {
-							singleCompanyBatchEngineUnits.add(batchEngineUnit);
-						}
-					}
-					catch (Exception exception) {
-						throw new RuntimeException(exception);
-					}
-				}
-
-				if (!multiCompanyBatchEngineUnits.isEmpty()) {
-					_serviceRegistrations.put(
-						bundle,
-						_bundleContext.registerService(
-							PortalInstanceLifecycleListener.class,
-							new BasePortalInstanceLifecycleListener() {
-
-								@Override
-								public void portalInstanceRegistered(
-									Company company) {
-
-									_batchEngineUnitProcessor.
-										processBatchEngineUnits(
-											TransformUtil.transform(
-												multiCompanyBatchEngineUnits,
-												batchEngineUnit ->
-													new CompanyBatchEngineUnitWrapper(
-														batchEngineUnit,
-														company)));
-								}
-
-							},
-							null));
-				}
-
-				_batchEngineUnitProcessor.processBatchEngineUnits(
-					singleCompanyBatchEngineUnits);
+				return bundle;
 			}
+
+			List<BatchEngineUnit> multiCompanyBatchEngineUnits =
+				new ArrayList<>();
+			List<BatchEngineUnit> singleCompanyBatchEngineUnits =
+				new ArrayList<>();
+
+			Iterable<BatchEngineUnit> batchEngineUnits =
+				_batchEngineUnitReader.getBatchEngineUnits(bundle);
+
+			for (BatchEngineUnit batchEngineUnit : batchEngineUnits) {
+				try {
+					BatchEngineUnitConfiguration batchEngineUnitConfiguration =
+						batchEngineUnit.getBatchEngineUnitConfiguration();
+
+					if (batchEngineUnitConfiguration.isMultiCompany()) {
+						multiCompanyBatchEngineUnits.add(batchEngineUnit);
+					}
+					else {
+						singleCompanyBatchEngineUnits.add(batchEngineUnit);
+					}
+				}
+				catch (Exception exception) {
+					throw new RuntimeException(exception);
+				}
+			}
+
+			if (!multiCompanyBatchEngineUnits.isEmpty()) {
+				_serviceRegistrations.put(
+					bundle,
+					_bundleContext.registerService(
+						PortalInstanceLifecycleListener.class,
+						new BasePortalInstanceLifecycleListener() {
+
+							@Override
+							public void portalInstanceRegistered(
+								Company company) {
+
+								_batchEngineUnitProcessor.
+									processBatchEngineUnits(
+										TransformUtil.transform(
+											multiCompanyBatchEngineUnits,
+											batchEngineUnit ->
+												new CompanyBatchEngineUnitWrapper(
+													batchEngineUnit, company)));
+							}
+
+						},
+						null));
+			}
+
+			_batchEngineUnitProcessor.processBatchEngineUnits(
+				singleCompanyBatchEngineUnits);
 
 			return bundle;
 		}
