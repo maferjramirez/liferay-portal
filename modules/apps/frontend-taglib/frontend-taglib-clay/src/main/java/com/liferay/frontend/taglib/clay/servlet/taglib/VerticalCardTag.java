@@ -571,8 +571,7 @@ public class VerticalCardTag extends BaseCardTag {
 
 		jspWriter.write("<div class=\"card-body\"><div class=\"card-row\">");
 		jspWriter.write("<div class=\"autofit-col autofit-col-expand\">");
-
-		jspWriter.write("<p class=\"card-title\"");
+		jspWriter.write("<p");
 
 		String ariaLabel = getAriaLabel();
 
@@ -581,6 +580,8 @@ public class VerticalCardTag extends BaseCardTag {
 			jspWriter.write(HtmlUtil.escapeAttribute(ariaLabel));
 			jspWriter.write("\"");
 		}
+
+		jspWriter.write(" class=\"card-title\"");
 
 		String title = getTitle();
 
