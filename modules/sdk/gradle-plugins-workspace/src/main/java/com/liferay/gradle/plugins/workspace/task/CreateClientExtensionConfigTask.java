@@ -248,9 +248,7 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 		}
 		catch (IOException ioException) {
 			throw new GradleException(
-				StringBundler.concat(
-					"Unable to parse ", lcpJsonFile.getName(), "."),
-				ioException);
+				"Unable to parse " + lcpJsonFile.getName(), ioException);
 		}
 	}
 
