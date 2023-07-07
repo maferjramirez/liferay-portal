@@ -31,7 +31,7 @@ import org.springframework.security.oauth2.core.OAuth2AccessToken;
  * @author Michael Hashimoto
  */
 @Configuration
-public class LiferayOAuth2AccessToken {
+public class LiferayOAuth2AccessTokenConfiguration {
 
 	public String getAuthorization() {
 		OAuth2AccessToken oAuth2AccessToken = getOAuth2AccessToken();
