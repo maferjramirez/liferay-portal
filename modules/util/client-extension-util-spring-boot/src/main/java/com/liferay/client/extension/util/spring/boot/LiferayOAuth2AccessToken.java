@@ -132,7 +132,7 @@ public class LiferayOAuth2AccessToken {
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Updated OAuth2 Access Token at " +
+				"Updated OAuth2 access token at " +
 					oAuth2AccessToken.getIssuedAt());
 		}
 
