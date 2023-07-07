@@ -152,32 +152,31 @@ public class BatchEngineBundleTracker {
 				}
 			}
 
-			if (!multiCompanyBatchEngineUnits.isEmpty()) {
-				_serviceRegistrations.put(
-					bundle,
-					_bundleContext.registerService(
-						PortalInstanceLifecycleListener.class,
-						new BasePortalInstanceLifecycleListener() {
-
-							@Override
-							public void portalInstanceRegistered(
-								Company company) {
-
-								_batchEngineUnitProcessor.
-									processBatchEngineUnits(
-										TransformUtil.transform(
-											multiCompanyBatchEngineUnits,
-											batchEngineUnit ->
-												new CompanyBatchEngineUnitWrapper(
-													batchEngineUnit, company)));
-							}
-
-						},
-						null));
-			}
-
 			_batchEngineUnitProcessor.processBatchEngineUnits(
 				singleCompanyBatchEngineUnits);
+
+			if (multiCompanyBatchEngineUnits.isEmpty()) {
+				return bundle;
+			}
+
+			_serviceRegistrations.put(
+				bundle,
+				_bundleContext.registerService(
+					PortalInstanceLifecycleListener.class,
+					new BasePortalInstanceLifecycleListener() {
+
+						@Override
+						public void portalInstanceRegistered(Company company) {
+							_batchEngineUnitProcessor.processBatchEngineUnits(
+								TransformUtil.transform(
+									multiCompanyBatchEngineUnits,
+									batchEngineUnit ->
+										new CompanyBatchEngineUnitWrapper(
+											batchEngineUnit, company)));
+						}
+
+					},
+					null));
 
 			return bundle;
 		}
