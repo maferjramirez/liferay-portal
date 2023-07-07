@@ -95,7 +95,7 @@ function FormOptions({item, onValueSelect}) {
 
 				{formIsMapped(item) && (
 					<>
-						<SuccessMessageOptions
+						<SuccessInteractionOptions
 							item={item}
 							onValueSelect={onValueSelect}
 						/>
@@ -136,8 +136,8 @@ const SUCCESS_MESSAGE_OPTIONS = [
 		: []),
 ];
 
-function SuccessMessageOptions({item, onValueSelect}) {
-	const {successMessage: successMessageConfig = {}} = item.config;
+function SuccessInteractionOptions({item, onValueSelect}) {
+	const {successMessage: interactionConfig = {}} = item.config;
 
 	const languageId = useSelector(selectLanguageId);
 	const dispatch = useDispatch();
@@ -145,11 +145,11 @@ function SuccessMessageOptions({item, onValueSelect}) {
 	const helpTextId = useId();
 
 	const [selectedSource, setSelectedSource] = useState(
-		getSelectedOption(successMessageConfig)
+		getSelectedOption(interactionConfig)
 	);
 	const [successMessage, setSuccessMessage] = useControlledState(
 		getEditableLocalizedValue(
-			successMessageConfig.message,
+			interactionConfig.message,
 			languageId,
 			Liferay.Language.get(
 				'thank-you.-your-information-was-successfully-received'
@@ -158,15 +158,15 @@ function SuccessMessageOptions({item, onValueSelect}) {
 	);
 
 	useEffect(() => {
-		if (Object.keys(successMessageConfig).length) {
-			const nextSelectedSource = getSelectedOption(successMessageConfig);
+		if (Object.keys(interactionConfig).length) {
+			const nextSelectedSource = getSelectedOption(interactionConfig);
 
 			setSelectedSource(nextSelectedSource);
 		}
-	}, [successMessageConfig]);
+	}, [interactionConfig]);
 
 	const [url, setUrl] = useControlledState(
-		getEditableLocalizedValue(successMessageConfig.url, languageId)
+		getEditableLocalizedValue(interactionConfig.url, languageId)
 	);
 	const [showMessagePreview, setShowMessagePreview] = useControlledState(
 		Boolean(item.config.showMessagePreview)
@@ -211,7 +211,7 @@ function SuccessMessageOptions({item, onValueSelect}) {
 
 			{selectedSource === LAYOUT_OPTION && (
 				<LayoutSelector
-					mappedLayout={successMessageConfig?.layout}
+					mappedLayout={interactionConfig?.layout}
 					onLayoutSelect={(layout) =>
 						onValueSelect({
 							successMessage: {layout},
@@ -235,7 +235,7 @@ function SuccessMessageOptions({item, onValueSelect}) {
 										onValueSelect({
 											successMessage: {
 												message: {
-													...(successMessageConfig?.message ||
+													...(interactionConfig?.message ||
 														{}),
 													[languageId]: successMessage,
 												},
@@ -250,7 +250,7 @@ function SuccessMessageOptions({item, onValueSelect}) {
 											onValueSelect({
 												successMessage: {
 													message: {
-														...(successMessageConfig?.message ||
+														...(interactionConfig?.message ||
 															{}),
 														[languageId]: successMessage,
 													},
@@ -303,7 +303,7 @@ function SuccessMessageOptions({item, onValueSelect}) {
 									onValueSelect({
 										successMessage: {
 											url: {
-												...(successMessageConfig?.url ||
+												...(interactionConfig?.url ||
 													{}),
 												[languageId]: url,
 											},
@@ -338,7 +338,7 @@ function SuccessMessageOptions({item, onValueSelect}) {
 					item={item}
 					onValueSelect={onValueSelect}
 					selectedSource={selectedSource}
-					selectedValue={successMessageConfig?.displayPage}
+					selectedValue={interactionConfig?.displayPage}
 				/>
 			)}
 		</>
@@ -423,20 +423,20 @@ function filterFields(fields) {
 	}, []);
 }
 
-function getSelectedOption(successMessageConfig) {
-	if (successMessageConfig.url) {
+function getSelectedOption(interactionConfig) {
+	if (interactionConfig.url) {
 		return URL_OPTION;
 	}
 
-	if (successMessageConfig.message) {
+	if (interactionConfig.message) {
 		return EMBEDDED_OPTION;
 	}
 
-	if (successMessageConfig.layout?.layoutUuid) {
+	if (interactionConfig.layout?.layoutUuid) {
 		return LAYOUT_OPTION;
 	}
 
-	if (successMessageConfig.displayPage) {
+	if (interactionConfig.displayPage) {
 		return DISPLAY_PAGE_OPTION;
 	}
 
