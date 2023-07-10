@@ -164,17 +164,17 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 
 		pluginPackageProperties.put("name", _project.getName());
 
-		_addRequiredDeploymentContexts(
-			pluginPackageProperties, getLcpJsonFile());
-
-		_storePluginPackageProperties(pluginPackageProperties);
-
 		_writeToOutputFile(
 			classificationGrouping, getInputDockerfileFile(), getDockerFile(),
 			substitutionMap);
 		_writeToOutputFile(
 			classificationGrouping, getInputLcpJsonFile(), getLcpJsonFile(),
 			substitutionMap);
+
+		_addRequiredDeploymentContexts(
+			pluginPackageProperties, getLcpJsonFile());
+
+		_storePluginPackageProperties(pluginPackageProperties);
 
 		_createClientExtensionConfigFile(jsonMap);
 	}
