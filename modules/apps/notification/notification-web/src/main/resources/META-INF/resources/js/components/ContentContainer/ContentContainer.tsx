@@ -13,8 +13,6 @@ import {
 } from '@liferay/object-js-components-web';
 import React from 'react';
 
-import {DefinitionOfTerms} from '../DefinitionOfTermsContainer/DefinitionOfTerms';
-import {GeneralTerms} from '../DefinitionOfTermsContainer/GeneralTerms';
 import {Attachments} from './Attachments';
 import {FreeMarkerTemplateEditor} from './FreeMarkerTemplateEditor';
 
@@ -137,17 +135,6 @@ export default function ContentContainer({
 							</Text>
 						</>
 					)}
-				</>
-			)}
-
-			{!Liferay.FeatureFlags['LPS-165849'] && (
-				<>
-					<DefinitionOfTerms
-						baseResourceURL={baseResourceURL}
-						objectDefinitions={objectDefinitions}
-					/>
-
-					<GeneralTerms baseResourceURL={baseResourceURL} />
 				</>
 			)}
 
