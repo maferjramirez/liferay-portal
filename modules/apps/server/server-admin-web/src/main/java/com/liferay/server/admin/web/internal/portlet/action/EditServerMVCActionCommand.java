@@ -8,6 +8,7 @@ package com.liferay.server.admin.web.internal.portlet.action;
 import com.liferay.configuration.admin.constants.ConfigurationAdminPortletKeys;
 import com.liferay.document.library.kernel.util.DLPreviewableProcessor;
 import com.liferay.document.library.kernel.util.PDFProcessor;
+import com.liferay.document.library.kernel.util.VideoProcessor;
 import com.liferay.mail.kernel.model.Account;
 import com.liferay.mail.kernel.service.MailService;
 import com.liferay.petra.string.CharPool;
@@ -204,8 +205,11 @@ public class EditServerMVCActionCommand
 		else if (cmd.equals("dlDeletePreviews")) {
 			DLPreviewableProcessor.deleteFiles();
 		}
-		else if (cmd.equals("dlGeneratePreviews")) {
+		else if (cmd.equals("dlGeneratePDFPreviews")) {
 			_pdfProcessor.generatePreviews();
+		}
+		else if (cmd.equals("dlGenerateVideoPreviews")) {
+			_videoProcessor.generatePreviews();
 		}
 		else if (cmd.equals("gc")) {
 			_gc();
@@ -933,5 +937,8 @@ public class EditServerMVCActionCommand
 
 	@Reference
 	private UserGroupMembershipPolicyFactory _userGroupMembershipPolicyFactory;
+
+	@Reference
+	private VideoProcessor _videoProcessor;
 
 }

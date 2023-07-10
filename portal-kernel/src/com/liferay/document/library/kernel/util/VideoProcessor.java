@@ -26,6 +26,8 @@ public interface VideoProcessor {
 			Element fileEntryElement)
 		throws Exception;
 
+	public void generatePreviews();
+
 	public void generateVideo(
 			FileVersion sourceFileVersion, FileVersion destinationFileVersion)
 		throws Exception;
