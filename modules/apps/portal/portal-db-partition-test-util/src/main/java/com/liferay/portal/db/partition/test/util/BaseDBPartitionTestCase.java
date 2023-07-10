@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.db.DBType;
 import com.liferay.portal.kernel.dao.jdbc.CurrentConnection;
 import com.liferay.portal.kernel.dao.jdbc.CurrentConnectionUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.db.partition.DBPartition;
 import com.liferay.portal.kernel.model.UserConstants;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
@@ -131,10 +132,11 @@ public abstract class BaseDBPartitionTestCase {
 			return;
 		}
 
+		PropsUtil.set(
+			"database.partition.enabled", _originalDatabasePartitionEnabled);
+
 		ReflectionTestUtil.setFieldValue(
 			DBInitUtil.class, "_dataSource", _currentDataSource);
-		ReflectionTestUtil.setFieldValue(
-			DBPartitionUtil.class, "_DATABASE_PARTITION_ENABLED", false);
 		ReflectionTestUtil.setFieldValue(
 			DBPartitionUtil.class, "_DATABASE_PARTITION_SCHEMA_NAME_PREFIX",
 			StringPool.BLANK);
@@ -165,15 +167,17 @@ public abstract class BaseDBPartitionTestCase {
 	protected static void enableDBPartition() throws Exception {
 		CompanyThreadLocal.setCompanyId(PortalInstances.getDefaultCompanyId());
 
-		_dbPartitionEnabled = GetterUtil.getBoolean(
-			_props.get("database.partition.enabled"));
+		_dbPartitionEnabled = DBPartition.isPartitionEnabled();
 
 		if (_dbPartitionEnabled) {
 			return;
 		}
 
-		ReflectionTestUtil.setFieldValue(
-			DBPartitionUtil.class, "_DATABASE_PARTITION_ENABLED", true);
+		_originalDatabasePartitionEnabled = PropsUtil.get(
+			"database.partition.enabled");
+
+		PropsUtil.set("database.partition.enabled", "true");
+
 		ReflectionTestUtil.setFieldValue(
 			DBPartitionUtil.class, "_DATABASE_PARTITION_SCHEMA_NAME_PREFIX",
 			_DATABASE_PARTITION_SCHEMA_NAME_PREFIX);
@@ -378,6 +382,7 @@ public abstract class BaseDBPartitionTestCase {
 		ReflectionTestUtil.getFieldValue(DBInitUtil.class, "_dataSource");
 	private static boolean _dbPartitionEnabled;
 	private static LazyConnectionDataSourceProxy _lazyConnectionDataSourceProxy;
+	private static String _originalDatabasePartitionEnabled;
 
 	@Inject
 	private static Props _props;
