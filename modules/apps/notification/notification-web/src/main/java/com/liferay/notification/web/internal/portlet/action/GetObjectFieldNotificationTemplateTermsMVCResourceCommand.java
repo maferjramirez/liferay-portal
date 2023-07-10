@@ -14,7 +14,6 @@ import com.liferay.object.service.ObjectFieldLocalService;
 import com.liferay.object.service.ObjectRelationshipLocalService;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.feature.flag.FeatureFlagManagerUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
@@ -65,13 +64,6 @@ public class GetObjectFieldNotificationTemplateTermsMVCResourceCommand
 			_objectFieldLocalService.getObjectFields(
 				objectDefinition.getObjectDefinitionId()),
 			objectDefinition.getShortName(), themeDisplay);
-
-		if (!FeatureFlagManagerUtil.isEnabled("LPS-165849")) {
-			JSONPortletResponseUtil.writeJSON(
-				resourceRequest, resourceResponse, termsJSONArray);
-
-			return;
-		}
 
 		JSONArray relationshipSectionsJSONArray = jsonFactory.createJSONArray();
 
