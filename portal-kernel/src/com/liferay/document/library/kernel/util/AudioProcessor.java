@@ -33,6 +33,8 @@ public interface AudioProcessor {
 			FileVersion sourceFileVersion, FileVersion destinationFileVersion)
 		throws Exception;
 
+	public void generatePreviews();
+
 	public Set<String> getAudioMimeTypes();
 
 	public InputStream getPreviewAsStream(FileVersion fileVersion, String type)
@@ -61,5 +63,4 @@ public interface AudioProcessor {
 	public void trigger(
 		FileVersion sourceFileVersion, FileVersion destinationFileVersion);
 
-	public void generatePreviews();
 }
