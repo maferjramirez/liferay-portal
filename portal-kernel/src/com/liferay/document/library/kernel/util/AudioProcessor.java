@@ -61,4 +61,5 @@ public interface AudioProcessor {
 	public void trigger(
 		FileVersion sourceFileVersion, FileVersion destinationFileVersion);
 
+	public void generatePreviews();
 }

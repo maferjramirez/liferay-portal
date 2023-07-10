@@ -6,6 +6,7 @@
 package com.liferay.server.admin.web.internal.portlet.action;
 
 import com.liferay.configuration.admin.constants.ConfigurationAdminPortletKeys;
+import com.liferay.document.library.kernel.util.AudioProcessor;
 import com.liferay.document.library.kernel.util.DLPreviewableProcessor;
 import com.liferay.document.library.kernel.util.PDFProcessor;
 import com.liferay.document.library.kernel.util.VideoProcessor;
@@ -204,6 +205,9 @@ public class EditServerMVCActionCommand
 		}
 		else if (cmd.equals("dlDeletePreviews")) {
 			DLPreviewableProcessor.deleteFiles();
+		}
+		else if (cmd.equals("dlGenerateAudioPreviews")) {
+			_audioProcessor.generatePreviews();
 		}
 		else if (cmd.equals("dlGeneratePDFPreviews")) {
 			_pdfProcessor.generatePreviews();
@@ -870,6 +874,9 @@ public class EditServerMVCActionCommand
 	private static final MethodKey _updateLogLevelsMethodKey = new MethodKey(
 		EditServerMVCActionCommand.class, "_updateLogLevels", Map.class,
 		String.class);
+
+	@Reference
+	private AudioProcessor _audioProcessor;
 
 	@Reference
 	private ClusterExecutor _clusterExecutor;
