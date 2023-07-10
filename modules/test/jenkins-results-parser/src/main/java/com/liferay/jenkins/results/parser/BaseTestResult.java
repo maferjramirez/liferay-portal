@@ -90,10 +90,10 @@ public abstract class BaseTestResult implements TestResult {
 			JSONObject testReportJSONObject = build.getTestReportJSONObject(
 				false);
 
-			int passCount = testReportJSONObject.getInt("passCount");
 			int failCount = testReportJSONObject.getInt("failCount");
+			int passCount = testReportJSONObject.getInt("passCount");
 
-			if ((passCount == 1) && (failCount == 0)) {
+			if ((failCount == 0) && (passCount == 1)) {
 				return true;
 			}
 		}
