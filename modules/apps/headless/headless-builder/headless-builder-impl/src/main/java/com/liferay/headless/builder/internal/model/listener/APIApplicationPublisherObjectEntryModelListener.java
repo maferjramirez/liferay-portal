@@ -150,7 +150,8 @@ public class APIApplicationPublisherObjectEntryModelListener
 		}
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("No API Application ID is available");
+			_log.debug(
+				"No API Application ID exists for object entry " + objectEntry);
 		}
 
 		return 0;
