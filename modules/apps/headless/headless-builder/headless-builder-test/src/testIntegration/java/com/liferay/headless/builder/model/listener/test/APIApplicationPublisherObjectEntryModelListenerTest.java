@@ -132,8 +132,6 @@ public class APIApplicationPublisherObjectEntryModelListenerTest
 
 		Assert.assertEquals(initialSize, _serviceTracker.size());
 
-		String apiEndpointExternalReferenceCode = RandomTestUtil.randomString();
-
 		HTTPTestUtil.invoke(
 			JSONUtil.put(
 				"apiApplicationToAPIEndpoints",
@@ -141,8 +139,7 @@ public class APIApplicationPublisherObjectEntryModelListenerTest
 					JSONUtil.put(
 						"description", "description"
 					).put(
-						"externalReferenceCode",
-						apiEndpointExternalReferenceCode
+						"externalReferenceCode", RandomTestUtil.randomString()
 					).put(
 						"httpMethod", "get"
 					).put(
