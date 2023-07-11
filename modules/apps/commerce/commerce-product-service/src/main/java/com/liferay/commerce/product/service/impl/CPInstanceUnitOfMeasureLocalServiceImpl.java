@@ -87,8 +87,8 @@ public class CPInstanceUnitOfMeasureLocalServiceImpl
 
 		if (cpInstanceUnitOfMeasure.isPrimary()) {
 			_unsetCurCPInstanceUnitOfMeasurePrimary(
-				cpInstanceId,
-				cpInstanceUnitOfMeasure.getCPInstanceUnitOfMeasureId());
+				cpInstanceUnitOfMeasure.getCPInstanceUnitOfMeasureId(),
+				cpInstanceId);
 		}
 
 		return cpInstanceUnitOfMeasurePersistence.update(
@@ -152,8 +152,8 @@ public class CPInstanceUnitOfMeasureLocalServiceImpl
 
 		if (cpInstanceUnitOfMeasure.isPrimary()) {
 			_unsetCurCPInstanceUnitOfMeasurePrimary(
-				cpInstanceId,
-				cpInstanceUnitOfMeasure.getCPInstanceUnitOfMeasureId());
+				cpInstanceUnitOfMeasure.getCPInstanceUnitOfMeasureId(),
+				cpInstanceId);
 		}
 
 		return cpInstanceUnitOfMeasurePersistence.update(
@@ -167,7 +167,7 @@ public class CPInstanceUnitOfMeasureLocalServiceImpl
 	}
 
 	private void _unsetCurCPInstanceUnitOfMeasurePrimary(
-		long cpInstanceId, long cpInstanceUnitOfMeasureId) {
+		long cpInstanceUnitOfMeasureId, long cpInstanceId) {
 
 		CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure =
 			cpInstanceUnitOfMeasurePersistence.fetchByC_P_First(
