@@ -86,7 +86,7 @@ public class CPInstanceUnitOfMeasureLocalServiceImpl
 		cpInstanceUnitOfMeasure.setSku(sku);
 
 		if (cpInstanceUnitOfMeasure.isPrimary()) {
-			_unsetCurCPInstanceUnitOfMeasurePrimary(
+			_updatePrimary(
 				cpInstanceUnitOfMeasure.getCPInstanceUnitOfMeasureId(),
 				cpInstanceId);
 		}
@@ -151,7 +151,7 @@ public class CPInstanceUnitOfMeasureLocalServiceImpl
 		cpInstanceUnitOfMeasure.setSku(sku);
 
 		if (cpInstanceUnitOfMeasure.isPrimary()) {
-			_unsetCurCPInstanceUnitOfMeasurePrimary(
+			_updatePrimary(
 				cpInstanceUnitOfMeasure.getCPInstanceUnitOfMeasureId(),
 				cpInstanceId);
 		}
@@ -166,7 +166,7 @@ public class CPInstanceUnitOfMeasureLocalServiceImpl
 		return baseDecimalQuantity.setScale(precision, RoundingMode.HALF_UP);
 	}
 
-	private void _unsetCurCPInstanceUnitOfMeasurePrimary(
+	private void _updatePrimary(
 		long cpInstanceUnitOfMeasureId, long cpInstanceId) {
 
 		CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure =
