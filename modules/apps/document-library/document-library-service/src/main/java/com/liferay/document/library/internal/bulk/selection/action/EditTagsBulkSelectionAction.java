@@ -119,11 +119,11 @@ public class EditTagsBulkSelectionAction
 	}
 
 	private Set<String> _toStringSet(
-		Map<String, Serializable> inputMap, String key) {
+		Map<String, Serializable> map, String key) {
 
 		try {
 			return SetUtil.fromArray(
-				(String[])inputMap.getOrDefault(key, new String[0]));
+				(String[])map.getOrDefault(key, new String[0]));
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
