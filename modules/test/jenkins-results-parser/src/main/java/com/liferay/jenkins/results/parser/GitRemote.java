@@ -43,16 +43,20 @@ public class GitRemote {
 
 	@Override
 	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
 		if (!(object instanceof GitRemote)) {
 			return false;
 		}
 
 		GitRemote otherGitRemote = (GitRemote)object;
 
-		if (Objects.equals(getRemoteURL(), otherGitRemote.getRemoteURL()) &&
-			Objects.equals(
+		if (Objects.equals(
 				getGitRepositoryName(),
-				otherGitRemote.getGitRepositoryName())) {
+				otherGitRemote.getGitRepositoryName()) &&
+			Objects.equals(getRemoteURL(), otherGitRemote.getRemoteURL())) {
 
 			return true;
 		}
