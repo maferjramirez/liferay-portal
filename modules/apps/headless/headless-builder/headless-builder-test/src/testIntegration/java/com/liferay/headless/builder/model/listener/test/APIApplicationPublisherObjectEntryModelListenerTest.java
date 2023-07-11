@@ -76,9 +76,6 @@ public class APIApplicationPublisherObjectEntryModelListenerTest
 
 	@Test
 	public void test() throws Exception {
-
-		// Success and publish it
-
 		int initialSize = _serviceTracker.size();
 
 		JSONObject jsonObject = HTTPTestUtil.invoke(
@@ -103,8 +100,6 @@ public class APIApplicationPublisherObjectEntryModelListenerTest
 
 		Assert.assertEquals(initialSize + 1, _serviceTracker.size());
 
-		// Unpublish
-
 		HTTPTestUtil.invoke(
 			JSONUtil.put(
 				"applicationStatus", "unpublished"
@@ -114,8 +109,6 @@ public class APIApplicationPublisherObjectEntryModelListenerTest
 			Http.Method.PATCH);
 
 		Assert.assertEquals(initialSize, _serviceTracker.size());
-
-		// Create and publish
 
 		HTTPTestUtil.invoke(
 			JSONUtil.put(
@@ -131,8 +124,6 @@ public class APIApplicationPublisherObjectEntryModelListenerTest
 
 		Assert.assertEquals(initialSize + 1, _serviceTracker.size());
 
-		// Delete API Application
-
 		HTTPTestUtil.invoke(
 			null,
 			"headless-builder/applications/by-external-reference-code/" +
@@ -140,8 +131,6 @@ public class APIApplicationPublisherObjectEntryModelListenerTest
 			Http.Method.DELETE);
 
 		Assert.assertEquals(initialSize, _serviceTracker.size());
-
-		// Create API Application with Endpoint and Schema
 
 		String apiEndpointExternalReferenceCode = RandomTestUtil.randomString();
 
