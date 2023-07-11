@@ -101,12 +101,6 @@ public class APIApplicationPublisherObjectEntryModelListener
 		if (StringUtil.equals(externalReferenceCode, "L_API_APPLICATION")) {
 			return objectEntry.getObjectEntryId();
 		}
-		else if (StringUtil.equals(externalReferenceCode, "L_API_SCHEMA")) {
-			Map<String, Serializable> values = objectEntry.getValues();
-
-			return GetterUtil.getLong(
-				values.get("r_apiApplicationToAPISchemas_c_apiApplicationId"));
-		}
 		else if (StringUtil.equals(externalReferenceCode, "L_API_ENDPOINT")) {
 			Map<String, Serializable> values = objectEntry.getValues();
 
@@ -130,6 +124,12 @@ public class APIApplicationPublisherObjectEntryModelListener
 			return GetterUtil.getLong(
 				apiEndpointObjectEntryValues.get(
 					"r_apiApplicationToAPIEndpoints_c_apiApplicationId"));
+		}
+		else if (StringUtil.equals(externalReferenceCode, "L_API_SCHEMA")) {
+			Map<String, Serializable> values = objectEntry.getValues();
+
+			return GetterUtil.getLong(
+				values.get("r_apiApplicationToAPISchemas_c_apiApplicationId"));
 		}
 		else if (StringUtil.equals(externalReferenceCode, "L_API_SORT")) {
 			Map<String, Serializable> apiSortObjectEntryValues =
