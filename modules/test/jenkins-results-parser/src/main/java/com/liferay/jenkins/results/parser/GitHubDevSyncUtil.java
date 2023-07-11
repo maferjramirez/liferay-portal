@@ -744,7 +744,7 @@ public class GitHubDevSyncUtil {
 
 		sb.append("Deleted ");
 		sb.append(String.valueOf(remoteGitBranches.size()));
-		sb.append(" GitHub-dev branches:\n");
+		sb.append(" GitHub dev branches:\n");
 
 		for (RemoteGitBranch remoteGitBranch : remoteGitBranches) {
 			sb.append("    ");
@@ -755,7 +755,7 @@ public class GitHubDevSyncUtil {
 		}
 
 		NotificationUtil.sendEmail(
-			sb.toString(), "jenkins", "GitHub-dev branches deleted",
+			sb.toString(), "jenkins", "GitHub dev branches deleted",
 			"peter.yoo@liferay.com");
 	}
 
