@@ -34,9 +34,6 @@ public class APISchemaRelevantObjectEntryModelListenerTest
 
 	@Test
 	public void test() throws Exception {
-
-		// An API schema must be related to an API application
-
 		JSONObject jsonObject = HTTPTestUtil.invoke(
 			JSONUtil.put(
 				"mainObjectDefinitionERC", RandomTestUtil.randomString()
@@ -49,8 +46,6 @@ public class APISchemaRelevantObjectEntryModelListenerTest
 		Assert.assertEquals(
 			"An API schema must be related to an API application.",
 			jsonObject.get("title"));
-
-		// Success
 
 		JSONObject apiApplicationJSONObject = HTTPTestUtil.invoke(
 			JSONUtil.put(
