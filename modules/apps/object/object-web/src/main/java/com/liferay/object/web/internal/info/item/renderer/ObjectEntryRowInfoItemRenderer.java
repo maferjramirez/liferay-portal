@@ -134,16 +134,11 @@ public class ObjectEntryRowInfoItemRenderer
 
 		Map<String, Serializable> sortedValues = new TreeMap<>();
 
+		Map<String, ?> values = null;
+
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
-
-		List<ObjectField> objectFields =
-			_objectFieldLocalService.getActiveObjectFields(
-				_objectFieldLocalService.getObjectFields(
-					_objectDefinition.getObjectDefinitionId(), false));
-
-		Map<String, ?> values = null;
 
 		if (_objectDefinition.isDefaultStorageType()) {
 			values = serviceBuilderObjectEntry.getValues();
@@ -160,6 +155,11 @@ public class ObjectEntryRowInfoItemRenderer
 
 			values = objectEntry.getProperties();
 		}
+
+		List<ObjectField> objectFields =
+			_objectFieldLocalService.getActiveObjectFields(
+				_objectFieldLocalService.getObjectFields(
+					_objectDefinition.getObjectDefinitionId(), false));
 
 		for (ObjectField objectField : objectFields) {
 			if (objectField.getListTypeDefinitionId() != 0) {
