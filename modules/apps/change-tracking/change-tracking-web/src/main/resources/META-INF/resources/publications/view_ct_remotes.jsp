@@ -23,8 +23,8 @@ ViewCTRemotesDisplayContext viewCTRemotesDisplayContext = (ViewCTRemotesDisplayC
 
 renderResponse.setTitle(LanguageUtil.get(request, "remote-servers"));
 
-portletDisplay.setURLBack(backURL);
 portletDisplay.setShowBackIcon(true);
+portletDisplay.setURLBack(backURL);
 %>
 
 <frontend-data-set:headless-display
