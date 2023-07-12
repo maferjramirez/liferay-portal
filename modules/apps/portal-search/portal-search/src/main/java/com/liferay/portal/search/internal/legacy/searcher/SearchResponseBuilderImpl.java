@@ -224,12 +224,9 @@ public class SearchResponseBuilderImpl implements SearchResponseBuilder {
 					searchHitsBuilder.addSearchHits(searchHitsList);
 					searchHitsBuilder.maxScore(searchHits.getMaxScore());
 					searchHitsBuilder.searchTime(searchHits.getSearchTime());
-
-					int removedHits =
-						originalSearchHitsListSize - searchHitsList.size();
-
 					searchHitsBuilder.totalHits(
-						searchHits.getTotalHits() - removedHits);
+						searchHits.getTotalHits() -
+							originalSearchHitsListSize - searchHitsList.size());
 
 					searchResponseImpl.setSearchHits(searchHitsBuilder.build());
 				}
