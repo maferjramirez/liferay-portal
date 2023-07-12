@@ -79,7 +79,7 @@ public class ConfigurationVisibilityUtil {
 		return true;
 	}
 
-	public static boolean isVisibleByKey(
+	public static boolean isVisibleByVisibilityControllerKey(
 		String visibilityControllerKey,
 		ExtendedObjectClassDefinition.Scope scope, Serializable scopePK) {
 

@@ -564,7 +564,7 @@ public class ConfigurationModelToDDMFormConverter {
 			attributeDefinition);
 
 		if ((configurationScopeDisplayContext != null) &&
-			!ConfigurationVisibilityUtil.isVisibleByKey(
+			!ConfigurationVisibilityUtil.isVisibleByVisibilityControllerKey(
 				extensionAttributes.get("visibility-controller-key"),
 				configurationScopeDisplayContext.getScope(),
 				configurationScopeDisplayContext.getScopePK())) {
