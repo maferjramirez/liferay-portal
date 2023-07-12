@@ -39,8 +39,8 @@ public class CTRemoteEntityModel implements EntityModel {
 				locale -> Field.MODIFIED_DATE),
 			new StringEntityField("description", locale -> Field.DESCRIPTION),
 			new StringEntityField("name", locale -> Field.NAME),
-			new StringEntityField("url", locale -> Field.URL),
-			new StringEntityField("ownerName", locale -> Field.USER_NAME));
+			new StringEntityField("ownerName", locale -> Field.USER_NAME),
+			new StringEntityField("url", locale -> Field.URL));
 	}
 
 	@Override
