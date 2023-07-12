@@ -121,7 +121,6 @@ public class StructuredContentResourceTest
 		_blogsEntry = BlogsTestUtil.addEntryWithWorkflow(
 			TestPropsValues.getUserId(), RandomTestUtil.randomString(), true,
 			ServiceContextTestUtil.getServiceContext(testGroup.getGroupId()));
-
 		_complexDDMStructure = _addDDMStructure(
 			testGroup, "test-complex-ddm-structure.json");
 

@@ -802,7 +802,6 @@ public class StructuredContentResourceImpl
 				structuredContent.getViewableByAsString());
 
 		serviceContext.setAssetLinkEntryIds(assetLinkEntryIds);
-
 		serviceContext.setAssetPriority(assetPriority);
 
 		return serviceContext;
