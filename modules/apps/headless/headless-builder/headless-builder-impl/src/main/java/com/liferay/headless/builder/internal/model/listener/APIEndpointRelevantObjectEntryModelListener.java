@@ -211,8 +211,8 @@ public class APIEndpointRelevantObjectEntryModelListener
 				!_isAPISchema(requestAPISchemaId)) {
 
 				throw new ObjectEntryValuesException.InvalidObjectField(
-					"An API endpoint must be related to a valid API schema",
-					"an-api-endpoint-must-be-related-to-a-valid-api-schema",
+					"An API endpoint must be related to an API schema",
+					"an-api-endpoint-must-be-related-to-an-api-schema",
 					null);
 			}
 
@@ -223,8 +223,8 @@ public class APIEndpointRelevantObjectEntryModelListener
 				!_isAPISchema(responseAPISchemaId)) {
 
 				throw new ObjectEntryValuesException.InvalidObjectField(
-					"An API endpoint must be related to a valid API schema",
-					"an-api-endpoint-must-be-related-to-a-valid-api-schema",
+					"An API endpoint must be related to an API schema",
+					"an-api-endpoint-must-be-related-to-an-api-schema",
 					null);
 			}
 		}

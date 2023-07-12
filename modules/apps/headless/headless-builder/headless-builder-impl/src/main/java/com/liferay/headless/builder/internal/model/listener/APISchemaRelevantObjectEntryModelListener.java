@@ -99,8 +99,8 @@ public class APISchemaRelevantObjectEntryModelListener
 						"r_apiApplicationToAPISchemas_c_apiApplicationId"))) {
 
 				throw new ObjectEntryValuesException.InvalidObjectField(
-					"An API schema must be related to a valid API application",
-					"an-api-schema-must-be-related-to-a-valid-api-application",
+					"An API schema must be related to an API application",
+					"an-api-schema-must-be-related-to-an-api-application",
 					null);
 			}
 

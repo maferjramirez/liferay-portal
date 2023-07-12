@@ -44,7 +44,7 @@ public class APISchemaRelevantObjectEntryModelListenerTest
 
 		Assert.assertEquals("BAD_REQUEST", jsonObject.get("status"));
 		Assert.assertEquals(
-			"An API schema must be related to a valid API application.",
+			"An API schema must be related to an API application.",
 			jsonObject.get("title"));
 
 		jsonObject = HTTPTestUtil.invoke(
@@ -60,7 +60,7 @@ public class APISchemaRelevantObjectEntryModelListenerTest
 
 		Assert.assertEquals("BAD_REQUEST", jsonObject.get("status"));
 		Assert.assertEquals(
-			"An API schema must be related to a valid API application.",
+			"An API schema must be related to an API application.",
 			jsonObject.get("title"));
 
 		JSONObject apiApplicationJSONObject = HTTPTestUtil.invoke(
