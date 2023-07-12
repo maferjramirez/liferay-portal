@@ -64,6 +64,8 @@ public class GetAvailableTemplatesMVCResourceCommand
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
+		JSONArray jsonArray = _jsonFactory.createJSONArray();
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -71,8 +73,6 @@ public class GetAvailableTemplatesMVCResourceCommand
 		long classPK = ParamUtil.getLong(resourceRequest, "classPK");
 		String externalReferenceCode = ParamUtil.getString(
 			resourceRequest, "externalReferenceCode");
-
-		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
 		Object infoItemObject = _getInfoItemObject(
 			className, classPK, externalReferenceCode);
