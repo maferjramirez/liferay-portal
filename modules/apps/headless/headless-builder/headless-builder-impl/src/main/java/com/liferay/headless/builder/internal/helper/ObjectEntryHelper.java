@@ -116,6 +116,8 @@ public class ObjectEntryHelper {
 			long companyId, APIApplication.Endpoint endpoint)
 		throws Exception {
 
+		List<Map<String, Object>> responseEntityMaps = new ArrayList<>();
+
 		APIApplication.Schema responseSchema = endpoint.getResponseSchema();
 
 		ObjectDefinition schemaMainObjectDefinition =
@@ -128,8 +130,6 @@ public class ObjectEntryHelper {
 		List<ObjectEntry> objectEntries = getObjectEntries(
 			companyId, null,
 			schemaMainObjectDefinition.getExternalReferenceCode());
-
-		List<Map<String, Object>> responseEntityMaps = new ArrayList<>();
 
 		for (ObjectEntry objectEntry : objectEntries) {
 			Map<String, Object> objectEntryProperties =
