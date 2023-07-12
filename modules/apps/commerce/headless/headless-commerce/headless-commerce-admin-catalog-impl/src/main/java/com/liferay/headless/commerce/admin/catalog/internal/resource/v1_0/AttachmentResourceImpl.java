@@ -14,6 +14,7 @@ import com.liferay.commerce.product.service.CPDefinitionOptionRelService;
 import com.liferay.commerce.product.service.CPDefinitionOptionValueRelService;
 import com.liferay.commerce.product.service.CPDefinitionService;
 import com.liferay.commerce.product.service.CPOptionService;
+import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.headless.commerce.admin.catalog.dto.v1_0.Attachment;
 import com.liferay.headless.commerce.admin.catalog.dto.v1_0.AttachmentBase64;
 import com.liferay.headless.commerce.admin.catalog.dto.v1_0.AttachmentUrl;
@@ -25,6 +26,7 @@ import com.liferay.headless.commerce.core.util.ServiceContextHelper;
 import com.liferay.portal.kernel.change.tracking.CTAware;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
+import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -377,7 +379,8 @@ public class AttachmentResourceImpl
 				cpDefinition.getGroupId(), _cpAttachmentFileEntryService,
 				_cpDefinitionOptionRelService,
 				_cpDefinitionOptionValueRelService, _cpOptionService,
-				_uniqueFileNameProvider, attachment,
+				_dlFileEntryModelResourcePermission, _uniqueFileNameProvider,
+				attachment,
 				_classNameLocalService.getClassNameId(
 					cpDefinition.getModelClassName()),
 				cpDefinition.getCPDefinitionId(), type, serviceContext);
@@ -595,6 +598,12 @@ public class AttachmentResourceImpl
 
 	@Reference
 	private CPOptionService _cpOptionService;
+
+	@Reference(
+		target = "(model.class.name=com.liferay.document.library.kernel.model.DLFileEntry)"
+	)
+	private ModelResourcePermission<DLFileEntry>
+		_dlFileEntryModelResourcePermission;
 
 	@Reference
 	private ServiceContextHelper _serviceContextHelper;
