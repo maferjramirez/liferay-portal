@@ -209,8 +209,6 @@ public class APIEndpointRelevantObjectEntryModelListenerTest
 			"An API endpoint must be related to an API application.",
 			jsonObject.get("title"));
 
-		// An API endpoint should be related with a valid API schema
-
 		jsonObject = HTTPTestUtil.invoke(
 			JSONUtil.put(
 				"httpMethod", "get"
