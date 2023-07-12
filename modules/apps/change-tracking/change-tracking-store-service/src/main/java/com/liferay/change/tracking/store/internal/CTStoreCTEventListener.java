@@ -96,8 +96,9 @@ public class CTStoreCTEventListener implements CTEventListener {
 					}
 					else if (_log.isWarnEnabled()) {
 						_log.warn(
-							"No CTSContent found with primary key: " +
-								ctEntry.getModelClassPK());
+							"No change tracking store content found for " +
+								"model class PK " +
+									ctEntry.getModelClassPK());
 					}
 				}
 			}
