@@ -48,9 +48,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 
 	@Test
 	public void testGet() throws Exception {
-
-		// Unpublished applications
-
 		_objectDefinitionJSONObject = _addObjectDefinition();
 
 		_addAPIApplication(
@@ -75,8 +72,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			404,
 			HTTPTestUtil.invokeHttpCode(null, endpointPath2, Http.Method.GET));
 
-		// Published applications
-
 		HTTPTestUtil.invoke(
 			JSONUtil.put(
 				"applicationStatus", "published"
@@ -99,8 +94,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			200,
 			HTTPTestUtil.invokeHttpCode(null, endpointPath2, Http.Method.GET));
 
-		// With an object entry
-
 		_addCustomObjectEntry();
 
 		JSONAssert.assertEquals(
@@ -120,8 +113,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			).toString(),
 			JSONCompareMode.STRICT);
 
-		// Random endpoints
-
 		Assert.assertEquals(
 			404,
 			HTTPTestUtil.invokeHttpCode(
@@ -136,8 +127,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				_API_BASE_URL_2 + StringPool.SLASH +
 					RandomTestUtil.randomString(),
 				Http.Method.GET));
-
-		// Application 1 unpublished
 
 		HTTPTestUtil.invoke(
 			JSONUtil.put(
