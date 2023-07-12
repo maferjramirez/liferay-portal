@@ -293,7 +293,6 @@ public class ConfigurationModelRetrieverImpl
 		ExtendedObjectClassDefinition.Scope scope, Serializable scopePK) {
 
 		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
-
 		ConfigurationScopeDisplayContext configurationScopeDisplayContext =
 			new ConfigurationScopeDisplayContext(scope, scopePK);
 
