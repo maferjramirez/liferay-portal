@@ -51,7 +51,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 
 		// Unpublished applications
 
-		_objectDefinitionJSONObject = _createObjectDefinition();
+		_objectDefinitionJSONObject = _addObjectDefinition();
 
 		_addAPIApplication(
 			_API_BASE_URL_1, _API_APPLICATION_ERC_1,
@@ -101,7 +101,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 
 		// With an object entry
 
-		_createCustomObjectEntry();
+		_addCustomObjectEntry();
 
 		JSONAssert.assertEquals(
 			JSONUtil.put(
@@ -233,7 +233,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			Http.Method.PUT);
 	}
 
-	private void _createCustomObjectEntry() throws Exception {
+	private void _addCustomObjectEntry() throws Exception {
 		String restContextPath = _objectDefinitionJSONObject.getString(
 			"restContextPath");
 
@@ -246,7 +246,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			endpoint, Http.Method.POST);
 	}
 
-	private JSONObject _createObjectDefinition() throws Exception {
+	private JSONObject _addObjectDefinition() throws Exception {
 		return HTTPTestUtil.invoke(
 			JSONUtil.put(
 				"active", true
