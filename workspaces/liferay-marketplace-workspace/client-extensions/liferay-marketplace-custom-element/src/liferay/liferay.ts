@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 interface ILiferay {
-	MarketplaceCustomerFlow: {appId: number};
+	MarketplaceCustomerFlow: { appId: number };
 	Service: Function;
 	ThemeDisplay: {
 		getCanonicalURL: () => string;
@@ -33,25 +33,26 @@ export const Liferay = window.Liferay || {
 	Service: {},
 	ThemeDisplay: {
 		getCanonicalURL: () => window.location.href,
-		getCompanyGroupId: () => '',
-		getCompanyId: () => '',
-		getLanguageId: () => '',
-		getLayoutRelativeURL: () => '',
-		getLayoutURL: () => '',
-		getPathContext: () => '',
-		getPathThemeImages: () => '',
-		getPortalURL: () => '',
-		getUserId: () => '',
+		getCompanyGroupId: () => "",
+		getCompanyId: () => "",
+		getLanguageId: () => "",
+		getLayoutRelativeURL: () => "",
+		getLayoutURL: () => "",
+		getPathContext: () => "",
+		getPathThemeImages: () => "",
+		getPortalURL: () => "",
+		getUserId: () => "",
 		isSignedIn: () => {
 			return false;
 		},
 	},
+	authToken: "",
 	detach: (
 		type: keyof WindowEventMap,
-		callback: EventListenerOrEventListenerObject
+		callback: EventListenerOrEventListenerObject,
 	) => window.removeEventListener(type, callback),
 	on: (
 		type: keyof WindowEventMap,
-		callback: EventListenerOrEventListenerObject
+		callback: EventListenerOrEventListenerObject,
 	) => window.addEventListener(type, callback),
 };

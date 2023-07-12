@@ -3,18 +3,18 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-import {zodResolver} from '@hookform/resolvers/zod';
-import {z} from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 const zodSchema = {
 	accountCreator: z.object({
 		agreeToTermsAndConditions: z.boolean(),
-		companyName: z.string().nonempty(),
-		emailAddress: z.string().email('Please fill in valid email'),
+		companyName: z.string().nonempty({ message: "This field is required" }),
+		emailAddress: z.string().email("Please fill in valid email"),
 		extension: z.string().optional(),
-		familyName: z.string().nonempty(),
+		familyName: z.string().nonempty({ message: "This field is required" }),
 		givenName: z.string(),
-		industry: z.string().nonempty(),
+		industry: z.string().nonempty({ message: "This field is required" }),
 		phone: z.object({
 			code: z.string(),
 			flag: z.string(),
@@ -39,6 +39,6 @@ const zodSchema = {
 	}),
 };
 
-export {zodResolver};
+export { zodResolver };
 
 export default zodSchema;
