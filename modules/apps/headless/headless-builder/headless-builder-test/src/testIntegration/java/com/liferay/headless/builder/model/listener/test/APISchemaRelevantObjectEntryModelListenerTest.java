@@ -47,8 +47,6 @@ public class APISchemaRelevantObjectEntryModelListenerTest
 			"An API schema must be related to a valid API application.",
 			jsonObject.get("title"));
 
-		// An API schema must be related to a valid API application
-
 		jsonObject = HTTPTestUtil.invoke(
 			JSONUtil.put(
 				"mainObjectDefinitionERC", RandomTestUtil.randomString()
@@ -93,8 +91,6 @@ public class APISchemaRelevantObjectEntryModelListenerTest
 			).get(
 				"code"
 			));
-
-		// Two API schema with the same name
 
 		jsonObject = HTTPTestUtil.invoke(
 			JSONUtil.put(
