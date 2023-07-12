@@ -20,6 +20,7 @@ UpgradeJavaGetFileMethodCheck | [Upgrade](upgrade_checks.markdown#upgrade-checks
 UpgradeJavaGetLayoutDisplayPageProviderCheck | [Upgrade](upgrade_checks.markdown#upgrade-checks) | Replace getLayoutDisplayPageProvider by getLayoutDisplayPageProviderByClassName |
 UpgradeJavaMultiVMPoolUtilCheck | [Upgrade](upgrade_checks.markdown#upgrade-checks) | Replaces the references of the MultiVMPoolUtil class and also its methods usages. |
 UpgradeJavaPortletSharedSearchSettingsCheck | [Upgrade](upgrade_checks.markdown#upgrade-checks) | Replaces the Optional return type of the methods `getParameterValues` and `getPortletPreferences` of `PortletSharedSearchSettings` class |
+UpgradeJavaSearchVocabulariesMethodCheck | [Upgrade](upgrade_checks.markdown#upgrade-checks) | Fill in the new parameters of the method `searchVocabularies` of 'AssetVocabularyService' and 'AssetVocabularyLocalService' |
 UpgradeJavaServiceReferenceAnnotationCheck | [Upgrade](upgrade_checks.markdown#upgrade-checks) | Run code migration to replace '@ServiceReference' by '@Reference' |
 UpgradeJavaUpdateCommerceAddressCheck | [Upgrade](upgrade_checks.markdown#upgrade-checks) | Replace parameter in updateCommerceAddress method by other parameters list |
 UpgradeRejectedExecutionHandlerCheck | [Upgrade](upgrade_checks.markdown#upgrade-checks) | Replace Liferay's RejectedExecutionHandler with Java's RejectedExecutionHandler |

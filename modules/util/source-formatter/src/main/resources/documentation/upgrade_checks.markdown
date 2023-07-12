@@ -30,6 +30,7 @@ UpgradeJavaGetFileMethodCheck | .bnd, .ftl, .gradle, .java, .jsp, .jspf or .vm |
 UpgradeJavaGetLayoutDisplayPageProviderCheck | .bnd, .ftl, .gradle, .java, .jsp, .jspf or .vm | Replace getLayoutDisplayPageProvider by getLayoutDisplayPageProviderByClassName |
 UpgradeJavaMultiVMPoolUtilCheck | .bnd, .ftl, .gradle, .java, .jsp, .jspf or .vm | Replaces the references of the MultiVMPoolUtil class and also its methods usages. |
 UpgradeJavaPortletSharedSearchSettingsCheck | .bnd, .ftl, .gradle, .java, .jsp, .jspf or .vm | Replaces the Optional return type of the methods `getParameterValues` and `getPortletPreferences` of `PortletSharedSearchSettings` class |
+UpgradeJavaSearchVocabulariesMethodCheck | .bnd, .ftl, .gradle, .java, .jsp, .jspf or .vm | Fill in the new parameters of the method `searchVocabularies` of 'AssetVocabularyService' and 'AssetVocabularyLocalService' |
 UpgradeJavaServiceReferenceAnnotationCheck | .bnd, .ftl, .gradle, .java, .jsp, .jspf or .vm | Run code migration to replace '@ServiceReference' by '@Reference' |
 UpgradeJavaUpdateCommerceAddressCheck | .bnd, .ftl, .gradle, .java, .jsp, .jspf or .vm | Replace parameter in updateCommerceAddress method by other parameters list |
 UpgradeRejectedExecutionHandlerCheck | .bnd, .ftl, .gradle, .java, .jsp, .jspf or .vm | Replace Liferay's RejectedExecutionHandler with Java's RejectedExecutionHandler |
