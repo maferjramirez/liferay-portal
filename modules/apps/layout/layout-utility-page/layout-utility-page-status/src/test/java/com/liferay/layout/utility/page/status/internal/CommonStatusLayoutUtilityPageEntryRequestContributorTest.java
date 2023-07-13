@@ -89,7 +89,6 @@ public class CommonStatusLayoutUtilityPageEntryRequestContributorTest {
 	@Before
 	public void setUp() {
 		_setUpCommonStatusLayoutUtilityPageEntryRequestContributor();
-
 		_setUpPermissionCheckerFactory();
 	}
 
