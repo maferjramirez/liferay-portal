@@ -41,7 +41,6 @@ public class JournalArticleLayoutClassedModelUsageUpgradeProcess
 				"from LayoutClassedModelUsage inner join LayoutRevision on ",
 				"LayoutRevision.layoutRevisionId = ",
 				"LayoutClassedModelUsage.plid");
-
 			String sql2 = StringBundler.concat(
 				"select 1 from LayoutClassedModelUsage where classNameId = ? ",
 				"and classPK = ? and containerKey = ? and containerType = ? ",
