@@ -121,6 +121,7 @@ public class DependencyManagerSyncImpl implements DependencyManagerSync {
 		}
 
 		_syncFutureTaskDefaultNoticeableFuture.run();
+
 		_syncCallableDefaultNoticeableFuture.run();
 	}
 
