@@ -173,21 +173,18 @@ public class ObjectFieldLocalServiceTest {
 			"Business type encrypted is disabled",
 			() -> _addCustomObjectDefinitionWithEncryptedObjectField(
 				"", false, "", ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT));
-
 		AssertUtils.assertFailure(
 			ObjectFieldBusinessTypeException.class,
 			"Encryption algorithm is required for business type encrypted",
 			() -> _addCustomObjectDefinitionWithEncryptedObjectField(
 				"", true, Base64.encode(key.getEncoded()),
 				ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT));
-
 		AssertUtils.assertFailure(
 			ObjectFieldBusinessTypeException.class,
 			"Encryption key is required for business type encrypted",
 			() -> _addCustomObjectDefinitionWithEncryptedObjectField(
 				"AES", true, "",
 				ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT));
-
 		AssertUtils.assertFailure(
 			ObjectFieldListTypeDefinitionIdException.class,
 			"List type definition ID is 0",
@@ -201,7 +198,6 @@ public class ObjectFieldLocalServiceTest {
 					).name(
 						"a" + RandomTestUtil.randomString()
 					).build())));
-
 		AssertUtils.assertFailure(
 			ObjectFieldLocalizedException.class,
 			"Localized object fields must not be required",
