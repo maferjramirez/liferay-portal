@@ -352,7 +352,7 @@ public class OracleDB extends BaseDB {
 		catch (Exception exception1) {
 			_log.error(
 				StringBundler.concat(
-					"Failed to rename table ",
+					"Unable to rename table ",
 					tableNameObjectValuePair.getKey(), " to ",
 					tableNameObjectValuePair.getValue(),
 					". Attempting to rollback."));
@@ -370,11 +370,11 @@ public class OracleDB extends BaseDB {
 				}
 
 				if (_log.isInfoEnabled()) {
-					_log.info("Rollback of table renames successful");
+					_log.info("Successfully rolled back table renames");
 				}
 			}
 			catch (Exception exception2) {
-				_log.fatal("Failed to rollback table renames", exception2);
+				_log.fatal("Unable to roll back table renames", exception2);
 			}
 
 			throw exception1;
