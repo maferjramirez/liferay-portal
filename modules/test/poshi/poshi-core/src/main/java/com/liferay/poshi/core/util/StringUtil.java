@@ -77,19 +77,19 @@ public class StringUtil {
 		return s;
 	}
 
-	public static void assertContains(String s, String text) {
-		if (!contains(s, text)) {
+	public static void assertContains(String expectedText, String actualText) {
+		if (!contains(expectedText, actualText)) {
 			throw new RuntimeException(
-				"Expected text \"" + s + "\" does not contain atual text\"" +
-					text + "\"");
+				"Expected text \"" + expectedText + "\" does not contain atual text\"" +
+					actualText + "\"");
 		}
 	}
 
-	public static void assertEquals(String s, String text) {
-		if (!equals(s, text)) {
+	public static void assertEquals(String expectedText, String actualText) {
+		if (!equals(expectedText, actualText)) {
 			throw new RuntimeException(
-				"Expected text \"" + s + "\" does not match actual text \"" +
-					text + "\"");
+				"Expected text \"" + expectedText + "\" does not match actual text \"" +
+					actualText + "\"");
 		}
 	}
 
