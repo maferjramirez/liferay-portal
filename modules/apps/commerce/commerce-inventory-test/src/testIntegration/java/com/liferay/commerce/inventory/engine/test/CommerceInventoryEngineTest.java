@@ -223,8 +223,8 @@ public class CommerceInventoryEngineTest {
 		int bookedQuantity = 7;
 
 		_commerceBookedQuantityLocalService.addCommerceBookedQuantity(
-			_user.getUserId(), _cpInstance1.getSku(), bookedQuantity, null,
-			Collections.emptyMap());
+			_user.getUserId(), _cpInstance1.getSku(), StringPool.BLANK,
+			bookedQuantity, null, Collections.emptyMap());
 
 		int remainingCompanyStockQuantity =
 			_commerceInventoryEngine.getStockQuantity(
@@ -294,8 +294,8 @@ public class CommerceInventoryEngineTest {
 
 		CommerceInventoryBookedQuantity commerceBookedQuantity =
 			_commerceBookedQuantityLocalService.addCommerceBookedQuantity(
-				_user.getUserId(), _cpInstance1.getSku(), bookedQuantity, null,
-				Collections.emptyMap());
+				_user.getUserId(), _cpInstance1.getSku(), StringPool.BLANK,
+				bookedQuantity, null, Collections.emptyMap());
 
 		int consumedQuantity = 0;
 
@@ -378,8 +378,8 @@ public class CommerceInventoryEngineTest {
 
 		CommerceInventoryBookedQuantity commerceBookedQuantity =
 			_commerceBookedQuantityLocalService.addCommerceBookedQuantity(
-				_user.getUserId(), _cpInstance1.getSku(), bookQuantity, null,
-				Collections.emptyMap());
+				_user.getUserId(), _cpInstance1.getSku(), StringPool.BLANK,
+				bookQuantity, null, Collections.emptyMap());
 
 		commerceOrderItem =
 			_commerceOrderItemLocalService.updateCommerceOrderItem(
