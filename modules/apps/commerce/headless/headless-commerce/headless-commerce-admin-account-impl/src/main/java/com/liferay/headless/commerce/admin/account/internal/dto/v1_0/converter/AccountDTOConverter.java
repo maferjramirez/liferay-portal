@@ -89,7 +89,7 @@ public class AccountDTOConverter
 				logoURL = StringBundler.concat(
 					"/image/organization_logo?img_id=",
 					accountEntry.getLogoId(), "&t=",
-					_webServerServletToken.getToken(accountEntry.getLogoId()))
+					_webServerServletToken.getToken(accountEntry.getLogoId()));
 				name = accountEntry.getName();
 				root =
 					accountEntry.getParentAccountEntryId() ==
