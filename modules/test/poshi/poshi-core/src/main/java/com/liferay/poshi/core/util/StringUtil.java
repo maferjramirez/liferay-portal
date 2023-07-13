@@ -88,7 +88,7 @@ public class StringUtil {
 	public static void assertEquals(String expectedText, String actualText) {
 		if (!equals(expectedText, actualText)) {
 			throw new RuntimeException(
-				"Expected text \"" + expectedText + "\" does not match actual text \"" +
+				"Expected text \"" + expectedText + "\" does not equal actual text \"" +
 					actualText + "\"");
 		}
 	}
