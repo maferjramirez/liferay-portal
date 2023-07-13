@@ -79,6 +79,7 @@ public class PortalImplEscapeRedirectTest {
 		ReflectionTestUtil.setFieldValue(
 			RedirectURLSettingsUtil.class, "_redirectURLSettings",
 			_originalRedirectURLSettings);
+
 		_prefsPropsUtilMockedStatic.close();
 	}
 
