@@ -143,7 +143,7 @@ public interface DB {
 
 	public void renameTables(
 			Connection connection,
-			ObjectValuePair<String, String>... tableNamePairs)
+			ObjectValuePair<String, String>... tableNameObjectValuePairs)
 		throws Exception;
 
 	public default void runSQL(

@@ -466,21 +466,21 @@ public abstract class BaseDB implements DB {
 	@Override
 	public void renameTables(
 			Connection connection,
-			ObjectValuePair<String, String>... tableNamePairs)
+			ObjectValuePair<String, String>... tableNameObjectValuePairs)
 		throws Exception {
 
-		if (tableNamePairs.length == 0) {
+		if (tableNameObjectValuePairs.length == 0) {
 			return;
 		}
 
-		for (ObjectValuePair<String, String> tableNamePair : tableNamePairs) {
-			if (tableNamePair == null) {
+		for (ObjectValuePair<String, String> tableNameObjectValuePair : tableNameObjectValuePairs) {
+			if (tableNameObjectValuePair == null) {
 				throw new NullPointerException(
 					"Table name pair cannot be null");
 			}
 		}
 
-		doRenameTables(connection, tableNamePairs);
+		doRenameTables(connection, tableNameObjectValuePairs);
 	}
 
 	@Override
@@ -975,7 +975,7 @@ public abstract class BaseDB implements DB {
 
 	protected void doRenameTables(
 			Connection connection,
-			ObjectValuePair<String, String>... tableNamePairs)
+			ObjectValuePair<String, String>... tableNameObjectValuePairs)
 		throws Exception {
 
 		boolean autoCommit = connection.getAutoCommit();
@@ -983,13 +983,13 @@ public abstract class BaseDB implements DB {
 		try {
 			connection.setAutoCommit(false);
 
-			for (ObjectValuePair<String, String> tableNamePair :
-					tableNamePairs) {
+			for (ObjectValuePair<String, String> tableNameObjectValuePair :
+					tableNameObjectValuePairs) {
 
 				runSQL(
 					connection,
 					getRenameTableSQL(
-						tableNamePair.getKey(), tableNamePair.getValue()));
+						tableNameObjectValuePair.getKey(), tableNameObjectValuePair.getValue()));
 			}
 
 			connection.commit();

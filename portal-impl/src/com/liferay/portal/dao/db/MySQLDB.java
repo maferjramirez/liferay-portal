@@ -143,21 +143,21 @@ public class MySQLDB extends BaseDB {
 	@Override
 	protected final void doRenameTables(
 			Connection connection,
-			ObjectValuePair<String, String>... tableNamePairs)
+			ObjectValuePair<String, String>... tableNameObjectValuePairs)
 		throws Exception {
 
-		StringBundler sb = new StringBundler((tableNamePairs.length * 4) + 1);
+		StringBundler sb = new StringBundler((tableNameObjectValuePairs.length * 4) + 1);
 
 		sb.append("rename table ");
 
-		for (int i = 0; i < tableNamePairs.length; i++) {
+		for (int i = 0; i < tableNameObjectValuePairs.length; i++) {
 			if (i > 0) {
 				sb.append(", ");
 			}
 
-			sb.append(tableNamePairs[i].getKey());
+			sb.append(tableNameObjectValuePairs[i].getKey());
 			sb.append(" to ");
-			sb.append(tableNamePairs[i].getValue());
+			sb.append(tableNameObjectValuePairs[i].getValue());
 		}
 
 		runSQL(connection, sb.toString());

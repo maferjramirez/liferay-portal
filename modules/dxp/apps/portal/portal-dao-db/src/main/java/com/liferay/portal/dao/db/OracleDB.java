@@ -330,21 +330,21 @@ public class OracleDB extends BaseDB {
 	@Override
 	protected final void doRenameTables(
 			Connection connection,
-			ObjectValuePair<String, String>... tableNamePairs)
+			ObjectValuePair<String, String>... tableNameObjectValuePairs)
 		throws Exception {
 
 		int index = 0;
-		ObjectValuePair<String, String> tableNamePair = null;
+		ObjectValuePair<String, String> tableNameObjectValuePair = null;
 
 		try {
-			while (index < tableNamePairs.length) {
-				tableNamePair = tableNamePairs[index];
+			while (index < tableNameObjectValuePairs.length) {
+				tableNameObjectValuePair = tableNameObjectValuePairs[index];
 
 				runSQL(
 					connection,
 					StringBundler.concat(
-						"rename ", tableNamePair.getKey(), " to ",
-						tableNamePair.getValue()));
+						"rename ", tableNameObjectValuePair.getKey(), " to ",
+						tableNameObjectValuePair.getValue()));
 
 				index++;
 			}
@@ -352,18 +352,18 @@ public class OracleDB extends BaseDB {
 		catch (Exception exception1) {
 			_log.error(
 				StringBundler.concat(
-					"Failed to rename table ", tableNamePair.getKey(), " to ",
-					tableNamePair.getValue(), ". Attempting to rollback."));
+					"Failed to rename table ", tableNameObjectValuePair.getKey(), " to ",
+					tableNameObjectValuePair.getValue(), ". Attempting to rollback."));
 
 			try {
 				while (index > 0) {
-					tableNamePair = tableNamePairs[--index];
+					tableNameObjectValuePair = tableNameObjectValuePairs[--index];
 
 					runSQL(
 						connection,
 						StringBundler.concat(
-							"rename ", tableNamePair.getValue(), " to ",
-							tableNamePair.getKey()));
+							"rename ", tableNameObjectValuePair.getValue(), " to ",
+							tableNameObjectValuePair.getKey()));
 				}
 
 				if (_log.isInfoEnabled()) {
