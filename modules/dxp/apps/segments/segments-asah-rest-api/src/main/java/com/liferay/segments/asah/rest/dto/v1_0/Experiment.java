@@ -280,8 +280,6 @@ public class Experiment implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Long winnerVariantId;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -510,5 +508,7 @@ public class Experiment implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

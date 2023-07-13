@@ -670,8 +670,6 @@ public class Instance implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Transition[] transitions;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -1120,5 +1118,7 @@ public class Instance implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

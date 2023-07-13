@@ -413,8 +413,6 @@ public class ShipmentItem implements Serializable {
 	@NotNull
 	protected Long warehouseId;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -679,5 +677,7 @@ public class ShipmentItem implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

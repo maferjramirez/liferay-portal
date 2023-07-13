@@ -93,8 +93,6 @@ public class FragmentSettingsUnallowed implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Fragment[] unallowedFragments;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -237,5 +235,7 @@ public class FragmentSettingsUnallowed implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

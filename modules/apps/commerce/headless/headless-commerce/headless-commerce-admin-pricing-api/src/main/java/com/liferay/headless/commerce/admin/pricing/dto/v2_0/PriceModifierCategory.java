@@ -276,8 +276,6 @@ public class PriceModifierCategory implements Serializable {
 	@NotNull
 	protected Long priceModifierId;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -478,5 +476,7 @@ public class PriceModifierCategory implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

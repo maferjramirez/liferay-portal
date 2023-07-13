@@ -312,8 +312,6 @@ public class Process implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String version;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -552,5 +550,7 @@ public class Process implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

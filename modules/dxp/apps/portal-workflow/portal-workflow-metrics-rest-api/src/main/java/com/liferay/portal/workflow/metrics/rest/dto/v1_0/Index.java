@@ -150,8 +150,6 @@ public class Index implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	protected String label;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -353,5 +351,7 @@ public class Index implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

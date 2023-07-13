@@ -117,8 +117,6 @@ public class DocumentBulkSelection implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected SelectionScope selectionScope;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -275,5 +273,7 @@ public class DocumentBulkSelection implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

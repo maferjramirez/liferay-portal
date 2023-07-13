@@ -244,8 +244,6 @@ public class PaymentMethodGroupRelTerm implements Serializable {
 	@NotNull
 	protected Long termId;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -432,5 +430,7 @@ public class PaymentMethodGroupRelTerm implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

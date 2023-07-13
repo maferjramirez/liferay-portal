@@ -142,8 +142,6 @@ public class ObjectState implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected ObjectStateTransition[] objectStateTransitions;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -309,5 +307,7 @@ public class ObjectState implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

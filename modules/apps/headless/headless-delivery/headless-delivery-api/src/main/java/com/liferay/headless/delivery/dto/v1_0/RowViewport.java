@@ -124,8 +124,6 @@ public class RowViewport implements Serializable {
 	@NotNull
 	protected RowViewportDefinition rowViewportDefinition;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -271,5 +269,7 @@ public class RowViewport implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

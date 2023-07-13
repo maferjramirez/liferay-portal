@@ -100,8 +100,6 @@ public class HtmlProperties implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected HtmlTag htmlTag;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -276,5 +274,7 @@ public class HtmlProperties implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

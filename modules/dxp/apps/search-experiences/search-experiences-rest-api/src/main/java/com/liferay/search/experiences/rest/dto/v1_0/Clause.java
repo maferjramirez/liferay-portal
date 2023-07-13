@@ -363,8 +363,6 @@ public class Clause implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String value;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -634,5 +632,7 @@ public class Clause implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }

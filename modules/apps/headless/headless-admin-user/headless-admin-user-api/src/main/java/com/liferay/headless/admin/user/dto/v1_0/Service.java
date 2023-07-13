@@ -125,8 +125,6 @@ public class Service implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String serviceType;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -282,5 +280,7 @@ public class Service implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }
