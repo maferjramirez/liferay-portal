@@ -38,7 +38,7 @@ public class APIApplicationTestUtil {
 
 		try {
 			Assert.assertNotNull(
-				"The API Application has not been deployed",
+				"The API application is not deployed",
 				serviceTracker.waitForService(10000));
 		}
 		finally {
@@ -52,7 +52,7 @@ public class APIApplicationTestUtil {
 
 		try {
 			Assert.assertEquals(
-				"The API Application is deployed", 0, serviceTracker.size());
+				"The API application is deployed", 0, serviceTracker.size());
 		}
 		finally {
 			serviceTracker.close();
