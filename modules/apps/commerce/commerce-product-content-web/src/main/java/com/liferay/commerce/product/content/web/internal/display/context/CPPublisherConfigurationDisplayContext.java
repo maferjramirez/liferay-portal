@@ -363,12 +363,13 @@ public class CPPublisherConfigurationDisplayContext
 
 			assetTagsItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 				new AssetTagsItemSelectorReturnType());
-			assetTagsItemSelectorCriterion.setMultiSelection(true);
 
 			Company company = cpContentRequestHelper.getCompany();
 
 			assetTagsItemSelectorCriterion.setGroupIds(
 				new long[] {company.getGroupId()});
+
+			assetTagsItemSelectorCriterion.setMultiSelection(true);
 
 			return String.valueOf(
 				_itemSelector.getItemSelectorURL(
