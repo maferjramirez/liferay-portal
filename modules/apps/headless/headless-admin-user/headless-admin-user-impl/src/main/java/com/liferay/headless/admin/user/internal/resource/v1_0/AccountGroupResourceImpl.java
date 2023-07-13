@@ -187,16 +187,17 @@ public class AccountGroupResourceImpl extends BaseAccountGroupResourceImpl {
 	public AccountGroup postAccountGroup(AccountGroup accountGroup)
 		throws Exception {
 
-		com.liferay.account.model.AccountGroup newAccountGroup =
+		com.liferay.account.model.AccountGroup serviceBuilderAccountGroup =
 			_accountGroupService.addAccountGroup(
 				contextUser.getUserId(), accountGroup.getDescription(),
 				accountGroup.getName(), _getServiceContext(accountGroup));
 
-		newAccountGroup = _accountGroupService.updateExternalReferenceCode(
-			newAccountGroup.getAccountGroupId(),
-			accountGroup.getExternalReferenceCode());
+		serviceBuilderAccountGroup =
+			_accountGroupService.updateExternalReferenceCode(
+				serviceBuilderAccountGroup.getAccountGroupId(),
+				accountGroup.getExternalReferenceCode());
 
-		return _toAccountGroup(newAccountGroup);
+		return _toAccountGroup(serviceBuilderAccountGroup);
 	}
 
 	@Override
