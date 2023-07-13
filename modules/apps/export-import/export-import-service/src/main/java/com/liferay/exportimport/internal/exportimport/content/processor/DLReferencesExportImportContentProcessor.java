@@ -368,7 +368,7 @@ public class DLReferencesExportImportContentProcessor
 		return false;
 	}
 
-	private boolean _isExternalUrl(
+	private boolean _isExternalURL(
 			long groupId, String content, int beginPos, int endPos)
 		throws PortalException {
 
@@ -560,7 +560,7 @@ public class DLReferencesExportImportContentProcessor
 			FileEntry fileEntry = _getFileEntry(dlReferenceParameters);
 
 			if ((fileEntry == null) ||
-				_isExternalUrl(
+				_isExternalURL(
 					portletDataContext.getScopeGroupId(), content, beginPos,
 					endPos)) {
 
@@ -886,7 +886,7 @@ public class DLReferencesExportImportContentProcessor
 			FileEntry fileEntry = _getFileEntry(dlReferenceParameters);
 
 			if ((fileEntry == null) &&
-				!_isExternalUrl(groupId, content, beginPos, endPos)) {
+				!_isExternalURL(groupId, content, beginPos, endPos)) {
 
 				ExportImportContentValidationException
 					exportImportContentValidationException =
