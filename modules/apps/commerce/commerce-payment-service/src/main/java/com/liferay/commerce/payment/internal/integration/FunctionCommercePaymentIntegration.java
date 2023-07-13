@@ -200,7 +200,7 @@ public class FunctionCommercePaymentIntegration
 
 		if (objectEntry == null) {
 			throw new PortalException(
-				"No Object Entry found with ID " +
+				"No object entry found with object entry ID " +
 					commercePaymentEntry.getClassPK());
 		}
 
