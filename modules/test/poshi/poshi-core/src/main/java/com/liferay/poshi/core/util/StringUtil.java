@@ -80,7 +80,7 @@ public class StringUtil {
 	public static void assertContains(String s, String text) {
 		if (!contains(s, text)) {
 			throw new RuntimeException(
-				"Actual text \"" + s + "\" does not contain expected text\"" +
+				"Expected text \"" + s + "\" does not contain atual text\"" +
 					text + "\"");
 		}
 	}
