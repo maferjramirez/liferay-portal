@@ -171,6 +171,11 @@ public class UpgradeSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testUpgradeJavaUpdateCommerceAddressCheck() throws Exception {
+		test("upgrade/UpgradeJavaUpdateCommerceAddressCheck.testjava");
+	}
+
+	@Test
 	public void testUpgradeRejectedExecutionHandlerCheck() throws Exception {
 		test("upgrade/UpgradeRejectedExecutionHandlerCheck.testjava");
 	}
