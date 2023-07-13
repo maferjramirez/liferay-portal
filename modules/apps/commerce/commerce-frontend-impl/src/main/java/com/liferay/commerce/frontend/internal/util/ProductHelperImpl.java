@@ -69,7 +69,7 @@ public class ProductHelperImpl implements ProductHelper {
 			_commerceProductPriceCalculation.getCPDefinitionMinimumPrice(
 				cpDefinitionId, commerceContext);
 
-		PriceModel priceModel;
+		PriceModel priceModel = null;
 
 		if (cpDefinitionMinimumPriceCommerceMoney.isPriceOnApplication()) {
 			priceModel = new PriceModel(
@@ -220,7 +220,7 @@ public class ProductHelperImpl implements ProductHelper {
 			CommerceDiscountValue commerceDiscountValue, Locale locale)
 		throws PortalException {
 
-		PriceModel priceModel;
+		PriceModel priceModel = null;
 
 		if (unitPriceCommerceMoney.isPriceOnApplication()) {
 			priceModel = new PriceModel(

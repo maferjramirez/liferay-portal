@@ -141,7 +141,7 @@ public class CommerceCartResourceUtil {
 			CommerceMoney finalPriceCommerceMoney, Locale locale)
 		throws Exception {
 
-		PriceModel priceModel;
+		PriceModel priceModel = null;
 
 		if (unitPriceCommerceMoney.isPriceOnApplication()) {
 			priceModel = new PriceModel(
