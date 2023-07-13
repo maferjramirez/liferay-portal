@@ -914,14 +914,14 @@ public abstract class BaseAccountGroupResourceImpl
 			Map<String, Serializable> parameters)
 		throws Exception {
 
-		UnsafeConsumer<AccountGroup, Exception> accountGroupUnsafeConsumer =
-			null;
+		UnsafeFunction<AccountGroup, AccountGroup, Exception>
+			accountGroupUnsafeFunction = null;
 
 		String createStrategy = (String)parameters.getOrDefault(
 			"createStrategy", "INSERT");
 
 		if (StringUtil.equalsIgnoreCase(createStrategy, "INSERT")) {
-			accountGroupUnsafeConsumer = accountGroup -> postAccountGroup(
+			accountGroupUnsafeFunction = accountGroup -> postAccountGroup(
 				accountGroup);
 		}
 
@@ -930,19 +930,21 @@ public abstract class BaseAccountGroupResourceImpl
 				"updateStrategy", "UPDATE");
 
 			if (StringUtil.equalsIgnoreCase(updateStrategy, "UPDATE")) {
-				accountGroupUnsafeConsumer =
+				accountGroupUnsafeFunction =
 					accountGroup -> putAccountGroupByExternalReferenceCode(
 						accountGroup.getExternalReferenceCode(), accountGroup);
 			}
 
 			if (StringUtil.equalsIgnoreCase(updateStrategy, "PARTIAL_UPDATE")) {
-				accountGroupUnsafeConsumer = accountGroup -> {
+				accountGroupUnsafeFunction = accountGroup -> {
+					AccountGroup persistedAccountGroup = null;
+
 					try {
 						AccountGroup getAccountGroup =
 							getAccountGroupByExternalReferenceCode(
 								accountGroup.getExternalReferenceCode());
 
-						patchAccountGroup(
+						persistedAccountGroup = patchAccountGroup(
 							getAccountGroup.getId() != null ?
 								getAccountGroup.getId() :
 									_parseLong(
@@ -951,25 +953,31 @@ public abstract class BaseAccountGroupResourceImpl
 							accountGroup);
 					}
 					catch (NoSuchModelException noSuchModelException) {
-						postAccountGroup(accountGroup);
+						persistedAccountGroup = postAccountGroup(accountGroup);
 					}
+
+					return persistedAccountGroup;
 				};
 			}
 		}
 
-		if (accountGroupUnsafeConsumer == null) {
+		if (accountGroupUnsafeFunction == null) {
 			throw new NotSupportedException(
 				"Create strategy \"" + createStrategy +
 					"\" is not supported for AccountGroup");
 		}
 
-		if (contextBatchUnsafeConsumer != null) {
+		if (contextBatchUnsafeBiConsumer != null) {
+			contextBatchUnsafeBiConsumer.accept(
+				accountGroups, accountGroupUnsafeFunction);
+		}
+		else if (contextBatchUnsafeConsumer != null) {
 			contextBatchUnsafeConsumer.accept(
-				accountGroups, accountGroupUnsafeConsumer);
+				accountGroups, accountGroupUnsafeFunction::apply);
 		}
 		else {
 			for (AccountGroup accountGroup : accountGroups) {
-				accountGroupUnsafeConsumer.accept(accountGroup);
+				accountGroupUnsafeFunction.apply(accountGroup);
 			}
 		}
 	}
@@ -1055,39 +1063,43 @@ public abstract class BaseAccountGroupResourceImpl
 			Map<String, Serializable> parameters)
 		throws Exception {
 
-		UnsafeConsumer<AccountGroup, Exception> accountGroupUnsafeConsumer =
-			null;
+		UnsafeFunction<AccountGroup, AccountGroup, Exception>
+			accountGroupUnsafeFunction = null;
 
 		String updateStrategy = (String)parameters.getOrDefault(
 			"updateStrategy", "UPDATE");
 
 		if (StringUtil.equalsIgnoreCase(updateStrategy, "PARTIAL_UPDATE")) {
-			accountGroupUnsafeConsumer = accountGroup -> patchAccountGroup(
+			accountGroupUnsafeFunction = accountGroup -> patchAccountGroup(
 				accountGroup.getId() != null ? accountGroup.getId() :
 					_parseLong((String)parameters.get("accountGroupId")),
 				accountGroup);
 		}
 
 		if (StringUtil.equalsIgnoreCase(updateStrategy, "UPDATE")) {
-			accountGroupUnsafeConsumer = accountGroup -> putAccountGroup(
+			accountGroupUnsafeFunction = accountGroup -> putAccountGroup(
 				accountGroup.getId() != null ? accountGroup.getId() :
 					_parseLong((String)parameters.get("accountGroupId")),
 				accountGroup);
 		}
 
-		if (accountGroupUnsafeConsumer == null) {
+		if (accountGroupUnsafeFunction == null) {
 			throw new NotSupportedException(
 				"Update strategy \"" + updateStrategy +
 					"\" is not supported for AccountGroup");
 		}
 
-		if (contextBatchUnsafeConsumer != null) {
+		if (contextBatchUnsafeBiConsumer != null) {
+			contextBatchUnsafeBiConsumer.accept(
+				accountGroups, accountGroupUnsafeFunction);
+		}
+		else if (contextBatchUnsafeConsumer != null) {
 			contextBatchUnsafeConsumer.accept(
-				accountGroups, accountGroupUnsafeConsumer);
+				accountGroups, accountGroupUnsafeFunction::apply);
 		}
 		else {
 			for (AccountGroup accountGroup : accountGroups) {
-				accountGroupUnsafeConsumer.accept(accountGroup);
+				accountGroupUnsafeFunction.apply(accountGroup);
 			}
 		}
 	}
@@ -1102,6 +1114,15 @@ public abstract class BaseAccountGroupResourceImpl
 
 	public void setContextAcceptLanguage(AcceptLanguage contextAcceptLanguage) {
 		this.contextAcceptLanguage = contextAcceptLanguage;
+	}
+
+	public void setContextBatchUnsafeBiConsumer(
+		UnsafeBiConsumer
+			<Collection<AccountGroup>,
+			 UnsafeFunction<AccountGroup, AccountGroup, Exception>, Exception>
+				contextBatchUnsafeBiConsumer) {
+
+		this.contextBatchUnsafeBiConsumer = contextBatchUnsafeBiConsumer;
 	}
 
 	public void setContextBatchUnsafeConsumer(
@@ -1366,6 +1387,10 @@ public abstract class BaseAccountGroupResourceImpl
 	}
 
 	protected AcceptLanguage contextAcceptLanguage;
+	protected UnsafeBiConsumer
+		<Collection<AccountGroup>,
+		 UnsafeFunction<AccountGroup, AccountGroup, Exception>, Exception>
+			contextBatchUnsafeBiConsumer;
 	protected UnsafeBiConsumer
 		<Collection<AccountGroup>, UnsafeConsumer<AccountGroup, Exception>,
 		 Exception> contextBatchUnsafeConsumer;
