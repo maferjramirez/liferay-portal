@@ -477,7 +477,7 @@ public abstract class BaseDB implements DB {
 				tableNameObjectValuePairs) {
 
 			if (tableNameObjectValuePair == null) {
-				throw new NullPointerException(
+				throw new IllegalArgumentException(
 					"Table name object value pair is null");
 			}
 		}
