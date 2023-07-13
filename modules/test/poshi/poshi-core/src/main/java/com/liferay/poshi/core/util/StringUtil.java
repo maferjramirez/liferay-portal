@@ -80,16 +80,16 @@ public class StringUtil {
 	public static void assertContains(String expectedText, String actualText) {
 		if (!contains(expectedText, actualText)) {
 			throw new RuntimeException(
-				"Expected text \"" + expectedText + "\" does not contain atual text\"" +
-					actualText + "\"");
+				"Expected text \"" + expectedText +
+					"\" does not contain atual text\"" + actualText + "\"");
 		}
 	}
 
 	public static void assertEquals(String expectedText, String actualText) {
 		if (!equals(expectedText, actualText)) {
 			throw new RuntimeException(
-				"Expected text \"" + expectedText + "\" does not equal actual text \"" +
-					actualText + "\"");
+				"Expected text \"" + expectedText +
+					"\" does not equal actual text \"" + actualText + "\"");
 		}
 	}
 
