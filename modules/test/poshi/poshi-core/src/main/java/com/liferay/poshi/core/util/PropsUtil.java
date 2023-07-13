@@ -64,17 +64,16 @@ public class PropsUtil {
 		Class<?> poshiPropertiesClass = poshiProperties.getClass();
 
 		try {
-			Field field = poshiPropertiesClass.getField(toCamelCase(key));
+			Field field = poshiPropertiesClass.getField(_toCamelCase(key));
 
 			field.set(poshiProperties, value);
 		}
 		catch (IllegalAccessException illegalAccessException) {
-			System.out.println(
-				"Unable to set Poshi property " + _toCamelCase(key));
+			System.out.println("Unable to set field " + _toCamelCase(key));
 		}
 		catch (NoSuchFieldException noSuchFieldException) {
 			System.out.println(
-				"Poshi property " + _toCamelCase(key) + " does not exist");
+				"Field " + _toCamelCase(key) + " does not exist");
 		}
 	}
 
@@ -84,24 +83,6 @@ public class PropsUtil {
 		PoshiProperties poshiProperties = PoshiProperties.getPoshiProperties();
 
 		poshiProperties.printProperties(true);
-	}
-
-	public static String _toCamelCase(String propertyName) {
-		String[] terms = propertyName.split("\\.");
-
-		StringBuilder sb = new StringBuilder();
-
-		for (int i = 0; i < terms.length; i++) {
-			String term = terms[i];
-
-			if (i != 0) {
-				term = StringUtil.capitalize(term);
-			}
-
-			sb.append(term);
-		}
-
-		return sb.toString();
 	}
 
 	private static Properties _getClassProperties() {
@@ -144,6 +125,24 @@ public class PropsUtil {
 
 			poshiProperties.setProperty(propertyName, propertyValue);
 		}
+	}
+
+	private static String _toCamelCase(String propertyName) {
+		String[] terms = propertyName.split("\\.");
+
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < terms.length; i++) {
+			String term = terms[i];
+
+			if (i != 0) {
+				term = StringUtil.capitalize(term);
+			}
+
+			sb.append(term);
+		}
+
+		return sb.toString();
 	}
 
 }
