@@ -70,11 +70,11 @@ public class PropsUtil {
 		}
 		catch (IllegalAccessException illegalAccessException) {
 			System.out.println(
-				"Unable to set PoshiProperties." + toCamelCase(key));
+				"Unable to set PoshiProperties." + _toCamelCase(key));
 		}
 		catch (NoSuchFieldException noSuchFieldException) {
 			System.out.println(
-				"PoshiProperties. " + toCamelCase(key) + " does not exist");
+				"PoshiProperties. " + _toCamelCase(key) + " does not exist");
 		}
 	}
 
@@ -86,7 +86,7 @@ public class PropsUtil {
 		poshiProperties.printProperties(true);
 	}
 
-	public static String toCamelCase(String propertyName) {
+	public static String _toCamelCase(String propertyName) {
 		String[] terms = propertyName.split("\\.");
 
 		StringBuilder sb = new StringBuilder();
