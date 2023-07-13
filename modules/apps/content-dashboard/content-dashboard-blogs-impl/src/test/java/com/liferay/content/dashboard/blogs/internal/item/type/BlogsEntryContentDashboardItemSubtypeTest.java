@@ -69,6 +69,9 @@ public class BlogsEntryContentDashboardItemSubtypeTest {
 		InfoItemReference infoItemReference =
 			blogsEntryContentDashboardItemSubtype.getInfoItemReference();
 
+		Assert.assertEquals(
+			BlogsEntry.class.getName(), infoItemReference.getClassName());
+
 		InfoItemIdentifier infoItemIdentifier =
 			infoItemReference.getInfoItemIdentifier();
 
@@ -79,8 +82,6 @@ public class BlogsEntryContentDashboardItemSubtypeTest {
 			(ClassPKInfoItemIdentifier)
 				infoItemReference.getInfoItemIdentifier();
 
-		Assert.assertEquals(
-			BlogsEntry.class.getName(), infoItemReference.getClassName());
 		Assert.assertEquals(0L, classPKInfoItemIdentifier.getClassPK());
 	}
 
