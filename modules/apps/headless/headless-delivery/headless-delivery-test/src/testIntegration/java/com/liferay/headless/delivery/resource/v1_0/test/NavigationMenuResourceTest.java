@@ -92,7 +92,7 @@ public class NavigationMenuResourceTest
 			ServiceContextTestUtil.getServiceContext(
 				testGroup.getGroupId(), TestPropsValues.getUserId()));
 
-		_testGetNavigationMenuWithDisplayPageTypeItem(
+		_testGetNavigationMenu(
 			blogsEntry.getPrimaryKey(), 0, BlogsEntry.class,
 			"blog-postings/" + blogsEntry.getPrimaryKey(),
 			BlogsEntry.class.getName(), blogsEntry.getTitle(), "blogPosting",
@@ -106,7 +106,7 @@ public class NavigationMenuResourceTest
 			ServiceContextTestUtil.getServiceContext(
 				_depotEntry.getGroupId(), TestPropsValues.getUserId()));
 
-		_testGetNavigationMenuWithDisplayPageTypeItem(
+		_testGetNavigationMenu(
 			fileEntry.getPrimaryKey(),
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT,
 			DLFileEntry.class, "documents/" + fileEntry.getFileEntryId(),
@@ -120,7 +120,7 @@ public class NavigationMenuResourceTest
 			ServiceContextTestUtil.getServiceContext(
 				testGroup.getGroupId(), TestPropsValues.getUserId()));
 
-		_testGetNavigationMenuWithDisplayPageTypeItem(
+		_testGetNavigationMenu(
 			fileEntry.getPrimaryKey(),
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT,
 			DLFileEntry.class, "documents/" + fileEntry.getFileEntryId(),
@@ -130,7 +130,7 @@ public class NavigationMenuResourceTest
 			_depotEntry.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-		_testGetNavigationMenuWithDisplayPageTypeItem(
+		_testGetNavigationMenu(
 			journalArticle.getResourcePrimKey(),
 			journalArticle.getDDMStructureId(), JournalArticle.class,
 			"structured-contents/" + journalArticle.getResourcePrimKey(),
@@ -141,7 +141,7 @@ public class NavigationMenuResourceTest
 			testGroup.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-		_testGetNavigationMenuWithDisplayPageTypeItem(
+		_testGetNavigationMenu(
 			journalArticle.getResourcePrimKey(),
 			journalArticle.getDDMStructureId(), JournalArticle.class,
 			"structured-contents/" + journalArticle.getResourcePrimKey(),
@@ -160,7 +160,7 @@ public class NavigationMenuResourceTest
 			ServiceContextTestUtil.getServiceContext(
 				testGroup.getGroupId(), TestPropsValues.getUserId()));
 
-		_testGetSiteNavigationMenusPageWithDisplayPageTypeItem(
+		_testGetSiteNavigationMenusPage(
 			blogsEntry.getPrimaryKey(), 0, BlogsEntry.class,
 			"blog-postings/" + blogsEntry.getPrimaryKey(),
 			BlogsEntry.class.getName(), blogsEntry.getTitle(), "blogPosting",
@@ -174,7 +174,7 @@ public class NavigationMenuResourceTest
 			ServiceContextTestUtil.getServiceContext(
 				_depotEntry.getGroupId(), TestPropsValues.getUserId()));
 
-		_testGetSiteNavigationMenusPageWithDisplayPageTypeItem(
+		_testGetSiteNavigationMenusPage(
 			fileEntry.getPrimaryKey(),
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT,
 			DLFileEntry.class, "documents/" + fileEntry.getFileEntryId(),
@@ -188,7 +188,7 @@ public class NavigationMenuResourceTest
 			ServiceContextTestUtil.getServiceContext(
 				testGroup.getGroupId(), TestPropsValues.getUserId()));
 
-		_testGetSiteNavigationMenusPageWithDisplayPageTypeItem(
+		_testGetSiteNavigationMenusPage(
 			fileEntry.getPrimaryKey(),
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT,
 			DLFileEntry.class, "documents/" + fileEntry.getFileEntryId(),
@@ -198,7 +198,7 @@ public class NavigationMenuResourceTest
 			_depotEntry.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-		_testGetSiteNavigationMenusPageWithDisplayPageTypeItem(
+		_testGetSiteNavigationMenusPage(
 			journalArticle.getResourcePrimKey(),
 			journalArticle.getDDMStructureId(), JournalArticle.class,
 			"structured-contents/" + journalArticle.getResourcePrimKey(),
@@ -209,7 +209,7 @@ public class NavigationMenuResourceTest
 			testGroup.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-		_testGetSiteNavigationMenusPageWithDisplayPageTypeItem(
+		_testGetSiteNavigationMenusPage(
 			journalArticle.getResourcePrimKey(),
 			journalArticle.getDDMStructureId(), JournalArticle.class,
 			"structured-contents/" + journalArticle.getResourcePrimKey(),
@@ -222,7 +222,7 @@ public class NavigationMenuResourceTest
 		return new String[] {"name"};
 	}
 
-	private void _testGetNavigationMenuWithDisplayPageTypeItem(
+	private void _testGetNavigationMenu(
 			long classPK, long classTypeId, Class<?> clazz, String contentURL,
 			String displayPageType, String title, String type,
 			Boolean useCustomName)
@@ -293,7 +293,7 @@ public class NavigationMenuResourceTest
 		}
 	}
 
-	private void _testGetSiteNavigationMenusPageWithDisplayPageTypeItem(
+	private void _testGetSiteNavigationMenusPage(
 			long classPK, long classTypeId, Class<?> clazz, String contentURL,
 			String displayPageType, String title, String type,
 			Boolean useCustomName)
