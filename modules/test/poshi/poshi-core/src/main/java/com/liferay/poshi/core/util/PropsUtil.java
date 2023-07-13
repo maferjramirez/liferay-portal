@@ -70,11 +70,11 @@ public class PropsUtil {
 		}
 		catch (IllegalAccessException illegalAccessException) {
 			System.out.println(
-				"Unable to set PoshiProperties." + _toCamelCase(key));
+				"Unable to set Poshi property " + _toCamelCase(key));
 		}
 		catch (NoSuchFieldException noSuchFieldException) {
 			System.out.println(
-				"PoshiProperties. " + _toCamelCase(key) + " does not exist");
+				"Poshi property " + _toCamelCase(key) + " does not exist");
 		}
 	}
 
