@@ -5709,13 +5709,11 @@ information. Make sure to commit in all format-javadoc results.
 					<tarfileset
 						dir="${project.dir}/modules/sdk/gradle-plugins-workspace/build/reports"
 						prefix="gradle-plugins-workspace"
-					>
-					</tarfileset>
+					/>
 					<tarfileset
 						dir="${project.dir}/modules/sdk/gradle-plugins-target-platform/build/reports"
 						prefix="gradle-plugins-target-platform"
-					>
-					</tarfileset>
+					/>
 				</tar>
 			</test-tear-down>
 		</run-batch-test>
