@@ -81,8 +81,8 @@ public class TranslationEntryServiceImpl
 
 		if (!(infoItemIdentifier instanceof ClassPKInfoItemIdentifier)) {
 			throw new NoSuchInfoItemException(
-				"Unable to addOrUpdate a translationEntry without a " +
-					"ClassPKInfoItemIdentifier");
+				"Unable to add or update a translation entry without a class " +
+					"PK info item identifier");
 		}
 
 		ClassPKInfoItemIdentifier classPKInfoItemIdentifier =
