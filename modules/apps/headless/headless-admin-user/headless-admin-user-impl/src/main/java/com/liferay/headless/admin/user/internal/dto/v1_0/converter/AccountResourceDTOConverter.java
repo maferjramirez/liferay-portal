@@ -96,7 +96,10 @@ public class AccountResourceDTOConverter
 				externalReferenceCode = accountEntry.getExternalReferenceCode();
 				id = accountEntry.getAccountEntryId();
 				logoId = accountEntry.getLogoId();
-				logoURL = _getLogoURL(accountEntry.getLogoId());
+				logoURL = StringBundler.concat(
+			"/image/organization_logo?img_id=", accountEntry.getLogoId(), "&t=",
+			_webServerServletToken.getToken(accountEntry.getLogoId()));
+
 				name = accountEntry.getName();
 				numberOfUsers =
 					(int)
@@ -114,12 +117,6 @@ public class AccountResourceDTOConverter
 				type = Account.Type.create(accountEntry.getType());
 			}
 		};
-	}
-
-	private String _getLogoURL(long logoId) {
-		return StringBundler.concat(
-			"/image/organization_logo?img_id=", logoId, "&t=",
-			_webServerServletToken.getToken(logoId));
 	}
 
 	@Reference
