@@ -97,8 +97,9 @@ public class AccountResourceDTOConverter
 				id = accountEntry.getAccountEntryId();
 				logoId = accountEntry.getLogoId();
 				logoURL = StringBundler.concat(
-			"/image/organization_logo?img_id=", accountEntry.getLogoId(), "&t=",
-			_webServerServletToken.getToken(accountEntry.getLogoId()));
+					"/image/organization_logo?img_id=",
+					accountEntry.getLogoId(), "&t=",
+					_webServerServletToken.getToken(accountEntry.getLogoId()));
 
 				name = accountEntry.getName();
 				numberOfUsers =
