@@ -473,7 +473,9 @@ public abstract class BaseDB implements DB {
 			return;
 		}
 
-		for (ObjectValuePair<String, String> tableNameObjectValuePair : tableNameObjectValuePairs) {
+		for (ObjectValuePair<String, String> tableNameObjectValuePair :
+				tableNameObjectValuePairs) {
+
 			if (tableNameObjectValuePair == null) {
 				throw new NullPointerException(
 					"Table name pair cannot be null");
@@ -989,7 +991,8 @@ public abstract class BaseDB implements DB {
 				runSQL(
 					connection,
 					getRenameTableSQL(
-						tableNameObjectValuePair.getKey(), tableNameObjectValuePair.getValue()));
+						tableNameObjectValuePair.getKey(),
+						tableNameObjectValuePair.getValue()));
 			}
 
 			connection.commit();

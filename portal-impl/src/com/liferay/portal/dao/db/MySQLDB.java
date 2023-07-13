@@ -146,7 +146,8 @@ public class MySQLDB extends BaseDB {
 			ObjectValuePair<String, String>... tableNameObjectValuePairs)
 		throws Exception {
 
-		StringBundler sb = new StringBundler((tableNameObjectValuePairs.length * 4) + 1);
+		StringBundler sb = new StringBundler(
+			(tableNameObjectValuePairs.length * 4) + 1);
 
 		sb.append("rename table ");
 

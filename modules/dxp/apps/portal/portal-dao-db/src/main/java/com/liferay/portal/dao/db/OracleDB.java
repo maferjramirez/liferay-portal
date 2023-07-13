@@ -352,18 +352,21 @@ public class OracleDB extends BaseDB {
 		catch (Exception exception1) {
 			_log.error(
 				StringBundler.concat(
-					"Failed to rename table ", tableNameObjectValuePair.getKey(), " to ",
-					tableNameObjectValuePair.getValue(), ". Attempting to rollback."));
+					"Failed to rename table ",
+					tableNameObjectValuePair.getKey(), " to ",
+					tableNameObjectValuePair.getValue(),
+					". Attempting to rollback."));
 
 			try {
 				while (index > 0) {
-					tableNameObjectValuePair = tableNameObjectValuePairs[--index];
+					tableNameObjectValuePair =
+						tableNameObjectValuePairs[--index];
 
 					runSQL(
 						connection,
 						StringBundler.concat(
-							"rename ", tableNameObjectValuePair.getValue(), " to ",
-							tableNameObjectValuePair.getKey()));
+							"rename ", tableNameObjectValuePair.getValue(),
+							" to ", tableNameObjectValuePair.getKey()));
 				}
 
 				if (_log.isInfoEnabled()) {
