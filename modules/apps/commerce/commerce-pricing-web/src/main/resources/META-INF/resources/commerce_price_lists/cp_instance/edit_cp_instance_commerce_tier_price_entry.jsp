@@ -26,22 +26,6 @@ CPInstance cpInstance = cpInstanceCommerceTierPriceEntryDisplayContext.getCPInst
 long commercePriceEntryId = cpInstanceCommerceTierPriceEntryDisplayContext.getCommercePriceEntryId();
 long commerceTierPriceEntryId = cpInstanceCommerceTierPriceEntryDisplayContext.getCommerceTierPriceEntryId();
 String title = cpInstanceCommerceTierPriceEntryDisplayContext.getContextTitle();
-
-CommercePriceList commercePriceList = commercePriceEntry.getCommercePriceList();
-
-CommerceCurrency commerceCurrency = commercePriceList.getCommerceCurrency();
-
-BigDecimal price = BigDecimal.ZERO;
-
-if ((commerceTierPriceEntry != null) && (commerceTierPriceEntry.getPrice() != null)) {
-	price = commerceCurrency.round(commerceTierPriceEntry.getPrice());
-}
-
-BigDecimal minQuantity = BigDecimal.ZERO;
-
-if ((commerceTierPriceEntry != null) && (commerceTierPriceEntry.getMinQuantity() != null)) {
-	minQuantity = commerceTierPriceEntry.getMinQuantity();
-}
 %>
 
 <commerce-ui:modal-content
@@ -61,10 +45,31 @@ if ((commerceTierPriceEntry != null) && (commerceTierPriceEntry.getMinQuantity()
 
 		<div class="row">
 			<div class="col-12">
+
+				<%
+				CommercePriceList commercePriceList = commercePriceEntry.getCommercePriceList();
+
+				CommerceCurrency commerceCurrency = commercePriceList.getCommerceCurrency();
+
+				BigDecimal price = BigDecimal.ZERO;
+
+				if ((commerceTierPriceEntry != null) && (commerceTierPriceEntry.getPrice() != null)) {
+					price = commerceCurrency.round(commerceTierPriceEntry.getPrice());
+				}
+				%>
+
 				<aui:input name="price" suffix="<%= HtmlUtil.escape(commerceCurrency.getCode()) %>" type="text" value="<%= price %>">
 					<aui:validator name="min">0</aui:validator>
 					<aui:validator name="number" />
 				</aui:input>
+
+				<%
+				BigDecimal minQuantity = BigDecimal.ZERO;
+
+				if ((commerceTierPriceEntry != null) && (commerceTierPriceEntry.getMinQuantity() != null)) {
+					minQuantity = commerceTierPriceEntry.getMinQuantity();
+				}
+				%>
 
 				<aui:input name="minQuantity" value="<%= minQuantity.intValue() %>">
 					<aui:validator name="min">0</aui:validator>
