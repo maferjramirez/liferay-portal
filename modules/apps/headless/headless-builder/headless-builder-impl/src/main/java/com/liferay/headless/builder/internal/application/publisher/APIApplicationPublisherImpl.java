@@ -56,10 +56,10 @@ public class APIApplicationPublisherImpl implements APIApplicationPublisher {
 				"APIApplicationPublisher not available");
 		}
 
-		String osgiJaxRsName = _getOsgiJaxRsName(apiApplication);
+		String osgiJaxRsName = _getOSGiJaxRsName(apiApplication);
 
 		APIApplicationContextProvider apiApplicationContextProvider =
-			_apiApplicationContextProvidersMap.get(osgiJaxRsName);
+			_apiApplicationContextProviders.get(osgiJaxRsName);
 
 		if (apiApplicationContextProvider != null) {
 			apiApplicationContextProvider.setApiApplication(apiApplication);
@@ -95,12 +95,12 @@ public class APIApplicationPublisherImpl implements APIApplicationPublisher {
 				"APIApplicationPublisher not available");
 		}
 
-		_apiApplicationContextProvidersMap.remove(
-			_getOsgiJaxRsName(baseURL, companyId));
+		_apiApplicationContextProviders.remove(
+			_getOSGiJaxRsName(baseURL, companyId));
 
 		List<ServiceRegistration<?>> serviceRegistrations =
 			_serviceRegistrationsMap.remove(
-				_getOsgiJaxRsName(baseURL, companyId));
+				_getOSGiJaxRsName(baseURL, companyId));
 
 		if (serviceRegistrations != null) {
 			_unregisterServiceRegistrations(serviceRegistrations);
@@ -121,15 +121,15 @@ public class APIApplicationPublisherImpl implements APIApplicationPublisher {
 		}
 
 		_serviceRegistrationsMap.clear();
-		_apiApplicationContextProvidersMap.clear();
+		_apiApplicationContextProviders.clear();
 	}
 
-	private String _getOsgiJaxRsName(APIApplication apiApplication) {
-		return _getOsgiJaxRsName(
+	private String _getOSGiJaxRsName(APIApplication apiApplication) {
+		return _getOSGiJaxRsName(
 			apiApplication.getBaseURL(), apiApplication.getCompanyId());
 	}
 
-	private String _getOsgiJaxRsName(String baseURL, long companyId) {
+	private String _getOSGiJaxRsName(String baseURL, long companyId) {
 		return baseURL + companyId;
 	}
 
@@ -162,7 +162,7 @@ public class APIApplicationPublisherImpl implements APIApplicationPublisher {
 		APIApplicationContextProvider apiApplicationContextProvider =
 			new APIApplicationContextProvider(apiApplication);
 
-		_apiApplicationContextProvidersMap.put(
+		_apiApplicationContextProviders.put(
 			osgiJaxRsName, apiApplicationContextProvider);
 
 		return _bundleContext.registerService(
@@ -225,7 +225,7 @@ public class APIApplicationPublisherImpl implements APIApplicationPublisher {
 	private static BundleContext _bundleContext;
 
 	private final Map<String, APIApplicationContextProvider>
-		_apiApplicationContextProvidersMap = new HashMap<>();
+		_apiApplicationContextProviders = new HashMap<>();
 
 	@Reference
 	private ObjectEntryHelper _objectEntryHelper;
