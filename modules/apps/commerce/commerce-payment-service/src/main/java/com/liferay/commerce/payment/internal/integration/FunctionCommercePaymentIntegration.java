@@ -213,10 +213,10 @@ public class FunctionCommercePaymentIntegration
 				fetchCommercePaymentMethodGroupRel(
 					commerceChannel.getGroupId(), getKey());
 
-		JSONObject typeSettingsJSONObject = _jsonFactory.createJSONObject();
-
 		UnicodeProperties typeSettingsUnicodeProperties =
 			commercePaymentMethodGroupRel.getTypeSettingsUnicodeProperties();
+
+		JSONObject typeSettingsJSONObject = _jsonFactory.createJSONObject();
 
 		typeSettingsUnicodeProperties.forEach(
 			(key, value) -> typeSettingsJSONObject.put(key, value));
