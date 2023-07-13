@@ -191,20 +191,6 @@ public interface CommercePaymentEntryModel
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the commerce channel ID of this commerce payment entry.
-	 *
-	 * @return the commerce channel ID of this commerce payment entry
-	 */
-	public long getCommerceChannelId();
-
-	/**
-	 * Sets the commerce channel ID of this commerce payment entry.
-	 *
-	 * @param commerceChannelId the commerce channel ID of this commerce payment entry
-	 */
-	public void setCommerceChannelId(long commerceChannelId);
-
-	/**
 	 * Returns the fully qualified class name of this commerce payment entry.
 	 *
 	 * @return the fully qualified class name of this commerce payment entry
@@ -245,6 +231,20 @@ public interface CommercePaymentEntryModel
 	 */
 	@Override
 	public void setClassPK(long classPK);
+
+	/**
+	 * Returns the commerce channel ID of this commerce payment entry.
+	 *
+	 * @return the commerce channel ID of this commerce payment entry
+	 */
+	public long getCommerceChannelId();
+
+	/**
+	 * Sets the commerce channel ID of this commerce payment entry.
+	 *
+	 * @param commerceChannelId the commerce channel ID of this commerce payment entry
+	 */
+	public void setCommerceChannelId(long commerceChannelId);
 
 	/**
 	 * Returns the amount of this commerce payment entry.

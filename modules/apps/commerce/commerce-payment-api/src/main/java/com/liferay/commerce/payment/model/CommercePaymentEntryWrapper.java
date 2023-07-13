@@ -53,9 +53,9 @@ public class CommercePaymentEntryWrapper
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("commerceChannelId", getCommerceChannelId());
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
+		attributes.put("commerceChannelId", getCommerceChannelId());
 		attributes.put("amount", getAmount());
 		attributes.put("callbackURL", getCallbackURL());
 		attributes.put("currencyCode", getCurrencyCode());
@@ -113,12 +113,6 @@ public class CommercePaymentEntryWrapper
 			setModifiedDate(modifiedDate);
 		}
 
-		Long commerceChannelId = (Long)attributes.get("commerceChannelId");
-
-		if (commerceChannelId != null) {
-			setCommerceChannelId(commerceChannelId);
-		}
-
 		Long classNameId = (Long)attributes.get("classNameId");
 
 		if (classNameId != null) {
@@ -129,6 +123,12 @@ public class CommercePaymentEntryWrapper
 
 		if (classPK != null) {
 			setClassPK(classPK);
+		}
+
+		Long commerceChannelId = (Long)attributes.get("commerceChannelId");
+
+		if (commerceChannelId != null) {
+			setCommerceChannelId(commerceChannelId);
 		}
 
 		BigDecimal amount = (BigDecimal)attributes.get("amount");

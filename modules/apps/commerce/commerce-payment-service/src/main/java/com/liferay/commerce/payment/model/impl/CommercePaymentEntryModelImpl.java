@@ -80,8 +80,8 @@ public class CommercePaymentEntryModelImpl
 		{"mvccVersion", Types.BIGINT}, {"commercePaymentEntryId", Types.BIGINT},
 		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
 		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
-		{"modifiedDate", Types.TIMESTAMP}, {"commerceChannelId", Types.BIGINT},
-		{"classNameId", Types.BIGINT}, {"classPK", Types.BIGINT},
+		{"modifiedDate", Types.TIMESTAMP}, {"classNameId", Types.BIGINT},
+		{"classPK", Types.BIGINT}, {"commerceChannelId", Types.BIGINT},
 		{"amount", Types.DECIMAL}, {"callbackURL", Types.CLOB},
 		{"currencyCode", Types.VARCHAR},
 		{"paymentIntegrationKey", Types.VARCHAR},
@@ -101,9 +101,9 @@ public class CommercePaymentEntryModelImpl
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("commerceChannelId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("classNameId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("classPK", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("commerceChannelId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("amount", Types.DECIMAL);
 		TABLE_COLUMNS_MAP.put("callbackURL", Types.CLOB);
 		TABLE_COLUMNS_MAP.put("currencyCode", Types.VARCHAR);
@@ -115,7 +115,7 @@ public class CommercePaymentEntryModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table CommercePaymentEntry (mvccVersion LONG default 0 not null,commercePaymentEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,commerceChannelId LONG,classNameId LONG,classPK LONG,amount DECIMAL(30, 16) null,callbackURL TEXT null,currencyCode VARCHAR(75) null,paymentIntegrationKey VARCHAR(75) null,paymentIntegrationType INTEGER,paymentStatus INTEGER,redirectURL TEXT null,transactionCode VARCHAR(255) null)";
+		"create table CommercePaymentEntry (mvccVersion LONG default 0 not null,commercePaymentEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,commerceChannelId LONG,amount DECIMAL(30, 16) null,callbackURL TEXT null,currencyCode VARCHAR(75) null,paymentIntegrationKey VARCHAR(75) null,paymentIntegrationType INTEGER,paymentStatus INTEGER,redirectURL TEXT null,transactionCode VARCHAR(255) null)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table CommercePaymentEntry";
@@ -283,12 +283,12 @@ public class CommercePaymentEntryModelImpl
 			attributeGetterFunctions.put(
 				"modifiedDate", CommercePaymentEntry::getModifiedDate);
 			attributeGetterFunctions.put(
-				"commerceChannelId",
-				CommercePaymentEntry::getCommerceChannelId);
-			attributeGetterFunctions.put(
 				"classNameId", CommercePaymentEntry::getClassNameId);
 			attributeGetterFunctions.put(
 				"classPK", CommercePaymentEntry::getClassPK);
+			attributeGetterFunctions.put(
+				"commerceChannelId",
+				CommercePaymentEntry::getCommerceChannelId);
 			attributeGetterFunctions.put(
 				"amount", CommercePaymentEntry::getAmount);
 			attributeGetterFunctions.put(
@@ -355,10 +355,6 @@ public class CommercePaymentEntryModelImpl
 				(BiConsumer<CommercePaymentEntry, Date>)
 					CommercePaymentEntry::setModifiedDate);
 			attributeSetterBiConsumers.put(
-				"commerceChannelId",
-				(BiConsumer<CommercePaymentEntry, Long>)
-					CommercePaymentEntry::setCommerceChannelId);
-			attributeSetterBiConsumers.put(
 				"classNameId",
 				(BiConsumer<CommercePaymentEntry, Long>)
 					CommercePaymentEntry::setClassNameId);
@@ -366,6 +362,10 @@ public class CommercePaymentEntryModelImpl
 				"classPK",
 				(BiConsumer<CommercePaymentEntry, Long>)
 					CommercePaymentEntry::setClassPK);
+			attributeSetterBiConsumers.put(
+				"commerceChannelId",
+				(BiConsumer<CommercePaymentEntry, Long>)
+					CommercePaymentEntry::setCommerceChannelId);
 			attributeSetterBiConsumers.put(
 				"amount",
 				(BiConsumer<CommercePaymentEntry, BigDecimal>)
@@ -547,21 +547,6 @@ public class CommercePaymentEntryModelImpl
 		_modifiedDate = modifiedDate;
 	}
 
-	@JSON
-	@Override
-	public long getCommerceChannelId() {
-		return _commerceChannelId;
-	}
-
-	@Override
-	public void setCommerceChannelId(long commerceChannelId) {
-		if (_columnOriginalValues == Collections.EMPTY_MAP) {
-			_setColumnOriginalValues();
-		}
-
-		_commerceChannelId = commerceChannelId;
-	}
-
 	@Override
 	public String getClassName() {
 		if (getClassNameId() <= 0) {
@@ -629,6 +614,21 @@ public class CommercePaymentEntryModelImpl
 	@Deprecated
 	public long getOriginalClassPK() {
 		return GetterUtil.getLong(this.<Long>getColumnOriginalValue("classPK"));
+	}
+
+	@JSON
+	@Override
+	public long getCommerceChannelId() {
+		return _commerceChannelId;
+	}
+
+	@Override
+	public void setCommerceChannelId(long commerceChannelId) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_commerceChannelId = commerceChannelId;
 	}
 
 	@JSON
@@ -842,9 +842,9 @@ public class CommercePaymentEntryModelImpl
 		commercePaymentEntryImpl.setUserName(getUserName());
 		commercePaymentEntryImpl.setCreateDate(getCreateDate());
 		commercePaymentEntryImpl.setModifiedDate(getModifiedDate());
-		commercePaymentEntryImpl.setCommerceChannelId(getCommerceChannelId());
 		commercePaymentEntryImpl.setClassNameId(getClassNameId());
 		commercePaymentEntryImpl.setClassPK(getClassPK());
+		commercePaymentEntryImpl.setCommerceChannelId(getCommerceChannelId());
 		commercePaymentEntryImpl.setAmount(getAmount());
 		commercePaymentEntryImpl.setCallbackURL(getCallbackURL());
 		commercePaymentEntryImpl.setCurrencyCode(getCurrencyCode());
@@ -880,12 +880,12 @@ public class CommercePaymentEntryModelImpl
 			this.<Date>getColumnOriginalValue("createDate"));
 		commercePaymentEntryImpl.setModifiedDate(
 			this.<Date>getColumnOriginalValue("modifiedDate"));
-		commercePaymentEntryImpl.setCommerceChannelId(
-			this.<Long>getColumnOriginalValue("commerceChannelId"));
 		commercePaymentEntryImpl.setClassNameId(
 			this.<Long>getColumnOriginalValue("classNameId"));
 		commercePaymentEntryImpl.setClassPK(
 			this.<Long>getColumnOriginalValue("classPK"));
+		commercePaymentEntryImpl.setCommerceChannelId(
+			this.<Long>getColumnOriginalValue("commerceChannelId"));
 		commercePaymentEntryImpl.setAmount(
 			this.<BigDecimal>getColumnOriginalValue("amount"));
 		commercePaymentEntryImpl.setCallbackURL(
@@ -1018,12 +1018,12 @@ public class CommercePaymentEntryModelImpl
 			commercePaymentEntryCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		commercePaymentEntryCacheModel.commerceChannelId =
-			getCommerceChannelId();
-
 		commercePaymentEntryCacheModel.classNameId = getClassNameId();
 
 		commercePaymentEntryCacheModel.classPK = getClassPK();
+
+		commercePaymentEntryCacheModel.commerceChannelId =
+			getCommerceChannelId();
 
 		commercePaymentEntryCacheModel.amount = getAmount();
 
@@ -1146,9 +1146,9 @@ public class CommercePaymentEntryModelImpl
 	private Date _createDate;
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
-	private long _commerceChannelId;
 	private long _classNameId;
 	private long _classPK;
+	private long _commerceChannelId;
 	private BigDecimal _amount;
 	private String _callbackURL;
 	private String _currencyCode;
@@ -1194,9 +1194,9 @@ public class CommercePaymentEntryModelImpl
 		_columnOriginalValues.put("userName", _userName);
 		_columnOriginalValues.put("createDate", _createDate);
 		_columnOriginalValues.put("modifiedDate", _modifiedDate);
-		_columnOriginalValues.put("commerceChannelId", _commerceChannelId);
 		_columnOriginalValues.put("classNameId", _classNameId);
 		_columnOriginalValues.put("classPK", _classPK);
+		_columnOriginalValues.put("commerceChannelId", _commerceChannelId);
 		_columnOriginalValues.put("amount", _amount);
 		_columnOriginalValues.put("callbackURL", _callbackURL);
 		_columnOriginalValues.put("currencyCode", _currencyCode);
@@ -1234,11 +1234,11 @@ public class CommercePaymentEntryModelImpl
 
 		columnBitmasks.put("modifiedDate", 64L);
 
-		columnBitmasks.put("commerceChannelId", 128L);
+		columnBitmasks.put("classNameId", 128L);
 
-		columnBitmasks.put("classNameId", 256L);
+		columnBitmasks.put("classPK", 256L);
 
-		columnBitmasks.put("classPK", 512L);
+		columnBitmasks.put("commerceChannelId", 512L);
 
 		columnBitmasks.put("amount", 1024L);
 

@@ -58,14 +58,14 @@ public class CommercePaymentEntryTable
 	public final Column<CommercePaymentEntryTable, Date> modifiedDate =
 		createColumn(
 			"modifiedDate", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
-	public final Column<CommercePaymentEntryTable, Long> commerceChannelId =
-		createColumn(
-			"commerceChannelId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<CommercePaymentEntryTable, Long> classNameId =
 		createColumn(
 			"classNameId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<CommercePaymentEntryTable, Long> classPK = createColumn(
 		"classPK", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
+	public final Column<CommercePaymentEntryTable, Long> commerceChannelId =
+		createColumn(
+			"commerceChannelId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<CommercePaymentEntryTable, BigDecimal> amount =
 		createColumn(
 			"amount", BigDecimal.class, Types.DECIMAL, Column.FLAG_DEFAULT);

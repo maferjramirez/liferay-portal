@@ -139,11 +139,11 @@ public class CommercePaymentEntryPersistenceTest {
 
 		newCommercePaymentEntry.setModifiedDate(RandomTestUtil.nextDate());
 
-		newCommercePaymentEntry.setCommerceChannelId(RandomTestUtil.nextLong());
-
 		newCommercePaymentEntry.setClassNameId(RandomTestUtil.nextLong());
 
 		newCommercePaymentEntry.setClassPK(RandomTestUtil.nextLong());
+
+		newCommercePaymentEntry.setCommerceChannelId(RandomTestUtil.nextLong());
 
 		newCommercePaymentEntry.setAmount(
 			new BigDecimal(RandomTestUtil.nextDouble()));
@@ -196,14 +196,14 @@ public class CommercePaymentEntryPersistenceTest {
 				existingCommercePaymentEntry.getModifiedDate()),
 			Time.getShortTimestamp(newCommercePaymentEntry.getModifiedDate()));
 		Assert.assertEquals(
-			existingCommercePaymentEntry.getCommerceChannelId(),
-			newCommercePaymentEntry.getCommerceChannelId());
-		Assert.assertEquals(
 			existingCommercePaymentEntry.getClassNameId(),
 			newCommercePaymentEntry.getClassNameId());
 		Assert.assertEquals(
 			existingCommercePaymentEntry.getClassPK(),
 			newCommercePaymentEntry.getClassPK());
+		Assert.assertEquals(
+			existingCommercePaymentEntry.getCommerceChannelId(),
+			newCommercePaymentEntry.getCommerceChannelId());
 		Assert.assertEquals(
 			existingCommercePaymentEntry.getAmount(),
 			newCommercePaymentEntry.getAmount());
@@ -277,7 +277,7 @@ public class CommercePaymentEntryPersistenceTest {
 			"CommercePaymentEntry", "mvccVersion", true,
 			"commercePaymentEntryId", true, "companyId", true, "userId", true,
 			"userName", true, "createDate", true, "modifiedDate", true,
-			"commerceChannelId", true, "classNameId", true, "classPK", true,
+			"classNameId", true, "classPK", true, "commerceChannelId", true,
 			"amount", true, "currencyCode", true, "paymentIntegrationKey", true,
 			"paymentIntegrationType", true, "paymentStatus", true,
 			"transactionCode", true);
@@ -536,11 +536,11 @@ public class CommercePaymentEntryPersistenceTest {
 
 		commercePaymentEntry.setModifiedDate(RandomTestUtil.nextDate());
 
-		commercePaymentEntry.setCommerceChannelId(RandomTestUtil.nextLong());
-
 		commercePaymentEntry.setClassNameId(RandomTestUtil.nextLong());
 
 		commercePaymentEntry.setClassPK(RandomTestUtil.nextLong());
+
+		commercePaymentEntry.setCommerceChannelId(RandomTestUtil.nextLong());
 
 		commercePaymentEntry.setAmount(
 			new BigDecimal(RandomTestUtil.nextDouble()));

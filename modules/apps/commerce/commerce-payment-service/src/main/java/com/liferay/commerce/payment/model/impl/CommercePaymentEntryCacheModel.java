@@ -96,12 +96,12 @@ public class CommercePaymentEntryCacheModel
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", commerceChannelId=");
-		sb.append(commerceChannelId);
 		sb.append(", classNameId=");
 		sb.append(classNameId);
 		sb.append(", classPK=");
 		sb.append(classPK);
+		sb.append(", commerceChannelId=");
+		sb.append(commerceChannelId);
 		sb.append(", amount=");
 		sb.append(amount);
 		sb.append(", callbackURL=");
@@ -155,9 +155,9 @@ public class CommercePaymentEntryCacheModel
 			commercePaymentEntryImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		commercePaymentEntryImpl.setCommerceChannelId(commerceChannelId);
 		commercePaymentEntryImpl.setClassNameId(classNameId);
 		commercePaymentEntryImpl.setClassPK(classPK);
+		commercePaymentEntryImpl.setCommerceChannelId(commerceChannelId);
 		commercePaymentEntryImpl.setAmount(amount);
 
 		if (callbackURL == null) {
@@ -220,11 +220,11 @@ public class CommercePaymentEntryCacheModel
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
 
-		commerceChannelId = objectInput.readLong();
-
 		classNameId = objectInput.readLong();
 
 		classPK = objectInput.readLong();
+
+		commerceChannelId = objectInput.readLong();
 		amount = (BigDecimal)objectInput.readObject();
 		callbackURL = (String)objectInput.readObject();
 		currencyCode = objectInput.readUTF();
@@ -257,11 +257,11 @@ public class CommercePaymentEntryCacheModel
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
-		objectOutput.writeLong(commerceChannelId);
-
 		objectOutput.writeLong(classNameId);
 
 		objectOutput.writeLong(classPK);
+
+		objectOutput.writeLong(commerceChannelId);
 		objectOutput.writeObject(amount);
 
 		if (callbackURL == null) {
@@ -311,9 +311,9 @@ public class CommercePaymentEntryCacheModel
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public long commerceChannelId;
 	public long classNameId;
 	public long classPK;
+	public long commerceChannelId;
 	public BigDecimal amount;
 	public String callbackURL;
 	public String currencyCode;
