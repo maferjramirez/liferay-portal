@@ -377,6 +377,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
 			userId, commerceInventoryWarehouseItem.getSku(),
+			commerceInventoryWarehouseItem.getUnitOfMeasureKey(),
 			commerceInventoryAuditType.getType(),
 			commerceInventoryAuditType.getLog(null), quantity);
 
@@ -422,7 +423,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 				CommerceInventoryConstants.AUDIT_TYPE_MOVE_QUANTITY);
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
-			userId, sku, commerceInventoryAuditType.getType(),
+			userId, sku, StringPool.BLANK, commerceInventoryAuditType.getType(),
 			commerceInventoryAuditType.getLog(
 				HashMapBuilder.put(
 					CommerceInventoryAuditTypeConstants.FROM,
@@ -479,6 +480,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
 			userId, commerceInventoryWarehouseItem.getSku(),
+			commerceInventoryWarehouseItem.getUnitOfMeasureKey(),
 			commerceInventoryAuditType.getType(),
 			commerceInventoryAuditType.getLog(
 				HashMapBuilder.put(
@@ -522,6 +524,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
 			userId, commerceInventoryWarehouseItem.getSku(),
+			commerceInventoryWarehouseItem.getUnitOfMeasureKey(),
 			commerceInventoryAuditType.getType(),
 			commerceInventoryAuditType.getLog(
 				HashMapBuilder.put(
