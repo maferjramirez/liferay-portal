@@ -1549,7 +1549,7 @@ public class WebServerServlet extends HttpServlet {
 			return;
 		}
 
-		_checkInstanceGroupId(fileEntry.getGroupId(), httpServletRequest);
+		_checkCompanyAndGroup(fileEntry.getGroupId(), httpServletRequest);
 
 		PermissionChecker permissionChecker = _getPermissionChecker(
 			httpServletRequest);
@@ -1588,7 +1588,7 @@ public class WebServerServlet extends HttpServlet {
 		}
 	}
 
-	private void _checkInstanceGroupId(
+	private void _checkCompanyAndGroup(
 			long groupId, HttpServletRequest httpServletRequest)
 		throws Exception {
 
