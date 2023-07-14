@@ -97,7 +97,7 @@ public class AudioProcessorImpl
 		CompanyLocalServiceUtil.forEachCompanyId(
 			companyId -> {
 				try {
-					String jobName = "generateVideoPreviews-".concat(
+					String jobName = "generateAudioPreviews-".concat(
 						PortalUUIDUtil.generate());
 
 					BackgroundTaskManagerUtil.addBackgroundTask(
