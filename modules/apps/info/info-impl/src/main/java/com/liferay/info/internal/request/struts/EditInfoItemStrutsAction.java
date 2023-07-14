@@ -33,6 +33,7 @@ import com.liferay.info.item.creator.InfoItemCreator;
 import com.liferay.info.item.provider.InfoItemFieldValuesProvider;
 import com.liferay.info.item.provider.InfoItemObjectProvider;
 import com.liferay.info.item.updater.InfoItemFieldValuesUpdater;
+import com.liferay.layout.constants.LayoutWebKeys;
 import com.liferay.layout.page.template.info.item.provider.DisplayPageInfoItemFieldSetProvider;
 import com.liferay.layout.provider.LayoutStructureProvider;
 import com.liferay.layout.util.constants.LayoutDataItemTypeConstants;
@@ -119,6 +120,13 @@ public class EditInfoItemStrutsAction implements StrutsAction {
 			return null;
 		}
 
+		LayoutStructure layoutStructure = _getLayoutStructure(
+			httpServletRequest);
+
+		if (layoutStructure == null) {
+			throw new InfoFormException();
+		}
+
 		String redirect = null;
 		boolean success = false;
 
@@ -145,11 +153,12 @@ public class EditInfoItemStrutsAction implements StrutsAction {
 				throw new InfoFormInvalidGroupException();
 			}
 
-			if (_isCaptchaLayoutStructureItem(formItemId, httpServletRequest)) {
+			if (_isCaptchaLayoutStructureItem(formItemId, layoutStructure)) {
 				CaptchaUtil.check(httpServletRequest);
 			}
 
-			_validateRequiredFields(httpServletRequest, infoFieldValues);
+			_validateRequiredFields(
+				httpServletRequest, infoFieldValues, layoutStructure);
 
 			Object infoItem = null;
 
@@ -359,6 +368,22 @@ public class EditInfoItemStrutsAction implements StrutsAction {
 		return null;
 	}
 
+	private LayoutStructure _getLayoutStructure(
+		HttpServletRequest httpServletRequest) {
+
+		LayoutStructure layoutStructure =
+			(LayoutStructure)httpServletRequest.getAttribute(
+				LayoutWebKeys.LAYOUT_STRUCTURE);
+
+		if (layoutStructure != null) {
+			return layoutStructure;
+		}
+
+		return _layoutStructureProvider.getLayoutStructure(
+			ParamUtil.getLong(httpServletRequest, "plid"),
+			ParamUtil.getLong(httpServletRequest, "segmentsExperienceId"));
+	}
+
 	private String _getValue(InfoFieldValue<?> infoFieldValue) {
 		if (infoFieldValue == null) {
 			return null;
@@ -468,17 +493,8 @@ public class EditInfoItemStrutsAction implements StrutsAction {
 	}
 
 	private boolean _isCaptchaLayoutStructureItem(
-			String formItemId, HttpServletRequest httpServletRequest)
+			String formItemId, LayoutStructure layoutStructure)
 		throws InfoFormException {
-
-		LayoutStructure layoutStructure =
-			_layoutStructureProvider.getLayoutStructure(
-				ParamUtil.getLong(httpServletRequest, "plid"),
-				ParamUtil.getLong(httpServletRequest, "segmentsExperienceId"));
-
-		if (layoutStructure == null) {
-			throw new InfoFormException();
-		}
 
 		LayoutStructureItem formLayoutStructureItem =
 			layoutStructure.getLayoutStructureItem(formItemId);
@@ -547,17 +563,9 @@ public class EditInfoItemStrutsAction implements StrutsAction {
 
 	private void _validateRequiredFields(
 			HttpServletRequest httpServletRequest,
-			List<InfoFieldValue<Object>> infoFieldValues)
+			List<InfoFieldValue<Object>> infoFieldValues,
+			LayoutStructure layoutStructure)
 		throws InfoFormException {
-
-		LayoutStructure layoutStructure =
-			_layoutStructureProvider.getLayoutStructure(
-				ParamUtil.getLong(httpServletRequest, "plid"),
-				ParamUtil.getLong(httpServletRequest, "segmentsExperienceId"));
-
-		if (layoutStructure == null) {
-			throw new InfoFormException();
-		}
 
 		String formItemId = ParamUtil.getString(
 			httpServletRequest, "formItemId");
