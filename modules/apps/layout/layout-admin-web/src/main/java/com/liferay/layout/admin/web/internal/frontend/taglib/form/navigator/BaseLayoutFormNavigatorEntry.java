@@ -48,11 +48,6 @@ public abstract class BaseLayoutFormNavigatorEntry
 		return LanguageUtil.get(locale, getKey());
 	}
 
-	@Override
-	public boolean isVisible(User user, Layout layout) {
-		return super.isVisible(user, layout);
-	}
-
 	@Reference
 	protected LayoutLocalService layoutLocalService;
 
