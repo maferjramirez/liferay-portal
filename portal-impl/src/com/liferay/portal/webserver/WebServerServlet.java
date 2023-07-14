@@ -1541,6 +1541,34 @@ public class WebServerServlet extends HttpServlet {
 			group.getGroupId(), pathArray[2]);
 	}
 
+	private void _checkCompanyAndGroup(
+			long groupId, HttpServletRequest httpServletRequest)
+		throws Exception {
+
+		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
+
+		if (group == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("No group exists group ID " + groupId);
+			}
+
+			throw new NoSuchFileEntryException();
+		}
+
+		long companyId = PortalUtil.getCompanyId(httpServletRequest);
+
+		if (group.getCompanyId() != companyId) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					StringBundler.concat(
+						"Group ", groupId, " does not belong to company ",
+						companyId));
+			}
+
+			throw new NoSuchFileEntryException();
+		}
+	}
+
 	private void _checkFileEntry(
 			FileEntry fileEntry, HttpServletRequest httpServletRequest)
 		throws Exception {
@@ -1585,35 +1613,6 @@ public class WebServerServlet extends HttpServlet {
 			throw new FileEntryExpiredException(
 				"The file entry " + fileEntry.getFileEntryId() +
 					" is expired and the user does not have review permission");
-		}
-	}
-
-	private void _checkCompanyAndGroup(
-			long groupId, HttpServletRequest httpServletRequest)
-		throws Exception {
-
-		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
-
-		if (group == null) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					StringBundler.concat("Group not found: ", groupId, "."));
-			}
-
-			throw new NoSuchFileEntryException("No file entry found");
-		}
-
-		long companyId = PortalUtil.getCompanyId(httpServletRequest);
-
-		if (group.getCompanyId() != companyId) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					StringBundler.concat(
-						"Group ", groupId, " does not belong to company: ",
-						companyId, "."));
-			}
-
-			throw new NoSuchFileEntryException("No file entry found");
 		}
 	}
 
