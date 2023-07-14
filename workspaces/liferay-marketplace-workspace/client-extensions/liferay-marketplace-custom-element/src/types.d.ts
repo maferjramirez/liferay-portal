@@ -90,6 +90,7 @@ type BillingAddress = {
 	city?: string;
 	country?: string;
 	countryISOCode: string;
+	description?: string;
 	name?: string;
 	phoneNumber?: string;
 	regionISOCode?: string;
@@ -204,6 +205,7 @@ interface Order {
 	orderStatus: number;
 	orderTypeExternalReferenceCode?: string;
 	orderTypeId: number;
+
 }
 
 interface OrderType {
