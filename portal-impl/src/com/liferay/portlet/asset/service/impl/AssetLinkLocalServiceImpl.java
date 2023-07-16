@@ -290,7 +290,7 @@ public class AssetLinkLocalServiceImpl extends AssetLinkLocalServiceBaseImpl {
 	public List<AssetLink> getLinks(
 		long groupId, Date startDate, Date endDate, int start, int end) {
 
-		DSLQuery assetEntrySubquery = DSLQueryFactoryUtil.select(
+		DSLQuery dslQuery = DSLQueryFactoryUtil.select(
 			AssetEntryTable.INSTANCE.entryId
 		).from(
 			AssetEntryTable.INSTANCE
@@ -327,9 +327,9 @@ public class AssetLinkLocalServiceImpl extends AssetLinkLocalServiceBaseImpl {
 				AssetLinkTable.INSTANCE
 			).where(
 				AssetLinkTable.INSTANCE.entryId1.in(
-					assetEntrySubquery
+					dslQuery
 				).or(
-					AssetLinkTable.INSTANCE.entryId2.in(assetEntrySubquery)
+					AssetLinkTable.INSTANCE.entryId2.in(dslQuery)
 				)
 			).limit(
 				start, end
