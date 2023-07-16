@@ -82,9 +82,9 @@ public class CommerceNotificationServiceUpgradeStepRegistrator
 		registry.register(
 			"2.3.0", "3.0.0",
 			UpgradeProcessFactory.alterColumnType(
-				"CommerceNotificationTemplate", "to_", "TEXT null"),
-			UpgradeProcessFactory.alterColumnType(
 				"CommerceNotificationTemplate", "from_", "TEXT null"),
+			UpgradeProcessFactory.alterColumnType(
+				"CommerceNotificationTemplate", "to_", "TEXT null"),
 			UpgradeProcessFactory.alterColumnType(
 				"CommerceNotificationTemplate", "cc", "TEXT null"),
 			UpgradeProcessFactory.alterColumnType(
