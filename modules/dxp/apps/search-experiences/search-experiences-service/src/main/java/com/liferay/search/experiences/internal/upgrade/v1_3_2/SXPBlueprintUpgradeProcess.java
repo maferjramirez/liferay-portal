@@ -95,8 +95,8 @@ public class SXPBlueprintUpgradeProcess extends UpgradeProcess {
 	private String _upgradeElementInstancesJSON(String elementInstancesJSON)
 		throws Exception {
 
-		if (elementInstancesJSON.equals("{}") ||
-			elementInstancesJSON.equals("[]")) {
+		if (elementInstancesJSON.equals("[]") ||
+			elementInstancesJSON.equals("{}")) {
 
 			return "[]";
 		}
