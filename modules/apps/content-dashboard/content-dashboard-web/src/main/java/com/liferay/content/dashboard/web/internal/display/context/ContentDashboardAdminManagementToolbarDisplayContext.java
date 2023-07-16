@@ -535,9 +535,9 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 		InfoItemItemSelectorCriterion itemSelectorCriterion =
 			new InfoItemItemSelectorCriterion();
 
-		itemSelectorCriterion.setItemType(AssetCategory.class.getName());
 		itemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			new InfoItemItemSelectorReturnType());
+		itemSelectorCriterion.setItemType(AssetCategory.class.getName());
 		itemSelectorCriterion.setMultiSelection(true);
 
 		return PortletURLBuilder.create(
