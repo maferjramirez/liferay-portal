@@ -69,8 +69,7 @@ public class UpgradeJavaAssetEntryAssetCategoriesCheck extends BaseFileCheck {
 			String methodCall = matcher.group();
 
 			if (!hasClassOrVariableName(
-					"AssetCategoryLocalService", newContent, newContent,
-					methodCall)) {
+					"AssetCategoryLocalService", newContent, methodCall)) {
 
 				continue;
 			}
@@ -143,8 +142,7 @@ public class UpgradeJavaAssetEntryAssetCategoriesCheck extends BaseFileCheck {
 			String methodCall = matcher.group();
 
 			if (!hasClassOrVariableName(
-					"AssetCategoryLocalService", newContent, newContent,
-					methodCall)) {
+					"AssetCategoryLocalService", newContent, methodCall)) {
 
 				continue;
 			}
