@@ -49,10 +49,10 @@ public class UpgradeJavaAddFDSTableSchemaFieldCheck extends BaseFileCheck {
 			return content;
 		}
 
-		return _replaceAddFDSTableSchemaFieldMethodCalls(content, javaClass);
+		return _replaceAddFDSTableSchemaField(content, javaClass);
 	}
 
-	private String _replaceAddFDSTableSchemaFieldMethodCalls(
+	private String _replaceAddFDSTableSchemaField(
 		String content, JavaClass javaClass) {
 
 		for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
