@@ -72,7 +72,7 @@ public class UpgradeJavaCheck extends BaseTableClayDataSetDisplayView {
 			_clayTableSchemaBuilderFactory.create();
 
 		ClayTableSchemaField nameClayTableSchemaField =
-			clayTableSchemaBuilder.add("name", "name");
+			clayTableSchemaBuilder.addClayTableSchemaField("name", "name");
 
 		return clayTableSchemaBuilder.build();
 	}
