@@ -52,18 +52,6 @@ public class UpgradeJavaAddFDSTableSchemaFieldCheck extends BaseFileCheck {
 		return _replaceAddFDSTableSchemaFieldMethodCalls(content, javaClass);
 	}
 
-	private String _replaceAddFDSTableSchemaFieldMethodCall(
-		String content, String fileContent, String methodCall) {
-
-		if (!hasClassOrVariableName(
-				"FDSTableSchemaBuilder", content, fileContent, methodCall)) {
-
-			return methodCall;
-		}
-
-		return StringUtil.replace(methodCall, "addFDSTableSchemaField", "add");
-	}
-
 	private String _replaceAddFDSTableSchemaFieldMethodCalls(
 		String content, JavaClass javaClass) {
 
@@ -91,6 +79,18 @@ public class UpgradeJavaAddFDSTableSchemaFieldCheck extends BaseFileCheck {
 		}
 
 		return content;
+	}
+
+	private String _replaceAddFDSTableSchemaFieldMethodCall(
+		String content, String fileContent, String methodCall) {
+
+		if (!hasClassOrVariableName(
+				"FDSTableSchemaBuilder", content, fileContent, methodCall)) {
+
+			return methodCall;
+		}
+
+		return StringUtil.replace(methodCall, "addFDSTableSchemaField", "add");
 	}
 
 	private static final Pattern _addFDSTableSchemaFieldPattern =
