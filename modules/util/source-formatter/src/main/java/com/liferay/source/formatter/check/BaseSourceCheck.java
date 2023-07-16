@@ -643,8 +643,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	}
 
 	protected boolean hasClassOrVariableName(
-		String className, String content, String fileContent,
-		String methodCall) {
+		String className, String content, String methodCall) {
 
 		String variable = getVariableName(methodCall);
 
@@ -653,7 +652,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 		}
 
 		String variableTypeName = getVariableTypeName(
-			content, fileContent, variable.trim(), true);
+			content, content, variable.trim(), true);
 
 		if (variableTypeName.startsWith(className)) {
 			return true;
