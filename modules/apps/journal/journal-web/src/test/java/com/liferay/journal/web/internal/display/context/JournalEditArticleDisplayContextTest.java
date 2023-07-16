@@ -68,13 +68,13 @@ public class JournalEditArticleDisplayContextTest {
 
 		beanPropertiesUtil.setBeanProperties(_beanProperties);
 
-		LanguageUtil languageUtil = new LanguageUtil();
-
-		languageUtil.setLanguage(_language);
-
 		ReflectionTestUtil.setFieldValue(
 			ConfigurationProviderUtil.class, "_configurationProvider",
 			Mockito.mock(ConfigurationProvider.class));
+
+		LanguageUtil languageUtil = new LanguageUtil();
+
+		languageUtil.setLanguage(_language);
 	}
 
 	@Test
