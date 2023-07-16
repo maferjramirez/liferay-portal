@@ -40,8 +40,8 @@ public class ProductNavigationControlMenuManagerImpl
 
 	@Override
 	public boolean isShowControlMenu(Group group, Layout layout, long userId) {
-		if (!group.isSite() || layout.isTypeControlPanel() ||
-			layout.isDraftLayout()) {
+		if (!group.isSite() || layout.isDraftLayout() ||
+			layout.isTypeControlPanel()) {
 
 			return true;
 		}
