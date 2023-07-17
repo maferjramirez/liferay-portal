@@ -15,6 +15,7 @@
 package com.liferay.portlet.documentlibrary.service.impl;
 
 import com.liferay.document.library.kernel.model.DLFileEntryType;
+import com.liferay.document.library.kernel.model.DLFileEntryTypeConstants;
 import com.liferay.document.library.kernel.model.DLFileEntryTypeTable;
 import com.liferay.petra.sql.dsl.DSLFunctionFactoryUtil;
 import com.liferay.petra.sql.dsl.DSLQueryFactoryUtil;
@@ -35,6 +36,7 @@ import com.liferay.portlet.documentlibrary.constants.DLConstants;
 import com.liferay.portlet.documentlibrary.service.base.DLFileEntryTypeServiceBaseImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -85,7 +87,18 @@ public class DLFileEntryTypeServiceImpl extends DLFileEntryTypeServiceBaseImpl {
 
 	@Override
 	public List<DLFileEntryType> getFileEntryTypes(long[] groupIds) {
-		return dlFileEntryTypePersistence.filterFindByGroupId(groupIds);
+		List<DLFileEntryType> dlFileEntryTypes = new ArrayList<>(
+			dlFileEntryTypePersistence.filterFindByGroupId(groupIds));
+
+		DLFileEntryType basicDocumentDLFileEntryType =
+			dlFileEntryTypeLocalService.fetchDLFileEntryType(
+				DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT);
+
+		if (basicDocumentDLFileEntryType != null) {
+			dlFileEntryTypes.add(0, basicDocumentDLFileEntryType);
+		}
+
+		return dlFileEntryTypes;
 	}
 
 	@Override
