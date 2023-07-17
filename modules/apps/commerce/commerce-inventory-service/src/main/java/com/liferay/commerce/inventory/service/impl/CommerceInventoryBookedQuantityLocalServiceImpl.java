@@ -97,8 +97,9 @@ public class CommerceInventoryBookedQuantityLocalServiceImpl
 				CommerceInventoryConstants.AUDIT_TYPE_BOOKED_QUANTITY);
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
-			userId, sku, StringPool.BLANK, commerceInventoryAuditType.getType(),
-			commerceInventoryAuditType.getLog(context), quantity);
+			userId, commerceInventoryAuditType.getType(),
+			commerceInventoryAuditType.getLog(context), quantity, sku,
+			StringPool.BLANK);
 
 		return commerceInventoryBookedQuantityPersistence.update(
 			commerceInventoryBookedQuantity);
@@ -285,8 +286,9 @@ public class CommerceInventoryBookedQuantityLocalServiceImpl
 				CommerceInventoryConstants.AUDIT_TYPE_RESTORE_QUANTITY);
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
-			userId, sku, StringPool.BLANK, commerceInventoryAuditType.getType(),
-			commerceInventoryAuditType.getLog(context), quantity);
+			userId, commerceInventoryAuditType.getType(),
+			commerceInventoryAuditType.getLog(context), quantity, sku,
+			StringPool.BLANK);
 
 		return commerceInventoryBookedQuantityPersistence.update(
 			commerceBookedQuantity);
@@ -308,10 +310,10 @@ public class CommerceInventoryBookedQuantityLocalServiceImpl
 				CommerceInventoryConstants.AUDIT_TYPE_RESTOCK_QUANTITY);
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
-			userId, commerceInventoryBookedQuantity.getSku(), StringPool.BLANK,
-			commerceInventoryAuditType.getType(),
+			userId, commerceInventoryAuditType.getType(),
 			commerceInventoryAuditType.getLog(context),
-			commerceInventoryBookedQuantity.getQuantity());
+			commerceInventoryBookedQuantity.getQuantity(),
+			commerceInventoryBookedQuantity.getSku(), StringPool.BLANK);
 
 		return commerceInventoryBookedQuantity;
 	}
@@ -377,10 +379,10 @@ public class CommerceInventoryBookedQuantityLocalServiceImpl
 				CommerceInventoryConstants.AUDIT_TYPE_UPDATE_BOOKED_QUANTITY);
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
-			userId, commerceInventoryBookedQuantity.getSku(),
-			commerceInventoryBookedQuantity.getUnitOfMeasureKey(),
-			commerceInventoryAuditType.getType(),
-			commerceInventoryAuditType.getLog(context), quantity);
+			userId, commerceInventoryAuditType.getType(),
+			commerceInventoryAuditType.getLog(context), quantity,
+			commerceInventoryBookedQuantity.getSku(),
+			commerceInventoryBookedQuantity.getUnitOfMeasureKey());
 
 		return commerceInventoryBookedQuantityLocalService.
 			updateCommerceInventoryBookedQuantity(
