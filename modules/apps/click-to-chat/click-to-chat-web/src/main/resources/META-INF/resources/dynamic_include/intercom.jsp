@@ -24,12 +24,13 @@
 	};
 
 	<c:if test="<%= themeDisplay.isSignedIn() %>">
-		intercomSettings.name = '<%= user.getFullName() %>';
-		intercomSettings.email = '<%= user.getEmailAddress() %>';
-		intercomSettings.user_id = '<%= user.getUserId() %>';
 		<c:if test="<%= user.getCreateDate() != null %>">
 			intercomSettings.created_at = '<%= user.getCreateDate().getTime() %>';
 		</c:if>
+
+		intercomSettings.email = '<%= user.getEmailAddress() %>';
+		intercomSettings.name = '<%= user.getFullName() %>';
+		intercomSettings.user_id = '<%= user.getUserId() %>';
 	</c:if>
 
 	window.intercomSettings = intercomSettings;
