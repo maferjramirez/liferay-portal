@@ -12,6 +12,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 
+import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.List;
 
@@ -31,8 +33,8 @@ public class CommerceInventoryAuditLocalServiceImpl
 
 	@Override
 	public CommerceInventoryAudit addCommerceInventoryAudit(
-			long userId, String logType, String logTypeSettings, int quantity,
-			String sku, String unitOfMeasureKey)
+			long userId, String logType, String logTypeSettings,
+			BigDecimal quantity, String sku, String unitOfMeasureKey)
 		throws PortalException {
 
 		User user = _userLocalService.getUser(userId);
@@ -48,8 +50,8 @@ public class CommerceInventoryAuditLocalServiceImpl
 		commerceInventoryAudit.setLogType(logType);
 		commerceInventoryAudit.setLogTypeSettings(logTypeSettings);
 		commerceInventoryAudit.setQuantity(quantity);
-		commerceInventoryAudit.setUnitOfMeasureKey(unitOfMeasureKey);
 		commerceInventoryAudit.setSku(sku);
+		commerceInventoryAudit.setUnitOfMeasureKey(unitOfMeasureKey);
 
 		return commerceInventoryAuditPersistence.update(commerceInventoryAudit);
 	}

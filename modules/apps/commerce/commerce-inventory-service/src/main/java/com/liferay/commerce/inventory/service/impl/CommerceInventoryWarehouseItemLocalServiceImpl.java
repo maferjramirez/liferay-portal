@@ -33,6 +33,8 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -369,7 +371,8 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
 			userId, commerceInventoryAuditType.getType(),
-			commerceInventoryAuditType.getLog(null), quantity,
+			commerceInventoryAuditType.getLog(null),
+			BigDecimal.valueOf(quantity),
 			commerceInventoryWarehouseItem.getSku(),
 			commerceInventoryWarehouseItem.getUnitOfMeasureKey());
 
@@ -439,7 +442,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 							toCommerceInventoryWarehouse.getName());
 					}
 				).build()),
-			quantity, sku, StringPool.BLANK);
+			BigDecimal.valueOf(quantity), sku, StringPool.BLANK);
 	}
 
 	@Override
@@ -480,7 +483,8 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 					CommerceInventoryAuditTypeConstants.WAREHOUSE,
 					String.valueOf(commerceInventoryWarehouse.getName())
 				).build()),
-			quantity, commerceInventoryWarehouseItem.getSku(),
+			BigDecimal.valueOf(quantity),
+			commerceInventoryWarehouseItem.getSku(),
 			commerceInventoryWarehouseItem.getUnitOfMeasureKey());
 
 		return commerceInventoryWarehouseItem;
@@ -520,7 +524,8 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 					CommerceInventoryAuditTypeConstants.WAREHOUSE,
 					String.valueOf(commerceInventoryWarehouse.getName())
 				).build()),
-			quantity, commerceInventoryWarehouseItem.getSku(),
+			BigDecimal.valueOf(quantity),
+			commerceInventoryWarehouseItem.getSku(),
 			commerceInventoryWarehouseItem.getUnitOfMeasureKey());
 
 		return commerceInventoryWarehouseItem;

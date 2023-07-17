@@ -40,6 +40,8 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -89,8 +91,8 @@ public class CommerceInventoryBookedQuantityLocalServiceImpl
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
 			userId, commerceInventoryAuditType.getType(),
-			commerceInventoryAuditType.getLog(context), quantity, sku,
-			StringPool.BLANK);
+			commerceInventoryAuditType.getLog(context),
+			BigDecimal.valueOf(quantity), sku, StringPool.BLANK);
 
 		return commerceInventoryBookedQuantityPersistence.update(
 			commerceInventoryBookedQuantity);
@@ -278,8 +280,8 @@ public class CommerceInventoryBookedQuantityLocalServiceImpl
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
 			userId, commerceInventoryAuditType.getType(),
-			commerceInventoryAuditType.getLog(context), quantity, sku,
-			StringPool.BLANK);
+			commerceInventoryAuditType.getLog(context),
+			BigDecimal.valueOf(quantity), sku, StringPool.BLANK);
 
 		return commerceInventoryBookedQuantityPersistence.update(
 			commerceBookedQuantity);
@@ -303,7 +305,7 @@ public class CommerceInventoryBookedQuantityLocalServiceImpl
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
 			userId, commerceInventoryAuditType.getType(),
 			commerceInventoryAuditType.getLog(context),
-			commerceInventoryBookedQuantity.getQuantity(),
+			BigDecimal.valueOf(commerceInventoryBookedQuantity.getQuantity()),
 			commerceInventoryBookedQuantity.getSku(), StringPool.BLANK);
 
 		return commerceInventoryBookedQuantity;
@@ -371,7 +373,8 @@ public class CommerceInventoryBookedQuantityLocalServiceImpl
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
 			userId, commerceInventoryAuditType.getType(),
-			commerceInventoryAuditType.getLog(context), quantity,
+			commerceInventoryAuditType.getLog(context),
+			BigDecimal.valueOf(quantity),
 			commerceInventoryBookedQuantity.getSku(),
 			commerceInventoryBookedQuantity.getUnitOfMeasureKey());
 

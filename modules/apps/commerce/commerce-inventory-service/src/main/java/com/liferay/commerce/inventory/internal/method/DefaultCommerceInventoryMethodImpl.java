@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
+import java.math.BigDecimal;
+
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -70,8 +72,8 @@ public class DefaultCommerceInventoryMethodImpl
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
 			userId, commerceInventoryAuditType.getType(),
-			commerceInventoryAuditType.getLog(context), quantity, sku,
-			StringPool.BLANK);
+			commerceInventoryAuditType.getLog(context),
+			BigDecimal.valueOf(quantity), sku, StringPool.BLANK);
 
 		for (CommerceInventoryEngineContributor
 				commerceInventoryEngineContributor :
@@ -211,8 +213,8 @@ public class DefaultCommerceInventoryMethodImpl
 
 		_commerceInventoryAuditLocalService.addCommerceInventoryAudit(
 			userId, commerceInventoryAuditType.getType(),
-			commerceInventoryAuditType.getLog(null), quantity, sku,
-			StringPool.BLANK);
+			commerceInventoryAuditType.getLog(null),
+			BigDecimal.valueOf(quantity), sku, StringPool.BLANK);
 
 		for (CommerceInventoryEngineContributor
 				commerceInventoryEngineContributor :
