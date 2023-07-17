@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
+import java.math.BigDecimal;
+
 import java.util.Date;
 
 /**
@@ -183,8 +185,7 @@ public class CommerceInventoryAuditCacheModel
 		modifiedDate = objectInput.readLong();
 		logType = objectInput.readUTF();
 		logTypeSettings = (String)objectInput.readObject();
-
-		quantity = objectInput.readInt();
+		quantity = (BigDecimal)objectInput.readObject();
 		sku = objectInput.readUTF();
 		unitOfMeasureKey = objectInput.readUTF();
 	}
@@ -223,7 +224,7 @@ public class CommerceInventoryAuditCacheModel
 			objectOutput.writeObject(logTypeSettings);
 		}
 
-		objectOutput.writeInt(quantity);
+		objectOutput.writeObject(quantity);
 
 		if (sku == null) {
 			objectOutput.writeUTF("");
@@ -249,7 +250,7 @@ public class CommerceInventoryAuditCacheModel
 	public long modifiedDate;
 	public String logType;
 	public String logTypeSettings;
-	public int quantity;
+	public BigDecimal quantity;
 	public String sku;
 	public String unitOfMeasureKey;
 

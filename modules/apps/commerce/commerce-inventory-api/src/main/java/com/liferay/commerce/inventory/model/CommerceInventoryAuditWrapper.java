@@ -8,6 +8,8 @@ package com.liferay.commerce.inventory.model;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.wrapper.BaseModelWrapper;
 
+import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -109,7 +111,7 @@ public class CommerceInventoryAuditWrapper
 			setLogTypeSettings(logTypeSettings);
 		}
 
-		Integer quantity = (Integer)attributes.get("quantity");
+		BigDecimal quantity = (BigDecimal)attributes.get("quantity");
 
 		if (quantity != null) {
 			setQuantity(quantity);
@@ -219,7 +221,7 @@ public class CommerceInventoryAuditWrapper
 	 * @return the quantity of this commerce inventory audit
 	 */
 	@Override
-	public int getQuantity() {
+	public BigDecimal getQuantity() {
 		return model.getQuantity();
 	}
 
@@ -364,7 +366,7 @@ public class CommerceInventoryAuditWrapper
 	 * @param quantity the quantity of this commerce inventory audit
 	 */
 	@Override
-	public void setQuantity(int quantity) {
+	public void setQuantity(BigDecimal quantity) {
 		model.setQuantity(quantity);
 	}
 
