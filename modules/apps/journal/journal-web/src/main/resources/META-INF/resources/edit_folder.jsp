@@ -135,7 +135,11 @@ renderResponse.setTitle(title);
 				<div class="form-group">
 					<aui:input name="parentFolderName" type="resource" value="<%= parentFolderName %>" />
 
-					<aui:button name="selectFolderButton" value="select" />
+					<clay:button
+						displayType="secondary"
+						id='<%= liferayPortletResponse.getNamespace() + "selectFolderButton" %>'
+						label="select"
+					/>
 
 					<aui:script sandbox="<%= true %>">
 						var selectFolderButton = document.getElementById(
@@ -174,7 +178,13 @@ renderResponse.setTitle(title);
 					String taglibRemoveFolder = "Liferay.Util.removeEntitySelection('parentFolderId', 'parentFolderName', this, '" + liferayPortletResponse.getNamespace() + "');";
 					%>
 
-					<aui:button disabled="<%= parentFolderId <= 0 %>" name="removeFolderButton" onClick="<%= taglibRemoveFolder %>" value="remove" />
+					<clay:button
+						disabled="<%= parentFolderId <= 0 %>"
+						displayType="secondary"
+						id='<%= liferayPortletResponse.getNamespace() + "removeFolderButton" %>'
+						label="remove"
+						onClick="<%= taglibRemoveFolder %>"
+					/>
 				</div>
 			</liferay-frontend:fieldset>
 		</c:if>
@@ -286,7 +296,11 @@ renderResponse.setTitle(title);
 							/>
 						</liferay-ui:search-container>
 
-						<aui:button id="selectDDMStructure" value="choose-structure" />
+						<clay:button
+							displayType="secondary"
+							id='<%= liferayPortletResponse.getNamespace() + "selectDDMStructure" %>'
+							label="choose-structure"
+						/>
 					</div>
 				</c:if>
 
