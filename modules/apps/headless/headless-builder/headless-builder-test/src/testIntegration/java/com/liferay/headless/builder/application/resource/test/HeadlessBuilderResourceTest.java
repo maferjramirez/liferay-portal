@@ -55,23 +55,22 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		_objectDefinitionJSONObject = _addObjectDefinition();
 
 		_addAPIApplication(
-			_API_APPLICATION_ERC_1, _API_BASE_URL_1, _API_ENDPOINT_ERC_1,
+			_API_APPLICATION_ERC_1, _API_ENDPOINT_ERC_1, _BASE_URL_1,
 			_objectDefinitionJSONObject.getString("externalReferenceCode"),
 			_API_APPLICATION_PATH_1);
-
 		_addAPIApplication(
-			_API_APPLICATION_ERC_2, _API_BASE_URL_2, _API_ENDPOINT_ERC_2,
+			_API_APPLICATION_ERC_2, _API_ENDPOINT_ERC_2, _BASE_URL_2,
 			_objectDefinitionJSONObject.getString("externalReferenceCode"),
 			_API_APPLICATION_PATH_2);
 
-		String endpointPath1 = _API_BASE_URL_1 + _API_APPLICATION_PATH_1;
+		String endpointPath1 = _BASE_URL_1 + _API_APPLICATION_PATH_1;
 
 		Assert.assertEquals(
 			404,
 			HTTPTestUtil.invokeToHttpCode(
 				null, endpointPath1, Http.Method.GET));
 
-		String endpointPath2 = _API_BASE_URL_2 + _API_APPLICATION_PATH_2;
+		String endpointPath2 = _BASE_URL_2 + _API_APPLICATION_PATH_2;
 
 		Assert.assertEquals(
 			404,
@@ -113,15 +112,13 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			404,
 			HTTPTestUtil.invokeToHttpCode(
 				null,
-				_API_BASE_URL_1 + StringPool.SLASH +
-					RandomTestUtil.randomString(),
+				_BASE_URL_1 + StringPool.SLASH + RandomTestUtil.randomString(),
 				Http.Method.GET));
 		Assert.assertEquals(
 			404,
 			HTTPTestUtil.invokeToHttpCode(
 				null,
-				_API_BASE_URL_2 + StringPool.SLASH +
-					RandomTestUtil.randomString(),
+				_BASE_URL_2 + StringPool.SLASH + RandomTestUtil.randomString(),
 				Http.Method.GET));
 
 		HTTPTestUtil.invokeToJSONObject(
@@ -147,7 +144,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		_objectDefinitionJSONObject = _addObjectDefinition();
 
 		_addAPIApplication(
-			_API_APPLICATION_ERC_1, _API_BASE_URL_1, _API_ENDPOINT_ERC_1,
+			_API_APPLICATION_ERC_1, _API_ENDPOINT_ERC_1, _BASE_URL_1,
 			_objectDefinitionJSONObject.getString("externalReferenceCode"),
 			_API_APPLICATION_PATH_1);
 
@@ -178,7 +175,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				"totalCount", 2
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
-				null, _API_BASE_URL_1 + _API_APPLICATION_PATH_1, Http.Method.GET
+				null, _BASE_URL_1 + _API_APPLICATION_PATH_1, Http.Method.GET
 			).toString(),
 			JSONCompareMode.LENIENT);
 	}
@@ -188,7 +185,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		_objectDefinitionJSONObject = _addObjectDefinition();
 
 		_addAPIApplication(
-			_API_APPLICATION_ERC_1, _API_BASE_URL_1, _API_ENDPOINT_ERC_1,
+			_API_APPLICATION_ERC_1, _API_ENDPOINT_ERC_1, _BASE_URL_1,
 			_objectDefinitionJSONObject.getString("externalReferenceCode"),
 			_API_APPLICATION_PATH_1);
 
@@ -218,15 +215,15 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				null,
 				String.format(
 					"%s?page=2&pageSize=5",
-					_API_BASE_URL_1 + _API_APPLICATION_PATH_1),
+					_BASE_URL_1 + _API_APPLICATION_PATH_1),
 				Http.Method.GET
 			).toString(),
 			JSONCompareMode.LENIENT);
 	}
 
 	private void _addAPIApplication(
-			String applicationExternalReferenceCode, String baseURL,
-			String endpointExternalReferenceCode,
+			String apiApplicationExternalReferenceCode,
+			String apiEndpointExternalReferenceCode, String baseURL,
 			String objectDefinitionExternalReferenceCode, String path)
 		throws Exception {
 
@@ -241,7 +238,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 							"description", "description"
 						).put(
 							"externalReferenceCode",
-							endpointExternalReferenceCode
+							apiEndpointExternalReferenceCode
 						).put(
 							"httpMethod", "get"
 						).put(
@@ -280,7 +277,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				).put(
 					"baseURL", baseURL
 				).put(
-					"externalReferenceCode", applicationExternalReferenceCode
+					"externalReferenceCode", apiApplicationExternalReferenceCode
 				).put(
 					"title", RandomTestUtil.randomString()
 				).toString(),
@@ -293,7 +290,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 					"headless-builder/schemas/by-external-reference-code/",
 					apiSchemaExternalReferenceCode,
 					"/requestAPISchemaToAPIEndpoints/",
-					endpointExternalReferenceCode),
+					apiEndpointExternalReferenceCode),
 				Http.Method.PUT));
 		_assertSuccessfulHttpCode(
 			HTTPTestUtil.invokeToHttpCode(
@@ -302,7 +299,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 					"headless-builder/schemas/by-external-reference-code/",
 					apiSchemaExternalReferenceCode,
 					"/responseAPISchemaToAPIEndpoints/",
-					endpointExternalReferenceCode),
+					apiEndpointExternalReferenceCode),
 				Http.Method.PUT));
 	}
 
@@ -414,15 +411,15 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 	private static final String _API_APPLICATION_PATH_2 =
 		StringPool.SLASH + RandomTestUtil.randomString();
 
-	private static final String _API_BASE_URL_1 = RandomTestUtil.randomString();
-
-	private static final String _API_BASE_URL_2 = RandomTestUtil.randomString();
-
 	private static final String _API_ENDPOINT_ERC_1 =
 		RandomTestUtil.randomString();
 
 	private static final String _API_ENDPOINT_ERC_2 =
 		RandomTestUtil.randomString();
+
+	private static final String _BASE_URL_1 = RandomTestUtil.randomString();
+
+	private static final String _BASE_URL_2 = RandomTestUtil.randomString();
 
 	private static final String _OBJECT_FIELD_ERC =
 		RandomTestUtil.randomString();
