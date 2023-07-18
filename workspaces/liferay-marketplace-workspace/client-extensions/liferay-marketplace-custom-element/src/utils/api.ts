@@ -1078,6 +1078,7 @@ export async function addImageAccount(accountId: number, body: any) {
 		{
 			body: JSON.stringify(body),
 			headers: {
+				'Content-Type': 'multipart/form-data',
 				'X-CSRF-Token': headers['X-CSRF-Token'],
 			},
 			method: 'POST',

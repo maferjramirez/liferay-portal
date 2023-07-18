@@ -14,6 +14,7 @@ type Account = {
 	description: string;
 	externalReferenceCode: string;
 	id: number;
+	logoURL?: string;
 	name: string;
 	type: string;
 };
