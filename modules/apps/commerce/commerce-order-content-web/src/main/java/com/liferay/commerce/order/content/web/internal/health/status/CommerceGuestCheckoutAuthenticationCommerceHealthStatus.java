@@ -102,12 +102,13 @@ public class CommerceGuestCheckoutAuthenticationCommerceHealthStatus
 			privateLayout = false;
 		}
 
-		User currentUser = _userService.getCurrentUser();
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setScopeGroupId(commerceChannel.getSiteGroupId());
 		serviceContext.setTimeZone(TimeZone.getDefault());
+
+		User currentUser = _userService.getCurrentUser();
+
 		serviceContext.setUserId(currentUser.getUserId());
 
 		Layout layout = _layoutService.addLayout(
