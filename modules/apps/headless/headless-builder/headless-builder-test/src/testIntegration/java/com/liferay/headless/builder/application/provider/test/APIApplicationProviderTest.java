@@ -144,8 +144,6 @@ public class APIApplicationProviderTest extends BaseTestCase {
 		Assert.assertEquals(
 			APIApplication.Property.Type.PICKLIST, property.getType());
 
-		// Filter
-
 		HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
 				"apiEndpointToAPIFilters",
