@@ -792,7 +792,7 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 			_schedulerEngineHelperSnapshot.get();
 
 		if (schedulerEngineHelper == null) {
-			throw new IllegalStateException("SchedulerEngineHelper is null");
+			throw new IllegalStateException("Scheduler engine helper is null");
 		}
 
 		return schedulerEngineHelper;
