@@ -55,12 +55,9 @@ public class TransferQuantitiesMVCActionCommand extends BaseMVCActionCommand {
 	private void _moveQuantities(ActionRequest actionRequest) throws Exception {
 		long fromCommerceInventoryWarehouseId = ParamUtil.getLong(
 			actionRequest, "fromCommerceInventoryWarehouseId");
-
 		long toCommerceInventoryWarehouseId = ParamUtil.getLong(
 			actionRequest, "toCommerceInventoryWarehouseId");
-
 		int quantity = ParamUtil.getInteger(actionRequest, "quantity");
-
 		String sku = ParamUtil.getString(actionRequest, "sku");
 
 		_commerceInventoryWarehouseItemService.moveQuantitiesBetweenWarehouses(

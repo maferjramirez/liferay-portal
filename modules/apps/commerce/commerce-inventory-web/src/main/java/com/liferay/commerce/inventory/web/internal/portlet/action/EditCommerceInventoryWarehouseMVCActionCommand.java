@@ -93,7 +93,6 @@ public class EditCommerceInventoryWarehouseMVCActionCommand
 			actionRequest, "commerceInventoryWarehouseId");
 
 		int quantity = ParamUtil.getInteger(actionRequest, "quantity");
-
 		String sku = ParamUtil.getString(actionRequest, "sku");
 
 		_commerceInventoryWarehouseItemService.
