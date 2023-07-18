@@ -144,11 +144,11 @@ public class PermissionExporter {
 				resourcePrimKey, actionIds);
 
 		for (Map.Entry<Long, Set<String>> entry : roleToActionIds.entrySet()) {
+			Set<String> availableActionIds = entry.getValue();
+
 			long roleId = entry.getKey();
 
 			Role role = RoleLocalServiceUtil.fetchRole(roleId);
-
-			Set<String> availableActionIds = entry.getValue();
 
 			if (availableActionIds.isEmpty() && !role.isSystem()) {
 				continue;

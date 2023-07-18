@@ -104,12 +104,13 @@ public class PermissionExportImportTest {
 		Role roleWithoutPermissions = RoleTestUtil.addRole(
 			"roleWithoutPermissions", RoleConstants.TYPE_REGULAR);
 
-		// ResourcePermission entry cannot be created with empty permissions
+		// Add a resource permission with no action IDs. First, add a resource
+		// permission with default action IDs since resource permissions cannot
+		// be created with no action IDs. Then, set the resource permission to
+		// have no action IDs.
 
 		addPortletPermissions(
 			exportGroup, roleWithoutPermissions, exportResourcePrimKey);
-
-		// Since resourcePermission is present, now we can set empty permissions
 
 		addPortletPermissions(
 			exportGroup, roleWithoutPermissions, exportResourcePrimKey,
