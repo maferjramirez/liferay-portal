@@ -148,7 +148,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			_objectDefinitionJSONObject.getString("externalReferenceCode"),
 			_API_APPLICATION_PATH_1);
 
-		_addFilter(
+		_addAPIFilter(
 			_API_ENDPOINT_ERC_1,
 			String.format(
 				"%s eq '5' or %s eq '7'", _OBJECT_FIELD_NAME,
@@ -319,7 +319,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				endpoint, Http.Method.POST));
 	}
 
-	private void _addFilter(
+	private void _addAPIFilter(
 			String apiEndpointExternalReferenceCode, String filterString)
 		throws Exception {
 
