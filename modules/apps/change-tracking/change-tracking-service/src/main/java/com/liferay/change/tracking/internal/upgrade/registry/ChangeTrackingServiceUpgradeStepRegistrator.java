@@ -87,7 +87,10 @@ public class ChangeTrackingServiceUpgradeStepRegistrator
 					return new String[][] {{"CTCollection", "ctCollectionId"}};
 				}
 
-			},
+			});
+
+		registry.register(
+			"2.9.0", "2.9.1",
 			new BaseExternalReferenceCodeUpgradeProcess() {
 
 				@Override
