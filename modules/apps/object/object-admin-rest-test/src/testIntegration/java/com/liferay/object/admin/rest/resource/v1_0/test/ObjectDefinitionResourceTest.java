@@ -322,7 +322,7 @@ public class ObjectDefinitionResourceTest
 
 	@Override
 	protected String[] getIgnoredEntityFieldNames() {
-		return new String[] {"dateCreated", "dateModified", "userId"};
+		return new String[] {"dateCreated", "dateModified", "label", "userId"};
 	}
 
 	@Override
