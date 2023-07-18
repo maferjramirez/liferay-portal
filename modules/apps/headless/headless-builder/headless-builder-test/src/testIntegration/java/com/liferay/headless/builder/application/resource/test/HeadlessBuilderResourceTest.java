@@ -303,6 +303,21 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				Http.Method.PUT));
 	}
 
+	private void _addAPIFilter(
+			String apiEndpointExternalReferenceCode, String filterString)
+		throws Exception {
+
+		_assertSuccessfulHttpCode(
+			HTTPTestUtil.invokeToHttpCode(
+				JSONUtil.put(
+					"oDataFilter", filterString
+				).put(
+					"r_apiEndpointToAPIFilters_c_apiEndpointERC",
+					apiEndpointExternalReferenceCode
+				).toString(),
+				"headless-builder/filters", Http.Method.POST));
+	}
+
 	private void _addCustomObjectEntry(String objectFieldValue)
 		throws Exception {
 
@@ -317,21 +332,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 					_OBJECT_FIELD_NAME, objectFieldValue
 				).toString(),
 				endpoint, Http.Method.POST));
-	}
-
-	private void _addAPIFilter(
-			String apiEndpointExternalReferenceCode, String filterString)
-		throws Exception {
-
-		_assertSuccessfulHttpCode(
-			HTTPTestUtil.invokeToHttpCode(
-				JSONUtil.put(
-					"oDataFilter", filterString
-				).put(
-					"r_apiEndpointToAPIFilters_c_apiEndpointERC",
-					apiEndpointExternalReferenceCode
-				).toString(),
-				"headless-builder/filters", Http.Method.POST));
 	}
 
 	private JSONObject _addObjectDefinition() throws Exception {
