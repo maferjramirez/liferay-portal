@@ -12,6 +12,11 @@ import {API_URL, FDS_DEFAULT_PROPS} from '../../js/Constants';
 
 import './FDSViewItemSelector.scss';
 
+interface ISelectedItem {
+	externalReferenceCode: string;
+	id: string;
+}
+
 const views = [
 	{
 		contentRenderer: 'list',
@@ -33,7 +38,7 @@ const FDSViewItemSelector = ({
 	classNameId: String;
 	namespace: String;
 }) => {
-	const [selectedId, setSelectedId] = useState<String>();
+	const [selectedItem, setSelectedItem] = useState<ISelectedItem>();
 
 	return (
 		<div className="fds-view-item-selector">
@@ -45,9 +50,13 @@ const FDSViewItemSelector = ({
 					onSelect={({
 						selectedItems,
 					}: {
-						selectedItems: Array<{id: string}>;
+						selectedItems: Array<ISelectedItem>;
 					}) => {
-						setSelectedId(selectedItems[0].id);
+						setSelectedItem({
+							externalReferenceCode:
+								selectedItems[0].externalReferenceCode,
+							id: selectedItems[0].id,
+						});
 					}}
 					selectedItemsKey="id"
 					selectionType="single"
@@ -67,7 +76,11 @@ const FDSViewItemSelector = ({
 
 						<ClayButton
 							className="item-preview selector-button"
-							data-value={`{"classPK": "${selectedId}", "className": "${className}",  "classNameId": "${classNameId}"}`}
+							data-value={`{
+								"className": "${className}", 
+								"classNameId": "${classNameId}", 
+								"classPK": "${selectedItem?.id}", 
+								"externalReferenceCode": "${selectedItem?.externalReferenceCode}"}`}
 						>
 							{Liferay.Language.get('save')}
 						</ClayButton>
