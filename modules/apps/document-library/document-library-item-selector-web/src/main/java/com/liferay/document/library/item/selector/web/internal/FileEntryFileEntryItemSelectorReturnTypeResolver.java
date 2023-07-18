@@ -16,6 +16,7 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.util.PropsValues;
 
 import java.util.Objects;
@@ -63,6 +64,8 @@ public class FileEntryFileEntryItemSelectorReturnTypeResolver
 		}
 
 		return JSONUtil.put(
+			"classNameId", _portal.getClassNameId(FileEntry.class)
+		).put(
 			"extension", fileEntry.getExtension()
 		).put(
 			"fileEntryId", String.valueOf(fileEntry.getFileEntryId())
@@ -103,6 +106,9 @@ public class FileEntryFileEntryItemSelectorReturnTypeResolver
 
 	@Reference
 	private DLVideoRenderer _dlVideoRenderer;
+
+	@Reference
+	private Portal _portal;
 
 	@Reference
 	private PortletFileRepository _portletFileRepository;
