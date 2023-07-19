@@ -315,8 +315,8 @@ public class EntityCacheImpl
 	}
 
 	private void _notify(
-		String className, BaseModel<?> baseModel, Boolean removePortalCache,
-		long companyId) {
+		long companyId, String className, BaseModel<?> baseModel,
+		Boolean removePortalCache) {
 
 		try (SafeCloseable safeCloseable =
 				CompanyThreadLocal.setWithSafeCloseable(companyId)) {
@@ -356,8 +356,8 @@ public class EntityCacheImpl
 		String className, BaseModel<?> baseModel, Boolean removePortalCache) {
 
 		_notify(
-			className, baseModel, removePortalCache,
-			CompanyThreadLocal.getCompanyId());
+			CompanyThreadLocal.getCompanyId(), className, baseModel,
+			removePortalCache);
 
 		if (!_clusterExecutor.isEnabled() ||
 			!ClusterInvokeThreadLocal.isEnabled()) {
@@ -471,8 +471,8 @@ public class EntityCacheImpl
 	private static final Snapshot<FinderCache> _finderCacheSnapshot =
 		new Snapshot<>(EntityCacheImpl.class, FinderCache.class);
 	private static final MethodKey _notifyMethodKey = new MethodKey(
-		EntityCacheImpl.class, "_notify", String.class, BaseModel.class,
-		Boolean.class, long.class);
+		EntityCacheImpl.class, "_notify", long.class, String.class,
+		BaseModel.class, Boolean.class);
 
 	@Reference
 	private ClusterExecutor _clusterExecutor;
