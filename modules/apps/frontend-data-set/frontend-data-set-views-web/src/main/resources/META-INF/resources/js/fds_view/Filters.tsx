@@ -150,9 +150,8 @@ function AddFDSFilterModalContent({
 		setIsValidDateRange(isValid);
 	}, [from, to]);
 
-	const handleFilterSave = async (event: any) => {
+	const handleFilterSave = async () => {
 		setIsSubmitting(true);
-		event.preventDefault();
 
 		if (!selectedField) {
 			alertFailed();
