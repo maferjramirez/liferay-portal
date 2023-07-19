@@ -126,22 +126,22 @@ public class EditCommerceInventoryReplenishmentItemMVCActionCommand
 		long commerceInventoryReplenishmentItemId = ParamUtil.getLong(
 			actionRequest, "commerceInventoryReplenishmentItemId");
 
+		CommerceInventoryReplenishmentItem commerceInventoryReplenishmentItem =
+			_commerceInventoryReplenishmentItemService.
+				getCommerceInventoryReplenishmentItem(
+					commerceInventoryReplenishmentItemId);
+
 		int quantity = ParamUtil.getInteger(actionRequest, "quantity");
 
 		int day = ParamUtil.getInteger(actionRequest, "dateDay");
 		int month = ParamUtil.getInteger(actionRequest, "dateMonth");
 		int year = ParamUtil.getInteger(actionRequest, "dateYear");
 
-		long mvccVersion = ParamUtil.getLong(actionRequest, "mvccVersion");
-
 		Calendar calendar = Calendar.getInstance();
 
 		calendar.set(year, month, day);
 
-		CommerceInventoryReplenishmentItem commerceInventoryReplenishmentItem =
-			_commerceInventoryReplenishmentItemService.
-				getCommerceInventoryReplenishmentItem(
-					commerceInventoryReplenishmentItemId);
+		long mvccVersion = ParamUtil.getLong(actionRequest, "mvccVersion");
 
 		_commerceInventoryReplenishmentItemService.
 			updateCommerceInventoryReplenishmentItem(
