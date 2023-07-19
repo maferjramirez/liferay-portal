@@ -172,7 +172,7 @@ public class OrganizationSystemObjectDefinitionManagerTest {
 	}
 
 	@Test
-	public void testProperties() throws Exception {
+	public void testGetters() throws Exception {
 		Assert.assertEquals(
 			"L_ORGANIZATION",
 			_organizationSystemObjectDefinitionManager.
