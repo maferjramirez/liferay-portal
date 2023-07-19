@@ -143,7 +143,7 @@ public class OrganizationSystemObjectDefinitionManagerTest {
 
 		Assert.assertTrue(iterator.hasNext());
 
-		_assertSystemObjectFields(
+		_assertEquals(
 			new TextObjectFieldBuilder(
 			).labelMap(
 				LocalizedMapUtil.getLocalizedMap(
@@ -157,7 +157,7 @@ public class OrganizationSystemObjectDefinitionManagerTest {
 
 		Assert.assertTrue(iterator.hasNext());
 
-		_assertSystemObjectFields(
+		_assertEquals(
 			new TextObjectFieldBuilder(
 			).labelMap(
 				LocalizedMapUtil.getLocalizedMap(
@@ -207,32 +207,32 @@ public class OrganizationSystemObjectDefinitionManagerTest {
 			count, _organizationLocalService.getOrganizationsCount());
 	}
 
-	private void _assertSystemObjectFields(
-		ObjectField expectedObjectField, ObjectField objectField) {
+	private void _assertEquals(
+		ObjectField expectedObjectField, ObjectField actualObjectField) {
 
 		Assert.assertEquals(
 			expectedObjectField.getDBColumnName(),
-			objectField.getDBColumnName());
+			actualObjectField.getDBColumnName());
 		Assert.assertEquals(
-			expectedObjectField.getDBTableName(), objectField.getDBTableName());
+			expectedObjectField.getDBTableName(), actualObjectField.getDBTableName());
 		Assert.assertEquals(
-			expectedObjectField.getDBType(), objectField.getDBType());
+			expectedObjectField.getDBType(), actualObjectField.getDBType());
 		Assert.assertEquals(
-			expectedObjectField.isIndexed(), objectField.isIndexed());
+			expectedObjectField.isIndexed(), actualObjectField.isIndexed());
 		Assert.assertEquals(
 			expectedObjectField.isIndexedAsKeyword(),
-			objectField.isIndexedAsKeyword());
+			actualObjectField.isIndexedAsKeyword());
 		Assert.assertEquals(
 			expectedObjectField.getIndexedLanguageId(),
-			objectField.getIndexedLanguageId());
+			actualObjectField.getIndexedLanguageId());
 		Assert.assertEquals(
-			expectedObjectField.getLabelMap(), objectField.getLabelMap());
+			expectedObjectField.getLabelMap(), actualObjectField.getLabelMap());
 		Assert.assertEquals(
-			expectedObjectField.getName(), objectField.getName());
+			expectedObjectField.getName(), actualObjectField.getName());
 		Assert.assertEquals(
-			expectedObjectField.isRequired(), objectField.isRequired());
+			expectedObjectField.isRequired(), actualObjectField.isRequired());
 		Assert.assertEquals(
-			expectedObjectField.isState(), objectField.isState());
+			expectedObjectField.isState(), actualObjectField.isState());
 	}
 
 	@Inject
