@@ -148,6 +148,8 @@ const SUCCESS_MESSAGE_OPTIONS = [
 function SuccessInteractionOptions({item, onValueSelect}) {
 	const {successMessage: interactionConfig = {}} = item.config;
 
+	const {displayPage, layout, message, url} = interactionConfig || {};
+
 	const languageId = useSelector(selectLanguageId);
 	const dispatch = useDispatch();
 
@@ -158,7 +160,7 @@ function SuccessInteractionOptions({item, onValueSelect}) {
 	);
 	const [successMessage, setSuccessMessage] = useControlledState(
 		getEditableLocalizedValue(
-			interactionConfig.message,
+			message,
 			languageId,
 			Liferay.Language.get(
 				'thank-you.-your-information-was-successfully-received'
@@ -174,8 +176,8 @@ function SuccessInteractionOptions({item, onValueSelect}) {
 		}
 	}, [interactionConfig]);
 
-	const [url, setUrl] = useControlledState(
-		getEditableLocalizedValue(interactionConfig.url, languageId)
+	const [externalUrl, setExternalUrl] = useControlledState(
+		getEditableLocalizedValue(url, languageId)
 	);
 	const [showMessagePreview, setShowMessagePreview] = useControlledState(
 		Boolean(item.config.showMessagePreview)
@@ -232,8 +234,10 @@ function SuccessInteractionOptions({item, onValueSelect}) {
 
 			{selectedSource === LAYOUT_OPTION && (
 				<LayoutSelector
-					mappedLayout={interactionConfig?.layout}
-					onLayoutSelect={(layout) => onConfigChange({layout})}
+					mappedLayout={layout}
+					onLayoutSelect={(selectedLayout) =>
+						onConfigChange({layout: selectedLayout})
+					}
 				/>
 			)}
 
@@ -251,8 +255,7 @@ function SuccessInteractionOptions({item, onValueSelect}) {
 									onBlur={() =>
 										onConfigChange({
 											message: {
-												...(interactionConfig?.message ||
-													{}),
+												...(message || {}),
 												[languageId]: successMessage,
 											},
 										})
@@ -264,8 +267,7 @@ function SuccessInteractionOptions({item, onValueSelect}) {
 										if (event.key === 'Enter') {
 											onConfigChange({
 												message: {
-													...(interactionConfig?.message ||
-														{}),
+													...(message || {}),
 													[languageId]: successMessage,
 												},
 											});
@@ -315,15 +317,17 @@ function SuccessInteractionOptions({item, onValueSelect}) {
 								onBlur={() =>
 									onConfigChange({
 										url: {
-											...(interactionConfig?.url || {}),
-											[languageId]: url,
+											...(url || {}),
+											[languageId]: externalUrl,
 										},
 									})
 								}
-								onChange={(event) => setUrl(event.target.value)}
+								onChange={(event) =>
+									setExternalUrl(event.target.value)
+								}
 								placeholder="https://url.com"
 								type="text"
-								value={url || ''}
+								value={externalUrl || ''}
 							/>
 						</ClayInput.GroupItem>
 
@@ -348,7 +352,7 @@ function SuccessInteractionOptions({item, onValueSelect}) {
 					item={item}
 					onConfigChange={onConfigChange}
 					selectedSource={selectedSource}
-					selectedValue={interactionConfig?.displayPage}
+					selectedValue={displayPage}
 				/>
 			)}
 		</>
