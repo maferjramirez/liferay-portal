@@ -320,14 +320,13 @@ public class CPDefinitionGroupedEntryLocalServiceImpl
 
 		SearchContext searchContext = new SearchContext();
 
-		searchContext.setCompanyId(companyId);
-		searchContext.setEnd(end);
-		searchContext.setKeywords(keywords);
-
 		if (cpDefinitionId > 0) {
 			searchContext.setAttribute("cpDefinitionId", cpDefinitionId);
 		}
 
+		searchContext.setCompanyId(companyId);
+		searchContext.setEnd(end);
+		searchContext.setKeywords(keywords);
 		searchContext.setStart(start);
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
