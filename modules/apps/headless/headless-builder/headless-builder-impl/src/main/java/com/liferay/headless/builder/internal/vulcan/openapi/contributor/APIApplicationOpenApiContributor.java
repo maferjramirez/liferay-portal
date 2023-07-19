@@ -138,8 +138,8 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 
 		String path = openAPIContext.getPath();
 
-		if (path.startsWith("/o")) {
-			path = path.substring(2);
+		if (path.startsWith("/o/c")) {
+			path = path.substring(4);
 		}
 
 		if (path.startsWith("/")) {
