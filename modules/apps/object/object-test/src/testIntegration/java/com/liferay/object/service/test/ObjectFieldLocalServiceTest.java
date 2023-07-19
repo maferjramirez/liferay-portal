@@ -1955,27 +1955,22 @@ public class ObjectFieldLocalServiceTest {
 				_getReadOnlyTextObjectField(
 					objectDefinition1.getObjectDefinitionId(),
 					ObjectFieldConstants.READ_ONLY_TRUE, null)));
-
 		_assertReadOnlyTrue(
 			_addReadOnlyFormulaObjectField(
 				objectDefinition1.getObjectDefinitionId(),
 				ObjectFieldConstants.READ_ONLY_CONDITIONAL, null));
-
 		_assertReadOnlyTrue(
 			_addReadOnlyFormulaObjectField(
 				objectDefinition1.getObjectDefinitionId(),
 				ObjectFieldConstants.READ_ONLY_CONDITIONAL, invalidDDMScript));
-
 		_assertReadOnlyTrue(
 			_addReadOnlyFormulaObjectField(
 				objectDefinition1.getObjectDefinitionId(),
 				ObjectFieldConstants.READ_ONLY_CONDITIONAL, validDDMScript));
-
 		_assertReadOnlyTrue(
 			_addReadOnlyFormulaObjectField(
 				objectDefinition1.getObjectDefinitionId(),
 				ObjectFieldConstants.READ_ONLY_FALSE, null));
-
 		_assertReadOnlyTrue(
 			_addReadOnlyFormulaObjectField(
 				objectDefinition1.getObjectDefinitionId(),
@@ -2000,22 +1995,18 @@ public class ObjectFieldLocalServiceTest {
 			_addReadOnlyAggregationObjectField(
 				objectDefinition1.getObjectDefinitionId(),
 				ObjectFieldConstants.READ_ONLY_CONDITIONAL, null));
-
 		_assertReadOnlyTrue(
 			_addReadOnlyAggregationObjectField(
 				objectDefinition1.getObjectDefinitionId(),
 				ObjectFieldConstants.READ_ONLY_CONDITIONAL, invalidDDMScript));
-
 		_assertReadOnlyTrue(
 			_addReadOnlyAggregationObjectField(
 				objectDefinition1.getObjectDefinitionId(),
 				ObjectFieldConstants.READ_ONLY_CONDITIONAL, validDDMScript));
-
 		_assertReadOnlyTrue(
 			_addReadOnlyAggregationObjectField(
 				objectDefinition1.getObjectDefinitionId(),
 				ObjectFieldConstants.READ_ONLY_FALSE, null));
-
 		_assertReadOnlyTrue(
 			_addReadOnlyAggregationObjectField(
 				objectDefinition1.getObjectDefinitionId(),
@@ -2037,7 +2028,6 @@ public class ObjectFieldLocalServiceTest {
 					objectDefinition1.getObjectDefinitionId(),
 					ObjectFieldConstants.READ_ONLY_CONDITIONAL,
 					validDDMScript)));
-
 		_assertReadOnlyFalse(
 			_addCustomObjectField(
 				_getReadOnlyTextObjectField(
