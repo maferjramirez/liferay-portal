@@ -261,8 +261,6 @@ public class ObjectFieldLocalServiceTest {
 						).build())));
 		}
 
-		_testAddCustomObjectFieldReadOnly();
-
 		String defaultValue = RandomTestUtil.randomString();
 
 		AssertUtils.assertFailure(
@@ -575,6 +573,8 @@ public class ObjectFieldLocalServiceTest {
 					).state(
 						true
 					).build())));
+
+		_testAddCustomObjectFieldReadOnly();
 	}
 
 	@Test
@@ -1412,7 +1412,6 @@ public class ObjectFieldLocalServiceTest {
 			invalidDDMScript, invalidReadOnly,
 			_addReadOnlyAggregationObjectField(
 				objectDefinition.getObjectDefinitionId(), null, null));
-
 		_assertReadOnly(
 			invalidDDMScript, invalidReadOnly,
 			_addReadOnlyFormulaObjectField(
