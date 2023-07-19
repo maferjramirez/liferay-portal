@@ -54,11 +54,11 @@ public class CommerceInventoryAuditLocalServiceImpl
 		commerceInventoryAudit.setCompanyId(user.getCompanyId());
 		commerceInventoryAudit.setUserId(user.getUserId());
 		commerceInventoryAudit.setUserName(user.getFullName());
-		commerceInventoryAudit.setSku(sku);
-		commerceInventoryAudit.setUnitOfMeasureKey(unitOfMeasureKey);
 		commerceInventoryAudit.setLogType(logType);
 		commerceInventoryAudit.setLogTypeSettings(logTypeSettings);
 		commerceInventoryAudit.setQuantity(quantity);
+		commerceInventoryAudit.setUnitOfMeasureKey(unitOfMeasureKey);
+		commerceInventoryAudit.setSku(sku);
 
 		return commerceInventoryAuditPersistence.update(commerceInventoryAudit);
 	}
