@@ -9,10 +9,8 @@ import com.liferay.petra.concurrent.DCLSingleton;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.image.ImageMagick;
-import com.liferay.portal.kernel.image.ImageMagickUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.NamedThreadFactory;
 import com.liferay.portal.kernel.util.OSDetector;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -198,9 +196,9 @@ public class ImageMagickImpl implements ImageMagick {
 	public byte[] scale(byte[] bytes, String mimeType, int width, int height)
 		throws Exception {
 
-		File imageSelectorImageFile = FileUtil.createTempFile(bytes);
+		File imageSelectorImageFile = _file.createTempFile(bytes);
 
-		File scaledImageFile = FileUtil.createTempFile(mimeType);
+		File scaledImageFile = _file.createTempFile(mimeType);
 
 		List<String> arguments = new ArrayList<>();
 
@@ -209,11 +207,11 @@ public class ImageMagickImpl implements ImageMagick {
 		arguments.add(StringBundler.concat(width, "x", height, ">"));
 		arguments.add(scaledImageFile.getAbsolutePath());
 
-		Future<?> future = ImageMagickUtil.convert(arguments);
+		Future<?> future = convert(arguments);
 
 		future.get();
 
-		return FileUtil.getBytes(scaledImageFile);
+		return _file.getBytes(scaledImageFile);
 	}
 
 	protected LinkedList<String> getResourceLimits() {
@@ -253,6 +251,9 @@ public class ImageMagickImpl implements ImageMagick {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ImageMagickImpl.class);
+
+	@Reference
+	private com.liferay.portal.kernel.util.File _file;
 
 	private String _globalSearchPath;
 
