@@ -10,6 +10,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 
 import {addMappingFields} from '../../../../../../app/actions/index';
 import updateItemLocalConfig from '../../../../../../app/actions/updateItemLocalConfig';
+import {CheckboxField} from '../../../../../../app/components/fragment_configuration_fields/CheckboxField';
 import {SelectField} from '../../../../../../app/components/fragment_configuration_fields/SelectField';
 import {COMMON_STYLES_ROLES} from '../../../../../../app/config/constants/commonStylesRoles';
 import {
@@ -148,7 +149,15 @@ const SUCCESS_MESSAGE_OPTIONS = [
 function SuccessInteractionOptions({item, onValueSelect}) {
 	const {successMessage: interactionConfig = {}} = item.config;
 
-	const {displayPage, layout, message, type, url} = interactionConfig || {};
+	const {
+		displayPage,
+		layout,
+		message,
+		notificationText,
+		showNotification,
+		type,
+		url,
+	} = interactionConfig || {};
 
 	const languageId = useSelector(selectLanguageId);
 	const dispatch = useDispatch();
@@ -165,6 +174,17 @@ function SuccessInteractionOptions({item, onValueSelect}) {
 		)
 	);
 
+	const [
+		successNotificationText,
+		setSuccessNotificationText,
+	] = useControlledState(
+		getEditableLocalizedValue(
+			notificationText,
+			languageId,
+			Liferay.Language.get('your-information-was-successfully-received')
+		)
+	);
+
 	const [externalUrl, setExternalUrl] = useControlledState(
 		getEditableLocalizedValue(url, languageId)
 	);
@@ -172,6 +192,7 @@ function SuccessInteractionOptions({item, onValueSelect}) {
 		Boolean(item.config.showMessagePreview)
 	);
 
+	const notificationTextId = useId();
 	const urlId = useId();
 	const successTextId = useId();
 
@@ -341,6 +362,72 @@ function SuccessInteractionOptions({item, onValueSelect}) {
 					selectedValue={displayPage}
 					type={type}
 				/>
+			)}
+
+			{type !== URL_OPTION && Liferay.FeatureFlags['LPS-183498'] && (
+				<>
+					<CheckboxField
+						className="mt-3"
+						field={{
+							label: Liferay.Language.get(
+								'show-notification-when-form-is-submitted'
+							),
+							name: 'showNotification',
+						}}
+						onValueSelect={(name, value) => {
+							onConfigChange({[name]: value});
+						}}
+						value={showNotification}
+					/>
+
+					{showNotification && (
+						<ClayForm.Group small>
+							<label htmlFor={notificationTextId}>
+								{Liferay.Language.get(
+									'success-notification-text'
+								)}
+							</label>
+
+							<ClayInput.Group small>
+								<ClayInput.GroupItem>
+									<ClayInput
+										id={notificationTextId}
+										onBlur={() =>
+											onConfigChange({
+												notificationText: {
+													...(notificationText || {}),
+													[languageId]: successNotificationText,
+												},
+											})
+										}
+										onChange={(event) =>
+											setSuccessNotificationText(
+												event.target.value
+											)
+										}
+										onKeyDown={(event) => {
+											if (event.key === 'Enter') {
+												onConfigChange({
+													notificationText: {
+														...(notificationText ||
+															{}),
+														[languageId]: successNotificationText,
+													},
+												});
+											}
+										}}
+										type="text"
+										value={successNotificationText}
+									/>
+								</ClayInput.GroupItem>
+
+								<ClayInput.GroupItem shrink>
+									<CurrentLanguageFlag />
+								</ClayInput.GroupItem>
+							</ClayInput.Group>
+						</ClayForm.Group>
+					)}
+				</>
 			)}
 		</>
 	);
