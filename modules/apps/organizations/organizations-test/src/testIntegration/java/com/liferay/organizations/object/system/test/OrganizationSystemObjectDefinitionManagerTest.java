@@ -136,7 +136,6 @@ public class OrganizationSystemObjectDefinitionManagerTest {
 			_organizationSystemObjectDefinitionManager.getObjectFields();
 
 		Assert.assertNotNull(objectFields);
-
 		Assert.assertEquals(objectFields.toString(), 2, objectFields.size());
 
 		ListIterator<ObjectField> iterator = objectFields.listIterator();
@@ -214,7 +213,8 @@ public class OrganizationSystemObjectDefinitionManagerTest {
 			expectedObjectField.getDBColumnName(),
 			actualObjectField.getDBColumnName());
 		Assert.assertEquals(
-			expectedObjectField.getDBTableName(), actualObjectField.getDBTableName());
+			expectedObjectField.getDBTableName(),
+			actualObjectField.getDBTableName());
 		Assert.assertEquals(
 			expectedObjectField.getDBType(), actualObjectField.getDBType());
 		Assert.assertEquals(
