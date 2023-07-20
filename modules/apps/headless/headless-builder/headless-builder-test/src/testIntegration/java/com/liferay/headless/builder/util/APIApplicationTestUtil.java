@@ -61,7 +61,7 @@ public class APIApplicationTestUtil {
 			StringBundler.concat(
 				"(&(objectClass=", Application.class.getName(),
 				")(liferay.headless.builder.application=true)",
-				"(osgi.jaxrs.application.base=", baseURL, "))"));
+				"(osgi.jaxrs.application.base=/c/", baseURL, "))"));
 	}
 
 }
