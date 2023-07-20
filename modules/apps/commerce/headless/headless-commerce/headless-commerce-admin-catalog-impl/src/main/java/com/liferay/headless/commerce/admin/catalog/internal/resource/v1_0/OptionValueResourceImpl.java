@@ -289,8 +289,7 @@ public class OptionValueResourceImpl
 				cpOption.getCPOptionId(),
 				LanguageUtils.getLocalizedMap(optionValue.getName()),
 				GetterUtil.get(optionValue.getPriority(), 0D),
-				optionValue.getKey(),
-				_serviceContextHelper.getServiceContext());
+				optionValue.getKey(), serviceContext);
 
 		return _toOptionValue(cpOptionValue.getCPOptionValueId());
 	}
