@@ -333,7 +333,7 @@ public class ContentFieldUtil {
 
 				List<String> values = new ArrayList<>();
 
-				List<String> dataList = TransformUtil.transform(
+				List<String> list = TransformUtil.transform(
 					JSONUtil.toStringList(
 						JSONFactoryUtil.createJSONArray(valueString)),
 					value -> {
@@ -351,13 +351,13 @@ public class ContentFieldUtil {
 						setData(
 							() -> {
 								if (!ddmFormField.isMultiple() &&
-									(dataList.size() == 1)) {
+									(list.size() == 1)) {
 
-									return dataList.get(0);
+									return list.get(0);
 								}
 
 								return String.valueOf(
-									JSONFactoryUtil.createJSONArray(dataList));
+									JSONFactoryUtil.createJSONArray(list));
 							});
 						setValue(
 							() -> {
