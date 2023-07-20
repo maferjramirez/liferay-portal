@@ -291,9 +291,9 @@ public class BatchEngineUnitProcessorImpl implements BatchEngineUnitProcessor {
 	private BatchEngineUnitConfiguration _updateBatchEngineUnitConfiguration(
 		BatchEngineUnitConfiguration batchEngineUnitConfiguration) {
 
-		if (batchEngineUnitConfiguration.isCheckPermissions() &&
-			batchEngineUnitConfiguration.isMultiCompany() &&
-			(batchEngineUnitConfiguration.getUserId() == 0)) {
+		if ((batchEngineUnitConfiguration.getUserId() == 0) &&
+			batchEngineUnitConfiguration.isCheckPermissions() &&
+			batchEngineUnitConfiguration.isMultiCompany()) {
 
 			batchEngineUnitConfiguration.setCheckPermissions(false);
 		}
