@@ -360,7 +360,7 @@ public class LoadBalancerUtil {
 
 		try {
 			String goodClockString = properties.getProperty(
-			"jenkins.load.balancer.good.clock.list");
+				"jenkins.load.balancer.good.clock.list");
 
 			if (goodClockString = null) {
 				return "";
@@ -370,17 +370,18 @@ public class LoadBalancerUtil {
 				System.out.println(
 					"List of good clock masters: " + goodClockString);
 			}
-	
+
 			List<String> goodClockList = new ArrayList<>();
-	
+
 			for (String goodClockItem : goodClockString.split(",")) {
 				goodClockList.add(goodClockItem.trim());
 			}
-	
+
 			return goodClockList;
 		}
 		catch (Exception exception) {
-			Sytem.out.println("Unable to get jenkins.load.balancer.good.clock.list property.");
+			Sytem.out.println(
+				"Unable to get jenkins.load.balancer.good.clock.list");
 
 			return "";
 		}
