@@ -847,7 +847,7 @@ public class DefaultObjectEntryManagerImplTest {
 	}
 
 	@Test
-	public void testAddObjectEntryAccountEntryRestriction() throws Exception {
+	public void testAddObjectEntryWithAccountEntryRestricted() throws Exception {
 
 		// Account entry restricted scope
 
@@ -976,7 +976,7 @@ public class DefaultObjectEntryManagerImplTest {
 	}
 
 	@Test
-	public void testDeleteObjectEntryAccountEntryRestriction()
+	public void testDeleteObjectEntryWithAccountEntryRestricted()
 		throws Exception {
 
 		// Regular roles' company scope permissions should not be restricted by
@@ -1199,9 +1199,7 @@ public class DefaultObjectEntryManagerImplTest {
 	}
 
 	@Test
-	public void testDeleteObjectEntryForAllObjectRelationshipDeletionTypes()
-		throws Exception {
-
+	public void testDeleteObjectEntry() throws Exception {
 		ObjectDefinition objectDefinition1 = _createObjectDefinition(
 			Collections.singletonList(
 				new TextObjectFieldBuilder(
@@ -1692,7 +1690,7 @@ public class DefaultObjectEntryManagerImplTest {
 	}
 
 	@Test
-	public void testGetObjectEntriesAccountEntryRestrictions()
+	public void testGetObjectEntriesWithAccountEntryRestricted()
 		throws Exception {
 
 		// Regular roles permissions should not be restricted by account entry
@@ -1818,7 +1816,7 @@ public class DefaultObjectEntryManagerImplTest {
 	}
 
 	@Test
-	public void testGetObjectEntriesAggregationFacets() throws Exception {
+	public void testGetObjectEntriesWithAggregationFacets() throws Exception {
 		_defaultObjectEntryManager.addObjectEntry(
 			_simpleDTOConverterContext, _objectDefinition1,
 			new ObjectEntry() {
@@ -1879,7 +1877,7 @@ public class DefaultObjectEntryManagerImplTest {
 	}
 
 	@Test
-	public void testGetObjectEntryRelatedObjectEntriesAccountRestriction()
+	public void testGetObjectEntryRelatedObjectEntriesWithAccountEntryRestricted()
 		throws Exception {
 
 		ObjectDefinition childObjectDefinition = _createObjectDefinition(
@@ -2198,7 +2196,7 @@ public class DefaultObjectEntryManagerImplTest {
 	}
 
 	@Test
-	public void testUpdateObjectEntryAccountRestriction() throws Exception {
+	public void testUpdateObjectEntryWithAccountEntryRestricted() throws Exception {
 
 		// Regular roles' company scope permissions should not be restricted by
 		// account entry
