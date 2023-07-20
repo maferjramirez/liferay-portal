@@ -1121,14 +1121,14 @@ public class DefaultObjectEntryManagerImpl
 		return objectRelationships;
 	}
 
-	private long _getPrimaryKey(Object item) {
-		if (item instanceof BaseModel<?>) {
-			BaseModel<?> baseModel = (BaseModel<?>)item;
+	private long _getPrimaryKey(Object relatedModel) {
+		if (relatedModel instanceof BaseModel<?>) {
+			BaseModel<?> baseModel = (BaseModel<?>)relatedModel;
 
 			return (long)baseModel.getPrimaryKeyObj();
 		}
-		else if (item instanceof ObjectEntry) {
-			ObjectEntry objectEntry = (ObjectEntry)item;
+		else if (relatedModel instanceof ObjectEntry) {
+			ObjectEntry objectEntry = (ObjectEntry)relatedModel;
 
 			return objectEntry.getId();
 		}
