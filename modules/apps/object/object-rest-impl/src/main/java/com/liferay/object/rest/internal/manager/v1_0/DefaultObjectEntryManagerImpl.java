@@ -1039,24 +1039,6 @@ public class DefaultObjectEntryManagerImpl
 			dtoConverterContext.getUserId());
 	}
 
-	private BaseModel<?> _fetchRelatedManyToOneSystemObjectEntry(
-			ObjectDefinition relatedObjectDefinition, Long objectEntryId,
-			ObjectRelationship objectRelationship)
-		throws Exception {
-
-		ManyToOneObjectRelatedModelsProvider objectRelatedModelsProvider =
-			(ManyToOneObjectRelatedModelsProvider)
-				_objectRelatedModelsProviderRegistry.
-					getObjectRelatedModelsProvider(
-						relatedObjectDefinition.getClassName(),
-						relatedObjectDefinition.getCompanyId(),
-						objectRelationship.getType());
-
-		return objectRelatedModelsProvider.fetchRelatedModel(
-			relatedObjectDefinition.getCompanyId(),
-			objectRelationship.getObjectRelationshipId(), objectEntryId);
-	}
-
 	private int _getEndPosition(Pagination pagination) {
 		if (pagination != null) {
 			return pagination.getEndPosition();
@@ -1073,8 +1055,17 @@ public class DefaultObjectEntryManagerImpl
 		throws Exception {
 
 		if (relatedObjectDefinition.isUnmodifiableSystemObject()) {
-			return _fetchRelatedManyToOneSystemObjectEntry(
-				relatedObjectDefinition, primaryKey, objectRelationship);
+			ManyToOneObjectRelatedModelsProvider objectRelatedModelsProvider =
+				(ManyToOneObjectRelatedModelsProvider)
+					_objectRelatedModelsProviderRegistry.
+						getObjectRelatedModelsProvider(
+							relatedObjectDefinition.getClassName(),
+							relatedObjectDefinition.getCompanyId(),
+							objectRelationship.getType());
+
+			return objectRelatedModelsProvider.fetchRelatedModel(
+				relatedObjectDefinition.getCompanyId(),
+				objectRelationship.getObjectRelationshipId(), primaryKey);
 		}
 
 		return fetchRelatedManyToOneObjectEntry(
