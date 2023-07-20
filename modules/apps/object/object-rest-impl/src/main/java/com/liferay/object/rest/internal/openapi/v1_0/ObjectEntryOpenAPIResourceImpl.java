@@ -369,15 +369,15 @@ public class ObjectEntryOpenAPIResourceImpl
 	}
 
 	private Response _setReadOnly(Response response) {
-		Schema schema = _getObjectDefinitionSchema(
-			(OpenAPI)response.getEntity());
-
-		Map<String, Schema> properties = schema.getProperties();
-
 		Map<String, ObjectField> objectFields =
 			ObjectFieldUtil.toObjectFieldsMap(
 				_objectFieldLocalService.getObjectFields(
 					_objectDefinition.getObjectDefinitionId()));
+
+		Schema schema = _getObjectDefinitionSchema(
+			(OpenAPI)response.getEntity());
+
+		Map<String, Schema> properties = schema.getProperties();
 
 		for (Map.Entry<String, Schema> entry : properties.entrySet()) {
 			String key = entry.getKey();
