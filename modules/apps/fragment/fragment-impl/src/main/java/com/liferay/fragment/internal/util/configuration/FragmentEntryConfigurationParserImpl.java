@@ -16,6 +16,7 @@ import com.liferay.frontend.token.definition.FrontendTokenMapping;
 import com.liferay.info.item.ClassPKInfoItemIdentifier;
 import com.liferay.info.item.InfoItemServiceRegistry;
 import com.liferay.info.item.provider.InfoItemObjectProvider;
+import com.liferay.info.pagination.Pagination;
 import com.liferay.layout.list.retriever.DefaultLayoutListRetrieverContext;
 import com.liferay.layout.list.retriever.LayoutListRetriever;
 import com.liferay.layout.list.retriever.LayoutListRetrieverRegistry;
@@ -208,7 +209,8 @@ public class FragmentEntryConfigurationParserImpl
 
 				Object contextListObject = _getInfoListObjectEntry(
 					configurationValuesJSONObject.getString(name),
-					segmentsEntryIds);
+					segmentsEntryIds,
+					fragmentConfigurationField.getTypeOptionsJSONObject());
 
 				if (contextListObject != null) {
 					contextObjects.put(
@@ -674,7 +676,8 @@ public class FragmentEntryConfigurationParserImpl
 	}
 
 	private Object _getInfoListObjectEntry(
-		String value, long[] segmentsEntryIds) {
+		String value, long[] segmentsEntryIds,
+		JSONObject typeOptionsJSONObject) {
 
 		if (Validator.isNull(value)) {
 			return Collections.emptyList();
@@ -708,6 +711,16 @@ public class FragmentEntryConfigurationParserImpl
 			DefaultLayoutListRetrieverContext
 				defaultLayoutListRetrieverContext =
 					new DefaultLayoutListRetrieverContext();
+
+			if (typeOptionsJSONObject != null) {
+				int numberOfItems = typeOptionsJSONObject.getInt(
+					"numberOfItems", 0);
+
+				if (numberOfItems > 0) {
+					defaultLayoutListRetrieverContext.setPagination(
+						Pagination.of(numberOfItems, 0));
+				}
+			}
 
 			defaultLayoutListRetrieverContext.setSegmentsEntryIds(
 				segmentsEntryIds);
