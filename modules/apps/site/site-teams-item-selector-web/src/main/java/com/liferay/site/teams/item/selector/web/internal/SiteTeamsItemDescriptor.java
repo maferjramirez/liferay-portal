@@ -9,7 +9,6 @@ import com.liferay.item.selector.ItemSelectorViewDescriptor;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Team;
-import com.liferay.portal.kernel.util.HtmlUtil;
 
 import java.util.Date;
 import java.util.Locale;
@@ -55,7 +54,7 @@ public class SiteTeamsItemDescriptor
 
 	@Override
 	public String getTitle(Locale locale) {
-		return HtmlUtil.escape(_team.getName());
+		return _team.getName();
 	}
 
 	@Override

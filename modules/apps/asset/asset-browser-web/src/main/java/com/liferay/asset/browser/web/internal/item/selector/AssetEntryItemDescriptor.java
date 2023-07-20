@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.Date;
@@ -122,7 +121,7 @@ public class AssetEntryItemDescriptor
 
 	@Override
 	public String getTitle(Locale locale) {
-		return HtmlUtil.escape(_assetEntry.getTitle(locale));
+		return _assetEntry.getTitle(locale);
 	}
 
 	@Override

@@ -17,7 +17,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.Date;
@@ -86,9 +85,7 @@ public class AssetVocabularyItemDescriptor
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		sb.append(
-			HtmlUtil.escape(
-				_assetVocabulary.getTitle(themeDisplay.getLocale())));
+		sb.append(_assetVocabulary.getTitle(themeDisplay.getLocale()));
 
 		sb.append(StringPool.SPACE);
 		sb.append(StringPool.OPEN_PARENTHESIS);
