@@ -1055,15 +1055,16 @@ public class DefaultObjectEntryManagerImpl
 		throws Exception {
 
 		if (relatedObjectDefinition.isUnmodifiableSystemObject()) {
-			ManyToOneObjectRelatedModelsProvider objectRelatedModelsProvider =
-				(ManyToOneObjectRelatedModelsProvider)
-					_objectRelatedModelsProviderRegistry.
-						getObjectRelatedModelsProvider(
-							relatedObjectDefinition.getClassName(),
-							relatedObjectDefinition.getCompanyId(),
-							objectRelationship.getType());
+			ManyToOneObjectRelatedModelsProvider
+				manyToOneObjectRelatedModelsProvider =
+					(ManyToOneObjectRelatedModelsProvider)
+						_objectRelatedModelsProviderRegistry.
+							getObjectRelatedModelsProvider(
+								relatedObjectDefinition.getClassName(),
+								relatedObjectDefinition.getCompanyId(),
+								objectRelationship.getType());
 
-			return objectRelatedModelsProvider.fetchRelatedModel(
+			return manyToOneObjectRelatedModelsProvider.fetchRelatedModel(
 				relatedObjectDefinition.getCompanyId(),
 				objectRelationship.getObjectRelationshipId(), primaryKey);
 		}
