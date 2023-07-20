@@ -126,10 +126,7 @@ public class DocumentImpl implements Document {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), no direct replacement but can be
-	 * replaced by combining calling com.liferay.portal.kernel.util.
-	 * TextExtractor.extractText(InputStream inputStream, int maxStringLength)
-	 * and addText(String name, String value)
+	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
 	 */
 	@Deprecated
 	@Override
@@ -138,10 +135,7 @@ public class DocumentImpl implements Document {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), no direct replacement but can be
-	 * replaced by combining calling com.liferay.portal.kernel.util.
-	 * TextExtractor.extractText(InputStream inputStream, int maxStringLength)
-	 * and addText(String name, String value)
+	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
 	 */
 	@Deprecated
 	@Override
@@ -152,10 +146,7 @@ public class DocumentImpl implements Document {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), no direct replacement but can be
-	 * replaced by combining calling com.liferay.portal.kernel.util.
-	 * TextExtractor.extractText(InputStream inputStream, int maxStringLength)
-	 * and addText(String name, String value)
+	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
 	 */
 	@Deprecated
 	@Override
@@ -164,10 +155,7 @@ public class DocumentImpl implements Document {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), no direct replacement but can be
-	 * replaced by combining calling com.liferay.portal.kernel.util.
-	 * TextExtractor.extractText(InputStream inputStream, int maxStringLength)
-	 * and addText(String name, String value)
+	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
 	 */
 	@Deprecated
 	@Override
