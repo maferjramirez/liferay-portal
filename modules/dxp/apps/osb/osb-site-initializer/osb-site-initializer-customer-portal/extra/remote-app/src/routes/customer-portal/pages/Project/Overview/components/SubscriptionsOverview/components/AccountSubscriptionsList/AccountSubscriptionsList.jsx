@@ -82,6 +82,9 @@ const AccountSubscriptionsList = ({
 					onClick={() =>
 						setCurrentAccountSubscription({...accountSubscription})
 					}
+					selectedAccountSubscriptionGroup={
+						selectedAccountSubscriptionGroup
+					}
 				/>
 			))}
 		</div>
