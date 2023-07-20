@@ -6,6 +6,7 @@
 package com.liferay.oauth2.provider.rest.internal.endpoint.redirect;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.HtmlUtil;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.Encoded;
@@ -42,7 +43,7 @@ public class OAuth2ProviderApplicationRedirect {
 			StringBundler.concat(
 				"<html><head><title>Liferay OAuth2 Redirect</title></head>",
 				"<body><script type=\"text/javascript\">window.postMessage(",
-				"{code: \"", code, "\", error: \"", error,
+				"{code: \"", HtmlUtil.escape(code), "\", error: \"", error,
 				"\"}, document.location.href);</script></body></html>")
 		).build();
 	}
