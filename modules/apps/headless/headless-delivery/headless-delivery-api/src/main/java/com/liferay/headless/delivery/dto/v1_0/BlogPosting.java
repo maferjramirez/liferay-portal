@@ -615,7 +615,7 @@ public class BlogPosting implements Serializable {
 	}
 
 	@GraphQLField(description = "A list of related contents to this blog post.")
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected RelatedContent[] relatedContents;
 
 	@Schema(
