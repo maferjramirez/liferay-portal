@@ -46,7 +46,6 @@ export const Liferay = window.Liferay || {
 			return false;
 		},
 	},
-	authToken: '',
 	detach: (
 		type: keyof WindowEventMap,
 		callback: EventListenerOrEventListenerObject
