@@ -462,7 +462,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 		</antcall>
 	</target>
 
-	<target name="format-source-change-copyrights">
+	<target name="format-source-copyright">
 		<if>
 			<available file="${project.dir}/modules/util/copyright-formatter" />
 			<then>
