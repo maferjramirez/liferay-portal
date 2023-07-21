@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.stereotype.Component;
@@ -200,7 +201,8 @@ public class PartnerCommandLineRunner implements CommandLineRunner {
 			).accept(
 				MediaType.APPLICATION_JSON
 			).header(
-				"Authorization", "Bearer " + _oAuth2AccessToken.getTokenValue()
+				HttpHeaders.AUTHORIZATION,
+				"Bearer " + _oAuth2AccessToken.getTokenValue()
 			).retrieve(
 			).bodyToMono(
 				String.class
@@ -220,7 +222,8 @@ public class PartnerCommandLineRunner implements CommandLineRunner {
 		).contentType(
 			MediaType.APPLICATION_JSON
 		).header(
-			"Authorization", "Bearer " + _oAuth2AccessToken.getTokenValue()
+			HttpHeaders.AUTHORIZATION,
+			"Bearer " + _oAuth2AccessToken.getTokenValue()
 		).bodyValue(
 			bodyValue
 		).retrieve(

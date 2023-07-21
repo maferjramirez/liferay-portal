@@ -58,22 +58,16 @@ public class TicketCommandLineRunner implements CommandLineRunner {
 			_log.info("Token: " + oAuth2AccessToken.getTokenValue());
 		}
 
-		WebClient.Builder builder = WebClient.builder();
-
-		WebClient webClient = builder.baseUrl(
+		TicketsResponse ticketsResponse = WebClient.create(
 			_lxcDXPServerProtocol + "://" + _lxcDXPMainDomain
-		).defaultHeader(
-			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
-		).defaultHeader(
+		).get(
+		).uri(
+			"/o/c/tickets"
+		).accept(
+			MediaType.APPLICATION_JSON
+		).header(
 			HttpHeaders.AUTHORIZATION,
 			"Bearer " + oAuth2AccessToken.getTokenValue()
-		).defaultHeader(
-			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
-		).build();
-
-		TicketsResponse ticketsResponse = webClient.get(
-		).uri(
-			"/o/c/tickets/"
 		).retrieve(
 		).onStatus(
 			HttpStatus::isError,
@@ -106,9 +100,16 @@ public class TicketCommandLineRunner implements CommandLineRunner {
 						_log.info("Deleting ticket: " + ticketId);
 					}
 
-					webClient.delete(
+					WebClient.create(
+						_lxcDXPServerProtocol + "://" + _lxcDXPMainDomain
+					).delete(
 					).uri(
 						"/o/c/tickets/{ticketId}", ticketId
+					).accept(
+						MediaType.APPLICATION_JSON
+					).header(
+						HttpHeaders.AUTHORIZATION,
+						"Bearer " + oAuth2AccessToken.getTokenValue()
 					).retrieve(
 					).onStatus(
 						HttpStatus::isError,
