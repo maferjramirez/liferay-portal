@@ -146,8 +146,8 @@ public class BuildQueue {
 				Collections.sort(builds, new ParentBuildComparator());
 
 				for (Build build : builds) {
-					if ((build.getState() == Build.State.OPENED) ||
-						(build.getState() == Build.State.BLOCKED)) {
+					if ((build.getState() == Build.State.BLOCKED) ||
+						(build.getState() == Build.State.OPENED)) {
 
 						_sortedBuilds.add(build);
 					}
