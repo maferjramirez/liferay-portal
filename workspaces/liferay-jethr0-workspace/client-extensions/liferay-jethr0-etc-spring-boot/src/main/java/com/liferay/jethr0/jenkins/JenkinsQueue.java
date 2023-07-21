@@ -84,7 +84,7 @@ public class JenkinsQueue {
 	@Scheduled(cron = "${liferay.jethr0.jenkins.queue.update.cron}")
 	public void update() {
 		if (_log.isInfoEnabled()) {
-			_log.info("Updating jenkins queue");
+			_log.info("Updating Jenkins queue");
 		}
 
 		_buildQueue.sort();
