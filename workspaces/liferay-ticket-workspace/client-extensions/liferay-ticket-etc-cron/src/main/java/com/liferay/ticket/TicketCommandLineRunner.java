@@ -1,15 +1,6 @@
 /**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
 package com.liferay.ticket;
@@ -39,7 +30,7 @@ import reactor.core.publisher.Mono;
  * @author Gregory Amerson
  */
 @Component
-public class TicketCleanUpCommandLineRunner implements CommandLineRunner {
+public class TicketCommandLineRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -48,7 +39,7 @@ public class TicketCleanUpCommandLineRunner implements CommandLineRunner {
 				OAuth2AuthorizeRequest.withClientRegistrationId(
 					"liferay-ticket-etc-cron-oauth-application-headless-server"
 				).principal(
-					"TicketCleanUpCommandLineRunner"
+					"TicketCommandLineRunner"
 				).build());
 
 		if (oAuth2AuthorizedClient == null) {
@@ -140,7 +131,7 @@ public class TicketCleanUpCommandLineRunner implements CommandLineRunner {
 	}
 
 	private static final Log _log = LogFactory.getLog(
-		TicketCleanUpCommandLineRunner.class);
+		TicketCommandLineRunner.class);
 
 	@Autowired
 	private AuthorizedClientServiceOAuth2AuthorizedClientManager
