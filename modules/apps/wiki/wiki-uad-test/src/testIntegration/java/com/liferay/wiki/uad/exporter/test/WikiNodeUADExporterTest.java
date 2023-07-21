@@ -75,7 +75,9 @@ public class WikiNodeUADExporterTest
 		return _uadExporter;
 	}
 
-	@Inject(filter = "component.name=*.WikiNodeUADExporter")
+	@Inject(
+		filter = "component.name=com.liferay.wiki.uad.exporter.WikiNodeUADExporter"
+	)
 	private UADExporter<WikiNode> _uadExporter;
 
 	@DeleteAfterTestRun

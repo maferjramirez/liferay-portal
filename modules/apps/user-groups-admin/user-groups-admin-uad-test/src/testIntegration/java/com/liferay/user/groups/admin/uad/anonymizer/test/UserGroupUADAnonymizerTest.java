@@ -98,7 +98,9 @@ public class UserGroupUADAnonymizerTest
 		return false;
 	}
 
-	@Inject(filter = "component.name=*.UserGroupUADAnonymizer")
+	@Inject(
+		filter = "component.name=com.liferay.user.groups.admin.uad.anonymizer.UserGroupUADAnonymizer"
+	)
 	private UADAnonymizer<UserGroup> _uadAnonymizer;
 
 	@Inject
