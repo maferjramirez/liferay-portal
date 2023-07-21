@@ -88,7 +88,7 @@ public class AssetEntryLocalServiceWrapper
 	public void incrementViewCounter(long userId, AssetEntry assetEntry)
 		throws PortalException {
 
-		if (PropsValues.ASSET_INCREMENT_VIEW_COUNT_ENABLED) {
+		if (PropsValues.ASSET_ENTRY_INCREMENT_VIEW_COUNTER_ENABLED) {
 			super.incrementViewCounter(userId, assetEntry);
 		}
 	}
@@ -98,7 +98,7 @@ public class AssetEntryLocalServiceWrapper
 			long companyId, long userId, String className, long classPK)
 		throws PortalException {
 
-		if (PropsValues.ASSET_INCREMENT_VIEW_COUNT_ENABLED) {
+		if (PropsValues.ASSET_ENTRY_INCREMENT_VIEW_COUNTER_ENABLED) {
 			return super.incrementViewCounter(
 				companyId, userId, className, classPK);
 		}
@@ -111,7 +111,7 @@ public class AssetEntryLocalServiceWrapper
 		long companyId, long userId, String className, long classPK,
 		int increment) {
 
-		if (PropsValues.ASSET_INCREMENT_VIEW_COUNT_ENABLED) {
+		if (PropsValues.ASSET_ENTRY_INCREMENT_VIEW_COUNTER_ENABLED) {
 			super.incrementViewCounter(
 				companyId, userId, className, classPK, increment);
 		}

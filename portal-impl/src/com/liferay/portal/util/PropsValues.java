@@ -146,12 +146,13 @@ public class PropsValues {
 		GetterUtil.getInteger(
 			PropsUtil.get(PropsKeys.ASSET_CATEGORIES_SELECTOR_MAX_ENTRIES));
 
+	public static final boolean ASSET_ENTRY_INCREMENT_VIEW_COUNTER_ENABLED =
+		GetterUtil.getBoolean(
+			PropsUtil.get(
+				PropsKeys.ASSET_ENTRY_INCREMENT_VIEW_COUNTER_ENABLED));
+
 	public static final int ASSET_FILTER_SEARCH_LIMIT = GetterUtil.getInteger(
 		PropsUtil.get(PropsKeys.ASSET_FILTER_SEARCH_LIMIT));
-
-	public static final boolean ASSET_INCREMENT_VIEW_COUNT_ENABLED =
-		GetterUtil.getBoolean(
-			PropsUtil.get(PropsKeys.ASSET_INCREMENT_VIEW_COUNT_ENABLED));
 
 	public static final String ASSET_VOCABULARY_DEFAULT = PropsUtil.get(
 		PropsKeys.ASSET_VOCABULARY_DEFAULT);
