@@ -135,7 +135,9 @@ public class FileEntryInfoItemFieldValuesProviderTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	@Inject(filter = "component.name=*.FileEntryInfoItemFieldValuesProvider")
+	@Inject(
+		filter = "component.name=com.liferay.document.library.web.internal.info.item.provider.FileEntryInfoItemFieldValuesProvider"
+	)
 	private InfoItemFieldValuesProvider _infoItemFieldValuesProvider;
 
 	private static class TestFileEntryInfoItemFieldReader

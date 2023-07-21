@@ -82,7 +82,9 @@ public class DLFolderUADExporterTest
 	@DeleteAfterTestRun
 	private Group _group;
 
-	@Inject(filter = "component.name=*.DLFolderUADExporter")
+	@Inject(
+		filter = "component.name=com.liferay.document.library.uad.exporter.DLFolderUADExporter"
+	)
 	private UADExporter<DLFolder> _uadExporter;
 
 }
