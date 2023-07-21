@@ -64,7 +64,9 @@ public class RoleUADExporterTest extends BaseUADExporterTestCase<Role> {
 	@Inject
 	private RoleUADTestHelper _roleUADTestHelper;
 
-	@Inject(filter = "component.name=*.RoleUADExporter")
+	@Inject(
+		filter = "component.name=com.liferay.roles.uad.exporter.RoleUADExporter"
+	)
 	private UADExporter<Role> _uadExporter;
 
 }
