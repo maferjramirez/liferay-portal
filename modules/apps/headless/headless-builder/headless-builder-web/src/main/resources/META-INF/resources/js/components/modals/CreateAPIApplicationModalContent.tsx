@@ -17,6 +17,7 @@ type DataError = {
 
 interface HandleCreateInModal {
 	apiApplicationsURLPath: string;
+	baseURL: string;
 	closeModal: voidReturn;
 	loadData: voidReturn;
 }
@@ -29,6 +30,7 @@ const headers = new Headers({
 
 export function CreateAPIApplicationModalContent({
 	apiApplicationsURLPath,
+	baseURL,
 	closeModal,
 	loadData,
 }: HandleCreateInModal) {
@@ -140,6 +142,7 @@ export function CreateAPIApplicationModalContent({
 
 			<div className="modal-body">
 				<BaseAPIApplicationField
+					baseURL={baseURL}
 					data={data}
 					displayError={displayError}
 					setData={setData}
