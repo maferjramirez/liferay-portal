@@ -7,6 +7,7 @@ package com.liferay.headless.builder.internal.vulcan.openapi.contributor;
 
 import com.liferay.headless.builder.application.APIApplication;
 import com.liferay.headless.builder.application.provider.APIApplicationProvider;
+import com.liferay.headless.builder.constants.HeadlessBuilderConstants;
 import com.liferay.object.rest.dto.v1_0.FileEntry;
 import com.liferay.object.rest.dto.v1_0.ListEntry;
 import com.liferay.petra.string.StringPool;
@@ -138,7 +139,7 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 
 		String path = openAPIContext.getPath();
 
-		if (path.startsWith("/o/c")) {
+		if (path.startsWith(HeadlessBuilderConstants.BASE_URL)) {
 			path = path.substring(4);
 		}
 
