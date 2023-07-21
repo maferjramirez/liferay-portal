@@ -130,20 +130,19 @@ public class ObjectValidationRuleDTOConverter
 					});
 				setValue(
 					() -> {
-						if (objectValidationRuleSetting.compareName(
+						if (!objectValidationRuleSetting.compareName(
 								ObjectValidationRuleSettingConstants.
 									NAME_OBJECT_FIELD_ID)) {
 
-							ObjectField objectField =
-								_objectFieldLocalService.getObjectField(
-									GetterUtil.getLong(
-										objectValidationRuleSetting.
-											getValue()));
-
-							return objectField.getExternalReferenceCode();
+							return objectValidationRuleSetting.getValue();
 						}
 
-						return objectValidationRuleSetting.getValue();
+						ObjectField objectField =
+							_objectFieldLocalService.getObjectField(
+								GetterUtil.getLong(
+									objectValidationRuleSetting.getValue()));
+
+						return objectField.getExternalReferenceCode();
 					});
 			}
 		};
