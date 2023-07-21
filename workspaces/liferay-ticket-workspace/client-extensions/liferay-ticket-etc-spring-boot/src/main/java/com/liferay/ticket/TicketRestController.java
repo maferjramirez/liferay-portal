@@ -44,12 +44,6 @@ import reactor.util.retry.Retry;
 @RestController
 public class TicketRestController extends BaseRestController {
 
-	public static final String SUGGESTION_HOST = "learn.liferay.com";
-
-	public static final int SUGGESTION_PORT = 443;
-
-	public static final String SUGGESTION_SCHEME = "https";
-
 	@PostMapping("/ticket")
 	public ResponseEntity<String> post(
 			@AuthenticationPrincipal Jwt jwt, @RequestBody String json)
@@ -169,15 +163,15 @@ public class TicketRestController extends BaseRestController {
 			).header(
 				HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
 			).endpoint(
-				SUGGESTION_HOST, SUGGESTION_PORT, SUGGESTION_SCHEME
+				"learn.liferay.com", 443, "https"
 			).build();
 
 		try {
 			Page<SuggestionsContributorResults>
 				suggestionsContributorResultsPage =
 					suggestionResource.postSuggestionsPage(
-						SUGGESTION_SCHEME + "://" + SUGGESTION_HOST, "/search",
-						3190049L, "", 1434L, "this-site", subject,
+						"https://learn.liferay.com", "/search", 3190049L, "",
+						1434L, "this-site", subject,
 						new SuggestionsContributorConfiguration[] {
 							suggestionsContributorConfiguration
 						});
@@ -200,8 +194,7 @@ public class TicketRestController extends BaseRestController {
 					JSONObject suggestionJSONObject = new JSONObject();
 
 					suggestionJSONObject.put(
-						"assetURL",
-						SUGGESTION_SCHEME + "://" + SUGGESTION_HOST + assetURL
+						"assetURL", "https://learn.liferay.com" + assetURL
 					).put(
 						"text", text
 					);
@@ -217,7 +210,7 @@ public class TicketRestController extends BaseRestController {
 			JSONObject suggestionJSONObject = new JSONObject();
 
 			suggestionJSONObject.put(
-				"assetURL", SUGGESTION_SCHEME + "://" + SUGGESTION_HOST
+				"assetURL", "https://learn.liferay.com"
 			).put(
 				"text", "learn.liferay.com"
 			);
