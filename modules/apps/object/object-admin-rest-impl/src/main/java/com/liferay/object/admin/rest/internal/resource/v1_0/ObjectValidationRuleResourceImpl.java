@@ -15,11 +15,13 @@
 package com.liferay.object.admin.rest.internal.resource.v1_0;
 
 import com.liferay.object.admin.rest.dto.v1_0.ObjectValidationRule;
+import com.liferay.object.admin.rest.dto.v1_0.ObjectValidationRuleSetting;
 import com.liferay.object.admin.rest.internal.dto.v1_0.converter.constants.DTOConverterConstants;
-import com.liferay.object.admin.rest.internal.dto.v1_0.util.ObjectValidationRuleSettingUtil;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectValidationRuleResource;
 import com.liferay.object.constants.ObjectValidationRuleConstants;
+import com.liferay.object.constants.ObjectValidationRuleSettingConstants;
 import com.liferay.object.model.ObjectDefinition;
+import com.liferay.object.model.ObjectField;
 import com.liferay.object.service.ObjectDefinitionLocalService;
 import com.liferay.object.service.ObjectFieldLocalService;
 import com.liferay.object.service.ObjectValidationRuleLocalService;
@@ -31,6 +33,7 @@ import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 import com.liferay.portal.vulcan.dto.converter.DefaultDTOConverterContext;
@@ -40,6 +43,8 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
+
+import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -191,7 +196,7 @@ public class ObjectValidationRuleResourceImpl
 					objectValidationRule.getOutputTypeAsString(),
 					ObjectValidationRuleConstants.OUTPUT_TYPE_FULL_VALIDATION),
 				objectValidationRule.getScript(),
-				ObjectValidationRuleSettingUtil.toObjectValidationRuleSettings(
+				_toObjectValidationRuleSettings(
 					objectDefinitionId, _objectFieldLocalService,
 					_objectValidationRuleSettingLocalService,
 					objectValidationRule.getObjectValidationRuleSettings())));
@@ -229,7 +234,7 @@ public class ObjectValidationRuleResourceImpl
 					objectValidationRule.getOutputTypeAsString(),
 					ObjectValidationRuleConstants.OUTPUT_TYPE_FULL_VALIDATION),
 				objectValidationRule.getScript(),
-				ObjectValidationRuleSettingUtil.toObjectValidationRuleSettings(
+				_toObjectValidationRuleSettings(
 					serviceBuilderObjectValidationRule.getObjectDefinitionId(),
 					_objectFieldLocalService,
 					_objectValidationRuleSettingLocalService,
@@ -287,6 +292,52 @@ public class ObjectValidationRuleResourceImpl
 				null, null, contextAcceptLanguage.getPreferredLocale(), null,
 				null),
 			serviceBuilderObjectValidationRule);
+	}
+
+	private List<com.liferay.object.model.ObjectValidationRuleSetting>
+		_toObjectValidationRuleSettings(
+			long objectDefinitionId,
+			ObjectFieldLocalService objectFieldLocalService,
+			ObjectValidationRuleSettingLocalService
+				objectValidationRuleSettingLocalService,
+			ObjectValidationRuleSetting[] objectValidationRuleSettings) {
+
+		return transformToList(
+			objectValidationRuleSettings,
+			objectValidationRuleSetting -> {
+				com.liferay.object.model.ObjectValidationRuleSetting
+					serviceBuilderObjectValidationRuleSetting =
+						objectValidationRuleSettingLocalService.
+							createObjectValidationRuleSetting(0L);
+
+				if (StringUtil.equals(
+						objectValidationRuleSetting.getName(),
+						ObjectValidationRuleSettingConstants.
+							NAME_OBJECT_FIELD_EXTERNAL_REFERENCE_CODE)) {
+
+					serviceBuilderObjectValidationRuleSetting.setName(
+						ObjectValidationRuleSettingConstants.
+							NAME_OBJECT_FIELD_ID);
+
+					ObjectField objectField =
+						objectFieldLocalService.getObjectField(
+							String.valueOf(
+								objectValidationRuleSetting.getValue()),
+							objectDefinitionId);
+
+					serviceBuilderObjectValidationRuleSetting.setValue(
+						String.valueOf(objectField.getObjectFieldId()));
+
+					return serviceBuilderObjectValidationRuleSetting;
+				}
+
+				serviceBuilderObjectValidationRuleSetting.setName(
+					objectValidationRuleSetting.getName());
+				serviceBuilderObjectValidationRuleSetting.setValue(
+					String.valueOf(objectValidationRuleSetting.getValue()));
+
+				return serviceBuilderObjectValidationRuleSetting;
+			});
 	}
 
 	@Reference
