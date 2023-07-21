@@ -506,7 +506,7 @@ public class CPInstanceUnitOfMeasureLocalServiceTest {
 					LocaleUtil.getDefault(), "NOME"
 				).build(),
 				cpInstanceUnitOfMeasure.getPrecision(),
-				cpInstanceUnitOfMeasure.getPrimary(),
+				cpInstanceUnitOfMeasure.isPrimary(),
 				cpInstanceUnitOfMeasure.getPriority(),
 				cpInstanceUnitOfMeasure.getRate(),
 				cpInstanceUnitOfMeasure.getSku());
