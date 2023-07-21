@@ -87,7 +87,9 @@ public class UserNotificationDeliveryUADAnonymizerTest
 		return false;
 	}
 
-	@Inject(filter = "component.name=*.UserNotificationDeliveryUADAnonymizer")
+	@Inject(
+		filter = "component.name=com.liferay.notifications.uad.anonymizer.UserNotificationDeliveryUADAnonymizer"
+	)
 	private UADAnonymizer<UserNotificationDelivery> _uadAnonymizer;
 
 	@DeleteAfterTestRun

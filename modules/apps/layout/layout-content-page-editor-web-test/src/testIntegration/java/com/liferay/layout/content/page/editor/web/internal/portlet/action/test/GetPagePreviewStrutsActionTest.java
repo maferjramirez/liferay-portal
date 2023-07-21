@@ -242,7 +242,9 @@ public class GetPagePreviewStrutsActionTest {
 	@Inject
 	private FragmentEntryLocalService _fragmentEntryLocalService;
 
-	@Inject(filter = "component.name=*.GetPagePreviewStrutsAction")
+	@Inject(
+		filter = "component.name=com.liferay.layout.internal.struts.GetPagePreviewStrutsAction"
+	)
 	private StrutsAction _getPagePreviewStrutsAction;
 
 	@DeleteAfterTestRun
