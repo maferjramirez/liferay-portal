@@ -136,8 +136,6 @@ public class Test implements Serializable {
 	)
 	protected String propertyWithHyphens;
 
-	private Map<String, Serializable> _extendedProperties;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -297,5 +295,7 @@ public class Test implements Serializable {
 		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
 		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
 	};
+
+	private Map<String, Serializable> _extendedProperties;
 
 }
