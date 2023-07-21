@@ -9,7 +9,9 @@ import SearchHeader from './components/SearchHeader';
 import useHasManyProjects from './hooks/useHasManyProjects';
 
 import './app.scss';
+
 import useKoroneikiAccounts from '../../common/hooks/useKoroneikiAccounts';
+import ProjectsNavbar from './components/ProjectsNavbar/ProjectsNavbar';
 
 const THRESHOLD_COUNT = 4;
 
@@ -30,37 +32,41 @@ const Home = () => {
 	);
 
 	return (
-		<ClayLayout.ContainerFluid
-			className="cp-home-wrapper"
-			size={hasManyProjects && !loading ? 'md' : 'xl'}
-		>
-			<ClayLayout.Row>
-				<ClayLayout.Col>
-					{hasManyProjects && !loading && (
-						<SearchHeader
-							count={koroneikiAccounts?.totalCount}
-							loading={searching}
-							onSearchSubmit={search}
-						/>
-					)}
+		<>
+			<ProjectsNavbar loading={loading} />
 
-					<ProjectList
-						compressed={hasManyProjects && !loading}
-						fetching={fetching}
-						koroneikiAccounts={koroneikiAccounts}
-						loading={loading || searching}
-						maxCardsLoading={THRESHOLD_COUNT}
-						onIntersect={(currentPage) =>
-							fetchMore({
-								variables: {
-									page: currentPage + 1,
-								},
-							})
-						}
-					/>
-				</ClayLayout.Col>
-			</ClayLayout.Row>
-		</ClayLayout.ContainerFluid>
+			<ClayLayout.ContainerFluid
+				className="cp-home-wrapper"
+				size={hasManyProjects && !loading ? 'md' : 'xl'}
+			>
+				<ClayLayout.Row>
+					<ClayLayout.Col>
+						{hasManyProjects && !loading && (
+							<SearchHeader
+								count={koroneikiAccounts?.totalCount}
+								loading={searching}
+								onSearchSubmit={search}
+							/>
+						)}
+
+						<ProjectList
+							compressed={hasManyProjects && !loading}
+							fetching={fetching}
+							koroneikiAccounts={koroneikiAccounts}
+							loading={loading || searching}
+							maxCardsLoading={THRESHOLD_COUNT}
+							onIntersect={(currentPage) =>
+								fetchMore({
+									variables: {
+										page: currentPage + 1,
+									},
+								})
+							}
+						/>
+					</ClayLayout.Col>
+				</ClayLayout.Row>
+			</ClayLayout.ContainerFluid>
+		</>
 	);
 };
 
