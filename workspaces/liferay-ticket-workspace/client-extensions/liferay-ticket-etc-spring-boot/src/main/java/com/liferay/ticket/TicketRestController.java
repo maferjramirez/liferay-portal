@@ -28,7 +28,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,7 +44,7 @@ import reactor.util.retry.Retry;
  * @author Allen Ziegenfus
  */
 @RestController
-public class TicketRestController {
+public class TicketRestController extends BaseRestController {
 
 	public static final String SUGGESTION_HOST = "learn.liferay.com";
 
@@ -57,27 +56,14 @@ public class TicketRestController {
 		_initResourceBuilders();
 	}
 
-	@GetMapping("/ready")
-	public String getReady() {
-		return "READY";
-	}
-
 	@PostMapping("/ticket/object/action/documentation/referral")
 	public ResponseEntity<String> postTicketObjectAction1(
 		@AuthenticationPrincipal Jwt jwt, @RequestBody String json) {
 
-		if (_log.isInfoEnabled()) {
-			_log.info("JWT Claims: " + jwt.getClaims());
-			_log.info("JWT ID: " + jwt.getId());
-			_log.info("JWT Subject: " + jwt.getSubject());
-		}
+		log(jwt, _log, json);
 
 		try {
 			JSONObject jsonObject = new JSONObject(json);
-
-			if (_log.isInfoEnabled()) {
-				_log.info("JSON INPUT: \n\n" + jsonObject.toString(4) + "\n");
-			}
 
 			_addDocumentationReferralAndQueue(
 				_lxcDXPServerProtocol, _lxcDXPMainDomain, jwt.getTokenValue(),
