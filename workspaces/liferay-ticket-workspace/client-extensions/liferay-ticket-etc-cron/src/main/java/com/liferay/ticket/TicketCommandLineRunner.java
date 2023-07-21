@@ -18,8 +18,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.oauth2.client.AuthorizedClientServiceOAuth2AuthorizedClientManager;
-import org.springframework.security.oauth2.client.OAuth2AuthorizeRequest;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -34,30 +32,6 @@ public class TicketCommandLineRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		OAuth2AuthorizedClient oAuth2AuthorizedClient =
-			_authorizedClientServiceOAuth2AuthorizedClientManager.authorize(
-				OAuth2AuthorizeRequest.withClientRegistrationId(
-					"liferay-ticket-etc-cron-oauth-application-headless-server"
-				).principal(
-					"TicketCommandLineRunner"
-				).build());
-
-		if (oAuth2AuthorizedClient == null) {
-			_log.error("Unable to get OAuth 2 authorized client");
-
-			return;
-		}
-
-		OAuth2AccessToken oAuth2AccessToken =
-			oAuth2AuthorizedClient.getAccessToken();
-
-		if (_log.isInfoEnabled()) {
-			_log.info("Issued: " + oAuth2AccessToken.getIssuedAt());
-			_log.info("Expires At: " + oAuth2AccessToken.getExpiresAt());
-			_log.info("Scopes: " + oAuth2AccessToken.getScopes());
-			_log.info("Token: " + oAuth2AccessToken.getTokenValue());
-		}
-
 		TicketsResponse ticketsResponse = WebClient.create(
 			_lxcDXPServerProtocol + "://" + _lxcDXPMainDomain
 		).get(
@@ -67,7 +41,7 @@ public class TicketCommandLineRunner implements CommandLineRunner {
 			MediaType.APPLICATION_JSON
 		).header(
 			HttpHeaders.AUTHORIZATION,
-			"Bearer " + oAuth2AccessToken.getTokenValue()
+			"Bearer " + _oAuth2AccessToken.getTokenValue()
 		).retrieve(
 		).onStatus(
 			HttpStatus::isError,
@@ -109,7 +83,7 @@ public class TicketCommandLineRunner implements CommandLineRunner {
 						MediaType.APPLICATION_JSON
 					).header(
 						HttpHeaders.AUTHORIZATION,
-						"Bearer " + oAuth2AccessToken.getTokenValue()
+						"Bearer " + _oAuth2AccessToken.getTokenValue()
 					).retrieve(
 					).onStatus(
 						HttpStatus::isError,
@@ -143,6 +117,9 @@ public class TicketCommandLineRunner implements CommandLineRunner {
 
 	@Value("${com.liferay.lxc.dxp.server.protocol}")
 	private String _lxcDXPServerProtocol;
+
+	@Autowired
+	private OAuth2AccessToken _oAuth2AccessToken;
 
 	private static class Resolution {
 
