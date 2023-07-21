@@ -78,7 +78,9 @@ public class BookmarksFolderUADExporterTest
 	@DeleteAfterTestRun
 	private final List<BookmarksFolder> _bookmarksFolders = new ArrayList<>();
 
-	@Inject(filter = "component.name=*.BookmarksFolderUADExporter")
+	@Inject(
+		filter = "component.name=com.liferay.bookmarks.uad.exporter.BookmarksFolderUADExporter"
+	)
 	private UADExporter<BookmarksFolder> _uadExporter;
 
 }

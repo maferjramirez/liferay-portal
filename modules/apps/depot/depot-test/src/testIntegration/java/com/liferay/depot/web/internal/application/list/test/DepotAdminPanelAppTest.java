@@ -104,7 +104,9 @@ public class DepotAdminPanelAppTest {
 		}
 	}
 
-	@Inject(filter = "component.name=*.DepotAdminPanelApp")
+	@Inject(
+		filter = "component.name=com.liferay.depot.web.internal.application.list.DepotAdminPanelApp"
+	)
 	private PanelApp _depotAdminPanelApp;
 
 	@Inject

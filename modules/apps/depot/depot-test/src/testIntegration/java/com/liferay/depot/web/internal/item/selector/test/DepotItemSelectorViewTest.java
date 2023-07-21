@@ -63,7 +63,9 @@ public class DepotItemSelectorViewTest {
 			_depotItemSelectorView.isVisible(groupItemSelectorCriterion, null));
 	}
 
-	@Inject(filter = "component.name=*.DepotItemSelectorView")
+	@Inject(
+		filter = "component.name=com.liferay.depot.web.internal.item.selector.DepotItemSelectorView"
+	)
 	private ItemSelectorView<GroupItemSelectorCriterion> _depotItemSelectorView;
 
 	@Inject

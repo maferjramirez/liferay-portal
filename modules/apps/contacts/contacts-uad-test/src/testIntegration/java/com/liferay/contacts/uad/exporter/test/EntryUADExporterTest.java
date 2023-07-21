@@ -62,7 +62,9 @@ public class EntryUADExporterTest extends BaseUADExporterTestCase<Entry> {
 	@Inject
 	private EntryLocalService _entryLocalService;
 
-	@Inject(filter = "component.name=*.EntryUADExporter")
+	@Inject(
+		filter = "component.name=com.liferay.contacts.uad.exporter.EntryUADExporter"
+	)
 	private UADExporter<Entry> _uadExporter;
 
 }
