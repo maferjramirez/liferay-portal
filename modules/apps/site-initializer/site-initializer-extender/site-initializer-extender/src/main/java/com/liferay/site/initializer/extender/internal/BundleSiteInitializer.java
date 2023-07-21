@@ -1007,8 +1007,8 @@ public class BundleSiteInitializer implements SiteInitializer {
 					LayoutPageTemplateStructure layoutPageTemplateStructure =
 						_layoutPageTemplateStructureLocalService.
 							fetchLayoutPageTemplateStructure(
-								draftLayout.getGroupId(), draftLayout.getPlid(),
-								true);
+								draftLayout.getGroupId(),
+								draftLayout.getPlid());
 
 					LayoutStructure layoutStructure = null;
 
@@ -3958,7 +3958,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 			LayoutPageTemplateStructure layoutPageTemplateStructure =
 				_layoutPageTemplateStructureLocalService.
 					fetchLayoutPageTemplateStructure(
-						draftLayout.getGroupId(), draftLayout.getPlid(), true);
+						draftLayout.getGroupId(), draftLayout.getPlid());
 
 			_layoutPageTemplateStructureRelLocalService.
 				addLayoutPageTemplateStructureRel(

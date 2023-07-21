@@ -248,7 +248,7 @@ public class CategoriesInputFragmentRenderer implements FragmentRenderer {
 				_layoutPageTemplateStructureLocalService.
 					fetchLayoutPageTemplateStructure(
 						fragmentEntryLink.getGroupId(),
-						fragmentEntryLink.getPlid(), true);
+						fragmentEntryLink.getPlid());
 
 			layoutStructure = LayoutStructure.of(
 				layoutPageTemplateStructure.getData(

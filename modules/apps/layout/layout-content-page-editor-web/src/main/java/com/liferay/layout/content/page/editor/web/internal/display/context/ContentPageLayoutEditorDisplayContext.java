@@ -487,8 +487,7 @@ public class ContentPageLayoutEditorDisplayContext
 		LayoutPageTemplateStructure layoutPageTemplateStructure =
 			_layoutPageTemplateStructureLocalService.
 				fetchLayoutPageTemplateStructure(
-					themeDisplay.getScopeGroupId(), themeDisplay.getPlid(),
-					true);
+					themeDisplay.getScopeGroupId(), themeDisplay.getPlid());
 
 		if (layoutPageTemplateStructure == null) {
 			return Collections.emptyList();
