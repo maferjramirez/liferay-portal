@@ -13,8 +13,6 @@ import com.liferay.portal.search.rest.client.resource.v1_0.SuggestionResource;
 
 import java.time.Duration;
 
-import java.util.Objects;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -60,8 +58,6 @@ public class TicketRestController extends BaseRestController {
 		log(jwt, _log, json);
 
 		JSONObject jsonObject = new JSONObject(json);
-
-		Objects.requireNonNull(jsonObject);
 
 		JSONObject objectEntryDTOTicketJSONObject = jsonObject.getJSONObject(
 			"objectEntryDTOTicket");
