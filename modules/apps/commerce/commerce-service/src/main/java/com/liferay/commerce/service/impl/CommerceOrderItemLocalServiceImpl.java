@@ -2418,8 +2418,8 @@ public class CommerceOrderItemLocalServiceImpl
 
 				if (cpInstanceUnitOfMeasure == null) {
 					throw new NoSuchCPInstanceUnitOfMeasureException(
-						"No CP instance unit of measure exists with the " +
-							"primary key " + unitOfMeasureKey);
+						"No commerce product instance unit of measure exists " +
+							"with the primary key " + unitOfMeasureKey);
 				}
 			}
 			else {
