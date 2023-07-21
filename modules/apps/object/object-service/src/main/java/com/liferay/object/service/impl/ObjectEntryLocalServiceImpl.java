@@ -1760,7 +1760,7 @@ public class ObjectEntryLocalServiceImpl
 		List<ObjectField> objectFields, Map<String, Serializable> values) {
 
 		for (ObjectField objectField : objectFields) {
-			if (values.containsKey(objectField.getName())) {
+			if (values.get(objectField.getName()) != null) {
 				continue;
 			}
 
