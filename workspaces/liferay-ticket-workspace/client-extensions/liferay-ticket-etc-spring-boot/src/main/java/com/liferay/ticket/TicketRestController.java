@@ -61,17 +61,6 @@ public class TicketRestController extends BaseRestController {
 
 		JSONObject jsonObject = new JSONObject(json);
 
-		_addDocumentationReferralAndQueue(
-			_lxcDXPServerProtocol, _lxcDXPMainDomain, jwt.getTokenValue(),
-			jsonObject);
-
-		return new ResponseEntity<>(json, HttpStatus.CREATED);
-	}
-
-	private void _addDocumentationReferralAndQueue(
-		String lxcDXPServerProtocol, String lxcDXPMainDomain, String jwtToken,
-		JSONObject jsonObject) {
-
 		Objects.requireNonNull(jsonObject);
 
 		JSONObject objectEntryDTOTicketJSONObject = jsonObject.getJSONObject(
@@ -97,7 +86,7 @@ public class TicketRestController extends BaseRestController {
 		WebClient.Builder builder = WebClient.builder();
 
 		WebClient webClient = builder.baseUrl(
-			lxcDXPServerProtocol + "://" + lxcDXPMainDomain
+			_lxcDXPServerProtocol + "://" + _lxcDXPMainDomain
 		).defaultHeader(
 			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
 		).defaultHeader(
@@ -111,7 +100,7 @@ public class TicketRestController extends BaseRestController {
 		).bodyValue(
 			propertiesJSONObject.toString()
 		).header(
-			HttpHeaders.AUTHORIZATION, "Bearer " + jwtToken
+			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).exchangeToMono(
 			clientResponse -> {
 				HttpStatus httpStatus = clientResponse.statusCode();
@@ -143,6 +132,8 @@ public class TicketRestController extends BaseRestController {
 				}
 			}
 		).subscribe();
+
+		return new ResponseEntity<>(json, HttpStatus.CREATED);
 	}
 
 	private String _getSuggestionsJSON(String subject) {
