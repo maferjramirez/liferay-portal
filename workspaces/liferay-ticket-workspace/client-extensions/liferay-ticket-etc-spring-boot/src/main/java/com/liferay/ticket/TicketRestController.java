@@ -11,8 +11,6 @@ import com.liferay.portal.search.rest.client.dto.v1_0.SuggestionsContributorResu
 import com.liferay.portal.search.rest.client.pagination.Page;
 import com.liferay.portal.search.rest.client.resource.v1_0.SuggestionResource;
 
-import java.time.Duration;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -30,11 +28,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
-
-import reactor.core.publisher.Mono;
-
-import reactor.util.retry.Retry;
 
 /**
  * @author Raymond Augé
@@ -59,69 +52,37 @@ public class TicketRestController extends BaseRestController {
 		JSONObject propertiesJSONObject =
 			objectEntryDTOTicketJSONObject.getJSONObject("properties");
 
+		propertiesJSONObject.put(
+			"suggestions",
+			_getSuggestionsJSON(propertiesJSONObject.getString("subject")));
+
 		JSONObject ticketStatusJSONObject = propertiesJSONObject.getJSONObject(
 			"ticketStatus");
 
-		String subject = propertiesJSONObject.getString("subject");
-
-		ticketStatusJSONObject.remove("name");
 		ticketStatusJSONObject.put("key", "queued");
-		propertiesJSONObject.put("suggestions", _getSuggestionsJSON(subject));
+		ticketStatusJSONObject.remove("name");
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"JSON OUTPUT: \n\n" + propertiesJSONObject.toString(4) + "\n");
+			_log.info("Properties: " + propertiesJSONObject.toString(4));
 		}
 
-		WebClient.Builder builder = WebClient.builder();
-
-		WebClient webClient = builder.baseUrl(
+		WebClient.create(
 			_lxcDXPServerProtocol + "://" + _lxcDXPMainDomain
-		).defaultHeader(
-			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
-		).defaultHeader(
-			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
-		).build();
-
-		webClient.patch(
+		).patch(
 		).uri(
-			"/o/c/tickets/{ticketId}",
-			objectEntryDTOTicketJSONObject.getLong("id")
-		).bodyValue(
-			propertiesJSONObject.toString()
+			"/o/c/tickets/" + objectEntryDTOTicketJSONObject.getString("id")
+		).accept(
+			MediaType.APPLICATION_JSON
+		).contentType(
+			MediaType.APPLICATION_JSON
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
-		).exchangeToMono(
-			clientResponse -> {
-				HttpStatus httpStatus = clientResponse.statusCode();
-
-				if (httpStatus.is2xxSuccessful()) {
-					return clientResponse.bodyToMono(String.class);
-				}
-				else if (httpStatus.is4xxClientError()) {
-					if (_log.isInfoEnabled()) {
-						_log.info("Output: " + httpStatus.getReasonPhrase());
-					}
-				}
-
-				Mono<WebClientResponseException> mono =
-					clientResponse.createException();
-
-				return mono.flatMap(Mono::error);
-			}
-		).retryWhen(
-			Retry.backoff(
-				3, Duration.ofSeconds(1)
-			).doAfterRetry(
-				retrySignal -> _log.info("Retrying request")
-			)
-		).doOnNext(
-			output -> {
-				if (_log.isInfoEnabled()) {
-					_log.info("Output: " + output);
-				}
-			}
-		).subscribe();
+		).bodyValue(
+			propertiesJSONObject.toString()
+		).retrieve(
+		).bodyToMono(
+			Void.class
+		).block();
 
 		return new ResponseEntity<>(json, HttpStatus.CREATED);
 	}
