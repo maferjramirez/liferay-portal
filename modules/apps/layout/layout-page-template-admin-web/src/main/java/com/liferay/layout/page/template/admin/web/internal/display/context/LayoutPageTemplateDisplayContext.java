@@ -336,12 +336,13 @@ public class LayoutPageTemplateDisplayContext {
 					String name = HtmlUtil.escape(
 						layoutPageTemplateCollection.getName());
 
-					long id =
+					long layoutPageTemplateCollectionId =
 						layoutPageTemplateCollection.
 							getLayoutPageTemplateCollectionId();
 
 					verticalNavItem.setActive(
-						id == getLayoutPageTemplateCollectionId());
+						layoutPageTemplateCollectionId ==
+							getLayoutPageTemplateCollectionId());
 
 					verticalNavItem.setHref(
 						PortletURLBuilder.createRenderURL(
