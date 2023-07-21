@@ -1052,15 +1052,6 @@ export async function getListTypeDefinitionByExternalReferenceCode(
 	return await response.json();
 }
 
-export async function getAccount(accountId: number) {
-	const response = await fetch(
-		`${baseURL}/o/headless-admin-user/v1.0/accounts/${accountId}`,
-		{headers}
-	);
-
-	return await response.json();
-}
-
 export async function postAccountByERCUserAccountByERC(
 	accountExternalReferenceCode: string,
 	userExternalReferenceCode: string
