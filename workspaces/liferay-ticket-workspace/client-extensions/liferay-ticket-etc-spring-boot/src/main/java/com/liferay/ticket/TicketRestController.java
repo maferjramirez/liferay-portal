@@ -54,7 +54,8 @@ public class TicketRestController extends BaseRestController {
 
 		propertiesJSONObject.put(
 			"suggestions",
-			_getSuggestionsJSON(propertiesJSONObject.getString("subject")));
+			_getSuggestionsJSONArray(
+				propertiesJSONObject.getString("subject")));
 
 		JSONObject ticketStatusJSONObject = propertiesJSONObject.getJSONObject(
 			"ticketStatus");
@@ -87,99 +88,87 @@ public class TicketRestController extends BaseRestController {
 		return new ResponseEntity<>(json, HttpStatus.OK);
 	}
 
-	private String _getSuggestionsJSON(String subject) {
+	private SuggestionsContributorConfiguration
+		_getSuggestionsContributorConfiguration() {
+
+		return new SuggestionsContributorConfiguration() {
+			{
+				setAttributes(
+					new JSONObject(
+					).put(
+						"includeAssetSearchSummary", true
+					).put(
+						"includeassetURL", true
+					).put(
+						"sxpBlueprintId", 3628599
+					));
+				setContributorName("sxpBlueprint");
+				setDisplayGroupName("Public Nav Search Recommendations");
+				setSize(3);
+			}
+		};
+	}
+
+	private JSONArray _getSuggestionsJSONArray(String subject) {
 		JSONArray suggestionsJSONArray = new JSONArray();
 
-		SuggestionsContributorConfiguration
-			suggestionsContributorConfiguration =
-				new SuggestionsContributorConfiguration();
-
-		suggestionsContributorConfiguration.setContributorName("sxpBlueprint");
-
-		suggestionsContributorConfiguration.setDisplayGroupName(
-			"Public Nav Search Recommendations");
-
-		suggestionsContributorConfiguration.setSize(3);
-
-		JSONObject attributesJSONObject = new JSONObject();
-
-		attributesJSONObject.put(
-			"includeAssetSearchSummary", true
-		).put(
-			"includeassetURL", true
-		).put(
-			"sxpBlueprintId", 3628599
-		);
-
-		suggestionsContributorConfiguration.setAttributes(attributesJSONObject);
-
-		SuggestionResource.Builder dataDefinitionResourceBuilder =
-			SuggestionResource.builder();
-
-		SuggestionResource suggestionResource =
-			dataDefinitionResourceBuilder.header(
-				HttpHeaders.USER_AGENT, TicketRestController.class.getName()
-			).header(
-				HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
-			).header(
-				HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
-			).endpoint(
-				"learn.liferay.com", 443, "https"
-			).build();
-
 		try {
-			Page<SuggestionsContributorResults>
-				suggestionsContributorResultsPage =
-					suggestionResource.postSuggestionsPage(
-						"https://learn.liferay.com", "/search", 3190049L, "",
-						1434L, "this-site", subject,
-						new SuggestionsContributorConfiguration[] {
-							suggestionsContributorConfiguration
-						});
+			SuggestionResource.Builder dataDefinitionResourceBuilder =
+				SuggestionResource.builder();
+
+			SuggestionResource suggestionResource =
+				dataDefinitionResourceBuilder.header(
+					HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
+				).header(
+					HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
+				).header(
+					HttpHeaders.USER_AGENT, TicketRestController.class.getName()
+				).endpoint(
+					"learn.liferay.com", 443, "https"
+				).build();
+
+			Page<SuggestionsContributorResults> page =
+				suggestionResource.postSuggestionsPage(
+					"https://learn.liferay.com", "/search", 3190049L, "", 1434L,
+					"this-site", subject,
+					new SuggestionsContributorConfiguration[] {
+						_getSuggestionsContributorConfiguration()
+					});
 
 			for (SuggestionsContributorResults suggestionsContributorResults :
-					suggestionsContributorResultsPage.getItems()) {
+					page.getItems()) {
 
-				Suggestion[] suggestions =
-					suggestionsContributorResults.getSuggestions();
+				for (Suggestion suggestion :
+						suggestionsContributorResults.getSuggestions()) {
 
-				for (Suggestion suggestion : suggestions) {
-					String text = suggestion.getText();
-
-					JSONObject suggestionAttributesJSONObject = new JSONObject(
+					JSONObject jsonObject = new JSONObject(
 						String.valueOf(suggestion.getAttributes()));
 
-					String assetURL =
-						(String)suggestionAttributesJSONObject.get("assetURL");
-
-					JSONObject suggestionJSONObject = new JSONObject();
-
-					suggestionJSONObject.put(
-						"assetURL", "https://learn.liferay.com" + assetURL
-					).put(
-						"text", text
-					);
-					suggestionsJSONArray.put(suggestionJSONObject);
+					suggestionsJSONArray.put(
+						new JSONObject(
+						).put(
+							"assetURL",
+							"https://learn.liferay.com" +
+								jsonObject.getString("assetURL")
+						).put(
+							"text", suggestion.getText()
+						));
 				}
 			}
 		}
 		catch (Exception exception) {
-			_log.error("Could not retrieve search suggestions", exception);
+			_log.error("Unable to get suggestions", exception);
 
-			// Always return something for the purposes of the workshop
-
-			JSONObject suggestionJSONObject = new JSONObject();
-
-			suggestionJSONObject.put(
-				"assetURL", "https://learn.liferay.com"
-			).put(
-				"text", "learn.liferay.com"
-			);
-
-			suggestionsJSONArray.put(suggestionJSONObject);
+			suggestionsJSONArray.put(
+				new JSONObject(
+				).put(
+					"assetURL", "https://learn.liferay.com"
+				).put(
+					"text", "learn.liferay.com"
+				));
 		}
 
-		return suggestionsJSONArray.toString();
+		return suggestionsJSONArray;
 	}
 
 	private static final Log _log = LogFactory.getLog(
