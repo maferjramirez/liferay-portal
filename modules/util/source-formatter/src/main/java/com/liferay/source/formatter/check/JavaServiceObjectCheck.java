@@ -141,6 +141,10 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 				Object[] modelInformation = _getModelInformation(
 					_getPackageName(variableTypeName, importNames));
 
+				if (modelInformation == null) {
+					continue outerLoop;
+				}
+
 				Element serviceXMLElement = (Element)modelInformation[0];
 
 				if (serviceXMLElement == null) {
@@ -301,6 +305,10 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 
 		Object[] modelInformation = _getModelInformation(
 			_getPackageName(variableTypeName, importNames));
+
+		if (modelInformation == null) {
+			return false;
+		}
 
 		Element serviceXMLElement = (Element)modelInformation[0];
 
