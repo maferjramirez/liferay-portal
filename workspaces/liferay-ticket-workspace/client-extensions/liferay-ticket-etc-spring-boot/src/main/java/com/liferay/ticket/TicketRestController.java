@@ -52,10 +52,6 @@ public class TicketRestController extends BaseRestController {
 
 	public static final String SUGGESTION_SCHEME = "https";
 
-	public TicketRestController() {
-		_initResourceBuilders();
-	}
-
 	@PostMapping("/ticket")
 	public ResponseEntity<String> post(
 		@AuthenticationPrincipal Jwt jwt, @RequestBody String json) {
@@ -179,10 +175,24 @@ public class TicketRestController extends BaseRestController {
 
 		suggestionsContributorConfiguration.setAttributes(attributesJSONObject);
 
+		SuggestionResource.Builder dataDefinitionResourceBuilder =
+			SuggestionResource.builder();
+
+		SuggestionResource suggestionResource =
+			dataDefinitionResourceBuilder.header(
+				HttpHeaders.USER_AGENT, TicketRestController.class.getName()
+			).header(
+				HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
+			).header(
+				HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
+			).endpoint(
+				SUGGESTION_HOST, SUGGESTION_PORT, SUGGESTION_SCHEME
+			).build();
+
 		try {
 			Page<SuggestionsContributorResults>
 				suggestionsContributorResultsPage =
-					_suggestionResource.postSuggestionsPage(
+					suggestionResource.postSuggestionsPage(
 						SUGGESTION_SCHEME + "://" + SUGGESTION_HOST, "/search",
 						3190049L, "", 1434L, "this-site", subject,
 						new SuggestionsContributorConfiguration[] {
@@ -235,21 +245,6 @@ public class TicketRestController extends BaseRestController {
 		return suggestionsJSONArray.toString();
 	}
 
-	private void _initResourceBuilders() {
-		SuggestionResource.Builder dataDefinitionResourceBuilder =
-			SuggestionResource.builder();
-
-		_suggestionResource = dataDefinitionResourceBuilder.header(
-			HttpHeaders.USER_AGENT, TicketRestController.class.getName()
-		).header(
-			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
-		).header(
-			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
-		).endpoint(
-			SUGGESTION_HOST, SUGGESTION_PORT, SUGGESTION_SCHEME
-		).build();
-	}
-
 	private static final Log _log = LogFactory.getLog(
 		TicketRestController.class);
 
@@ -258,7 +253,5 @@ public class TicketRestController extends BaseRestController {
 
 	@Value("${com.liferay.lxc.dxp.server.protocol}")
 	private String _lxcDXPServerProtocol;
-
-	private SuggestionResource _suggestionResource;
 
 }
