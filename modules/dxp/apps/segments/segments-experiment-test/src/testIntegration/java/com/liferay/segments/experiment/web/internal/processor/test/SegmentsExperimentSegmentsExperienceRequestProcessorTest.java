@@ -554,7 +554,7 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 	private SegmentsExperienceLocalService _segmentsExperienceLocalService;
 
 	@Inject(
-		filter = "component.name=*.SegmentsExperimentSegmentsExperienceRequestProcessor"
+		filter = "component.name=com.liferay.segments.experiment.web.internal.processor.SegmentsExperimentSegmentsExperienceRequestProcessor"
 	)
 	private SegmentsExperienceRequestProcessor
 		_segmentsExperienceRequestProcessor;

@@ -307,7 +307,9 @@ public class LayoutAnalyticsReportsInfoItemTest {
 		}
 	}
 
-	@Inject(filter = "component.name=*.LayoutAnalyticsReportsInfoItem")
+	@Inject(
+		filter = "component.name=com.liferay.analytics.reports.layout.internal.info.item.LayoutAnalyticsReportsInfoItem"
+	)
 	private AnalyticsReportsInfoItem<Layout> _analyticsReportsInfoItem;
 
 	@Inject
