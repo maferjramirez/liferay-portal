@@ -56,8 +56,8 @@ public class TicketRestController extends BaseRestController {
 		_initResourceBuilders();
 	}
 
-	@PostMapping("/ticket/object/action/documentation/referral")
-	public ResponseEntity<String> postTicketObjectAction1(
+	@PostMapping("/ticket")
+	public ResponseEntity<String> post(
 		@AuthenticationPrincipal Jwt jwt, @RequestBody String json) {
 
 		log(jwt, _log, json);
