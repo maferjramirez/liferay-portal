@@ -54,20 +54,16 @@ public class TicketRestController extends BaseRestController {
 
 	@PostMapping("/ticket")
 	public ResponseEntity<String> post(
-		@AuthenticationPrincipal Jwt jwt, @RequestBody String json) {
+			@AuthenticationPrincipal Jwt jwt, @RequestBody String json)
+		throws Exception {
 
 		log(jwt, _log, json);
 
-		try {
-			JSONObject jsonObject = new JSONObject(json);
+		JSONObject jsonObject = new JSONObject(json);
 
-			_addDocumentationReferralAndQueue(
-				_lxcDXPServerProtocol, _lxcDXPMainDomain, jwt.getTokenValue(),
-				jsonObject);
-		}
-		catch (Exception exception) {
-			_log.error("JSON: " + json, exception);
-		}
+		_addDocumentationReferralAndQueue(
+			_lxcDXPServerProtocol, _lxcDXPMainDomain, jwt.getTokenValue(),
+			jsonObject);
 
 		return new ResponseEntity<>(json, HttpStatus.CREATED);
 	}
