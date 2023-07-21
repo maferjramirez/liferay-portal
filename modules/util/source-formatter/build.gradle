@@ -60,6 +60,10 @@ deployDependencies {
 	rename(/checkstyle-(.+)\.jar/, "checkstyle" + renameSuffix)
 }
 
+formatSource {
+	enabled false
+}
+
 liferay {
 	deployDir = "../../../tools/sdk/dependencies/com.liferay.source.formatter/lib"
 }
