@@ -65,10 +65,10 @@ public class TicketCommandLineRunner implements CommandLineRunner {
 		).defaultHeader(
 			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
 		).defaultHeader(
-			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
-		).defaultHeader(
 			HttpHeaders.AUTHORIZATION,
 			"Bearer " + oAuth2AccessToken.getTokenValue()
+		).defaultHeader(
+			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
 		).build();
 
 		TicketsResponse ticketsResponse = webClient.get(
