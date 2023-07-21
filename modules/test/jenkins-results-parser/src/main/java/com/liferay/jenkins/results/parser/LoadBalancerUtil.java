@@ -8,6 +8,7 @@ package com.liferay.jenkins.results.parser;
 import java.io.StringReader;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -369,13 +370,7 @@ public class LoadBalancerUtil {
 				"List of good clock masters: " + goodClockString);
 		}
 
-		List<String> goodClockList = new ArrayList<>();
-
-		for (String goodClockItem : goodClockString.split(",")) {
-			goodClockList.add(goodClockItem.trim());
-		}
-
-		return goodClockList;
+		return Arrays.asList(goodClockString.split("\\s*,\\s*"));
 	}
 
 	private static long _getNextUpdateTimestamp(String masterPrefix) {
