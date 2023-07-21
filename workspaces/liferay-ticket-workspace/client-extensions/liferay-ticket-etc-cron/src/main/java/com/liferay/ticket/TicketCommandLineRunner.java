@@ -15,14 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.oauth2.client.AuthorizedClientServiceOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import reactor.core.publisher.Mono;
 
 /**
  * @author Gregory Amerson
@@ -43,13 +40,6 @@ public class TicketCommandLineRunner implements CommandLineRunner {
 			HttpHeaders.AUTHORIZATION,
 			"Bearer " + _oAuth2AccessToken.getTokenValue()
 		).retrieve(
-		).onStatus(
-			HttpStatus::isError,
-			response -> {
-				_log.error("Unable to get tickets: " + response.statusCode());
-
-				return Mono.error(new Exception());
-			}
 		).bodyToMono(
 			TicketsResponse.class
 		).block();
@@ -85,15 +75,6 @@ public class TicketCommandLineRunner implements CommandLineRunner {
 						HttpHeaders.AUTHORIZATION,
 						"Bearer " + _oAuth2AccessToken.getTokenValue()
 					).retrieve(
-					).onStatus(
-						HttpStatus::isError,
-						response -> {
-							_log.error(
-								"Unable to delete ticket: " +
-									response.statusCode());
-
-							return Mono.error(new Exception());
-						}
 					).toEntity(
 						Void.class
 					).block();
