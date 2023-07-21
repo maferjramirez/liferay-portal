@@ -84,7 +84,7 @@ public class TicketRestController extends BaseRestController {
 			Void.class
 		).block();
 
-		return new ResponseEntity<>(json, HttpStatus.CREATED);
+		return new ResponseEntity<>(json, HttpStatus.OK);
 	}
 
 	private String _getSuggestionsJSON(String subject) {
