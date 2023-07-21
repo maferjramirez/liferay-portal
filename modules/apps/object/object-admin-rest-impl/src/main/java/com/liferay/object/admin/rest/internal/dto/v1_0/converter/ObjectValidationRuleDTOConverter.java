@@ -108,9 +108,9 @@ public class ObjectValidationRuleDTOConverter
 
 	private ObjectValidationRuleSetting _toObjectValidationRuleSetting(
 		com.liferay.object.model.ObjectValidationRuleSetting
-			serviceBuilderObjectValidationRuleSetting) {
+			objectValidationRuleSetting) {
 
-		if (serviceBuilderObjectValidationRuleSetting == null) {
+		if (objectValidationRuleSetting == null) {
 			return null;
 		}
 
@@ -118,36 +118,32 @@ public class ObjectValidationRuleDTOConverter
 			{
 				setName(
 					() -> {
-						if (serviceBuilderObjectValidationRuleSetting.
-								compareName(
-									ObjectValidationRuleSettingConstants.
-										NAME_OBJECT_FIELD_ID)) {
+						if (objectValidationRuleSetting.compareName(
+								ObjectValidationRuleSettingConstants.
+									NAME_OBJECT_FIELD_ID)) {
 
 							return ObjectValidationRuleSettingConstants.
 								NAME_OBJECT_FIELD_EXTERNAL_REFERENCE_CODE;
 						}
 
-						return serviceBuilderObjectValidationRuleSetting.
-							getName();
+						return objectValidationRuleSetting.getName();
 					});
 				setValue(
 					() -> {
-						if (serviceBuilderObjectValidationRuleSetting.
-								compareName(
-									ObjectValidationRuleSettingConstants.
-										NAME_OBJECT_FIELD_ID)) {
+						if (objectValidationRuleSetting.compareName(
+								ObjectValidationRuleSettingConstants.
+									NAME_OBJECT_FIELD_ID)) {
 
 							ObjectField objectField =
 								_objectFieldLocalService.getObjectField(
 									GetterUtil.getLong(
-										serviceBuilderObjectValidationRuleSetting.
+										objectValidationRuleSetting.
 											getValue()));
 
 							return objectField.getExternalReferenceCode();
 						}
 
-						return serviceBuilderObjectValidationRuleSetting.
-							getValue();
+						return objectValidationRuleSetting.getValue();
 					});
 			}
 		};
