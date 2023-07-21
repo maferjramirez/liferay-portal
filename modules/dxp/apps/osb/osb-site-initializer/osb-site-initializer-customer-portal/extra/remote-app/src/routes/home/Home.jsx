@@ -10,7 +10,8 @@ import useHasManyProjects from './hooks/useHasManyProjects';
 
 import './app.scss';
 
-import useKoroneikiAccounts from '../../common/hooks/useKoroneikiAccounts';
+import {useAppPropertiesContext} from '~/common/contexts/AppPropertiesContext';
+import useKoroneikiAccounts from '~/common/hooks/useKoroneikiAccounts';
 import ProjectsNavbar from './components/ProjectsNavbar/ProjectsNavbar';
 
 const THRESHOLD_COUNT = 4;
@@ -24,6 +25,7 @@ const Home = () => {
 		search,
 		searching,
 	} = useKoroneikiAccounts();
+	const {featureFlags} = useAppPropertiesContext();
 	const koroneikiAccounts = data?.c?.koroneikiAccounts;
 
 	const hasManyProjects = useHasManyProjects(
@@ -33,7 +35,9 @@ const Home = () => {
 
 	return (
 		<>
-			<ProjectsNavbar loading={loading} />
+			{featureFlags.includes('LPS-191380') && (
+				<ProjectsNavbar loading={loading} />
+			)}
 
 			<ClayLayout.ContainerFluid
 				className="cp-home-wrapper"
