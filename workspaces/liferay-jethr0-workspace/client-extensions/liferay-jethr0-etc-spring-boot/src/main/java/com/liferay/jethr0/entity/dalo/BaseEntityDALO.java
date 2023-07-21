@@ -143,22 +143,33 @@ public abstract class BaseEntityDALO<T extends Entity>
 
 			@Override
 			public JSONObject execute() {
-				String response = WebClient.create(
-					StringUtil.combine(_liferayPortalURL, _getEntityURLPath())
-				).post(
-				).accept(
-					MediaType.APPLICATION_JSON
-				).contentType(
-					MediaType.APPLICATION_JSON
-				).header(
-					"Authorization",
-					_liferayOAuth2AccessTokenConfiguration.getAuthorization()
-				).body(
-					BodyInserters.fromValue(requestJSONObject.toString())
-				).retrieve(
-				).bodyToMono(
-					String.class
-				).block();
+				String response;
+
+				try {
+					response = WebClient.create(
+						StringUtil.combine(
+							_liferayPortalURL, _getEntityURLPath())
+					).post(
+					).accept(
+						MediaType.APPLICATION_JSON
+					).contentType(
+						MediaType.APPLICATION_JSON
+					).header(
+						"Authorization",
+						_liferayOAuth2AccessTokenConfiguration.
+							getAuthorization()
+					).body(
+						BodyInserters.fromValue(requestJSONObject.toString())
+					).retrieve(
+					).bodyToMono(
+						String.class
+					).block();
+				}
+				catch (Exception exception) {
+					_liferayOAuth2AccessTokenConfiguration.refresh();
+
+					throw new RuntimeException(exception);
+				}
 
 				if (response == null) {
 					throw new RuntimeException("No response");
@@ -174,11 +185,6 @@ public abstract class BaseEntityDALO<T extends Entity>
 				}
 
 				return responseJSONObject;
-			}
-
-			@Override
-			public void executeOnFailure() {
-				_liferayOAuth2AccessTokenConfiguration.refresh();
 			}
 
 			@Override
@@ -202,19 +208,27 @@ public abstract class BaseEntityDALO<T extends Entity>
 
 			@Override
 			public Void execute() {
-				WebClient.create(
-					StringUtil.combine(
-						_liferayPortalURL, _getEntityURLPath(objectEntryId))
-				).delete(
-				).accept(
-					MediaType.APPLICATION_JSON
-				).header(
-					"Authorization",
-					_liferayOAuth2AccessTokenConfiguration.getAuthorization()
-				).retrieve(
-				).bodyToMono(
-					Void.class
-				).block();
+				try {
+					WebClient.create(
+						StringUtil.combine(
+							_liferayPortalURL, _getEntityURLPath(objectEntryId))
+					).delete(
+					).accept(
+						MediaType.APPLICATION_JSON
+					).header(
+						"Authorization",
+						_liferayOAuth2AccessTokenConfiguration.
+							getAuthorization()
+					).retrieve(
+					).bodyToMono(
+						Void.class
+					).block();
+				}
+				catch (Exception exception) {
+					_liferayOAuth2AccessTokenConfiguration.refresh();
+
+					throw new RuntimeException(exception);
+				}
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(
@@ -223,11 +237,6 @@ public abstract class BaseEntityDALO<T extends Entity>
 				}
 
 				return null;
-			}
-
-			@Override
-			public void executeOnFailure() {
-				_liferayOAuth2AccessTokenConfiguration.refresh();
 			}
 
 			@Override
@@ -257,35 +266,45 @@ public abstract class BaseEntityDALO<T extends Entity>
 
 					@Override
 					public Pair<Integer, Set<JSONObject>> execute() {
-						String response = WebClient.create(
-							StringUtil.combine(
-								_liferayPortalURL, _getEntityURLPath())
-						).get(
-						).uri(
-							uriBuilder -> {
-								uriBuilder = uriBuilder.queryParam(
-									"page", String.valueOf(finalCurrentPage));
+						String response;
 
-								if (filter != null) {
-									uriBuilder.queryParam("filter", filter);
+						try {
+							response = WebClient.create(
+								StringUtil.combine(
+									_liferayPortalURL, _getEntityURLPath())
+							).get(
+							).uri(
+								uriBuilder -> {
+									uriBuilder = uriBuilder.queryParam(
+										"page",
+										String.valueOf(finalCurrentPage));
+
+									if (filter != null) {
+										uriBuilder.queryParam("filter", filter);
+									}
+
+									if (search != null) {
+										uriBuilder.queryParam("search", search);
+									}
+
+									return uriBuilder.build();
 								}
+							).accept(
+								MediaType.APPLICATION_JSON
+							).header(
+								"Authorization",
+								_liferayOAuth2AccessTokenConfiguration.
+									getAuthorization()
+							).retrieve(
+							).bodyToMono(
+								String.class
+							).block();
+						}
+						catch (Exception exception) {
+							_liferayOAuth2AccessTokenConfiguration.refresh();
 
-								if (search != null) {
-									uriBuilder.queryParam("search", search);
-								}
-
-								return uriBuilder.build();
-							}
-						).accept(
-							MediaType.APPLICATION_JSON
-						).header(
-							"Authorization",
-							_liferayOAuth2AccessTokenConfiguration.
-								getAuthorization()
-						).retrieve(
-						).bodyToMono(
-							String.class
-						).block();
+							throw new RuntimeException(exception);
+						}
 
 						if (response == null) {
 							throw new RuntimeException("No response");
@@ -310,11 +329,6 @@ public abstract class BaseEntityDALO<T extends Entity>
 						}
 
 						return new Pair<>(lastPage, jsonObjects);
-					}
-
-					@Override
-					public void executeOnFailure() {
-						_liferayOAuth2AccessTokenConfiguration.refresh();
 					}
 
 					@Override
@@ -399,24 +413,34 @@ public abstract class BaseEntityDALO<T extends Entity>
 
 			@Override
 			public JSONObject execute() {
-				String response = WebClient.create(
-					StringUtil.combine(
-						_liferayPortalURL,
-						_getEntityURLPath(requestObjectEntryId))
-				).put(
-				).accept(
-					MediaType.APPLICATION_JSON
-				).contentType(
-					MediaType.APPLICATION_JSON
-				).header(
-					"Authorization",
-					_liferayOAuth2AccessTokenConfiguration.getAuthorization()
-				).body(
-					BodyInserters.fromValue(requestJSONObject.toString())
-				).retrieve(
-				).bodyToMono(
-					String.class
-				).block();
+				String response;
+
+				try {
+					response = WebClient.create(
+						StringUtil.combine(
+							_liferayPortalURL,
+							_getEntityURLPath(requestObjectEntryId))
+					).put(
+					).accept(
+						MediaType.APPLICATION_JSON
+					).contentType(
+						MediaType.APPLICATION_JSON
+					).header(
+						"Authorization",
+						_liferayOAuth2AccessTokenConfiguration.
+							getAuthorization()
+					).body(
+						BodyInserters.fromValue(requestJSONObject.toString())
+					).retrieve(
+					).bodyToMono(
+						String.class
+					).block();
+				}
+				catch (Exception exception) {
+					_liferayOAuth2AccessTokenConfiguration.refresh();
+
+					throw new RuntimeException(exception);
+				}
 
 				if (response == null) {
 					throw new RuntimeException("No response");
@@ -443,11 +467,6 @@ public abstract class BaseEntityDALO<T extends Entity>
 				}
 
 				return responseJSONObject;
-			}
-
-			@Override
-			public void executeOnFailure() {
-				_liferayOAuth2AccessTokenConfiguration.refresh();
 			}
 
 			@Override

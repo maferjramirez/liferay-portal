@@ -168,20 +168,30 @@ public abstract class BaseEntityRelationshipDALO
 
 			@Override
 			public Void execute() {
-				String response = WebClient.create(
-					objectRelationshipURL
-				).put(
-				).accept(
-					MediaType.APPLICATION_JSON
-				).contentType(
-					MediaType.APPLICATION_JSON
-				).header(
-					"Authorization",
-					_liferayOAuth2AccessTokenConfiguration.getAuthorization()
-				).retrieve(
-				).bodyToMono(
-					String.class
-				).block();
+				String response;
+
+				try {
+					response = WebClient.create(
+						objectRelationshipURL
+					).put(
+					).accept(
+						MediaType.APPLICATION_JSON
+					).contentType(
+						MediaType.APPLICATION_JSON
+					).header(
+						"Authorization",
+						_liferayOAuth2AccessTokenConfiguration.
+							getAuthorization()
+					).retrieve(
+					).bodyToMono(
+						String.class
+					).block();
+				}
+				catch (Exception exception) {
+					_liferayOAuth2AccessTokenConfiguration.refresh();
+
+					throw new RuntimeException(exception);
+				}
 
 				if (response == null) {
 					throw new RuntimeException("No response");
@@ -197,11 +207,6 @@ public abstract class BaseEntityRelationshipDALO
 				}
 
 				return null;
-			}
-
-			@Override
-			public void executeOnFailure() {
-				_liferayOAuth2AccessTokenConfiguration.refresh();
 			}
 
 			@Override
@@ -229,18 +234,26 @@ public abstract class BaseEntityRelationshipDALO
 
 			@Override
 			public Void execute() {
-				WebClient.create(
-					objectRelationshipURL
-				).delete(
-				).accept(
-					MediaType.APPLICATION_JSON
-				).header(
-					"Authorization",
-					_liferayOAuth2AccessTokenConfiguration.getAuthorization()
-				).retrieve(
-				).bodyToMono(
-					String.class
-				).block();
+				try {
+					WebClient.create(
+						objectRelationshipURL
+					).delete(
+					).accept(
+						MediaType.APPLICATION_JSON
+					).header(
+						"Authorization",
+						_liferayOAuth2AccessTokenConfiguration.
+							getAuthorization()
+					).retrieve(
+					).bodyToMono(
+						String.class
+					).block();
+				}
+				catch (Exception exception) {
+					_liferayOAuth2AccessTokenConfiguration.refresh();
+
+					throw new RuntimeException(exception);
+				}
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(
@@ -250,11 +263,6 @@ public abstract class BaseEntityRelationshipDALO
 				}
 
 				return null;
-			}
-
-			@Override
-			public void executeOnFailure() {
-				_liferayOAuth2AccessTokenConfiguration.refresh();
 			}
 
 			@Override
@@ -290,23 +298,32 @@ public abstract class BaseEntityRelationshipDALO
 
 					@Override
 					public Pair<Integer, Set<JSONObject>> execute() {
-						String response = WebClient.create(
-							objectRelationshipURL
-						).get(
-						).uri(
-							uriBuilder -> uriBuilder.queryParam(
-								"page", String.valueOf(finalCurrentPage)
-							).build()
-						).accept(
-							MediaType.APPLICATION_JSON
-						).header(
-							"Authorization",
-							_liferayOAuth2AccessTokenConfiguration.
-								getAuthorization()
-						).retrieve(
-						).bodyToMono(
-							String.class
-						).block();
+						String response;
+
+						try {
+							response = WebClient.create(
+								objectRelationshipURL
+							).get(
+							).uri(
+								uriBuilder -> uriBuilder.queryParam(
+									"page", String.valueOf(finalCurrentPage)
+								).build()
+							).accept(
+								MediaType.APPLICATION_JSON
+							).header(
+								"Authorization",
+								_liferayOAuth2AccessTokenConfiguration.
+									getAuthorization()
+							).retrieve(
+							).bodyToMono(
+								String.class
+							).block();
+						}
+						catch (Exception exception) {
+							_liferayOAuth2AccessTokenConfiguration.refresh();
+
+							throw new RuntimeException(exception);
+						}
 
 						if (response == null) {
 							throw new RuntimeException("No response");
@@ -331,11 +348,6 @@ public abstract class BaseEntityRelationshipDALO
 						}
 
 						return new Pair<>(lastPage, jsonObjects);
-					}
-
-					@Override
-					public void executeOnFailure() {
-						_liferayOAuth2AccessTokenConfiguration.refresh();
 					}
 
 					@Override
