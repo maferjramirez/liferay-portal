@@ -18,7 +18,7 @@ type DataError = {
 };
 
 interface BaseAPIApplicationFieldsProps {
-	baseURL: string;
+	basePath: string;
 	data: Partial<APIApplicationItem>;
 	displayError: DataError;
 	setData: Dispatch<SetStateAction<Partial<APIApplicationItem>>>;
@@ -26,7 +26,7 @@ interface BaseAPIApplicationFieldsProps {
 }
 
 export default function BaseAPIApplicationFields({
-	baseURL,
+	basePath,
 	data,
 	displayError,
 	setData,
@@ -113,7 +113,7 @@ export default function BaseAPIApplicationFields({
 				<br />
 
 				<Text as="p" id="hostTextPreview" size={2} weight="lighter">
-					{`${window.location.origin}${baseURL}`}
+					{`${window.location.origin}${basePath}`}
 				</Text>
 
 				<ClayInput
