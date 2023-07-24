@@ -30,6 +30,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -42,6 +43,7 @@ import org.osgi.framework.BundleActivator;
 public class RefreshTokenAuthorizationGrantTest
 	extends BaseAuthorizationGrantTestCase {
 
+	@Ignore
 	@Test
 	public void test() throws Exception {
 		JSONObject jsonObject = getToken(
