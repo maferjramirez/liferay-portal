@@ -16,6 +16,8 @@ import com.liferay.portal.kernel.exception.NoSuchGroupException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.lock.Lock;
+import com.liferay.portal.kernel.lock.LockManagerUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ColorScheme;
@@ -49,6 +51,7 @@ import com.liferay.portal.kernel.service.ThemeLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.LayoutPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpComponentsUtil;
@@ -1397,6 +1400,22 @@ public class LayoutImpl extends LayoutBaseImpl {
 		}
 
 		return false;
+	}
+
+	@Override
+	public boolean isUnlocked(String mode, long userId) {
+		if (!Objects.equals(mode, Constants.EDIT) || !isDraftLayout()) {
+			return true;
+		}
+
+		Lock lock = LockManagerUtil.fetchLock(
+			Layout.class.getName(), getPlid());
+
+		if ((lock != null) && (lock.getUserId() != userId)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	@Override
