@@ -7,6 +7,7 @@ package com.liferay.headless.builder.internal.application.publisher;
 
 import com.liferay.headless.builder.application.APIApplication;
 import com.liferay.headless.builder.application.publisher.APIApplicationPublisher;
+import com.liferay.headless.builder.constants.HeadlessBuilderConstants;
 import com.liferay.headless.builder.internal.application.resource.HeadlessBuilderResourceImpl;
 import com.liferay.headless.builder.internal.application.resource.OpenAPIResourceImpl;
 import com.liferay.headless.builder.internal.helper.ObjectEntryHelper;
@@ -139,7 +140,8 @@ public class APIApplicationPublisherImpl implements APIApplicationPublisher {
 				"liferay.jackson", false
 			).put(
 				"osgi.jaxrs.application.base",
-				"/c/" + apiApplication.getBaseURL()
+				HeadlessBuilderConstants.BASE_URL_SUFFIX +
+					apiApplication.getBaseURL()
 			).put(
 				"osgi.jaxrs.extension.select",
 				"(osgi.jaxrs.name=Liferay.Vulcan)"
