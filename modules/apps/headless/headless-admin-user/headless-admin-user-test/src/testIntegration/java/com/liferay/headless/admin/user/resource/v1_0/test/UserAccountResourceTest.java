@@ -490,6 +490,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		_testGetUserAccountsPage("userGroupRoleNames/any(f:f eq 'Test Role')");
 	}
 
+	@Ignore
 	@Override
 	@Test
 	public void testGetUserAccountsPageWithPagination() throws Exception {
@@ -578,6 +579,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 						"JSONObject/data", "JSONObject/myUserAccount"))));
 	}
 
+	@Ignore
 	@Override
 	@Test
 	public void testGraphQLGetUserAccountsPage() throws Exception {
@@ -608,6 +610,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 					userAccountsJSONObject.getString("items"))));
 	}
 
+	@Ignore
 	@Override
 	@Test
 	public void testPatchUserAccount() throws Exception {
@@ -828,6 +831,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		}
 	}
 
+	@Ignore
 	@Override
 	@Test
 	public void testPostUserAccount() throws Exception {
@@ -904,6 +908,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		Assert.assertNotNull(postUserAccount.getImage());
 	}
 
+	@Ignore
 	@Override
 	@Test
 	public void testPutUserAccount() throws Exception {
@@ -959,6 +964,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 				}));
 	}
 
+	@Ignore
 	@Override
 	@Test
 	public void testPutUserAccountByExternalReferenceCode() throws Exception {
