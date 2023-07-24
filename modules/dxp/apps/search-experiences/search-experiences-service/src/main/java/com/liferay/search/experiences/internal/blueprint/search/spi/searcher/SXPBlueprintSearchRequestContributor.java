@@ -148,7 +148,7 @@ public class SXPBlueprintSearchRequestContributor
 		for (String sxpBlueprintExternalReferenceCode :
 				sxpBlueprintExternalReferenceCodes) {
 
-			if (sxpBlueprintExternalReferenceCode == null) {
+			if (Validator.isBlank(sxpBlueprintExternalReferenceCode)) {
 				continue;
 			}
 
