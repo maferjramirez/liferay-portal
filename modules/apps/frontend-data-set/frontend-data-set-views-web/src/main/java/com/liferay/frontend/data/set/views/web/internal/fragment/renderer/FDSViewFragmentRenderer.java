@@ -151,8 +151,9 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 				catch (Exception exception) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to get FDS View with ERC " +
-								externalReferenceCode,
+							"Unable to get frontend data set view with " +
+								"external reference code " +
+									externalReferenceCode,
 							exception);
 					}
 				}
