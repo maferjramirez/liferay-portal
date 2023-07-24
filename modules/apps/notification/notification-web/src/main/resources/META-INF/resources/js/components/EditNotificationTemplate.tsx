@@ -320,10 +320,12 @@ export default function EditNotificationTemplate({
 						values={values}
 					/>
 
-					<DefinitionOfTermsContainer
-						baseResourceURL={baseResourceURL}
-						objectDefinitions={objectDefinitions}
-					/>
+					{Liferay.FeatureFlags['LPS-165849'] && (
+						<DefinitionOfTermsContainer
+							baseResourceURL={baseResourceURL}
+							objectDefinitions={objectDefinitions}
+						/>
+					)}
 				</div>
 			</div>
 		</ClayForm>
