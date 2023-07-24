@@ -5,7 +5,7 @@
 
 package com.liferay.portal.spring.hibernate;
 
-import com.liferay.portal.kernel.db.partition.DBPartition;
+import com.liferay.portal.db.partition.DBPartitionUtil;
 
 import java.sql.Connection;
 
@@ -137,7 +137,7 @@ public class PortletTransactionManager implements PlatformTransactionManager {
 			_portletSessionFactory,
 			_createSessionHolder(portletSession, portalSessionHolder));
 
-		if (DBPartition.isPartitionEnabled()) {
+		if (DBPartitionUtil.isPartitionEnabled()) {
 			LastSessionRecorderUtil.addPortletSession(portletSession);
 		}
 
