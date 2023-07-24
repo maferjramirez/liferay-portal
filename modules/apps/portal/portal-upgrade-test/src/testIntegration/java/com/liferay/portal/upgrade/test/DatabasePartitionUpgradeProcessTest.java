@@ -45,6 +45,7 @@ public class DatabasePartitionUpgradeProcessTest {
 	public static void setUpClass() {
 		_originalDatabasePartitionEnabled = PropsUtil.get(
 			"database.partition.enabled");
+
 		_originalDatabasePartitionThreadPoolEnabled =
 			ReflectionTestUtil.getFieldValue(
 				DBPartitionUtil.class,
