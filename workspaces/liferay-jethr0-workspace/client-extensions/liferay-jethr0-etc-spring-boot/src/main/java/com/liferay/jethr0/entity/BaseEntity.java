@@ -5,6 +5,7 @@
 
 package com.liferay.jethr0.entity;
 
+import com.liferay.jethr0.util.BaseRetryable;
 import com.liferay.jethr0.util.Retryable;
 import com.liferay.jethr0.util.StringUtil;
 
@@ -156,7 +157,7 @@ public abstract class BaseEntity implements Entity {
 	}
 
 	private Date _getDateFromJSON(JSONObject jsonObject, String dateKey) {
-		Retryable<Date> retryable = new Retryable<Date>() {
+		Retryable<Date> retryable = new BaseRetryable<Date>() {
 
 			@Override
 			public Date execute() {

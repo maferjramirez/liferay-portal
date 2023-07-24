@@ -8,6 +8,7 @@ package com.liferay.jethr0.entity.dalo;
 import com.liferay.client.extension.util.spring.boot.LiferayOAuth2AccessTokenConfiguration;
 import com.liferay.jethr0.entity.Entity;
 import com.liferay.jethr0.entity.factory.EntityFactory;
+import com.liferay.jethr0.util.BaseRetryable;
 import com.liferay.jethr0.util.Retryable;
 import com.liferay.jethr0.util.StringUtil;
 
@@ -139,7 +140,7 @@ public abstract class BaseEntityDALO<T extends Entity>
 	}
 
 	private JSONObject _create(JSONObject requestJSONObject) {
-		Retryable<JSONObject> retryable = new Retryable<JSONObject>() {
+		Retryable<JSONObject> retryable = new BaseRetryable<JSONObject>() {
 
 			@Override
 			public JSONObject execute() {
@@ -204,7 +205,7 @@ public abstract class BaseEntityDALO<T extends Entity>
 			return;
 		}
 
-		Retryable<Void> retryable = new Retryable<Void>() {
+		Retryable<Void> retryable = new BaseRetryable<Void>() {
 
 			@Override
 			public Void execute() {
@@ -262,7 +263,7 @@ public abstract class BaseEntityDALO<T extends Entity>
 			int finalCurrentPage = currentPage;
 
 			Retryable<Pair<Integer, Set<JSONObject>>> retryable =
-				new Retryable<Pair<Integer, Set<JSONObject>>>() {
+				new BaseRetryable<Pair<Integer, Set<JSONObject>>>() {
 
 					@Override
 					public Pair<Integer, Set<JSONObject>> execute() {
@@ -369,7 +370,7 @@ public abstract class BaseEntityDALO<T extends Entity>
 	}
 
 	private Date _getDateFromJSON(JSONObject jsonObject, String dateKey) {
-		Retryable<Date> retryable = new Retryable<Date>() {
+		Retryable<Date> retryable = new BaseRetryable<Date>() {
 
 			@Override
 			public Date execute() {
@@ -409,7 +410,7 @@ public abstract class BaseEntityDALO<T extends Entity>
 	private JSONObject _update(JSONObject requestJSONObject) {
 		long requestObjectEntryId = requestJSONObject.getLong("id");
 
-		Retryable<JSONObject> retryable = new Retryable<JSONObject>() {
+		Retryable<JSONObject> retryable = new BaseRetryable<JSONObject>() {
 
 			@Override
 			public JSONObject execute() {

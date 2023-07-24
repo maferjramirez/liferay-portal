@@ -8,6 +8,7 @@ package com.liferay.jethr0.entity.dalo;
 import com.liferay.client.extension.util.spring.boot.LiferayOAuth2AccessTokenConfiguration;
 import com.liferay.jethr0.entity.Entity;
 import com.liferay.jethr0.entity.factory.EntityFactory;
+import com.liferay.jethr0.util.BaseRetryable;
 import com.liferay.jethr0.util.Retryable;
 import com.liferay.jethr0.util.StringUtil;
 
@@ -164,7 +165,7 @@ public abstract class BaseEntityRelationshipDALO
 			_liferayPortalURL, objectDefinitionURLPath, "/", objectEntryId, "/",
 			getObjectRelationshipName(), "/", relatedObjectEntryId);
 
-		Retryable<Void> retryable = new Retryable<Void>() {
+		Retryable<Void> retryable = new BaseRetryable<Void>() {
 
 			@Override
 			public Void execute() {
@@ -230,7 +231,7 @@ public abstract class BaseEntityRelationshipDALO
 			_liferayPortalURL, objectDefinitionURLPath, "/", objectEntryId, "/",
 			getObjectRelationshipName(), "/", relatedObjectEntryId);
 
-		Retryable<Void> retryable = new Retryable<Void>() {
+		Retryable<Void> retryable = new BaseRetryable<Void>() {
 
 			@Override
 			public Void execute() {
@@ -294,7 +295,7 @@ public abstract class BaseEntityRelationshipDALO
 			int finalCurrentPage = currentPage;
 
 			Retryable<Pair<Integer, Set<JSONObject>>> retryable =
-				new Retryable<Pair<Integer, Set<JSONObject>>>() {
+				new BaseRetryable<Pair<Integer, Set<JSONObject>>>() {
 
 					@Override
 					public Pair<Integer, Set<JSONObject>> execute() {
