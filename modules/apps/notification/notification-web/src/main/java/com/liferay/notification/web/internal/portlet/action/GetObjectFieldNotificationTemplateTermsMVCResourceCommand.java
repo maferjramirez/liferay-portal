@@ -57,9 +57,15 @@ public class GetObjectFieldNotificationTemplateTermsMVCResourceCommand
 			return;
 		}
 
-		JSONArray relationshipSectionsJSONArray = jsonFactory.createJSONArray();
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		JSONArray termsJSONArray = getTermsJSONArray(
+			_objectFieldLocalService.getObjectFields(
+				objectDefinition.getObjectDefinitionId()),
+			objectDefinition.getShortName(), themeDisplay);
+
+		JSONArray relationshipSectionsJSONArray = jsonFactory.createJSONArray();
 
 		for (ObjectRelationship objectRelationship :
 				_objectRelationshipLocalService.
@@ -101,11 +107,7 @@ public class GetObjectFieldNotificationTemplateTermsMVCResourceCommand
 			JSONUtil.put(
 				"relationshipSections", relationshipSectionsJSONArray
 			).put(
-				"terms",
-				getTermsJSONArray(
-					_objectFieldLocalService.getObjectFields(
-						objectDefinition.getObjectDefinitionId()),
-					objectDefinition.getShortName(), themeDisplay)
+				"terms", termsJSONArray
 			));
 	}
 
