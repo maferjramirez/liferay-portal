@@ -7,15 +7,16 @@ package com.liferay.portal.upgrade.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.function.UnsafeConsumer;
-import com.liferay.portal.db.partition.DBPartitionUtil;
-import com.liferay.portal.kernel.db.partition.DBPartition;
-import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
+import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.Props;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.util.PropsUtil;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -43,34 +44,24 @@ public class DatabasePartitionUpgradeProcessTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		_originalDatabasePartitionEnabled = PropsUtil.get(
-			"database.partition.enabled");
-
-		_originalDatabasePartitionThreadPoolEnabled =
-			ReflectionTestUtil.getFieldValue(
-				DBPartitionUtil.class,
-				"_DATABASE_PARTITION_THREAD_POOL_ENABLED");
+		_originalProps = PropsUtil.getProps();
 	}
 
 	@AfterClass
 	public static void tearDownClass() {
-		ReflectionTestUtil.setFieldValue(
-			DBPartitionUtil.class, "_DATABASE_PARTITION_THREAD_POOL_ENABLED",
-			_originalDatabasePartitionThreadPoolEnabled);
-
-		PropsUtil.set(
-			"database.partition.enabled", _originalDatabasePartitionEnabled);
+		PropsUtil.setProps(_originalProps);
 	}
 
 	@Test
 	public void testUpgradeWithDatabasePartitionDisabled()
 		throws UpgradeException {
 
-		PropsUtil.set("database.partition.enabled", "false");
-
-		ReflectionTestUtil.setFieldValue(
-			DBPartitionUtil.class, "_DATABASE_PARTITION_THREAD_POOL_ENABLED",
-			true);
+		PropsTestUtil.setProps(
+			HashMapBuilder.<String, Object>put(
+				"database.partition.enabled", "false"
+			).put(
+				"database.partition.thread.pool.enabled", "true"
+			).build());
 
 		UpgradeProcess upgradeProcess = new AssertConnectionUpgradeProcess();
 
@@ -81,19 +72,19 @@ public class DatabasePartitionUpgradeProcessTest {
 	public void testUpgradeWithDatabasePartitionEnabled()
 		throws UpgradeException {
 
-		PropsUtil.set("database.partition.enabled", "true");
-
-		ReflectionTestUtil.setFieldValue(
-			DBPartitionUtil.class, "_DATABASE_PARTITION_THREAD_POOL_ENABLED",
-			true);
+		PropsTestUtil.setProps(
+			HashMapBuilder.<String, Object>put(
+				"database.partition.enabled", "true"
+			).put(
+				"database.partition.thread.pool.enabled", "true"
+			).build());
 
 		UpgradeProcess upgradeProcess = new AssertConnectionUpgradeProcess();
 
 		upgradeProcess.upgrade();
 	}
 
-	private static String _originalDatabasePartitionEnabled;
-	private static boolean _originalDatabasePartitionThreadPoolEnabled;
+	private static Props _originalProps;
 
 	private class AssertConnectionUpgradeProcess extends DummyUpgradeProcess {
 
@@ -101,7 +92,9 @@ public class DatabasePartitionUpgradeProcessTest {
 		protected void process(UnsafeConsumer<Long, Exception> unsafeConsumer)
 			throws Exception {
 
-			if (DBPartition.isPartitionEnabled()) {
+			if (GetterUtil.getBoolean(
+					PropsUtil.get("database.partition.enabled"))) {
+
 				Assert.assertNotSame(_getConnection(), _getConnection());
 			}
 			else {
