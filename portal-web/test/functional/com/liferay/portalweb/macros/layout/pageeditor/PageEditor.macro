@@ -2858,12 +2858,12 @@ definition {
 
 			if (${successMessage} == "Embedded") {
 				Select(
-					key_fieldLabel = "Success Message",
+					key_fieldLabel = "Success Interaction",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "Embedded");
 
 				AssertSelectedLabel(
-					key_fieldLabel = "Success Message",
+					key_fieldLabel = "Success Interaction",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "Embedded");
 
@@ -2888,12 +2888,12 @@ definition {
 			}
 			else if (${successMessage} == "Page") {
 				Select(
-					key_fieldLabel = "Success Message",
+					key_fieldLabel = "Success Interaction",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "Page");
 
 				AssertSelectedLabel(
-					key_fieldLabel = "Success Message",
+					key_fieldLabel = "Success Interaction",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "Page");
 
@@ -2939,12 +2939,12 @@ definition {
 			}
 			else if (${successMessage} == "External URL") {
 				Select(
-					key_fieldLabel = "Success Message",
+					key_fieldLabel = "Success Interaction",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "External URL");
 
 				AssertSelectedLabel(
-					key_fieldLabel = "Success Message",
+					key_fieldLabel = "Success Interaction",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "External URL");
 
@@ -2963,12 +2963,12 @@ definition {
 			}
 			else if (${successMessage} == "Entry Display Page") {
 				Select(
-					key_fieldLabel = "Success Message",
+					key_fieldLabel = "Success Interaction",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "Entry Display Page");
 
 				AssertSelectedLabel(
-					key_fieldLabel = "Success Message",
+					key_fieldLabel = "Success Interaction",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "Entry Display Page");
 
