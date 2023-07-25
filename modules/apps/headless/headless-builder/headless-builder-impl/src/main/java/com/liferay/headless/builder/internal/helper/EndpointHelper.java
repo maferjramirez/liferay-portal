@@ -123,8 +123,6 @@ public class EndpointHelper {
 			return objectEntryProperties.get(property.getSourceFieldName());
 		}
 
-		List<Object> flattenValues = new ArrayList<>();
-
 		List<Object> values = new ArrayList<>();
 
 		Map<String, Object> properties = objectEntry.getProperties();
@@ -133,23 +131,19 @@ public class EndpointHelper {
 			relationshipsNames.remove(0));
 
 		for (ObjectEntry relatedObjectEntry : relatedObjectEntries) {
-			values.add(
-				_getRelatedObjectValue(
-					relatedObjectEntry, property,
-					new ArrayList<>(relationshipsNames)));
-		}
+			Object value = _getRelatedObjectValue(
+				relatedObjectEntry, property,
+				new ArrayList<>(relationshipsNames));
 
-		for (Object value : values) {
 			if (value instanceof Collection<?>) {
-				flattenValues.addAll((Collection<?>)value);
-
-				continue;
+				values.addAll((Collection<?>)value);
 			}
-
-			flattenValues.add(value);
+			else {
+				values.add(value);
+			}
 		}
 
-		return flattenValues;
+		return values;
 	}
 
 	@Reference
