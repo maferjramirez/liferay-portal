@@ -161,7 +161,6 @@ public class APIEndpointRelevantObjectEntryModelListener
 				"' and r_apiApplicationToAPIEndpoints_c_apiApplicationId eq '",
 				values.get("r_apiApplicationToAPIEndpoints_c_apiApplicationId"),
 				"'");
-
 			ObjectDefinition apiEndpointObjectDefinition =
 				_objectDefinitionLocalService.getObjectDefinition(
 					objectEntry.getObjectDefinitionId());
