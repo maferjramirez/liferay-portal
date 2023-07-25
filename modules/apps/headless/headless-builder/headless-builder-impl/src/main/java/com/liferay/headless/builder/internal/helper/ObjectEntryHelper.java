@@ -159,8 +159,7 @@ public class ObjectEntryHelper {
 	}
 
 	public boolean isValidObjectEntry(
-			long objectEntryId,
-			String expectedObjectDefinitionExternalReferenceCode)
+			long objectEntryId, String externalReferenceCode)
 		throws Exception {
 
 		if (objectEntryId == 0) {
@@ -180,7 +179,7 @@ public class ObjectEntryHelper {
 
 		if (!Objects.equals(
 				objectDefinition.getExternalReferenceCode(),
-				expectedObjectDefinitionExternalReferenceCode)) {
+				externalReferenceCode)) {
 
 			return false;
 		}
