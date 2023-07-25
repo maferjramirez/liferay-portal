@@ -50,10 +50,8 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 
 		_objectDefinitionJSONObject1 = _addObjectDefinition(
 			_OBJECT_FIELD_ERC_1, _OBJECT_FIELD_NAME_1);
-
 		_objectDefinitionJSONObject2 = _addObjectDefinition(
 			_OBJECT_FIELD_ERC_2, _OBJECT_FIELD_NAME_2);
-
 		_objectDefinitionJSONObject3 = _addObjectDefinition(
 			_OBJECT_FIELD_ERC_3, _OBJECT_FIELD_NAME_3);
 
@@ -61,7 +59,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			_objectDefinitionJSONObject1, _objectDefinitionJSONObject2,
 			"a" + RandomTestUtil.randomString(),
 			ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
-
 		_objectRelationshipJSONObject2 = _addObjectRelationship(
 			_objectDefinitionJSONObject2, _objectDefinitionJSONObject3,
 			"a" + RandomTestUtil.randomString(),
@@ -108,19 +105,18 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		JSONObject objectFieldJSONObject1 = _addCustomObjectEntry(
 			_objectDefinitionJSONObject1, _OBJECT_FIELD_NAME_1,
 			_OBJECT_FIELD_VALUE_1);
-
 		JSONObject objectFieldJSONObject2 = _addCustomObjectEntry(
 			_objectDefinitionJSONObject2, _OBJECT_FIELD_NAME_2,
 			_OBJECT_FIELD_VALUE_2);
-
-		JSONObject objectFieldJSONObject3 = _addCustomObjectEntry(
-			_objectDefinitionJSONObject3, _OBJECT_FIELD_NAME_3,
-			_OBJECT_FIELD_VALUE_3);
 
 		_relateObjectEntries(
 			_objectDefinitionJSONObject1, _objectRelationshipJSONObject1,
 			objectFieldJSONObject1.getString("externalReferenceCode"),
 			objectFieldJSONObject2.getString("externalReferenceCode"));
+
+		JSONObject objectFieldJSONObject3 = _addCustomObjectEntry(
+			_objectDefinitionJSONObject3, _OBJECT_FIELD_NAME_3,
+			_OBJECT_FIELD_VALUE_3);
 
 		_relateObjectEntries(
 			_objectDefinitionJSONObject2, _objectRelationshipJSONObject2,

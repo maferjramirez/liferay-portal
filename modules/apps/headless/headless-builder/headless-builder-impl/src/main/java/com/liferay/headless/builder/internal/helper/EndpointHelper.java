@@ -1,15 +1,6 @@
 /**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ * SPDX-FileCopyrightText: (c) 2023 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
 package com.liferay.headless.builder.internal.helper;
@@ -45,9 +36,11 @@ public class EndpointHelper {
 			Pagination pagination)
 		throws Exception {
 
-		APIApplication.Schema responseSchema = endpoint.getResponseSchema();
+		List<Map<String, Object>> responseEntityMaps = new ArrayList<>();
 
 		Set<String> relationshipsNames = new HashSet<>();
+
+		APIApplication.Schema responseSchema = endpoint.getResponseSchema();
 
 		for (APIApplication.Property property :
 				responseSchema.getProperties()) {
@@ -61,13 +54,11 @@ public class EndpointHelper {
 				ListUtil.fromCollection(relationshipsNames), pagination,
 				responseSchema.getMainObjectDefinitionExternalReferenceCode());
 
-		List<Map<String, Object>> responseEntityMaps = new ArrayList<>();
-
 		for (ObjectEntry objectEntry : objectEntriesPage.getItems()) {
+			Map<String, Object> responseEntityMap = new HashMap<>();
+
 			Map<String, Object> objectEntryProperties =
 				_getObjectEntryProperties(objectEntry);
-
-			Map<String, Object> responseEntityMap = new HashMap<>();
 
 			for (APIApplication.Property property :
 					responseSchema.getProperties()) {
@@ -132,12 +123,14 @@ public class EndpointHelper {
 			return objectEntryProperties.get(property.getSourceFieldName());
 		}
 
+		List<Object> flattenValues = new ArrayList<>();
+
+		List<Object> values = new ArrayList<>();
+
 		Map<String, Object> properties = objectEntry.getProperties();
 
 		ObjectEntry[] relatedObjectEntries = (ObjectEntry[])properties.get(
 			relationshipsNames.remove(0));
-
-		List<Object> values = new ArrayList<>();
 
 		for (ObjectEntry relatedObjectEntry : relatedObjectEntries) {
 			values.add(
@@ -145,8 +138,6 @@ public class EndpointHelper {
 					relatedObjectEntry, property,
 					new ArrayList<>(relationshipsNames)));
 		}
-
-		List<Object> flattenValues = new ArrayList<>();
 
 		for (Object value : values) {
 			if (value instanceof Collection<?>) {

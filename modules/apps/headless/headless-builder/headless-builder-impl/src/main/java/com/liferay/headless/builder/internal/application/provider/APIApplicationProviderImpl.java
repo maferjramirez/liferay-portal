@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -211,8 +210,8 @@ public class APIApplicationProviderImpl implements APIApplicationProvider {
 							return Collections.emptyList();
 						}
 
-						return new ArrayList<>(
-							Arrays.asList(objectRelationshipNames.split(",")));
+						return ListUtil.fromString(
+							objectRelationshipNames, ",");
 					}
 
 					@Override
