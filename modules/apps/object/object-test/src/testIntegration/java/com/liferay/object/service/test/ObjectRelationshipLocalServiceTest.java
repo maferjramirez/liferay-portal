@@ -170,7 +170,6 @@ public class ObjectRelationshipLocalServiceTest {
 				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 				StringUtil.randomId(),
 				ObjectRelationshipConstants.TYPE_ONE_TO_MANY));
-
 		AssertUtils.assertFailure(
 			ObjectRelationshipParameterObjectFieldIdException.class,
 			"Object relationship type " +
@@ -195,6 +194,17 @@ public class ObjectRelationshipLocalServiceTest {
 
 		AssertUtils.assertFailure(
 			ObjectRelationshipTypeException.class,
+			"Invalid type " + ObjectRelationshipConstants.TYPE_ONE_TO_ONE,
+			() -> _objectRelationshipLocalService.addObjectRelationship(
+				TestPropsValues.getUserId(),
+				_systemObjectDefinition2.getObjectDefinitionId(),
+				_objectDefinition1.getObjectDefinitionId(), 0,
+				ObjectRelationshipConstants.DELETION_TYPE_PREVENT,
+				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
+				StringUtil.randomId(),
+				ObjectRelationshipConstants.TYPE_ONE_TO_ONE));
+		AssertUtils.assertFailure(
+			ObjectRelationshipTypeException.class,
 			"Invalid type for system object definition " +
 				addressObjectDefinition.getObjectDefinitionId(),
 			() -> _objectRelationshipLocalService.addObjectRelationship(
@@ -205,19 +215,6 @@ public class ObjectRelationshipLocalServiceTest {
 				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 				StringUtil.randomId(),
 				ObjectRelationshipConstants.TYPE_MANY_TO_MANY));
-
-		AssertUtils.assertFailure(
-			ObjectRelationshipTypeException.class,
-			"Invalid type " + ObjectRelationshipConstants.TYPE_ONE_TO_ONE,
-			() -> _objectRelationshipLocalService.addObjectRelationship(
-				TestPropsValues.getUserId(),
-				_systemObjectDefinition2.getObjectDefinitionId(),
-				_objectDefinition1.getObjectDefinitionId(), 0,
-				ObjectRelationshipConstants.DELETION_TYPE_PREVENT,
-				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
-				StringUtil.randomId(),
-				ObjectRelationshipConstants.TYPE_ONE_TO_ONE));
-
 		AssertUtils.assertFailure(
 			ObjectRelationshipParameterObjectFieldIdException.class,
 			"Object relationship type " +
@@ -232,7 +229,6 @@ public class ObjectRelationshipLocalServiceTest {
 				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 				StringUtil.randomId(),
 				ObjectRelationshipConstants.TYPE_MANY_TO_MANY));
-
 		AssertUtils.assertFailure(
 			ObjectRelationshipTypeException.class,
 			"Relationships are not allowed between system objects",
