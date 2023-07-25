@@ -299,18 +299,20 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 	}
 
 	protected PortletURL getPortletURL() {
+		ItemSelector itemSelector = ItemSelectorUtil.getItemSelector();
+
 		HttpServletRequest httpServletRequest = getRequest();
 
 		PortletRequest portletRequest =
 			(PortletRequest)httpServletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_REQUEST);
 
+		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
+			RequestBackedPortletURLFactoryUtil.create(portletRequest);
+
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
-
-		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
-			RequestBackedPortletURLFactoryUtil.create(portletRequest);
 
 		InfoItemItemSelectorCriterion itemSelectorCriterion =
 			new InfoItemItemSelectorCriterion();
@@ -319,8 +321,6 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 			new InfoItemItemSelectorReturnType());
 		itemSelectorCriterion.setItemType(AssetCategory.class.getName());
 		itemSelectorCriterion.setMultiSelection(true);
-
-		ItemSelector itemSelector = ItemSelectorUtil.getItemSelector();
 
 		return PortletURLBuilder.create(
 			itemSelector.getItemSelectorURL(
