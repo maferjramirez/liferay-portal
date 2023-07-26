@@ -80,7 +80,6 @@ public class TierPriceDTOConverter
 				externalReferenceCode =
 					commerceTierPriceEntry.getExternalReferenceCode();
 				id = commerceTierPriceEntry.getCommerceTierPriceEntryId();
-
 				price = tierPriceEntryPrice.doubleValue();
 				priceEntryExternalReferenceCode =
 					commercePriceEntry.getExternalReferenceCode();

@@ -976,6 +976,7 @@ public class CommerceTierPriceEntryLocalServiceImpl
 		throws PortalException {
 
 		int unitOfMeasurePrecision = 0;
+
 		CPInstance cpInstance = commercePriceEntry.getCPInstance();
 
 		if (cpInstance != null) {
