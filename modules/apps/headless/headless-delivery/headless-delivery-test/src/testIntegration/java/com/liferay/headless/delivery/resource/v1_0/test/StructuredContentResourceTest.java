@@ -1430,8 +1430,6 @@ public class StructuredContentResourceTest
 			friendlyUrlPath_i18n.get(w3cLanguageId));
 		structuredContent.setFriendlyUrlPath_i18n(friendlyUrlPath_i18n);
 
-		structuredContent.setStructuredContentFolderId(
-			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 		structuredContent.setRelatedContents(
 			new RelatedContent[] {
 				new RelatedContent() {
@@ -1441,6 +1439,8 @@ public class StructuredContentResourceTest
 					}
 				}
 			});
+		structuredContent.setStructuredContentFolderId(
+			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		Map<String, String> title_i18n = HashMapBuilder.put(
 			"en-US", RandomTestUtil.randomString()
