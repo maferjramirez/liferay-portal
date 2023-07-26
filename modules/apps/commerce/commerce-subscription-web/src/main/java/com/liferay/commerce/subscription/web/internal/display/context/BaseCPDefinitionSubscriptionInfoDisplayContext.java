@@ -38,7 +38,10 @@ public class BaseCPDefinitionSubscriptionInfoDisplayContext
 
 	public CPSubscriptionType getCPSubscriptionType(String subscriptionType) {
 		if (Validator.isNull(subscriptionType)) {
-			return getCPSubscriptionTypes().get(0);
+			List<CPSubscriptionType> cpSubscriptionTypes =
+				getCPSubscriptionTypes();
+
+			return cpSubscriptionTypes.get(0);
 		}
 
 		return _cpSubscriptionTypeRegistry.getCPSubscriptionType(
