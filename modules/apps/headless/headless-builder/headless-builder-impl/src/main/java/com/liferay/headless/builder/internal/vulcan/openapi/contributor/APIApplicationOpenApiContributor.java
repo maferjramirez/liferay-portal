@@ -194,6 +194,27 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 		APIApplication.Schema responseSchema = endpoint.getResponseSchema();
 
 		if (responseSchema != null) {
+			if (Objects.equals(endpoint.getMethod(), Http.Method.GET) &&
+				operationId.endsWith("Page")) {
+
+				operation.setParameters(
+					ListUtil.fromArray(
+						new Parameter() {
+							{
+								setIn("query");
+								setName("page");
+								setSchema(new StringSchema());
+							}
+						},
+						new Parameter() {
+							{
+								setIn("query");
+								setName("pageSize");
+								setSchema(new StringSchema());
+							}
+						}));
+			}
+
 			MediaType mediaType = new MediaType() {
 				{
 					setSchema(
@@ -217,27 +238,6 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 					setDescription("default response");
 				}
 			};
-
-			if (Objects.equals(endpoint.getMethod(), Http.Method.GET) &&
-				operationId.endsWith("Page")) {
-
-				operation.setParameters(
-					ListUtil.fromArray(
-						new Parameter() {
-							{
-								setIn("query");
-								setName("page");
-								setSchema(new StringSchema());
-							}
-						},
-						new Parameter() {
-							{
-								setIn("query");
-								setName("pageSize");
-								setSchema(new StringSchema());
-							}
-						}));
-			}
 
 			operation.setResponses(
 				new ApiResponses() {
