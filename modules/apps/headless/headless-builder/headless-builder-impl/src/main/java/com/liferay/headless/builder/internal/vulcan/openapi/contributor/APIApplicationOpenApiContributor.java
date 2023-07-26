@@ -205,16 +205,15 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 				}
 			};
 
-			Content content = new Content() {
-				{
-					put("application/json", mediaType);
-					put("application/xml", mediaType);
-				}
-			};
-
 			ApiResponse apiResponse = new ApiResponse() {
 				{
-					setContent(content);
+					setContent(
+						new Content() {
+							{
+								put("application/json", mediaType);
+								put("application/xml", mediaType);
+							}
+						});
 					setDescription("default response");
 				}
 			};
