@@ -473,11 +473,14 @@ public abstract class BaseDB implements DB {
 					"Table name object value pair is null");
 			}
 
-			if (Objects.isNull(tableNameObjectValuePair.getKey()) ||
-				Objects.isNull(tableNameObjectValuePair.getValue())) {
-
+			if (Objects.isNull(tableNameObjectValuePair.getKey())) {
 				throw new IllegalArgumentException(
-					"Found null in table name object value pair");
+					"Table name object value pair key is null");
+			}
+
+			if (Objects.isNull(tableNameObjectValuePair.getValue())) {
+				throw new IllegalArgumentException(
+					"Table name object value pair value is null");
 			}
 		}
 
