@@ -24,7 +24,7 @@ public class JenkinsCohortRepository
 
 	public JenkinsCohort add(String name) {
 		if (StringUtil.isNullOrEmpty(name)) {
-			throw new RuntimeException("Invalid Jenkins Cohort name: " + name);
+			throw new RuntimeException("Invalid Jenkins cohort name: " + name);
 		}
 
 		JSONObject jsonObject = new JSONObject();
