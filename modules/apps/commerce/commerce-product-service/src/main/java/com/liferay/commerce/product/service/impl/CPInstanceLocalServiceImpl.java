@@ -642,6 +642,7 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 			return cpInstances.get(0);
 		}
 
+		long cpDefinitionOptionRelId = 0;
 		List<CPDefinitionOptionValueRel> defaultCPDefinitionOptionValueRels =
 			new ArrayList<>();
 
@@ -674,8 +675,6 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 					CPDefinitionOptionValueRelTable.INSTANCE.createDate.
 						ascending()
 				));
-
-		long cpDefinitionOptionRelId = 0;
 
 		for (CPDefinitionOptionValueRel cpDefinitionOptionValueRel :
 				cpDefinitionOptionValueRels) {
