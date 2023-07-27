@@ -269,10 +269,10 @@ definition {
 			SignOut.signOut();
 		}
 
-		task ("When toggle underline to OFF state") {
+		task ("When toggle underline to ON state") {
 			AccessibilityMenu.openAccessibilityMenu();
 
-			AssertNotChecked.assertNotCheckedNotVisible(
+			Check.checkNotVisible(
 				key_toggleSwitchLabel = "Underlined Links",
 				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH");
 		}
@@ -287,8 +287,8 @@ definition {
 			AccessibilityMenu.openAccessibilityMenu();
 		}
 
-		task ("Then menu option is set to OFF state") {
-			AssertNotChecked.assertNotCheckedNotVisible(
+		task ("Then menu option is set to ON state") {
+			AssertChecked.assertCheckedNotVisible(
 				key_toggleSwitchLabel = "Underlined Links",
 				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH");
 		}
