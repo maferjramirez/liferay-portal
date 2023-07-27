@@ -122,7 +122,7 @@ public abstract class BaseObjectEventHandler extends BaseEventHandler {
 		String name = jenkinsCohortJSONObject.optString("name");
 
 		if (StringUtil.isNullOrEmpty(name)) {
-			throw new Exception("Missing name from jenkins cohort");
+			throw new Exception("Missing name from Jenkins cohort");
 		}
 
 		JSONObject jsonObject = new JSONObject();
@@ -143,7 +143,7 @@ public abstract class BaseObjectEventHandler extends BaseEventHandler {
 		throws Exception {
 
 		if (jenkinsServerJSONObject == null) {
-			throw new Exception("Missing jenkins server");
+			throw new Exception("Missing Jenkins server");
 		}
 
 		String jenkinsUserName = jenkinsServerJSONObject.optString(
@@ -151,7 +151,7 @@ public abstract class BaseObjectEventHandler extends BaseEventHandler {
 
 		if (StringUtil.isNullOrEmpty(jenkinsUserName)) {
 			throw new Exception(
-				"Missing jenkins user name from jenkins server");
+				"Missing Jenkins user name from Jenkins server");
 		}
 
 		String jenkinsUserPassword = jenkinsServerJSONObject.optString(
@@ -159,13 +159,13 @@ public abstract class BaseObjectEventHandler extends BaseEventHandler {
 
 		if (StringUtil.isNullOrEmpty(jenkinsUserPassword)) {
 			throw new Exception(
-				"Missing jenkins user password from jenkins server");
+				"Missing Jenkins user password from Jenkins server");
 		}
 
 		URL url = StringUtil.toURL(jenkinsServerJSONObject.optString("url"));
 
 		if (url == null) {
-			throw new Exception("Missing url from jenkins server");
+			throw new Exception("Missing url from Jenkins server");
 		}
 
 		JSONObject jsonObject = new JSONObject();
