@@ -198,7 +198,6 @@ public class PortalCapabilityLocatorImpl implements PortalCapabilityLocator {
 		_reusingProcessorCapability = new LiferayProcessorCapability(
 			ProcessorCapability.ResourceGenerationStrategy.REUSE,
 			_dlFileVersionPreviewLocalService, _inputStreamSanitizer);
-
 		_serviceRegistration = bundleContext.registerService(
 			CacheRegistryItem.class, new PortalCapabilityCacheRegistryItem(),
 			null);

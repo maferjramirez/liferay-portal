@@ -482,11 +482,10 @@ public class FinderCacheImpl
 
 		portalCacheManager.registerPortalCacheManagerListener(this);
 
-		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, ArgumentsResolver.class, "class.name");
-
 		_serviceRegistration = bundleContext.registerService(
 			CacheRegistryItem.class, new FinderCacheCacheRegistryItem(), null);
+		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
+			bundleContext, ArgumentsResolver.class, "class.name");
 	}
 
 	@Deactivate
