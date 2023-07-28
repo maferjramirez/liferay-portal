@@ -77,7 +77,7 @@ public class FragmentEntryServiceImpl extends FragmentEntryServiceBaseImpl {
 		throws PortalException {
 
 		// LPS-190674 Maintain method for backwards compatibility with the
-		// fragment toolkit
+		// Fragments Toolkit
 
 		_portletResourcePermission.check(
 			getPermissionChecker(), groupId,
