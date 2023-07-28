@@ -162,6 +162,7 @@ public class EditCPInstanceCommercePriceEntryMVCActionCommand
 			actionRequest, "promoPrice", BigDecimal.ZERO);
 		String unitOfMeasureKey = ParamUtil.getString(
 			actionRequest, "unitOfMeasureKey");
+
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CommercePriceEntry.class.getName(), actionRequest);
 
