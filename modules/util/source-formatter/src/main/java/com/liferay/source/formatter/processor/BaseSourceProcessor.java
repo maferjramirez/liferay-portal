@@ -287,16 +287,16 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		List<String> checkCategoryNames =
 			_sourceFormatterArgs.getCheckCategoryNames();
 
-		if (checkCategoryNames.contains("Upgrade")) {
-			newContent = StringUtil.replace(
-				newContent, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
-		}
-		else if (checkCategoryNames.contains("Styling") ||
-				 (checkCategoryNames.isEmpty() &&
-				  ListUtil.isEmpty(_sourceFormatterArgs.getCheckNames()))) {
+		if (checkCategoryNames.contains("Styling") ||
+			(checkCategoryNames.isEmpty() &&
+			 ListUtil.isEmpty(_sourceFormatterArgs.getCheckNames()))) {
 
 			_checkUTF8(file, fileName);
 
+			newContent = StringUtil.replace(
+				newContent, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
+		}
+		else if (checkCategoryNames.contains("Upgrade")) {
 			newContent = StringUtil.replace(
 				newContent, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
 		}
