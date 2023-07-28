@@ -39,9 +39,9 @@ public class PortalTestSuiteUpstreamControllerBuildRunner
 	public void run() {
 		List<String> testSuiteNames = _getSelectedTestSuiteNames();
 
-		boolean keepLog = !testSuiteNames.isEmpty();
+		boolean keepLogs = !testSuiteNames.isEmpty();
 
-		keepJenkinsBuild(keepLog);
+		keepJenkinsBuild(keepLogs);
 
 		invokeTestSuiteBuilds();
 	}
