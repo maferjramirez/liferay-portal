@@ -20,8 +20,8 @@ public class PortalCacheManagerEventListener
 	implements CacheManagerEventListener {
 
 	public PortalCacheManagerEventListener(
-		String portalCacheManagerName,
-		PortalCacheManagerListener portalCacheManagerListener) {
+		PortalCacheManagerListener portalCacheManagerListener,
+		String portalCacheManagerName) {
 
 		_portalCacheManagerListener = portalCacheManagerListener;
 
