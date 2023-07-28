@@ -220,7 +220,6 @@ public class AssetCategoryLocalServiceTest {
 				QueryUtil.ALL_POS);
 
 		Assert.assertNotNull(assetCategories);
-
 		Assert.assertEquals(
 			assetCategories.toString(), 2, assetCategories.size());
 	}
@@ -437,7 +436,7 @@ public class AssetCategoryLocalServiceTest {
 	}
 
 	@Test
-	public void testSearchWithSameAssetCategoryPropertiesInDifferentVocabularies()
+	public void testSearchWithSameAssetCategoryPropertiesInDifferentAssetVocabularies()
 		throws Exception {
 
 		AssetCategory assetCategory1 = _assetCategoryLocalService.addCategory(
@@ -485,7 +484,7 @@ public class AssetCategoryLocalServiceTest {
 	}
 
 	@Test
-	public void testSearchWithSameNameInDifferentVocabulary() throws Exception {
+	public void testSearchWithSameNameInDifferentAssetVocabulary() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
