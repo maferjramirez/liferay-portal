@@ -182,7 +182,6 @@ public class ProductNavigationControlMenuManagerTest {
 			new MockHttpServletRequest();
 
 		mockHttpServletRequest.setAttribute(WebKeys.LAYOUT, _layout);
-		mockHttpServletRequest.setParameters(params);
 
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
@@ -193,6 +192,8 @@ public class ProductNavigationControlMenuManagerTest {
 
 		mockHttpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, themeDisplay);
+
+		mockHttpServletRequest.setParameters(params);
 
 		return mockHttpServletRequest;
 	}
