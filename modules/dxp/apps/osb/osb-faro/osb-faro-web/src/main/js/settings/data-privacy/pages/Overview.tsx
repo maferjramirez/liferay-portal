@@ -224,7 +224,7 @@ export const Overview: React.FC<IOverviewProps> = ({
 
 										<p className='text-secondary'>
 											{Liferay.Language.get(
-												'data-subjects-and-your-organization-can-request-access,-deletion-and-suppression-of-their-data-in-analytics-cloud.-some-requests-may-take-up-to-7-days-to-complete.-we-will-notify-the-requestor-by-email-once-the-download-is-ready'
+												'data-subjects-and-your-organization-can-request-access,-deletion,-and-suppression-of-their-data-in-analytics-cloud.-some-requests-may-take-up-to-7-days-to-complete.-we-will-notify-the-requestor-by-email-once-the-download-is-ready'
 											)}
 										</p>
 									</div>
