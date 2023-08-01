@@ -46,7 +46,6 @@ public class ObjectEntryModelIndexerWriterContributor
 				dynamicQuery.add(
 					objectDefinitionIdProperty.eq(_objectDefinitionId));
 			});
-
 		batchIndexingActionable.setPerformActionMethod(
 			(ObjectEntry objectEntry) -> batchIndexingActionable.addDocuments(
 				modelIndexerWriterDocumentHelper.getDocument(objectEntry)));
