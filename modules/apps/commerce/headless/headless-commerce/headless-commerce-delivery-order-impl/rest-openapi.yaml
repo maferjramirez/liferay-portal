@@ -401,7 +401,6 @@ components:
                     readOnly: true
                     type: string
                 trackingURL:
-                    example: "Standard Delivery"
                     readOnly: true
                     type: string
             type: object
