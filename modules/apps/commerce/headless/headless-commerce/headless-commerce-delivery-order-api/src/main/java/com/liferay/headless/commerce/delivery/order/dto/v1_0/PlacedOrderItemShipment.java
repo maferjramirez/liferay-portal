@@ -507,7 +507,7 @@ public class PlacedOrderItemShipment implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	protected String trackingNumber;
 
-	@Schema(example = "Standard Delivery")
+	@Schema
 	public String getTrackingURL() {
 		return trackingURL;
 	}
