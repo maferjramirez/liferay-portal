@@ -928,10 +928,10 @@ public class SourceFormatterUtil {
 			String propertiesFileLocation,
 			List<ExcludeSyntaxPattern> excludeSyntaxPatterns) {
 
-			List<PathMatcher> excludeDirPathMatcherList = new ArrayList<>();
 			List<String> excludeDirPathMatcherGlobsList = new ArrayList<>();
-			List<PathMatcher> excludeFilePathMatcherList = new ArrayList<>();
+			List<PathMatcher> excludeDirPathMatcherList = new ArrayList<>();
 			List<String> excludeFilePathMatcherGlobsList = new ArrayList<>();
+			List<PathMatcher> excludeFilePathMatcherList = new ArrayList<>();
 
 			for (ExcludeSyntaxPattern excludeSyntaxPattern :
 					excludeSyntaxPatterns) {
@@ -982,14 +982,14 @@ public class SourceFormatterUtil {
 				}
 			}
 
-			_excludeDirPathMatchersMap.put(
-				propertiesFileLocation, excludeDirPathMatcherList);
 			_excludeDirGlobsMap.put(
 				propertiesFileLocation, excludeDirPathMatcherGlobsList);
-			_excludeFilePathMatchersMap.put(
-				propertiesFileLocation, excludeFilePathMatcherList);
+			_excludeDirPathMatchersMap.put(
+				propertiesFileLocation, excludeDirPathMatcherList);
 			_excludeFileGlobsMap.put(
 				propertiesFileLocation, excludeFilePathMatcherGlobsList);
+			_excludeFilePathMatchersMap.put(
+				propertiesFileLocation, excludeFilePathMatcherList);
 		}
 
 		public void addInclude(String include) {
