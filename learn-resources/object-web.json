@@ -1,7 +1,7 @@
 {
 	"general": {
 		"en_US": {
-			"message": "Learn more",
+			"message": "Learn more.",
 			"url": "https://learn.liferay.com/en/w/dxp/building-applications/objects/creating-and-managing-objects/validations/expression-builder-validations-reference"
 		}
 	}
