@@ -40,7 +40,7 @@ export default function CartItemsList({showPriceOnApplicationInfo = false}) {
 						title={Liferay.Language.get('info')}
 					>
 						{Liferay.Language.get(
-							'in-your-cart-there-are-replacement-products'
+							'there-are-replacement-products-in-your-cart'
 						)}
 					</ClayAlert>
 				</div>
