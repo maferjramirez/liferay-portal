@@ -706,9 +706,9 @@ public class ObjectRelationshipLocalServiceImpl
 		}
 
 		_validateParameterObjectFieldId(
-			_objectDefinitionLocalService.getObjectDefinition(
+			_objectDefinitionPersistence.findByPrimaryKey(
 				objectRelationship.getObjectDefinitionId1()),
-			_objectDefinitionLocalService.getObjectDefinition(
+			_objectDefinitionPersistence.findByPrimaryKey(
 				objectRelationship.getObjectDefinitionId2()),
 			parameterObjectFieldId, objectRelationship.getType());
 
@@ -841,11 +841,9 @@ public class ObjectRelationshipLocalServiceImpl
 		_validateName(objectDefinitionId1, name);
 
 		ObjectDefinition objectDefinition1 =
-			_objectDefinitionLocalService.getObjectDefinition(
-				objectDefinitionId1);
+			_objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId1);
 		ObjectDefinition objectDefinition2 =
-			_objectDefinitionLocalService.getObjectDefinition(
-				objectDefinitionId2);
+			_objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId2);
 
 		_validateType(
 			objectDefinition1, objectDefinition2, name, parameterObjectFieldId,
