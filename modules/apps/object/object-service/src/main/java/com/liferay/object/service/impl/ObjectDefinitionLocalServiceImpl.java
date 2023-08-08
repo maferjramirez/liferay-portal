@@ -16,6 +16,7 @@ import com.liferay.object.constants.ObjectFieldConstants;
 import com.liferay.object.constants.ObjectFieldSettingConstants;
 import com.liferay.object.constants.ObjectFolderConstants;
 import com.liferay.object.constants.ObjectRelationshipConstants;
+import com.liferay.object.deployer.InactiveObjectDefinitionDeployer;
 import com.liferay.object.deployer.ObjectDefinitionDeployer;
 import com.liferay.object.exception.NoSuchObjectFieldException;
 import com.liferay.object.exception.ObjectDefinitionAccountEntryRestrictedException;
@@ -38,6 +39,7 @@ import com.liferay.object.exception.RequiredObjectFieldException;
 import com.liferay.object.field.setting.util.ObjectFieldSettingUtil;
 import com.liferay.object.internal.dao.db.ObjectDBManagerUtil;
 import com.liferay.object.internal.definition.util.ObjectDefinitionUtil;
+import com.liferay.object.internal.deployer.InactiveObjectDefinitionDeployerImpl;
 import com.liferay.object.internal.deployer.ObjectDefinitionDeployerImpl;
 import com.liferay.object.internal.petra.sql.dsl.DynamicObjectDefinitionLocalizationTableFactory;
 import com.liferay.object.model.ObjectAction;
@@ -717,6 +719,11 @@ public class ObjectDefinitionLocalServiceImpl
 				_workflowStatusModelPreFilterContributor,
 				_userGroupRoleLocalService));
 
+		_addingInactiveObjectDefinitionDeployer(
+			new InactiveObjectDefinitionDeployerImpl(
+				_bundleContext, _objectEntryService, _objectFieldLocalService,
+				_objectRelationshipLocalService));
+
 		_objectDefinitionDeployerServiceTracker = new ServiceTracker<>(
 			_bundleContext, ObjectDefinitionDeployer.class,
 			new ServiceTrackerCustomizer
@@ -925,6 +932,29 @@ public class ObjectDefinitionLocalServiceImpl
 		if (_objectDefinitionDeployerServiceTracker != null) {
 			_objectDefinitionDeployerServiceTracker.close();
 		}
+	}
+
+	private void _addingInactiveObjectDefinitionDeployer(
+		InactiveObjectDefinitionDeployer inactiveObjectDefinitionDeployer) {
+
+		Map<Long, List<ServiceRegistration<?>>> serviceRegistrationsMap =
+			new ConcurrentHashMap<>();
+
+		for (ObjectDefinition objectDefinition :
+				_getInactiveObjectDefinitions()) {
+
+			try (SafeCloseable safeCloseable =
+					CompanyThreadLocal.setWithSafeCloseable(
+						objectDefinition.getCompanyId())) {
+
+				serviceRegistrationsMap.put(
+					objectDefinition.getObjectDefinitionId(),
+					inactiveObjectDefinitionDeployer.deploy(objectDefinition));
+			}
+		}
+
+		_inactiveObjectDefinitionsServiceRegistrationsMaps.put(
+			inactiveObjectDefinitionDeployer, serviceRegistrationsMap);
 	}
 
 	private ObjectDefinitionDeployer _addingObjectDefinitionDeployer(
@@ -1279,6 +1309,17 @@ public class ObjectDefinitionLocalServiceImpl
 
 		return StringBundler.concat(
 			prefix, companyId, StringPool.UNDERLINE, shortName);
+	}
+
+	private List<ObjectDefinition> _getInactiveObjectDefinitions() {
+		List<ObjectDefinition> objectDefinitions = new ArrayList<>();
+
+		_companyLocalService.forEachCompanyId(
+			companyId -> objectDefinitions.addAll(
+				objectDefinitionLocalService.getObjectDefinitions(
+					companyId, false, WorkflowConstants.STATUS_APPROVED)));
+
+		return objectDefinitions;
 	}
 
 	private String _getName(String name, boolean system) {
@@ -1998,6 +2039,12 @@ public class ObjectDefinitionLocalServiceImpl
 
 	@Reference
 	private GroupLocalService _groupLocalService;
+
+	private final Map
+		<InactiveObjectDefinitionDeployer,
+		 Map<Long, List<ServiceRegistration<?>>>>
+			_inactiveObjectDefinitionsServiceRegistrationsMaps =
+				Collections.synchronizedMap(new LinkedHashMap<>());
 
 	@Reference
 	private Language _language;
