@@ -159,27 +159,23 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 
 		Assert.assertEquals(
 			404,
-			HTTPTestUtil.invokeToHttpCode(
-				null, endpoint1, Http.Method.GET));
+			HTTPTestUtil.invokeToHttpCode(null, endpoint1, Http.Method.GET));
 
 		String endpoint2 = "c/" + _BASE_URL_2 + _API_APPLICATION_PATH_2;
 
 		Assert.assertEquals(
 			404,
-			HTTPTestUtil.invokeToHttpCode(
-				null, endpoint2, Http.Method.GET));
+			HTTPTestUtil.invokeToHttpCode(null, endpoint2, Http.Method.GET));
 
 		_publishAPIApplication(_API_APPLICATION_ERC_1);
 		_publishAPIApplication(_API_APPLICATION_ERC_2);
 
 		Assert.assertEquals(
 			200,
-			HTTPTestUtil.invokeToHttpCode(
-				null, endpoint1, Http.Method.GET));
+			HTTPTestUtil.invokeToHttpCode(null, endpoint1, Http.Method.GET));
 		Assert.assertEquals(
 			200,
-			HTTPTestUtil.invokeToHttpCode(
-				null, endpoint2, Http.Method.GET));
+			HTTPTestUtil.invokeToHttpCode(null, endpoint2, Http.Method.GET));
 
 		ObjectEntry objectEntry1 = _addCustomObjectEntry(
 			1, null, _objectDefinition1, "value1");
@@ -253,12 +249,10 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 
 		Assert.assertEquals(
 			404,
-			HTTPTestUtil.invokeToHttpCode(
-				null, endpoint1, Http.Method.GET));
+			HTTPTestUtil.invokeToHttpCode(null, endpoint1, Http.Method.GET));
 		Assert.assertEquals(
 			200,
-			HTTPTestUtil.invokeToHttpCode(
-				null, endpoint2, Http.Method.GET));
+			HTTPTestUtil.invokeToHttpCode(null, endpoint2, Http.Method.GET));
 	}
 
 	@Test
@@ -418,6 +412,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		// TODO Uncomment the following test when LPS-191929 is fixed
 
 		//_assertFilterString(
+
 		// "integerProperty", 1, "not (integerProperty ge 2)");
 
 		// String functions
@@ -771,7 +766,26 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		return ObjectEntryTestUtil.addObjectEntry(
 			objectDefinition,
 			HashMapBuilder.<String, Serializable>put(
-				"attachmentField", _getAttachmentFieldValue()
+				"attachmentField",
+				() -> {
+					Document document = new Document() {
+						{
+							description = RandomTestUtil.randomString();
+							fileName = RandomTestUtil.randomString() + ".txt";
+							title = RandomTestUtil.randomString();
+						}
+					};
+
+					document = _documentResource.postSiteDocument(
+						TestPropsValues.getGroupId(), document,
+						HashMapBuilder.<String, File>put(
+							"file",
+							() -> FileUtil.createTempFile(
+								TestDataConstants.TEST_BYTE_ARRAY)
+						).build());
+
+					return document.getId();
+				}
 			).put(
 				"booleanField", RandomTestUtil.randomBoolean()
 			).put(
@@ -994,25 +1008,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		objectFieldSetting.setValue(value);
 
 		return objectFieldSetting;
-	}
-
-	private long _getAttachmentFieldValue() throws Exception {
-		Document document = new Document() {
-			{
-				description = RandomTestUtil.randomString();
-				fileName = RandomTestUtil.randomString() + ".txt";
-				title = RandomTestUtil.randomString();
-			}
-		};
-
-		document = _documentResource.postSiteDocument(
-			TestPropsValues.getGroupId(), document,
-			HashMapBuilder.<String, File>put(
-				"file",
-				() -> FileUtil.createTempFile(TestDataConstants.TEST_BYTE_ARRAY)
-			).build());
-
-		return document.getId();
 	}
 
 	private void _publishAPIApplication(
