@@ -1613,9 +1613,6 @@ public class ObjectDefinitionLocalServiceImpl
 
 		if (objectDefinition.isApproved()) {
 			if (!active && originalActive) {
-				objectDefinitionLocalService.undeployObjectDefinition(
-					objectDefinition);
-
 				objectDefinitionLocalService.deployInactiveObjectDefinition(
 					objectDefinition);
 			}
