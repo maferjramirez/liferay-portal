@@ -417,15 +417,15 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 
 		// TODO Uncomment the following test when LPS-191929 is fixed
 
-		//		_assertFilterString(
-		//			"integerProperty", 1, "not (integerProperty ge 2)");
+		//_assertFilterString(
+		// "integerProperty", 1, "not (integerProperty ge 2)");
 
 		// String functions
 
 		_assertFilterString(
 			"integerProperty", 1, "contains(textProperty, 'value1')");
 
-		// Filter using related object entry fields.
+		// Filter using related object entry fields
 
 		ObjectEntry level1RelatedObjectEntry1 = _addCustomObjectEntry(
 			3, Arrays.asList(ListTypeValue.VALUE2), _objectDefinition2,
