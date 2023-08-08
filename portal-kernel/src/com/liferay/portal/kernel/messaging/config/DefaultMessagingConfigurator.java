@@ -56,9 +56,9 @@ public class DefaultMessagingConfigurator implements MessagingConfigurator {
 
 		_destinationConfigurations.clear();
 		_destinationEventListeners.clear();
-		_messageListeners.clear();
 		_destinations.clear();
 		_messageBusEventListeners.clear();
+		_messageListeners.clear();
 	}
 
 	@Override
