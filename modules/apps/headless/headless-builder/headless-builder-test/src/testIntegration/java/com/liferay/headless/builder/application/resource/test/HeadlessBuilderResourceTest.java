@@ -109,6 +109,13 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
+		_documentResource = DocumentResource.builder(
+		).authentication(
+			"test@liferay.com", "test"
+		).locale(
+			LocaleUtil.getDefault()
+		).build();
+
 		List<ListTypeEntry> listTypeEntries = TransformUtil.transformToList(
 			ListTypeValue.values(),
 			listTypeValue -> ListTypeEntryUtil.createListTypeEntry(
@@ -128,21 +135,13 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 
 		_objectRelationship1 = _addObjectRelationship(
 			_objectDefinition1, _objectDefinition2);
-
 		_objectRelationship2 = _addObjectRelationship(
 			_objectDefinition2, _objectDefinition3);
 
-		_addAggregationField(
+		_addAggregationObjectField(
 			_objectDefinition1, _objectRelationship1.getName());
-		_addAggregationField(
+		_addAggregationObjectField(
 			_objectDefinition2, _objectRelationship2.getName());
-
-		_documentResource = DocumentResource.builder(
-		).authentication(
-			"test@liferay.com", "test"
-		).locale(
-			LocaleUtil.getDefault()
-		).build();
 	}
 
 	@Test
@@ -545,7 +544,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			"integerProperty", 1, "contains(relatedTextProperty2, 'value5')");
 	}
 
-	private void _addAggregationField(
+	private void _addAggregationObjectField(
 			ObjectDefinition objectDefinition, String relationshipName)
 		throws Exception {
 
