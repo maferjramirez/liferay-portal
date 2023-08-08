@@ -155,19 +155,19 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			_objectDefinition1.getExternalReferenceCode(),
 			_API_APPLICATION_PATH_2);
 
-		String endpointPath1 = "c/" + _BASE_URL_1 + _API_APPLICATION_PATH_1;
+		String endpoint1 = "c/" + _BASE_URL_1 + _API_APPLICATION_PATH_1;
 
 		Assert.assertEquals(
 			404,
 			HTTPTestUtil.invokeToHttpCode(
-				null, endpointPath1, Http.Method.GET));
+				null, endpoint1, Http.Method.GET));
 
-		String endpointPath2 = "c/" + _BASE_URL_2 + _API_APPLICATION_PATH_2;
+		String endpoint2 = "c/" + _BASE_URL_2 + _API_APPLICATION_PATH_2;
 
 		Assert.assertEquals(
 			404,
 			HTTPTestUtil.invokeToHttpCode(
-				null, endpointPath2, Http.Method.GET));
+				null, endpoint2, Http.Method.GET));
 
 		_publishAPIApplication(_API_APPLICATION_ERC_1);
 		_publishAPIApplication(_API_APPLICATION_ERC_2);
@@ -175,11 +175,11 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		Assert.assertEquals(
 			200,
 			HTTPTestUtil.invokeToHttpCode(
-				null, endpointPath1, Http.Method.GET));
+				null, endpoint1, Http.Method.GET));
 		Assert.assertEquals(
 			200,
 			HTTPTestUtil.invokeToHttpCode(
-				null, endpointPath2, Http.Method.GET));
+				null, endpoint2, Http.Method.GET));
 
 		ObjectEntry objectEntry1 = _addCustomObjectEntry(
 			1, null, _objectDefinition1, "value1");
@@ -206,7 +206,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 					))
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
-				null, endpointPath1, Http.Method.GET
+				null, endpoint1, Http.Method.GET
 			).toString(),
 			JSONCompareMode.LENIENT);
 		JSONAssert.assertEquals(
@@ -222,7 +222,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 					))
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
-				null, endpointPath2, Http.Method.GET
+				null, endpoint2, Http.Method.GET
 			).toString(),
 			JSONCompareMode.LENIENT);
 
@@ -254,11 +254,11 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		Assert.assertEquals(
 			404,
 			HTTPTestUtil.invokeToHttpCode(
-				null, endpointPath1, Http.Method.GET));
+				null, endpoint1, Http.Method.GET));
 		Assert.assertEquals(
 			200,
 			HTTPTestUtil.invokeToHttpCode(
-				null, endpointPath2, Http.Method.GET));
+				null, endpoint2, Http.Method.GET));
 	}
 
 	@Test
