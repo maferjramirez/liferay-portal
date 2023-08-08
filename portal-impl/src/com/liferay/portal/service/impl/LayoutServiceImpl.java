@@ -878,9 +878,10 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 		long groupId, boolean privateLayout, long parentLayoutId) {
 
 		try {
-			return getLayouts(
-				groupId, privateLayout, parentLayoutId
-			).size();
+			List<Layout> layouts = getLayouts(
+				groupId, privateLayout, parentLayoutId);
+
+			return layouts.size();
 		}
 		catch (PortalException portalException) {
 			if (_log.isDebugEnabled()) {
