@@ -20,10 +20,10 @@ public class DDMFormEvaluatorExpressionActionHandler
 	implements DDMExpressionActionHandler {
 
 	public DDMFormEvaluatorExpressionActionHandler(
-		Map<Integer, Integer> pageFlow, Set<Integer> disabledPages) {
+		Map<Integer, Integer> pageFlow, Set<Integer> disabledPageIndexes) {
 
 		_pageFlow = pageFlow;
-		_disabledPages = disabledPages;
+		_disabledPageIndexes = disabledPageIndexes;
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class DDMFormEvaluatorExpressionActionHandler
 
 			if ((toPageIndex < fromPageFlowIndex) ||
 				(fromPageIndex > toPageFlowIndex) ||
-				!_disabledPages.contains(toPageIndex)) {
+				!_disabledPageIndexes.contains(toPageIndex)) {
 
 				continue;
 			}
@@ -80,7 +80,7 @@ public class DDMFormEvaluatorExpressionActionHandler
 		return builder.build();
 	}
 
-	private final Set<Integer> _disabledPages;
+	private final Set<Integer> _disabledPageIndexes;
 	private final Map<Integer, Integer> _pageFlow;
 
 }
