@@ -86,7 +86,7 @@ public class DDMFormInstanceStagedModelDataHandlerTest
 	}
 
 	@Test
-	public void testImportExportDDMFormInstance() throws Exception {
+	public void testExportImport() throws Exception {
 		ObjectDefinition objectDefinition1 = _addObjectDefinition(
 			RandomTestUtil.randomString(), TestPropsValues.getUserId());
 
