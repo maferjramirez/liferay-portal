@@ -5275,7 +5275,23 @@ public class ServiceBuilder {
 					sb.append("BIGDECIMAL");
 				}
 				else {
-					sb.append("DECIMAL(30, 16)");
+					Map<String, String> hints = ModelHintsUtil.getHints(
+						_apiPackagePath + ".model." + entity.getName(),
+						entityColumn.getModelHintsName());
+
+					String precision = "30";
+					String scale = "16";
+
+					if (hints != null) {
+						precision = hints.getOrDefault("precision", precision);
+						scale = hints.getOrDefault("scale", scale);
+					}
+
+					sb.append("DECIMAL(");
+					sb.append(precision);
+					sb.append(", ");
+					sb.append(scale);
+					sb.append(")");
 				}
 			}
 			else if (type.equals("Blob")) {
