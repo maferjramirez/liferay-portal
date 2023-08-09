@@ -166,7 +166,6 @@ public class RoutesPortalK8sConfigMapModifier
 		throws Exception {
 
 		Path liferayRoutesPath = _getLiferayRoutesPath();
-
 		String virtualInstanceId = labels.get(
 			"dxp.lxc.liferay.com/virtualInstanceId");
 
@@ -217,18 +216,15 @@ public class RoutesPortalK8sConfigMapModifier
 	}
 
 	private int _getPortalLocalPort() {
-		return _portal.getPortalLocalPort(
-			Objects.equals(_getWebServerProtocol(), "https"));
-	}
+		boolean secure = false;
 
-	private String _getWebServerProtocol() {
-		String webServerProtocol = PropsValues.WEB_SERVER_PROTOCOL;
+		if (Validator.isNull(PropsValues.WEB_SERVER_PROTOCOL) ||
+			PropsValues.WEB_SERVER_PROTOCOL.equals(Http.HTTPS)) {
 
-		if (Validator.isNull(webServerProtocol)) {
-			return Http.HTTP;
+			secure = true;
 		}
 
-		return webServerProtocol;
+		return _portal.getPortalLocalPort(secure);
 	}
 
 	private void _updateDXPRoutes(boolean secure) {
