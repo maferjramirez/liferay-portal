@@ -531,40 +531,6 @@ public class JournalArticleLocalServiceTest {
 	}
 
 	@Test
-	public void testGetArticlesByReviewDate() throws Exception {
-		long userId = RandomTestUtil.randomLong();
-
-		JournalFolder folder = JournalTestUtil.addFolder(
-			_group.getGroupId(), RandomTestUtil.randomString());
-
-		JournalArticle article = JournalTestUtil.addArticle(
-			_group.getGroupId(), folder.getFolderId());
-
-		article.setUserId(userId);
-
-		Calendar calendar = new GregorianCalendar();
-
-		calendar.add(Calendar.DATE, -1);
-
-		article.setExpirationDate(calendar.getTime());
-		article.setReviewDate(calendar.getTime());
-
-		article = JournalArticleLocalServiceUtil.updateJournalArticle(article);
-
-		JournalTestUtil.addArticle(_group.getGroupId(), folder.getFolderId());
-
-		calendar.add(Calendar.DATE, -1);
-
-		List<JournalArticle> articles =
-			_journalArticleLocalService.getArticlesByReviewDate(
-				calendar.getTime(), new Date());
-
-		Assert.assertEquals(articles.toString(), 1, articles.size());
-
-		Assert.assertEquals(article, articles.get(0));
-	}
-
-	@Test
 	public void testGetArticleDisplayFriendlyURLDisplayPageExists()
 		throws Exception {
 
@@ -718,6 +684,37 @@ public class JournalArticleLocalServiceTest {
 		String content = journalArticleDisplay.getContent();
 
 		Assert.assertFalse(content.contains("Web Content Render"));
+	}
+
+	@Test
+	public void testGetArticlesByReviewDate() throws Exception {
+		JournalFolder folder = JournalTestUtil.addFolder(
+			_group.getGroupId(), RandomTestUtil.randomString());
+
+		JournalArticle article = JournalTestUtil.addArticle(
+			_group.getGroupId(), folder.getFolderId());
+
+		article.setUserId(RandomTestUtil.randomLong());
+
+		Calendar calendar = new GregorianCalendar();
+
+		calendar.add(Calendar.DATE, -1);
+
+		article.setExpirationDate(calendar.getTime());
+		article.setReviewDate(calendar.getTime());
+
+		article = JournalArticleLocalServiceUtil.updateJournalArticle(article);
+
+		JournalTestUtil.addArticle(_group.getGroupId(), folder.getFolderId());
+
+		calendar.add(Calendar.DATE, -1);
+
+		List<JournalArticle> articles =
+			_journalArticleLocalService.getArticlesByReviewDate(
+				calendar.getTime(), new Date());
+
+		Assert.assertEquals(articles.toString(), 1, articles.size());
+		Assert.assertEquals(article, articles.get(0));
 	}
 
 	@Test
