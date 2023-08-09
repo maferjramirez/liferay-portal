@@ -107,10 +107,6 @@ public class RoutesPortalK8sConfigMapModifierTest {
 		String projectName = RandomTestUtil.randomString();
 		String serviceId = RandomTestUtil.randomString();
 
-		String configMapName = StringBundler.concat(
-			projectName, StringPool.DASH, TestPropsValues.COMPANY_WEB_ID,
-			"-lxc-ext-init-metadata");
-
 		_portalK8sConfigMapModifier.modifyConfigMap(
 			configMapModel -> {
 				Map<String, String> data = configMapModel.data();
@@ -127,7 +123,9 @@ public class RoutesPortalK8sConfigMapModifierTest {
 					"dxp.lxc.liferay.com/virtualInstanceId",
 					TestPropsValues.COMPANY_WEB_ID);
 			},
-			configMapName);
+			StringBundler.concat(
+				projectName, StringPool.DASH, TestPropsValues.COMPANY_WEB_ID,
+				"-lxc-ext-init-metadata"));
 
 		Path projectMetadataPath = Paths.get(
 			PropsUtil.get(PropsKeys.LIFERAY_HOME), "routes/default",
