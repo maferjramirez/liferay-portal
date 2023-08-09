@@ -90,7 +90,7 @@ public class RoutesPortalK8sConfigMapModifierTest {
 	}
 
 	@Test
-	public void testDefaultDXPRoutes() throws Exception {
+	public void testDXPRoutesDefault() throws Exception {
 		Path dxpPath = Paths.get(
 			PropsUtil.get(PropsKeys.LIFERAY_HOME), "routes/default/dxp");
 
@@ -112,7 +112,7 @@ public class RoutesPortalK8sConfigMapModifierTest {
 	}
 
 	@Test
-	public void testMultipleVirtualHostsInNondefaultCompany() throws Exception {
+	public void testDXPRoutesNondefault() throws Exception {
 		String webId = "able.com";
 
 		Company company = _companyLocalService.addCompany(
