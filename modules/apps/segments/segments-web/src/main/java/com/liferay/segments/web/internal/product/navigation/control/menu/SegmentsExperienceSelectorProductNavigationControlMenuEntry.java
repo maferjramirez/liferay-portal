@@ -142,8 +142,8 @@ public class SegmentsExperienceSelectorProductNavigationControlMenuEntry
 
 		Layout layout = themeDisplay.getLayout();
 
-		if (!layout.isTypeContent() || (layout instanceof VirtualLayout) ||
-			!layout.isLayoutUpdateable()) {
+		if ((layout instanceof VirtualLayout) || !layout.isLayoutUpdateable() ||
+			!layout.isTypeContent()) {
 
 			return false;
 		}

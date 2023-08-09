@@ -186,8 +186,8 @@ public class EditLayoutModeProductNavigationControlMenuEntry
 
 		if (Objects.equals(
 				className, LayoutPageTemplateEntry.class.getName()) ||
-			!layout.isTypeContent() || (layout instanceof VirtualLayout) ||
-			!layout.isLayoutUpdateable()) {
+			(layout instanceof VirtualLayout) || !layout.isLayoutUpdateable() ||
+			!layout.isTypeContent()) {
 
 			return false;
 		}
