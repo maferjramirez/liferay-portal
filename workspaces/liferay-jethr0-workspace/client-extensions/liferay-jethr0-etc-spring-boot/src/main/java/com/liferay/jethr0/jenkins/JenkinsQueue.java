@@ -58,7 +58,7 @@ public class JenkinsQueue {
 		_initialized = true;
 	}
 
-	public boolean initialized() {
+	public boolean isInitialized() {
 		return _initialized;
 	}
 

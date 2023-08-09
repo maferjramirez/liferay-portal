@@ -25,7 +25,7 @@ public class ComputerUpdateEventHandler extends BaseJenkinsEventHandler {
 	public String process() throws Exception {
 		JenkinsQueue jenkinsQueue = getJenkinsQueue();
 
-		if (!jenkinsQueue.initialized()) {
+		if (!jenkinsQueue.isInitialized()) {
 			return "{\"message\": \"Jenkins queue is not initialized\"}";
 		}
 
