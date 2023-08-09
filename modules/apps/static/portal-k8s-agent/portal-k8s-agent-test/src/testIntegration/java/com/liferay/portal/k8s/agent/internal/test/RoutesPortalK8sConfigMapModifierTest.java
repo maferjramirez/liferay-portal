@@ -133,9 +133,10 @@ public class RoutesPortalK8sConfigMapModifierTest {
 		VirtualHost virtualHost = _virtualHostLocalService.createVirtualHost(
 			_counterLocalService.increment());
 
+		virtualHost.setCompanyId(companyId);
+
 		String virtualHostHostname = RandomTestUtil.randomString();
 
-		virtualHost.setCompanyId(companyId);
 		virtualHost.setHostname(virtualHostHostname);
 
 		_virtualHostLocalService.addVirtualHost(virtualHost);
