@@ -32,7 +32,7 @@ public class ComputerIdleEventHandler extends ComputerUpdateEventHandler {
 		JenkinsQueue jenkinsQueue = getJenkinsQueue();
 
 		if (!jenkinsQueue.initialized()) {
-			return "{\"message\":\"Jenkins Queue is not initialized\"}";
+			return "{\"message\": \"Jenkins queue is not initialized\"}";
 		}
 
 		super.process();

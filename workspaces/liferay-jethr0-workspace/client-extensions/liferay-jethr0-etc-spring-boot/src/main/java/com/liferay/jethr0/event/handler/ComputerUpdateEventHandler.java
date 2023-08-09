@@ -26,7 +26,7 @@ public class ComputerUpdateEventHandler extends BaseJenkinsEventHandler {
 		JenkinsQueue jenkinsQueue = getJenkinsQueue();
 
 		if (!jenkinsQueue.initialized()) {
-			return "{\"message\":\"Jenkins Queue is not initialized\"}";
+			return "{\"message\": \"Jenkins queue is not initialized\"}";
 		}
 
 		JenkinsNode jenkinsNode = updateJenkinsNode();
