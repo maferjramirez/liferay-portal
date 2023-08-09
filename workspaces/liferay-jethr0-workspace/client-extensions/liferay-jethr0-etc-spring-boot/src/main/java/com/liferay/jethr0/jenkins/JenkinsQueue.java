@@ -58,12 +58,12 @@ public class JenkinsQueue {
 		_initialized = true;
 	}
 
-	public boolean isInitialized() {
-		return _initialized;
-	}
-
 	public void invoke() {
 		update();
+	}
+
+	public boolean isInitialized() {
+		return _initialized;
 	}
 
 	@Scheduled(cron = "${liferay.jethr0.jenkins.queue.update.cron}")
