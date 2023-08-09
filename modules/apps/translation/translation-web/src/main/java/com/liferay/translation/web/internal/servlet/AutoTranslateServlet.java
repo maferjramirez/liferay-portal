@@ -116,7 +116,7 @@ public class AutoTranslateServlet extends HttpServlet {
 		return JSONUtil.put(
 			"fields", _getFieldsJSONObject(translatorPacket.getFieldsMap())
 		).put(
-			"html", _getFieldsJSONObject(translatorPacket.getHtmlMap())
+			"html", _getFieldsJSONObject(translatorPacket.getHTMLMap())
 		).put(
 			"sourceLanguageId", translatorPacket.getSourceLanguageId()
 		).put(

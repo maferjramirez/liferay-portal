@@ -51,7 +51,7 @@ public class JSONTranslatorPacket implements TranslatorPacket {
 	}
 
 	@Override
-	public Map<String, Boolean> getHtmlMap() {
+	public Map<String, Boolean> getHTMLMap() {
 		return _htmlMap;
 	}
 

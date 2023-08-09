@@ -87,7 +87,7 @@ public class DeepLTranslator implements Translator {
 
 		Map<String, String> translatedFieldsMap = _translate(
 			deepLTranslatorConfiguration, translatorPacket.getFieldsMap(),
-			translatorPacket.getHtmlMap(),
+			translatorPacket.getHTMLMap(),
 			_getLanguageCode(translatorPacket.getSourceLanguageId()),
 			targetLanguageCode);
 
@@ -104,8 +104,8 @@ public class DeepLTranslator implements Translator {
 			}
 
 			@Override
-			public Map<String, Boolean> getHtmlMap() {
-				return translatorPacket.getHtmlMap();
+			public Map<String, Boolean> getHTMLMap() {
+				return translatorPacket.getHTMLMap();
 			}
 
 			@Override
