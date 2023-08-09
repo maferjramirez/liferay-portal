@@ -531,7 +531,7 @@ public class JournalArticleLocalServiceTest {
 	}
 
 	@Test
-	public void testFindByReviewDate() throws Exception {
+	public void testGetArticlesByReviewDate() throws Exception {
 		long userId = RandomTestUtil.randomLong();
 
 		JournalFolder folder = JournalTestUtil.addFolder(
