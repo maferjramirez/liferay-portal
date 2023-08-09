@@ -31,7 +31,7 @@ const FILE_TEXTS = {
 	),
 	initial: Liferay.Language.get('no-file-selected'),
 	loaded: Liferay.Language.get(
-		'the-file-has-been-loaded.-click-the-import-button-to-import-it'
+		'the-file-was-loaded.-click-the-import-button-to-import-it'
 	),
 };
 
