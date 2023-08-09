@@ -138,13 +138,13 @@ public class RoutesPortalK8sConfigMapModifierTest {
 			webId + ":8080",
 			new String(Files.readAllBytes(lxcDXPMainDomainPath)));
 
-		_virtualHost = _virtualHostLocalService.createVirtualHost(
+		VirtualHost virtualHost = _virtualHostLocalService.createVirtualHost(
 			_counterLocalService.increment());
 
-		_virtualHost.setCompanyId(_company.getCompanyId());
-		_virtualHost.setHostname("foobar.com");
+		virtualHost.setCompanyId(_company.getCompanyId());
+		virtualHost.setHostname("foobar.com");
 
-		_virtualHostLocalService.addVirtualHost(_virtualHost);
+		_virtualHostLocalService.addVirtualHost(virtualHost);
 
 		List<String> lxcDXPDomains = StringUtil.split(
 			new String(
@@ -231,8 +231,6 @@ public class RoutesPortalK8sConfigMapModifierTest {
 
 	@Inject
 	private CounterLocalService _counterLocalService;
-
-	private VirtualHost _virtualHost;
 
 	@Inject
 	private VirtualHostLocalService _virtualHostLocalService;
