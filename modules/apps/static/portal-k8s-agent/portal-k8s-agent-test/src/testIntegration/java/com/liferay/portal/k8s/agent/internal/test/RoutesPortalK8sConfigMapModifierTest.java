@@ -91,7 +91,9 @@ public class RoutesPortalK8sConfigMapModifierTest {
 
 	@Test
 	public void testDXPRoutes() throws Exception {
-		_testDXPRoutes(TestPropsValues.getCompanyId(), "localhost", "default");
+		_testDXPRoutes(
+			TestPropsValues.getCompanyId(), "localhost",
+			TestPropsValues.COMPANY_WEB_ID);
 
 		String webId = "able.com";
 
@@ -104,6 +106,18 @@ public class RoutesPortalK8sConfigMapModifierTest {
 
 	@Test
 	public void testExtInitRoutes() throws Exception {
+		_testExtInitRoutes(TestPropsValues.COMPANY_WEB_ID);
+
+		String webId = "able.com";
+
+		Company company = _companyLocalService.addCompany(
+			null, webId, webId, webId, 0, true, null, null, null, null, null,
+			null);
+
+		_testExtInitRoutes(webId);
+	}
+
+	private void _testExtInitRoutes(String webId) throws Exception {
 		String projectName = RandomTestUtil.randomString();
 		String serviceId = RandomTestUtil.randomString();
 
@@ -121,14 +135,14 @@ public class RoutesPortalK8sConfigMapModifierTest {
 				labels.put("ext.lxc.liferay.com/serviceId", serviceId);
 				labels.put(
 					"dxp.lxc.liferay.com/virtualInstanceId",
-					TestPropsValues.COMPANY_WEB_ID);
+					webId);
 			},
 			StringBundler.concat(
-				projectName, StringPool.DASH, TestPropsValues.COMPANY_WEB_ID,
+				projectName, StringPool.DASH, webId,
 				"-lxc-ext-init-metadata"));
 
 		Path projectPath = Paths.get(
-			PropsUtil.get(PropsKeys.LIFERAY_HOME), "routes/default",
+			PropsUtil.get(PropsKeys.LIFERAY_HOME), "routes/" + webId,
 			projectName);
 
 		Assert.assertTrue(Files.exists(projectPath));
