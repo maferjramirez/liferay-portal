@@ -115,7 +115,7 @@ public class RoutesPortalK8sConfigMapModifierTest {
 	public void testMultipleVirtualHostsInNondefaultCompany() throws Exception {
 		String webId = "fizzbuzz.com";
 
-		_company = _companyLocalService.addCompany(
+		Company company = _companyLocalService.addCompany(
 			null, webId, webId, webId, 0, true, null, null, null, null, null,
 			null);
 
@@ -141,7 +141,7 @@ public class RoutesPortalK8sConfigMapModifierTest {
 		VirtualHost virtualHost = _virtualHostLocalService.createVirtualHost(
 			_counterLocalService.increment());
 
-		virtualHost.setCompanyId(_company.getCompanyId());
+		virtualHost.setCompanyId(company.getCompanyId());
 		virtualHost.setHostname("foobar.com");
 
 		_virtualHostLocalService.addVirtualHost(virtualHost);
@@ -226,8 +226,6 @@ public class RoutesPortalK8sConfigMapModifierTest {
 	private static ServiceTracker
 		<PortalK8sConfigMapModifier, PortalK8sConfigMapModifier>
 			_serviceTracker;
-
-	private Company _company;
 
 	@Inject
 	private CounterLocalService _counterLocalService;
