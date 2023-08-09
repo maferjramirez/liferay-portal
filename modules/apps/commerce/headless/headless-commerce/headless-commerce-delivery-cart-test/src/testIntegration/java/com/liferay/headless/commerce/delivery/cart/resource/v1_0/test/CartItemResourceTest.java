@@ -232,7 +232,8 @@ public class CartItemResourceTest extends BaseCartItemResourceTestCase {
 
 		CommercePriceEntry commercePriceEntry =
 			_commercePriceEntryLocalService.getInstanceBaseCommercePriceEntry(
-				cpInstance.getCPInstanceUuid(), typePriceList);
+				cpInstance.getCPInstanceUuid(), typePriceList,
+				StringPool.BLANK);
 
 		if (commercePriceEntry == null) {
 			return;
