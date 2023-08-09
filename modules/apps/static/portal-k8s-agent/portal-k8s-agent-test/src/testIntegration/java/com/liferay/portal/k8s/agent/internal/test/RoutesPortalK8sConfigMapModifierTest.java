@@ -113,7 +113,7 @@ public class RoutesPortalK8sConfigMapModifierTest {
 
 	@Test
 	public void testMultipleVirtualHostsInNondefaultCompany() throws Exception {
-		String webId = "fizzbuzz.com";
+		String webId = "able.com";
 
 		Company company = _companyLocalService.addCompany(
 			null, webId, webId, webId, 0, true, null, null, null, null, null,
@@ -142,7 +142,7 @@ public class RoutesPortalK8sConfigMapModifierTest {
 			_counterLocalService.increment());
 
 		virtualHost.setCompanyId(company.getCompanyId());
-		virtualHost.setHostname("foobar.com");
+		virtualHost.setHostname("baker.com");
 
 		_virtualHostLocalService.addVirtualHost(virtualHost);
 
@@ -154,8 +154,8 @@ public class RoutesPortalK8sConfigMapModifierTest {
 
 		Assert.assertEquals(lxcDXPDomains.toString(), 2, lxcDXPDomains.size());
 
-		Assert.assertEquals("fizzbuzz.com:8080", lxcDXPDomains.get(0));
-		Assert.assertEquals("foobar.com:8080", lxcDXPDomains.get(1));
+		Assert.assertEquals("able.com:8080", lxcDXPDomains.get(0));
+		Assert.assertEquals("baker.com:8080", lxcDXPDomains.get(1));
 	}
 
 	@Test
