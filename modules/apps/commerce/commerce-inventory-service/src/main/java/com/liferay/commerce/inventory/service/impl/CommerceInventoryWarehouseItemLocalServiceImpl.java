@@ -87,7 +87,6 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 		}
 
 		_validateSku(commerceInventoryWarehouseId, sku);
-
 		_validateUnitOfMeasureKey(user.getCompanyId(), sku, unitOfMeasureKey);
 
 		long commerceInventoryWarehouseItemId = counterLocalService.increment();
@@ -855,9 +854,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 			}
 
 			if (cpInstanceUnitOfMeasuresCount > 0) {
-				throw new CPInstanceUnitOfMeasureKeyException(
-					"You must specify the Unit of Measure to set the " +
-						"inventory for this SKU");
+				throw new CPInstanceUnitOfMeasureKeyException();
 			}
 		}
 		else {
@@ -869,8 +866,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 					return;
 				}
 
-				throw new NoSuchCPInstanceUnitOfMeasureException(
-					"No Unit of Measure exists with key " + unitOfMeasureKey);
+				throw new NoSuchCPInstanceUnitOfMeasureException();
 			}
 
 			List<CPInstanceUnitOfMeasure> cpInstanceUnitOfMeasures =
@@ -885,8 +881,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 				}
 			}
 
-			throw new NoSuchCPInstanceUnitOfMeasureException(
-				"No Unit of Measure exists with key " + unitOfMeasureKey);
+			throw new NoSuchCPInstanceUnitOfMeasureException();
 		}
 	}
 
