@@ -44,7 +44,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_objectDefinitionJSONObject1 = _addObjectDefinition();
+		_objectDefinitionJSONObject = _addObjectDefinition();
 	}
 
 	@Test
@@ -52,7 +52,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 		throws Exception {
 
 		_addAPIApplication(
-			_objectDefinitionJSONObject1.getString("externalReferenceCode"));
+			_objectDefinitionJSONObject.getString("externalReferenceCode"));
 
 		_addAPIFilter("name eq 'myTest' or name eq '1@ ab9'");
 
@@ -94,7 +94,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 		throws Exception {
 
 		_addAPIApplication(
-			_objectDefinitionJSONObject1.getString("externalReferenceCode"));
+			_objectDefinitionJSONObject.getString("externalReferenceCode"));
 
 		_addAPIFilter("name eq 'myTest'");
 
@@ -127,7 +127,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 	@Test
 	public void testPostFilter() throws Exception {
 		_addAPIApplication(
-			_objectDefinitionJSONObject1.getString("externalReferenceCode"));
+			_objectDefinitionJSONObject.getString("externalReferenceCode"));
 
 		JSONAssert.assertEquals(
 			JSONUtil.put(
@@ -140,7 +140,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 					"oDataFilter", "test ne 1"
 				).put(
 					"r_apiEndpointToAPIFilters_c_apiEndpointERC",
-					_API_ENDPOINT_ERC_1
+					_API_ENDPOINT_ERC
 				).toString(),
 				"headless-builder/filters", Http.Method.POST
 			).toString(),
@@ -181,7 +181,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 					).put(
 						"externalReferenceCode",
 						APIFilterRelevantObjectEntryModelListenerTest.
-							_API_ENDPOINT_ERC_1
+							_API_ENDPOINT_ERC
 					).put(
 						"httpMethod", "get"
 					).put(
@@ -189,7 +189,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 					).put(
 						"path",
 						APIFilterRelevantObjectEntryModelListenerTest.
-							_API_APPLICATION_PATH_1
+							_API_APPLICATION_PATH
 					).put(
 						"scope", "company"
 					))
@@ -204,7 +204,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 							).put(
 								"name", "name"
 							).put(
-								"objectFieldERC", _OBJECT_FIELD_ERC_1
+								"objectFieldERC", _OBJECT_FIELD_ERC
 							))
 					).put(
 						"description", "description"
@@ -220,11 +220,11 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 				"applicationStatus", "published"
 			).put(
 				"baseURL",
-				APIFilterRelevantObjectEntryModelListenerTest._BASE_URL_1
+				APIFilterRelevantObjectEntryModelListenerTest._BASE_URL
 			).put(
 				"externalReferenceCode",
 				APIFilterRelevantObjectEntryModelListenerTest.
-					_API_APPLICATION_ERC_1
+					_API_APPLICATION_ERC
 			).put(
 				"title", RandomTestUtil.randomString()
 			).toString(),
@@ -237,7 +237,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 				apiSchemaExternalReferenceCode,
 				"/requestAPISchemaToAPIEndpoints/",
 				APIFilterRelevantObjectEntryModelListenerTest.
-					_API_ENDPOINT_ERC_1),
+					_API_ENDPOINT_ERC),
 			Http.Method.PUT);
 		HTTPTestUtil.invokeToHttpCode(
 			null,
@@ -246,7 +246,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 				apiSchemaExternalReferenceCode,
 				"/responseAPISchemaToAPIEndpoints/",
 				APIFilterRelevantObjectEntryModelListenerTest.
-					_API_ENDPOINT_ERC_1),
+					_API_ENDPOINT_ERC),
 			Http.Method.PUT);
 	}
 
@@ -257,7 +257,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 			).put(
 				"r_apiEndpointToAPIFilters_c_apiEndpointERC",
 				APIFilterRelevantObjectEntryModelListenerTest.
-					_API_ENDPOINT_ERC_1
+					_API_ENDPOINT_ERC
 			).toString(),
 			"headless-builder/filters", Http.Method.POST);
 	}
@@ -278,7 +278,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 					).put(
 						"externalReferenceCode",
 						APIFilterRelevantObjectEntryModelListenerTest.
-							_OBJECT_FIELD_ERC_1
+							_OBJECT_FIELD_ERC
 					).put(
 						"indexed", true
 					).put(
@@ -292,7 +292,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 					).put(
 						"name",
 						APIFilterRelevantObjectEntryModelListenerTest.
-							_OBJECT_FIELD_NAME_1
+							_OBJECT_FIELD_NAME
 					).put(
 						"required", false
 					).put(
@@ -311,23 +311,23 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 			"object-admin/v1.0/object-definitions", Http.Method.POST);
 	}
 
-	private static final String _API_APPLICATION_ERC_1 =
+	private static final String _API_APPLICATION_ERC =
 		RandomTestUtil.randomString();
 
-	private static final String _API_APPLICATION_PATH_1 =
+	private static final String _API_APPLICATION_PATH =
 		StringPool.SLASH + RandomTestUtil.randomString();
 
-	private static final String _API_ENDPOINT_ERC_1 =
+	private static final String _API_ENDPOINT_ERC =
 		RandomTestUtil.randomString();
 
-	private static final String _BASE_URL_1 = RandomTestUtil.randomString();
+	private static final String _BASE_URL = RandomTestUtil.randomString();
 
-	private static final String _OBJECT_FIELD_ERC_1 =
+	private static final String _OBJECT_FIELD_ERC =
 		RandomTestUtil.randomString();
 
-	private static final String _OBJECT_FIELD_NAME_1 =
+	private static final String _OBJECT_FIELD_NAME =
 		"x" + RandomTestUtil.randomString();
 
-	private static JSONObject _objectDefinitionJSONObject1;
+	private static JSONObject _objectDefinitionJSONObject;
 
 }
