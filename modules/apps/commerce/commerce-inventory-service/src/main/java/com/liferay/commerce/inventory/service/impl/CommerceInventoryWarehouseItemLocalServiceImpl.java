@@ -810,7 +810,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 		throws PortalException {
 
 		List<CPInstanceUnitOfMeasure> cpInstanceUnitOfMeasures =
-			_cpInstanceUnitOfMeasureLocalService.fetchCPInstanceUnitOfMeasures(
+			_cpInstanceUnitOfMeasureLocalService.getCPInstanceUnitOfMeasures(
 				companyId, sku);
 
 		if (Validator.isNull(unitOfMeasureKey) &&
@@ -875,7 +875,7 @@ public class CommerceInventoryWarehouseItemLocalServiceImpl
 
 			List<CPInstanceUnitOfMeasure> cpInstanceUnitOfMeasures =
 				_cpInstanceUnitOfMeasureLocalService.
-					fetchCPInstanceUnitOfMeasures(companyId, sku);
+					getCPInstanceUnitOfMeasures(companyId, sku);
 
 			for (CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure :
 					cpInstanceUnitOfMeasures) {
