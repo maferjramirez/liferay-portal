@@ -510,7 +510,7 @@ public class MirrorsGetTask extends Task {
 			process = _executeCommands(commands);
 		}
 		catch (Exception exception) {
-			System.out.println(file + " archive file is not valid.");
+			System.out.println(file + " archive file is invalid.");
 
 			return false;
 		}
@@ -525,7 +525,7 @@ public class MirrorsGetTask extends Task {
 
 		System.out.println(processOutput);
 
-		System.out.println(file + " archive file is not valid.");
+		System.out.println(file + " archive file is invalid.");
 
 		return false;
 	}
