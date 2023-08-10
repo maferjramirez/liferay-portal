@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
 public class RegexUtil {
 
 	public static String escapeRegexChars(String regex) {
-		String value = getGroup(regex, _TEXT_MATCHES_REGEX, 3);
+		String value = getGroup(regex, _REGEX_TEXT, 3);
 
 		String escapedValue = StringUtil.regexReplaceAll(
-			value, _META_CHARACTERS_REGEX, "\\\\$0");
+			value, _REGEX_META, "\\\\$0");
 
 		return StringUtil.replace(regex, value, escapedValue);
 	}
@@ -47,10 +47,10 @@ public class RegexUtil {
 		return null;
 	}
 
-	private static final String _META_CHARACTERS_REGEX =
+	private static final String _REGEX_META =
 		"[\\\\\\^\\$\\{\\}\\[\\]\\(\\)\\.\\*\\+\\?\\|\\<\\>\\-\\&\\%]";
 
-	private static final String _TEXT_MATCHES_REGEX =
+	private static final String _REGEX_TEXT =
 		"(\\(\\?i\\))?(\\.\\*|\\^\\(\\(\\?\\!)?(.*?)(\\.\\*|\\)\\.\\)\\*\\$)?$";
 
 }
