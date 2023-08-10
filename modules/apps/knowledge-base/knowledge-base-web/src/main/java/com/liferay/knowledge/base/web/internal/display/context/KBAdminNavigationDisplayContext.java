@@ -337,79 +337,83 @@ public class KBAdminNavigationDisplayContext {
 
 		JSONArray childrenJSONArray = JSONFactoryUtil.createJSONArray();
 
+		long moveKBObjectId = ParamUtil.getLong(
+			_httpServletRequest, "moveKBObjectId");
+
 		List<Object> kbObjects = KBFolderServiceUtil.getKBFoldersAndKBArticles(
 			_themeDisplay.getScopeGroupId(), parentFolderId,
 			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new KBObjectsPriorityComparator<>(true));
 
-		long moveKBObjectId = ParamUtil.getLong(
-			_httpServletRequest, "moveKBObjectId", -1);
-
 		for (Object kbObject : kbObjects) {
 			if (kbObject instanceof KBFolder) {
 				KBFolder kbFolder = (KBFolder)kbObject;
 
-				if (moveKBObjectId != kbFolder.getKbFolderId()) {
-					childrenJSONArray.put(
-						JSONUtil.put(
-							"actions",
-							_kbDropdownItemsProvider.getKBFolderDropdownItems(
-								kbFolder, _selectedItemAncestorIds)
-						).put(
-							"children",
-							_getKBFolderDataJSONArray(kbFolder.getKbFolderId())
-						).put(
-							"classNameId", kbFolder.getClassNameId()
-						).put(
-							"href",
-							PortletURLBuilder.createRenderURL(
-								_liferayPortletResponse
-							).setMVCPath(
-								"/admin/view_kb_folders.jsp"
-							).setParameter(
-								"parentResourceClassNameId",
-								kbFolder.getClassNameId()
-							).setParameter(
-								"parentResourcePrimKey",
-								kbFolder.getKbFolderId()
-							).setParameter(
-								"selectedItemId", kbFolder.getKbFolderId()
-							).buildString()
-						).put(
-							"id", kbFolder.getKbFolderId()
-						).put(
-							"name", kbFolder.getName()
-						).put(
-							"type", KBFolder.class.getSimpleName()
-						));
+				if (moveKBObjectId == kbFolder.getKbFolderId()) {
+					continue;
 				}
+
+				childrenJSONArray.put(
+					JSONUtil.put(
+						"actions",
+						_kbDropdownItemsProvider.getKBFolderDropdownItems(
+							kbFolder, _selectedItemAncestorIds)
+					).put(
+						"children",
+						_getKBFolderDataJSONArray(kbFolder.getKbFolderId())
+					).put(
+						"classNameId", kbFolder.getClassNameId()
+					).put(
+						"href",
+						PortletURLBuilder.createRenderURL(
+							_liferayPortletResponse
+						).setMVCPath(
+							"/admin/view_kb_folders.jsp"
+						).setParameter(
+							"parentResourceClassNameId",
+							kbFolder.getClassNameId()
+						).setParameter(
+							"parentResourcePrimKey",
+							kbFolder.getKbFolderId()
+						).setParameter(
+							"selectedItemId", kbFolder.getKbFolderId()
+						).buildString()
+					).put(
+						"id", kbFolder.getKbFolderId()
+					).put(
+						"name", kbFolder.getName()
+					).put(
+						"type", KBFolder.class.getSimpleName()
+					));
 			}
 			else {
 				KBArticle kbArticle = (KBArticle)kbObject;
 
-				if (moveKBObjectId != kbArticle.getResourcePrimKey()) {
-					childrenJSONArray.put(
-						JSONUtil.put(
-							"actions",
-							_kbDropdownItemsProvider.getKBArticleDropdownItems(
-								kbArticle, _selectedItemAncestorIds)
-						).put(
-							"children", _getChildKBArticlesJSONArray(kbArticle)
-						).put(
-							"classNameId", kbArticle.getClassNameId()
-						).put(
-							"href",
-							_kbArticleURLHelper.createViewWithRedirectURL(
-								kbArticle,
-								PortalUtil.getCurrentURL(_httpServletRequest))
-						).put(
-							"id", kbArticle.getResourcePrimKey()
-						).put(
-							"name", kbArticle.getTitle()
-						).put(
-							"type", KBArticle.class.getSimpleName()
-						));
+				if (moveKBObjectId == kbArticle.getResourcePrimKey()) {
+					continue;
 				}
+
+				childrenJSONArray.put(
+					JSONUtil.put(
+						"actions",
+						_kbDropdownItemsProvider.getKBArticleDropdownItems(
+							kbArticle, _selectedItemAncestorIds)
+					).put(
+						"children", _getChildKBArticlesJSONArray(kbArticle)
+					).put(
+						"classNameId", kbArticle.getClassNameId()
+					).put(
+						"href",
+						_kbArticleURLHelper.createViewWithRedirectURL(
+							kbArticle,
+							PortalUtil.getCurrentURL(_httpServletRequest))
+					).put(
+						"id", kbArticle.getResourcePrimKey()
+					).put(
+						"name", kbArticle.getTitle()
+					).put(
+						"type", KBArticle.class.getSimpleName()
+					));
 			}
 		}
 
