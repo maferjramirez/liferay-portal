@@ -483,13 +483,13 @@ public class MirrorsGetTask extends Task {
 			Process process = _executeCommands(commands);
 
 			if (process.exitValue() != 0) {
-				System.out.println("Unable to validate 7z file");
+				System.out.println("Unable to validate 7z file.");
 
 				return false;
 			}
 		}
 		catch (Exception exception) {
-			System.out.println("Unable to validate 7z file");
+			System.out.println("Unable to validate 7z file.");
 
 			return false;
 		}
