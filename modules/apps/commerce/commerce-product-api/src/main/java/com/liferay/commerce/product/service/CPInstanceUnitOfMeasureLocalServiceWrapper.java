@@ -279,14 +279,6 @@ public class CPInstanceUnitOfMeasureLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.List<CPInstanceUnitOfMeasure>
-		fetchCPInstanceUnitOfMeasures(long companyId, String sku) {
-
-		return _cpInstanceUnitOfMeasureLocalService.
-			fetchCPInstanceUnitOfMeasures(companyId, sku);
-	}
-
-	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 
@@ -362,6 +354,14 @@ public class CPInstanceUnitOfMeasureLocalServiceWrapper
 
 		return _cpInstanceUnitOfMeasureLocalService.getCPInstanceUnitOfMeasures(
 			cpInstanceId, start, end, orderByComparator);
+	}
+
+	@Override
+	public java.util.List<CPInstanceUnitOfMeasure> getCPInstanceUnitOfMeasures(
+		long companyId, String sku) {
+
+		return _cpInstanceUnitOfMeasureLocalService.getCPInstanceUnitOfMeasures(
+			companyId, sku);
 	}
 
 	/**
