@@ -180,16 +180,14 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 						"description", "description"
 					).put(
 						"externalReferenceCode",
-						APIFilterRelevantObjectEntryModelListenerTest.
-							_API_ENDPOINT_ERC
+						_API_ENDPOINT_ERC
 					).put(
 						"httpMethod", "get"
 					).put(
 						"name", "name"
 					).put(
 						"path",
-						APIFilterRelevantObjectEntryModelListenerTest.
-							_API_APPLICATION_PATH
+						_API_APPLICATION_PATH
 					).put(
 						"scope", "company"
 					))
@@ -234,8 +232,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 				"headless-builder/schemas/by-external-reference-code/",
 				apiSchemaExternalReferenceCode,
 				"/requestAPISchemaToAPIEndpoints/",
-				APIFilterRelevantObjectEntryModelListenerTest.
-					_API_ENDPOINT_ERC),
+				_API_ENDPOINT_ERC),
 			Http.Method.PUT);
 		HTTPTestUtil.invokeToHttpCode(
 			null,
@@ -243,8 +240,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 				"headless-builder/schemas/by-external-reference-code/",
 				apiSchemaExternalReferenceCode,
 				"/responseAPISchemaToAPIEndpoints/",
-				APIFilterRelevantObjectEntryModelListenerTest.
-					_API_ENDPOINT_ERC),
+				_API_ENDPOINT_ERC),
 			Http.Method.PUT);
 	}
 
@@ -254,8 +250,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 				"oDataFilter", filterString
 			).put(
 				"r_apiEndpointToAPIFilters_c_apiEndpointERC",
-				APIFilterRelevantObjectEntryModelListenerTest.
-					_API_ENDPOINT_ERC
+				_API_ENDPOINT_ERC
 			).toString(),
 			"headless-builder/filters", Http.Method.POST);
 	}
@@ -275,8 +270,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 						"DBType", "String"
 					).put(
 						"externalReferenceCode",
-						APIFilterRelevantObjectEntryModelListenerTest.
-							_OBJECT_FIELD_ERC
+						_OBJECT_FIELD_ERC
 					).put(
 						"indexed", true
 					).put(
