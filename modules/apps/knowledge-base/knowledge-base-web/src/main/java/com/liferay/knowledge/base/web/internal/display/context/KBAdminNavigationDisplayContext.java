@@ -294,29 +294,31 @@ public class KBAdminNavigationDisplayContext {
 			new KBArticleTitleComparator(true));
 
 		for (KBArticle kbArticle : kbArticles) {
-			if (moveKBObjectId != kbArticle.getResourcePrimKey()) {
-				childrenJSONArray.put(
-					JSONUtil.put(
-						"actions",
-						_kbDropdownItemsProvider.getKBArticleDropdownItems(
-							kbArticle, _selectedItemAncestorIds)
-					).put(
-						"children", _getChildKBArticlesJSONArray(kbArticle)
-					).put(
-						"classNameId", kbArticle.getClassNameId()
-					).put(
-						"href",
-						_kbArticleURLHelper.createViewWithRedirectURL(
-							kbArticle,
-							PortalUtil.getCurrentURL(_httpServletRequest))
-					).put(
-						"id", kbArticle.getResourcePrimKey()
-					).put(
-						"name", kbArticle.getTitle()
-					).put(
-						"type", KBArticle.class.getSimpleName()
-					));
+			if (moveKBObjectId == kbArticle.getResourcePrimKey()) {
+				continue;
 			}
+
+			childrenJSONArray.put(
+				JSONUtil.put(
+					"actions",
+					_kbDropdownItemsProvider.getKBArticleDropdownItems(
+						kbArticle, _selectedItemAncestorIds)
+				).put(
+					"children", _getChildKBArticlesJSONArray(kbArticle)
+				).put(
+					"classNameId", kbArticle.getClassNameId()
+				).put(
+					"href",
+					_kbArticleURLHelper.createViewWithRedirectURL(
+						kbArticle,
+						PortalUtil.getCurrentURL(_httpServletRequest))
+				).put(
+					"id", kbArticle.getResourcePrimKey()
+				).put(
+					"name", kbArticle.getTitle()
+				).put(
+					"type", KBArticle.class.getSimpleName()
+				));
 		}
 
 		return childrenJSONArray;
