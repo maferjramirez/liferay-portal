@@ -29,14 +29,11 @@ async function* walk(dir) {
 }
 
 const configTreeMap = async () => {
-	for (const configTreePath of config.configTreePaths) {
-		for await (const configFile of walk(configTreePath)) {
-			const configFileName = configFile.substring(
-				configFile.lastIndexOf('/') + 1
-			);
-
-			config[configFileName] = fs.readFileSync(configFile, 'utf-8');
-		}
+	for await (const configFile of walk(config.configTreePath)) {
+		const configFileName = configFile.substring(
+			configFile.lastIndexOf('/') + 1
+		);
+		config[configFileName] = fs.readFileSync(configFile, 'utf-8');
 	}
 
 	return config;
