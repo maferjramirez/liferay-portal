@@ -217,21 +217,21 @@ public class MirrorsGetTask extends Task {
 			targetFile.delete();
 
 			throw new IOException(
-				targetFile.getAbsolutePath() + " failed checksum.");
+				targetFile.getAbsolutePath() + " failed checksum");
 		}
 
 		if (_isZipFileName(targetFile.getName()) && !_isZipFile(targetFile)) {
 			targetFile.delete();
 
 			throw new IOException(
-				targetFile.getAbsolutePath() + " is an invalid ZIP file.");
+				targetFile.getAbsolutePath() + " is an invalid ZIP file");
 		}
 
 		if (_is7zFileName(targetFile.getName()) && !_is7zFile(targetFile)) {
 			targetFile.delete();
 
 			throw new IOException(
-				targetFile.getAbsolutePath() + " is an invalid 7z file.");
+				targetFile.getAbsolutePath() + " is an invalid 7z file");
 		}
 	}
 
