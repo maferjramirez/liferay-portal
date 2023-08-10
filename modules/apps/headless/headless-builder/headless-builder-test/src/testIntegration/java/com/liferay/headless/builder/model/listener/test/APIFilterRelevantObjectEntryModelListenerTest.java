@@ -220,11 +220,9 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 				"applicationStatus", "published"
 			).put(
 				"baseURL",
-				APIFilterRelevantObjectEntryModelListenerTest._BASE_URL
+				RandomTestUtil.randomString()
 			).put(
-				"externalReferenceCode",
-				APIFilterRelevantObjectEntryModelListenerTest.
-					_API_APPLICATION_ERC
+				"externalReferenceCode", RandomTestUtil.randomString()
 			).put(
 				"title", RandomTestUtil.randomString()
 			).toString(),
@@ -291,8 +289,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 						"listTypeDefinitionId", 0
 					).put(
 						"name",
-						APIFilterRelevantObjectEntryModelListenerTest.
-							_OBJECT_FIELD_NAME
+						"x" + RandomTestUtil.randomString()
 					).put(
 						"required", false
 					).put(
@@ -311,22 +308,14 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 			"object-admin/v1.0/object-definitions", Http.Method.POST);
 	}
 
-	private static final String _API_APPLICATION_ERC =
-		RandomTestUtil.randomString();
-
 	private static final String _API_APPLICATION_PATH =
 		StringPool.SLASH + RandomTestUtil.randomString();
 
 	private static final String _API_ENDPOINT_ERC =
 		RandomTestUtil.randomString();
 
-	private static final String _BASE_URL = RandomTestUtil.randomString();
-
 	private static final String _OBJECT_FIELD_ERC =
 		RandomTestUtil.randomString();
-
-	private static final String _OBJECT_FIELD_NAME =
-		"x" + RandomTestUtil.randomString();
 
 	private static JSONObject _objectDefinitionJSONObject;
 
