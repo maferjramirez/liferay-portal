@@ -179,15 +179,13 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 					JSONUtil.put(
 						"description", "description"
 					).put(
-						"externalReferenceCode",
-						_API_ENDPOINT_ERC
+						"externalReferenceCode", _API_ENDPOINT_ERC
 					).put(
 						"httpMethod", "get"
 					).put(
 						"name", "name"
 					).put(
-						"path",
-						_API_APPLICATION_PATH
+						"path", _API_APPLICATION_PATH
 					).put(
 						"scope", "company"
 					))
@@ -217,8 +215,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 			).put(
 				"applicationStatus", "published"
 			).put(
-				"baseURL",
-				RandomTestUtil.randomString()
+				"baseURL", RandomTestUtil.randomString()
 			).put(
 				"externalReferenceCode", RandomTestUtil.randomString()
 			).put(
@@ -231,16 +228,14 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 			StringBundler.concat(
 				"headless-builder/schemas/by-external-reference-code/",
 				apiSchemaExternalReferenceCode,
-				"/requestAPISchemaToAPIEndpoints/",
-				_API_ENDPOINT_ERC),
+				"/requestAPISchemaToAPIEndpoints/", _API_ENDPOINT_ERC),
 			Http.Method.PUT);
 		HTTPTestUtil.invokeToHttpCode(
 			null,
 			StringBundler.concat(
 				"headless-builder/schemas/by-external-reference-code/",
 				apiSchemaExternalReferenceCode,
-				"/responseAPISchemaToAPIEndpoints/",
-				_API_ENDPOINT_ERC),
+				"/responseAPISchemaToAPIEndpoints/", _API_ENDPOINT_ERC),
 			Http.Method.PUT);
 	}
 
@@ -249,8 +244,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 			JSONUtil.put(
 				"oDataFilter", filterString
 			).put(
-				"r_apiEndpointToAPIFilters_c_apiEndpointERC",
-				_API_ENDPOINT_ERC
+				"r_apiEndpointToAPIFilters_c_apiEndpointERC", _API_ENDPOINT_ERC
 			).toString(),
 			"headless-builder/filters", Http.Method.POST);
 	}
@@ -269,8 +263,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 					JSONUtil.put(
 						"DBType", "String"
 					).put(
-						"externalReferenceCode",
-						_OBJECT_FIELD_ERC
+						"externalReferenceCode", _OBJECT_FIELD_ERC
 					).put(
 						"indexed", true
 					).put(
@@ -282,8 +275,7 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 					).put(
 						"listTypeDefinitionId", 0
 					).put(
-						"name",
-						"x" + RandomTestUtil.randomString()
+						"name", "x" + RandomTestUtil.randomString()
 					).put(
 						"required", false
 					).put(
