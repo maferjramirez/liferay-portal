@@ -220,16 +220,14 @@ public class MirrorsGetTask extends Task {
 				targetFile.getAbsolutePath() + " failed checksum.");
 		}
 
-		if (_isZipFileName(targetFile.getName()) && !_isValidZip(targetFile)) {
+		if (_isZipFileName(targetFile.getName()) && !_isZipFile(targetFile)) {
 			targetFile.delete();
 
 			throw new IOException(
-				targetFile.getAbsolutePath() + " is an invalid zip file.");
+				targetFile.getAbsolutePath() + " is an invalid ZIP file.");
 		}
 
-		if (_is7ZFileName(targetFile.getName()) &&
-			!_is7ZArchiveValid(targetFile)) {
-
+		if (_is7zFileName(targetFile.getName()) && !_is7zFile(targetFile)) {
 			targetFile.delete();
 
 			throw new IOException(
@@ -311,7 +309,7 @@ public class MirrorsGetTask extends Task {
 		File localCacheFile = new File(localCacheDir, _fileName);
 
 		if (localCacheFile.exists() && !_force && _isZipFileName(_fileName)) {
-			_force = !_isValidZip(localCacheFile);
+			_force = !_isZipFile(localCacheFile);
 		}
 
 		if (localCacheFile.exists() && _force) {
@@ -499,7 +497,7 @@ public class MirrorsGetTask extends Task {
 		return true;
 	}
 
-	private boolean _is7ZArchiveValid(File file) {
+	private boolean _is7zFile(File file) {
 		if (!_has7z()) {
 			return true;
 		}
@@ -532,7 +530,7 @@ public class MirrorsGetTask extends Task {
 		return false;
 	}
 
-	private boolean _is7ZFileName(String fileName) {
+	private boolean _is7zFileName(String fileName) {
 		if (fileName.endsWith(".7z")) {
 			return true;
 		}
@@ -578,7 +576,7 @@ public class MirrorsGetTask extends Task {
 		return remoteMD5.contains(localMD5);
 	}
 
-	private boolean _isValidZip(File file) throws IOException {
+	private boolean _isZipFile(File file) throws IOException {
 		if (!file.exists()) {
 			return false;
 		}
