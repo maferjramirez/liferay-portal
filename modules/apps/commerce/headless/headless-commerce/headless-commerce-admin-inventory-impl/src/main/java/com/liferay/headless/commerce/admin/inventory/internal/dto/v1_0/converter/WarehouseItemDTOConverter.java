@@ -87,7 +87,6 @@ public class WarehouseItemDTOConverter
 						return commerceInventoryWarehouseItemReservedQuantity.
 							setScale(2);
 					});
-
 				setUnitOfMeasureKey(
 					() -> {
 						if (Validator.isNull(
