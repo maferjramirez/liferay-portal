@@ -123,11 +123,11 @@ public class KBAdminNavigationDisplayContext {
 	}
 
 	public long getMoveParentKBObjectId() throws PortalException {
-		String moveKBObjectClassName = ParamUtil.getString(
-			_httpServletRequest, "moveKBObjectClassName");
-
 		long moveKBObjectId = ParamUtil.getLong(
 			_httpServletRequest, "moveKBObjectId");
+
+		String moveKBObjectClassName = ParamUtil.getString(
+			_httpServletRequest, "moveKBObjectClassName");
 
 		if (moveKBObjectClassName.equals(KBFolder.class.getSimpleName())) {
 			KBFolder kbFolder = KBFolderLocalServiceUtil.getKBFolder(
