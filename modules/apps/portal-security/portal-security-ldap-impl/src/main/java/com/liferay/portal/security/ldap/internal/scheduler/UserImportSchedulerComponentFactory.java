@@ -40,15 +40,13 @@ public class UserImportSchedulerComponentFactory {
 			ConfigurationModelListener.class,
 			new LDAPImportConfigurationModelListener(),
 			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", _LDAP_IMPORT_CONFIGURATION
+				"model.class.name", _PID
 			).build());
 
 		Dictionary<String, Object> properties = _EMPTY_PROPERTIES;
 
 		Configuration[] configurations = _configurationAdmin.listConfigurations(
-			StringBundler.concat(
-				"(", Constants.SERVICE_PID, "=", _LDAP_IMPORT_CONFIGURATION,
-				")"));
+			StringBundler.concat("(", Constants.SERVICE_PID, "=", _PID, ")"));
 
 		if (configurations != null) {
 			properties = configurations[0].getProperties();
@@ -86,7 +84,7 @@ public class UserImportSchedulerComponentFactory {
 	private static final Dictionary<String, Object> _EMPTY_PROPERTIES =
 		new HashMapDictionary<>();
 
-	private static final String _LDAP_IMPORT_CONFIGURATION =
+	private static final String _PID =
 		"com.liferay.portal.security.ldap.exportimport.configuration." +
 			"LDAPImportConfiguration";
 
@@ -108,7 +106,7 @@ public class UserImportSchedulerComponentFactory {
 
 		@Override
 		public void onAfterDelete(String pid) {
-			if (!StringUtil.equals(pid, _LDAP_IMPORT_CONFIGURATION)) {
+			if (!StringUtil.equals(pid, _PID)) {
 				return;
 			}
 
@@ -119,7 +117,7 @@ public class UserImportSchedulerComponentFactory {
 		public void onAfterSave(
 			String pid, Dictionary<String, Object> properties) {
 
-			if (!StringUtil.equals(pid, _LDAP_IMPORT_CONFIGURATION)) {
+			if (!StringUtil.equals(pid, _PID)) {
 				return;
 			}
 
