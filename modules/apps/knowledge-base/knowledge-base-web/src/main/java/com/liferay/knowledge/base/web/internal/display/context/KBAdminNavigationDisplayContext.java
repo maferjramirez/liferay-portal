@@ -285,13 +285,13 @@ public class KBAdminNavigationDisplayContext {
 
 		JSONArray childrenJSONArray = JSONFactoryUtil.createJSONArray();
 
+		long moveKBObjectId = ParamUtil.getLong(
+			_httpServletRequest, "moveKBObjectId");
+
 		List<KBArticle> kbArticles = KBArticleServiceUtil.getKBArticles(
 			parentKBArticle.getGroupId(), parentKBArticle.getResourcePrimKey(),
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, WorkflowConstants.STATUS_ANY,
 			new KBArticleTitleComparator(true));
-
-		long moveKBObjectId = ParamUtil.getLong(
-			_httpServletRequest, "moveKBObjectId");
 
 		for (KBArticle kbArticle : kbArticles) {
 			if (moveKBObjectId != kbArticle.getResourcePrimKey()) {
