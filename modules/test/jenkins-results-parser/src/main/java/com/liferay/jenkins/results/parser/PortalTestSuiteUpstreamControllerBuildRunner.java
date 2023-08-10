@@ -226,7 +226,6 @@ public class PortalTestSuiteUpstreamControllerBuildRunner
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(JenkinsResultsParserUtil.join(", ", _invokedTestSuiteNames));
-
 		sb.append(",");
 		sb.append(" <strong>GIT ID</strong> - ");
 		sb.append("<a href=\"https://github.com/");
