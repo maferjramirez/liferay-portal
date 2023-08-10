@@ -291,7 +291,7 @@ public class KBAdminNavigationDisplayContext {
 			new KBArticleTitleComparator(true));
 
 		long moveKBObjectId = ParamUtil.getLong(
-			_httpServletRequest, "moveKBObjectId", -1);
+			_httpServletRequest, "moveKBObjectId");
 
 		for (KBArticle kbArticle : kbArticles) {
 			if (moveKBObjectId != kbArticle.getResourcePrimKey()) {
