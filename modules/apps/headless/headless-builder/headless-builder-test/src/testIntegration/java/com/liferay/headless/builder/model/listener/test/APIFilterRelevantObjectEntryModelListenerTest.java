@@ -81,8 +81,8 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
 				null,
-				"headless-builder/applications" +
-					"?nestedFields=apiApplicationToAPIEndpoints," +
+				"headless-builder/applications?nestedFields=" +
+					"apiApplicationToAPIEndpoints," +
 						"apiEndpointToAPIFilters&nestedFieldsDepth=2",
 				Http.Method.GET
 			).toString(),
@@ -117,8 +117,8 @@ public class APIFilterRelevantObjectEntryModelListenerTest
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
 				null,
-				"headless-builder/endpoints" +
-					"?nestedFields=apiEndpointToAPIFilters",
+				"headless-builder/endpoints?nestedFields=" +
+					"apiEndpointToAPIFilters",
 				Http.Method.GET
 			).toString(),
 			JSONCompareMode.LENIENT);
