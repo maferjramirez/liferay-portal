@@ -94,7 +94,7 @@ public class CPInstanceUnitOfMeasureLocalServiceImpl
 	}
 
 	@Override
-	public List<CPInstanceUnitOfMeasure> fetchCPInstanceUnitOfMeasures(
+	public List<CPInstanceUnitOfMeasure> getCPInstanceUnitOfMeasures(
 		long companyId, String sku) {
 
 		return cpInstanceUnitOfMeasurePersistence.findByC_S(companyId, sku);
