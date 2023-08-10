@@ -373,8 +373,7 @@ public class KBAdminNavigationDisplayContext {
 							"parentResourceClassNameId",
 							kbFolder.getClassNameId()
 						).setParameter(
-							"parentResourcePrimKey",
-							kbFolder.getKbFolderId()
+							"parentResourcePrimKey", kbFolder.getKbFolderId()
 						).setParameter(
 							"selectedItemId", kbFolder.getKbFolderId()
 						).buildString()
