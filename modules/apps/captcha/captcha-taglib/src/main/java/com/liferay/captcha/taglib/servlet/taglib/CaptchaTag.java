@@ -60,7 +60,7 @@ public class CaptchaTag extends IncludeTag {
 	@Override
 	protected void setAttributes(HttpServletRequest httpServletRequest) {
 		httpServletRequest.setAttribute(
-			"liferay-captcha:captcha:error-message", _errorMessage);
+			"liferay-captcha:captcha:errorMessage", _errorMessage);
 		httpServletRequest.setAttribute(
 			"liferay-captcha:captcha:url", _getURL(httpServletRequest));
 	}

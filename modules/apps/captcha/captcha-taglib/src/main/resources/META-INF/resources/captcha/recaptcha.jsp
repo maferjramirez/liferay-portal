@@ -8,7 +8,7 @@
 <%@ include file="/captcha/init.jsp" %>
 
 <%
-String errorMessage = (String)request.getAttribute("liferay-captcha:captcha:error-message");
+String errorMessage = (String)request.getAttribute("liferay-captcha:captcha:errorMessage");
 %>
 
 <c:if test="<%= captchaEnabled %>">
