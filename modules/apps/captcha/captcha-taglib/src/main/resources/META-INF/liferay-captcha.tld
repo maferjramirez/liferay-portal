@@ -15,7 +15,7 @@
 		<tag-class>com.liferay.captcha.taglib.servlet.taglib.CaptchaTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>Error message to be shown below the input.</description>
+			<description></description>
 			<name>errorMessage</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
