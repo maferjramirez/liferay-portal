@@ -69,7 +69,7 @@ public class BooleanQueryTranslatorImpl implements BooleanQueryTranslator {
 		if (filterTranslator == null) {
 			_log.error(
 				"Unable to translate boolean filter " + booleanFilter +
-					" as filter translator is null");
+					" because filter translator is null");
 
 			return boolQueryBuilder;
 		}
