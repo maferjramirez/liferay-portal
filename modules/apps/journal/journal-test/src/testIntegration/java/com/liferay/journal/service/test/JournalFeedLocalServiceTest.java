@@ -58,9 +58,6 @@ public class JournalFeedLocalServiceTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_layout = LayoutTestUtil.addTypePortletLayout(
-			_group.getGroupId(), false);
-
 		_ddmStructure = DDMStructureTestUtil.addStructure(
 			_group.getGroupId(), JournalArticle.class.getName());
 
@@ -70,6 +67,9 @@ public class JournalFeedLocalServiceTest {
 		_ddmTemplate = DDMTemplateTestUtil.addTemplate(
 			_group.getGroupId(), _ddmStructure.getStructureId(),
 			journalArticleClassNameId);
+
+		_layout = LayoutTestUtil.addTypePortletLayout(
+			_group.getGroupId(), false);
 	}
 
 	@Test
