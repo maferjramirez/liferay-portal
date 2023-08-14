@@ -1592,7 +1592,6 @@ public abstract class BaseDB implements DB {
 		_templatePattern = Pattern.compile(sb.toString());
 
 		String dataTypeRegex = "(\\w+(?:\\([^\\)]+\\))?)";
-
 		String defaultAndNullableRegex =
 			"(?:(?:DEFAULT\\s+('?.*[^']'?)\\s+NOT\\s+NULL)|((?:NOT\\s+)?NULL))";
 
@@ -1601,7 +1600,6 @@ public abstract class BaseDB implements DB {
 				"^ALTER_COLUMN_NAME\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+",
 				dataTypeRegex, "\\s*", defaultAndNullableRegex, "?;?$"),
 			Pattern.CASE_INSENSITIVE);
-
 		_alterColumnTypePattern = Pattern.compile(
 			StringBundler.concat(
 				"^ALTER_COLUMN_TYPE\\s+(\\S+)\\s+(\\S+)\\s+", dataTypeRegex,
