@@ -288,26 +288,10 @@ public class ObjectRelationshipLocalServiceImpl
 		objectRelationship = objectRelationshipPersistence.remove(
 			objectRelationship);
 
-		for (ObjectField objectField :
-				ListUtil.concat(
-					_objectFieldPersistence.findByObjectDefinitionId(
-						objectRelationship.getObjectDefinitionId1()),
-					_objectFieldPersistence.findByObjectDefinitionId(
-						objectRelationship.getObjectDefinitionId2()))) {
-
-			ObjectFieldSetting objectFieldSetting =
-				_objectFieldSettingLocalService.fetchObjectFieldSetting(
-					objectField.getObjectFieldId(), "objectRelationshipName");
-
-			if ((objectFieldSetting != null) &&
-				StringUtil.equals(
-					objectFieldSetting.getValue(),
-					objectRelationship.getName())) {
-
-				_objectFieldLocalService.deleteObjectField(
-					objectField.getObjectFieldId());
-			}
-		}
+		_deleteObjectFields(
+			objectRelationship.getObjectDefinitionId1(), objectRelationship);
+		_deleteObjectFields(
+			objectRelationship.getObjectDefinitionId2(), objectRelationship);
 
 		_objectLayoutTabPersistence.removeByObjectRelationshipId(
 			objectRelationship.getObjectRelationshipId());
@@ -922,6 +906,29 @@ public class ObjectRelationshipLocalServiceImpl
 
 		return objectRelationshipLocalService.updateObjectRelationship(
 			objectRelationship);
+	}
+
+	private void _deleteObjectFields(
+			long objectDefinitionId, ObjectRelationship objectRelationship)
+		throws PortalException {
+
+		for (ObjectField objectField :
+				_objectFieldPersistence.findByObjectDefinitionId(
+					objectDefinitionId)) {
+
+			ObjectFieldSetting objectFieldSetting =
+				_objectFieldSettingLocalService.fetchObjectFieldSetting(
+					objectField.getObjectFieldId(), "objectRelationshipName");
+
+			if ((objectFieldSetting != null) &&
+				StringUtil.equals(
+					objectFieldSetting.getValue(),
+					objectRelationship.getName())) {
+
+				_objectFieldLocalService.deleteObjectField(
+					objectField.getObjectFieldId());
+			}
+		}
 	}
 
 	private String _getServiceRegistrationKey(
