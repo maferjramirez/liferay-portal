@@ -19,6 +19,7 @@ import com.liferay.object.internal.dao.db.ObjectDBManagerUtil;
 import com.liferay.object.internal.info.collection.provider.RelatedInfoCollectionProviderFactory;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.model.ObjectField;
+import com.liferay.object.model.ObjectFieldSetting;
 import com.liferay.object.model.ObjectRelationship;
 import com.liferay.object.model.ObjectRelationshipTable;
 import com.liferay.object.petra.sql.dsl.DynamicObjectDefinitionTableUtil;
@@ -292,7 +293,7 @@ public class ObjectRelationshipLocalServiceImpl
 						objectRelationship.getObjectDefinitionId2()))) {
 
 			ObjectFieldSetting objectFieldSetting =
-				_objectFieldSettingPersistence.fetchByOFI_N(
+				_objectFieldSettingLocalService.fetchObjectFieldSetting(
 					objectField.getObjectFieldId(), "objectRelationshipName");
 
 			if ((objectFieldSetting != null) &&
@@ -300,7 +301,7 @@ public class ObjectRelationshipLocalServiceImpl
 					objectFieldSetting.getValue(),
 					objectRelationship.getName())) {
 
-				objectFieldLocalService.deleteObjectField(
+				_objectFieldLocalService.deleteObjectField(
 					objectField.getObjectFieldId());
 			}
 		}
