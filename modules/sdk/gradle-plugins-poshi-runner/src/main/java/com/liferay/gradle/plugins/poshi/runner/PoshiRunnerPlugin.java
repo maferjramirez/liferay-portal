@@ -787,10 +787,8 @@ public class PoshiRunnerPlugin implements Plugin<Project> {
 							"/chrome-for-testing/latest-versions-per-" +
 								"milestone-with-downloads.json");
 
-					String jsonString = StringUtil.read(url.openStream());
-
 					DocumentContext documentContext = JsonPath.parse(
-						jsonString);
+						StringUtil.read(url.openStream()));
 
 					Object object = documentContext.read(
 						"milestones." + chromeMajorVersion.toString() +
