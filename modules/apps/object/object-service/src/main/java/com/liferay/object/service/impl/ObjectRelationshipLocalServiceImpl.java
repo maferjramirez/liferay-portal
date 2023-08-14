@@ -285,6 +285,9 @@ public class ObjectRelationshipLocalServiceImpl
 				"Reverse object relationships cannot be deleted");
 		}
 
+		objectRelationship = objectRelationshipPersistence.remove(
+			objectRelationship);
+
 		for (ObjectField objectField :
 				ListUtil.concat(
 					_objectFieldPersistence.findByObjectDefinitionId(
@@ -305,9 +308,6 @@ public class ObjectRelationshipLocalServiceImpl
 					objectField.getObjectFieldId());
 			}
 		}
-
-		objectRelationship = objectRelationshipPersistence.remove(
-			objectRelationship);
 
 		_objectLayoutTabPersistence.removeByObjectRelationshipId(
 			objectRelationship.getObjectRelationshipId());
