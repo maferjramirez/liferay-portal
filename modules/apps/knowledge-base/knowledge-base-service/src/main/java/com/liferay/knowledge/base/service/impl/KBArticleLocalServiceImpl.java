@@ -2349,14 +2349,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			throw new KBArticleDisplayDateException("Display date is null");
 		}
 
-		_validateDisplayExpirationReviewDate(
-			displayDate, expirationDate, reviewDate);
-	}
-
-	private void _validateDisplayExpirationReviewDate(
-			Date displayDate, Date expirationDate, Date reviewDate)
-		throws PortalException {
-
 		Date now = new Date();
 
 		if (expirationDate != null) {
