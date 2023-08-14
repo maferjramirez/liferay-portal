@@ -3571,7 +3571,6 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 
 		serviceContext.setAssetCategoryIds(
 			_getAssetCategoryIds(className, classPK, groupIds, repositoryId));
-
 		serviceContext.setAssetTagNames(
 			_getAssetTagNames(className, classPK, groupIds));
 	}
