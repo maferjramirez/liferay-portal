@@ -59,20 +59,6 @@ public class
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_newParentFolder = _dlAppService.addFolder(
-			null, group.getGroupId(),
-			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "New Test Folder",
-			RandomTestUtil.randomString(),
-			ServiceContextTestUtil.getServiceContext(
-				group.getGroupId(), TestPropsValues.getUserId()));
-
-		_targetParentFolder = _dlAppService.addFolder(
-			null, targetGroup.getGroupId(),
-			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Target Test Folder",
-			RandomTestUtil.randomString(),
-			ServiceContextTestUtil.getServiceContext(
-				targetGroup.getGroupId(), TestPropsValues.getUserId()));
-
 		_assetVocabulary = _assetVocabularyLocalService.addVocabulary(
 			TestPropsValues.getUserId(), group.getGroupId(), "Vocabulary",
 			new ServiceContext());
@@ -81,6 +67,19 @@ public class
 			TestPropsValues.getUserId(), group.getGroupId(),
 			RandomTestUtil.randomString(), _assetVocabulary.getVocabularyId(),
 			new ServiceContext());
+
+		_newParentFolder = _dlAppService.addFolder(
+			null, group.getGroupId(),
+			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "New Test Folder",
+			RandomTestUtil.randomString(),
+			ServiceContextTestUtil.getServiceContext(
+				group.getGroupId(), TestPropsValues.getUserId()));
+		_targetParentFolder = _dlAppService.addFolder(
+			null, targetGroup.getGroupId(),
+			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Target Test Folder",
+			RandomTestUtil.randomString(),
+			ServiceContextTestUtil.getServiceContext(
+				targetGroup.getGroupId(), TestPropsValues.getUserId()));
 	}
 
 	@Test
