@@ -315,33 +315,6 @@ public class ObjectFieldLocalServiceImpl
 		}
 	}
 
-	@Override
-	public void deleteObjectFieldByObjectRelationship(
-			ObjectRelationship objectRelationship)
-		throws PortalException {
-
-		for (ObjectField objectField :
-				ListUtil.concat(
-					objectFieldPersistence.findByObjectDefinitionId(
-						objectRelationship.getObjectDefinitionId1()),
-					objectFieldPersistence.findByObjectDefinitionId(
-						objectRelationship.getObjectDefinitionId2()))) {
-
-			ObjectFieldSetting objectFieldSetting =
-				_objectFieldSettingPersistence.fetchByOFI_N(
-					objectField.getObjectFieldId(), "objectRelationshipName");
-
-			if ((objectFieldSetting != null) &&
-				StringUtil.equals(
-					objectFieldSetting.getValue(),
-					objectRelationship.getName())) {
-
-				objectFieldLocalService.deleteObjectField(
-					objectField.getObjectFieldId());
-			}
-		}
-	}
-
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public ObjectField deleteRelationshipTypeObjectField(long objectFieldId)
