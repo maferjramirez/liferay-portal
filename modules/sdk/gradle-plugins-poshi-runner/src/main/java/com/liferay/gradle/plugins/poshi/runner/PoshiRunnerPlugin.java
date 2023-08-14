@@ -661,43 +661,44 @@ public class PoshiRunnerPlugin implements Plugin<Project> {
 		Matcher matcher = _majorChromeVersionPattern.matcher(
 			chromeDriverVersion);
 
-		if (matcher.find()) {
-			Integer chromeMajorVersion = Integer.parseInt(matcher.group(1));
-
-			if (chromeMajorVersion >= 115) {
-				StringBuilder sb = new StringBuilder();
-
-				sb.append(
-					"https://edgedl.me.gvt1.com/edgedl/chrome" +
-						"/chrome-for-testing/");
-				sb.append(chromeDriverVersion);
-				sb.append("/");
-
-				String osType = "";
-
-				if (OSDetector.isApple()) {
-					osType = "mac-x64";
-				}
-				else if (OSDetector.isAppleARM()) {
-					osType = "mac-arm64";
-				}
-				else if (OSDetector.isWindows()) {
-					osType = "win" + OSDetector.getBitmode();
-				}
-				else {
-					osType = "linux64";
-				}
-
-				sb.append(osType);
-				sb.append("/chromedriver-");
-				sb.append(osType);
-				sb.append(".zip");
-
-				return sb.toString();
-			}
+		if (!matcher.find()) {
+			return _getLegacyChromeDriverURL(chromeDriverVersion);
 		}
 
-		return _getLegacyChromeDriverURL(chromeDriverVersion);
+		Integer chromeMajorVersion = Integer.parseInt(matcher.group(1));
+
+		if (chromeMajorVersion < 115) {
+			return _getLegacyChromeDriverURL(chromeDriverVersion);
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(
+			"https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/");
+		sb.append(chromeDriverVersion);
+		sb.append("/");
+
+		String osType = "";
+
+		if (OSDetector.isApple()) {
+			osType = "mac-x64";
+		}
+		else if (OSDetector.isAppleARM()) {
+			osType = "mac-arm64";
+		}
+		else if (OSDetector.isWindows()) {
+			osType = "win" + OSDetector.getBitmode();
+		}
+		else {
+			osType = "linux64";
+		}
+
+		sb.append(osType);
+		sb.append("/chromedriver-");
+		sb.append(osType);
+		sb.append(".zip");
+
+		return sb.toString();
 	}
 
 	private String _getChromeDriverVersion(
