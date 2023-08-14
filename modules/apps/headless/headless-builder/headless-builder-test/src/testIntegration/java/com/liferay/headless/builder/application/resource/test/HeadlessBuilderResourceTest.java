@@ -577,7 +577,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 	}
 
 	@Test
-	public void testPutById() throws Exception {
+	public void testPut() throws Exception {
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
 				"applicationStatus", "unpublished"
