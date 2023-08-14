@@ -796,7 +796,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 					"title", RandomTestUtil.randomString()
 				).toString(),
 				"headless-builder/applications", Http.Method.POST));
-
 		_assertSuccessfulHttpCode(
 			HTTPTestUtil.invokeToHttpCode(
 				null,
