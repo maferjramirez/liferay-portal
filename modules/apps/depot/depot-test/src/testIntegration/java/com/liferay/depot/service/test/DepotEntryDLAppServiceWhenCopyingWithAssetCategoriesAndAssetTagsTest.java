@@ -143,7 +143,7 @@ public class
 	}
 
 	@Test
-	public void testCopyFileShouldNotCopyAssetCategoriesToNotRelatedGroup()
+	public void testCopyFileShouldNotCopyAssetCategoriesToUnrelatedGroup()
 		throws Exception {
 
 		ServiceContext serviceContext =
@@ -182,7 +182,7 @@ public class
 	}
 
 	@Test
-	public void testCopyFileShouldNotCopyAssetTagsToNotRelatedGroup()
+	public void testCopyFileShouldNotCopyAssetTagsToUnrelatedGroup()
 		throws Exception {
 
 		ServiceContext serviceContext =
@@ -280,7 +280,7 @@ public class
 	}
 
 	@Test
-	public void testCopyFolderShouldNotCopyAssetCategoriesNorAssetTagsToNotRelatedGroup()
+	public void testCopyFolderShouldNotCopyAssetCategoriesNorAssetTagsToUnrelatedGroup()
 		throws Exception {
 
 		ServiceContext serviceContext =
