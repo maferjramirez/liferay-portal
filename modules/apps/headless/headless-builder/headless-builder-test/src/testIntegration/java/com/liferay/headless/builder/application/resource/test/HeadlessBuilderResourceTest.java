@@ -540,43 +540,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 	}
 
 	@Test
-	public void testPutByExternalReferenceCode() throws Exception {
-		_addAPIApplication(
-			_API_APPLICATION_ERC_1, _API_ENDPOINT_ERC_1, _BASE_URL_1,
-			_objectDefinition1.getExternalReferenceCode(),
-			_API_APPLICATION_PATH_1);
-
-		_publishAPIApplication(_API_APPLICATION_ERC_1);
-
-		_assertSuccessfulHttpCode(
-			HTTPTestUtil.invokeToHttpCode(
-				JSONUtil.put(
-					"applicationStatus", "published"
-				).put(
-					"baseURL", _BASE_URL_2
-				).put(
-					"title", "title"
-				).toString(),
-				"headless-builder/applications/by-external-reference-code/" +
-					_API_APPLICATION_ERC_1,
-				Http.Method.PUT));
-
-		String endpointPath1 = "c/" + _BASE_URL_2 + _API_APPLICATION_PATH_1;
-
-		Assert.assertEquals(
-			200,
-			HTTPTestUtil.invokeToHttpCode(
-				null, endpointPath1, Http.Method.GET));
-
-		String endpointPath2 = "c/" + _BASE_URL_1 + _API_APPLICATION_PATH_1;
-
-		Assert.assertEquals(
-			404,
-			HTTPTestUtil.invokeToHttpCode(
-				null, endpointPath2, Http.Method.GET));
-	}
-
-	@Test
 	public void testPut() throws Exception {
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
@@ -610,6 +573,43 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 				null, endpointPath1, Http.Method.GET));
 
 		String endpointPath2 = "c/" + _BASE_URL_1 + "/openapi.json";
+
+		Assert.assertEquals(
+			404,
+			HTTPTestUtil.invokeToHttpCode(
+				null, endpointPath2, Http.Method.GET));
+	}
+
+	@Test
+	public void testPutByExternalReferenceCode() throws Exception {
+		_addAPIApplication(
+			_API_APPLICATION_ERC_1, _API_ENDPOINT_ERC_1, _BASE_URL_1,
+			_objectDefinition1.getExternalReferenceCode(),
+			_API_APPLICATION_PATH_1);
+
+		_publishAPIApplication(_API_APPLICATION_ERC_1);
+
+		_assertSuccessfulHttpCode(
+			HTTPTestUtil.invokeToHttpCode(
+				JSONUtil.put(
+					"applicationStatus", "published"
+				).put(
+					"baseURL", _BASE_URL_2
+				).put(
+					"title", "title"
+				).toString(),
+				"headless-builder/applications/by-external-reference-code/" +
+					_API_APPLICATION_ERC_1,
+				Http.Method.PUT));
+
+		String endpointPath1 = "c/" + _BASE_URL_2 + _API_APPLICATION_PATH_1;
+
+		Assert.assertEquals(
+			200,
+			HTTPTestUtil.invokeToHttpCode(
+				null, endpointPath1, Http.Method.GET));
+
+		String endpointPath2 = "c/" + _BASE_URL_1 + _API_APPLICATION_PATH_1;
 
 		Assert.assertEquals(
 			404,
