@@ -948,9 +948,7 @@ public class PoshiRunnerPlugin implements Plugin<Project> {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_LEGACY_CHROME_DRIVER_BASE_URL);
-
 		sb.append(chromeDriverVersion);
-
 		sb.append("/chromedriver_");
 
 		if (OSDetector.isApple()) {
