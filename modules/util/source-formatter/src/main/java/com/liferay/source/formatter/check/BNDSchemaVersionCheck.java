@@ -100,7 +100,7 @@ public class BNDSchemaVersionCheck extends BaseFileCheck {
 
 		int x = absolutePath.lastIndexOf(CharPool.SLASH);
 
-		List<String> upgradeFileNames = SourceFormatterUtil.scanForFiles(
+		List<String> upgradeFileNames = SourceFormatterUtil.scanForFileNames(
 			absolutePath.substring(0, x + 1), new String[0],
 			new String[] {"**/upgrade/*.java", "**/upgrade/**/*.java"},
 			new SourceFormatterExcludes(), false);

@@ -1054,7 +1054,7 @@ public class SourceFormatter {
 			parentDirName += "../";
 		}
 
-		_allFileNames = SourceFormatterUtil.scanForFiles(
+		_allFileNames = SourceFormatterUtil.scanForFileNames(
 			_sourceFormatterArgs.getBaseDirName(), new String[0],
 			new String[] {
 				"**/*.*", "**/CODEOWNERS", "**/Dockerfile", "**/packageinfo"

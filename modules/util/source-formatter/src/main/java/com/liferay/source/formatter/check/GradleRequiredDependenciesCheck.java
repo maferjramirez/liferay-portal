@@ -104,7 +104,7 @@ public class GradleRequiredDependenciesCheck extends BaseFileCheck {
 			}
 
 			List<String> buildGradleFileNames =
-				SourceFormatterUtil.scanForFiles(
+				SourceFormatterUtil.scanForFileNames(
 					getBaseDirName() + moduleAppsDirLocation,
 					new String[] {
 						"**/required-dependencies/required-dependencies" +

@@ -55,7 +55,7 @@ public class JavaModuleUniqueVerifyProcessCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
-		List<String> javaFileNames = SourceFormatterUtil.scanForFiles(
+		List<String> javaFileNames = SourceFormatterUtil.scanForFileNames(
 			absolutePath.substring(0, x + 5), new String[0],
 			new String[] {"**/*.java"}, new SourceFormatterExcludes(), true);
 

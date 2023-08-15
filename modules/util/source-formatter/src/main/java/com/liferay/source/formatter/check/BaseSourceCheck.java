@@ -392,7 +392,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 			String baseDirName, String[] excludes, String[] includes)
 		throws IOException {
 
-		return SourceFormatterUtil.scanForFiles(
+		return SourceFormatterUtil.scanForFileNames(
 			baseDirName, excludes, includes, _sourceFormatterExcludes, true);
 	}
 

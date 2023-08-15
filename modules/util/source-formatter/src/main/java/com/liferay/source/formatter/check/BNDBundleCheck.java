@@ -129,7 +129,7 @@ public class BNDBundleCheck extends BaseFileCheck {
 			return false;
 		}
 
-		List<String> testcaseFileNames = SourceFormatterUtil.scanForFiles(
+		List<String> testcaseFileNames = SourceFormatterUtil.scanForFileNames(
 			getPortalDir() + testcaseDirLocation, new String[0],
 			new String[] {"**/*.testcase"}, new SourceFormatterExcludes(),
 			true);

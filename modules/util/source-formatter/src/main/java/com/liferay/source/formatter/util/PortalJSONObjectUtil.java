@@ -92,7 +92,7 @@ public class PortalJSONObjectUtil {
 		JSONObject taglibsJSONObject = new JSONObjectImpl();
 		JSONObject xmlDefinitionsJSONObject = new JSONObjectImpl();
 
-		List<String> fileNames = SourceFormatterUtil.scanForFiles(
+		List<String> fileNames = SourceFormatterUtil.scanForFileNames(
 			dirName, new String[0],
 			new String[] {
 				"**/*.dtd", "**/*.java", "**/resources/META-INF/*.tld",

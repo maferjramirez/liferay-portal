@@ -443,7 +443,7 @@ public class SourceFormatterUtil {
 		System.out.println(message);
 	}
 
-	public static List<String> scanForFiles(
+	public static List<String> scanForFileNames(
 			String baseDirName, String[] excludes, String[] includes,
 			SourceFormatterExcludes sourceFormatterExcludes,
 			boolean includeSubrepositories)
@@ -453,7 +453,7 @@ public class SourceFormatterUtil {
 			return new ArrayList<>();
 		}
 
-		return _scanForFiles(
+		return _scanForFileNames(
 			baseDirName,
 			_getPathMatchers(excludes, includes, sourceFormatterExcludes),
 			includeSubrepositories);
@@ -614,7 +614,7 @@ public class SourceFormatterUtil {
 		}
 	}
 
-	private static List<String> _getDeletedFiles(String baseDirName) {
+	private static List<String> _getDeletedFileNames(String baseDirName) {
 		return git(
 			Arrays.asList("ls-files", "-d", "-z", "--full-name"), baseDirName,
 			null, false);
@@ -711,7 +711,7 @@ public class SourceFormatterUtil {
 			});
 	}
 
-	private static List<String> _scanForFiles(
+	private static List<String> _scanForFileNames(
 			final String baseDirName, final PathMatchers pathMatchers,
 			final boolean includeSubrepositories)
 		throws IOException {
@@ -734,18 +734,19 @@ public class SourceFormatterUtil {
 							lines.get(0), CharPool.BACK_SLASH, CharPool.SLASH));
 				}
 
-				List<String> deletedFiles = _getDeletedFiles(baseDirName);
-				List<String> gitFiles = new ArrayList<>();
+				List<String> deletedFileNames = _getDeletedFileNames(
+					baseDirName);
+				List<String> gitFileNames = new ArrayList<>();
 
 				git(
 					Arrays.asList("ls-files", "-z", "--full-name"), baseDirName,
 					pathMatchers, includeSubrepositories,
 					line -> {
-						if (deletedFiles.contains(line)) {
+						if (deletedFileNames.contains(line)) {
 							return;
 						}
 
-						gitFiles.add(
+						gitFileNames.add(
 							StringBundler.concat(
 								_gitTopLevelFolder, StringPool.FORWARD_SLASH,
 								StringUtil.replace(
@@ -753,7 +754,7 @@ public class SourceFormatterUtil {
 									CharPool.SLASH)));
 					});
 
-				return gitFiles;
+				return gitFileNames;
 			}
 		}
 		catch (Exception exception) {
