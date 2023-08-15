@@ -725,6 +725,104 @@ mariadb.executable=${mariadb.executable}]]></echo>
 		</sequential>
 	</macrodef>
 
+	<macrodef name="get-test-project-information">
+		<attribute default="" name="test.class" />
+
+		<sequential>
+			<property name="test.class" value="@{test.class}" />
+
+			<propertyregex
+				casesensitive="false"
+				input="${test.class}"
+				property="test.class.java"
+				regexp=".class"
+				replace=".java"
+			/>
+
+			<first id="test.class.file">
+				<fileset
+					dir="modules"
+					includes="**/${test.class.java}"
+				/>
+			</first>
+
+			<property name="filePath" value="${toString:test.class.file}" />
+
+			<beanshell>
+				<![CDATA[
+					import com.liferay.jenkins.results.parser.JenkinsResultsParserUtil;
+
+					import java.util.Properties;
+					import java.util.regex.Matcher;
+					import java.util.regex.Pattern;
+
+					public static File getBndFile(File file) {
+						if (file == null) {
+							return null;
+						}
+						File canonicalFile = JenkinsResultsParserUtil.getCanonicalFile(file);
+
+						File parentFile = canonicalFile.getParentFile();
+
+						if ((parentFile == null) || !parentFile.exists()) {
+							return file;
+						}
+						if (!canonicalFile.isDirectory()) {
+							return getBndFile(parentFile);
+						}
+
+						File bndFile = new File(canonicalFile, "bnd.bnd");
+
+						if (!bndFile.exists()) {
+							return getBndFile(parentFile);
+						}
+
+						return testPropertiesFile;
+					}
+
+					public static String getProjectName(File bndFile){
+						Properties properties = JenkinsResultsParserUtil.getProperties(new File[] {bndFile});
+
+						String bundleSymbolicName = properties.getProperty("Bundle-SymbolicName");
+
+						String projectDir = project.getProperty("project.dir");
+
+						File modulesPropertyFile = new File(projectDir + "/modules/modules.properties");
+
+						Properties modulesProperties = JenkinsResultsParserUtil.getProperties(new File[] {modulesPropertyFile});
+
+						return modulesProperties.getProperty("project.name[" + bundleSymbolicName + "]");
+					}
+
+					public static String getTestName(String filePath){
+						Pattern pattern = Pattern.compile("/([^/]+)\\.java");
+
+						Matcher matcher = pattern.matcher(filePath);
+
+						String testName = "";
+
+						if (matcher.find()) {
+							testName = matcher.group(1);
+						}
+
+						return testName;
+					}
+
+					String filePath = project.getProperty("filePath");
+					String testName = getTestName(filePath);
+
+					project.setProperty("test.name", testName);
+
+					File file = new File(filePath);
+					File bndFile = getBndFile(file);
+
+					String projectName = getProjectName(bndFile);
+					project.setProperty("test.project.name", projectName);
+				]]>
+			</beanshell>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="merge-test-results">
 		<sequential>
 			<antcall target="merge-test-results" />
@@ -6842,14 +6940,20 @@ information. Make sure to commit in all format-javadoc results.
 					</then>
 				</if>
 
-				<gradle-execute dir="modules" task="test">
-					<arg value="--continue" />
-					<arg value="-Dbuild.exclude.ant.plugin=true" />
-					<arg if:true="${run.solr.unit.tests}" value="-Dcom.liferay.portal.search.solr8.test.unit.started=true" />
-					<arg value="-Djunit.code.coverage=${test.batch.code.coverage}" />
-					<arg if:set="project.templates.test.builds" value="-Dproject.templates.test.builds=${project.templates.test.builds}" />
-					<arg value="-Dtest.class.group.index=${axis.variable}" />
-				</gradle-execute>
+				<for list="${test.class.group}" param="test.class">
+					<sequential>
+						<get-test-project-information test.class="@{test.class}" />
+
+						<gradle-execute dir="modules" task="${project.name}:test" test.name="${test.name}">
+							<arg value="--continue" />
+							<arg value="-Dbuild.exclude.ant.plugin=true" />
+							<arg if:true="${run.solr.unit.tests}" value="-Dcom.liferay.portal.search.solr8.test.unit.started=true" />
+							<arg value="-Djunit.code.coverage=${test.batch.code.coverage}" />
+							<arg if:set="project.templates.test.builds" value="-Dproject.templates.test.builds=${project.templates.test.builds}" />
+							<arg value="-Dtest.class.group.index=${axis.variable}" />
+						</gradle-execute>
+					</sequential />
+				</for>
 
 				<lstopwatch action="total" name="test.execution.duration" />
 			</test-action>
