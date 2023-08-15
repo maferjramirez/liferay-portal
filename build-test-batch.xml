@@ -729,6 +729,11 @@ mariadb.executable=${mariadb.executable}]]></echo>
 		<attribute default="" name="test.class" />
 
 		<sequential>
+			<local name="test.class" />
+			<local name="test.class.file" />
+			<local name="test.class.file.path" />
+			<local name="test.class.java" />
+
 			<property name="test.class" value="@{test.class}" />
 
 			<propertyregex
@@ -746,7 +751,7 @@ mariadb.executable=${mariadb.executable}]]></echo>
 				/>
 			</first>
 
-			<property name="filePath" value="${toString:test.class.file}" />
+			<property name="test.class.file.path" value="${toString:test.class.file}" />
 
 			<beanshell>
 				<![CDATA[
@@ -777,47 +782,39 @@ mariadb.executable=${mariadb.executable}]]></echo>
 							return getBndFile(parentFile);
 						}
 
-						return testPropertiesFile;
+						return bndFile;
 					}
 
-					public static String getProjectName(File bndFile){
-						Properties properties = JenkinsResultsParserUtil.getProperties(new File[] {bndFile});
+					public static String getProjectName(File bndFile) {
+						Properties bndFileProperties = JenkinsResultsParserUtil.getProperties(new File[] {bndFile});
 
-						String bundleSymbolicName = properties.getProperty("Bundle-SymbolicName");
+						String bundleSymbolicName = bndFileProperties.getProperty("Bundle-SymbolicName");
 
-						String projectDir = project.getProperty("project.dir");
+						File modulesPropertiesFile = new File(project.getProperty("project.dir") + "/modules/modules.properties");
 
-						File modulesPropertyFile = new File(projectDir + "/modules/modules.properties");
-
-						Properties modulesProperties = JenkinsResultsParserUtil.getProperties(new File[] {modulesPropertyFile});
+						Properties modulesProperties = JenkinsResultsParserUtil.getProperties(new File[] {modulesPropertiesFile});
 
 						return modulesProperties.getProperty("project.name[" + bundleSymbolicName + "]");
 					}
 
-					public static String getTestName(String filePath){
+					public static String getTestName(String filePath) {
 						Pattern pattern = Pattern.compile("/([^/]+)\\.java");
 
 						Matcher matcher = pattern.matcher(filePath);
 
-						String testName = "";
-
 						if (matcher.find()) {
-							testName = matcher.group(1);
+							return matcher.group(1);
 						}
 
-						return testName;
+						return null;
 					}
 
-					String filePath = project.getProperty("filePath");
-					String testName = getTestName(filePath);
+					String testClassFilePath = project.getProperty("test.class.file.path");
 
-					project.setProperty("test.name", testName);
+					File bndFile = getBndFile(new File(testClassFilePath));
 
-					File file = new File(filePath);
-					File bndFile = getBndFile(file);
-
-					String projectName = getProjectName(bndFile);
-					project.setProperty("test.project.name", projectName);
+					project.setProperty("test.name", getTestName(testClassFilePath));
+					project.setProperty("test.project.name", getProjectName(bndFile));
 				]]>
 			</beanshell>
 		</sequential>
@@ -6944,7 +6941,7 @@ information. Make sure to commit in all format-javadoc results.
 					<sequential>
 						<get-test-project-information test.class="@{test.class}" />
 
-						<gradle-execute dir="modules" task="${project.name}:test" test.name="${test.name}">
+						<gradle-execute dir="modules" task="${test.project.name}:test" test.name="${test.name}">
 							<arg value="--continue" />
 							<arg value="-Dbuild.exclude.ant.plugin=true" />
 							<arg if:true="${run.solr.unit.tests}" value="-Dcom.liferay.portal.search.solr8.test.unit.started=true" />
