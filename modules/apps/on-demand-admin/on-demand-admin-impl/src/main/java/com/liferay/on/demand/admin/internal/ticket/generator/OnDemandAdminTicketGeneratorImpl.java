@@ -107,16 +107,15 @@ public class OnDemandAdminTicketGeneratorImpl
 		try (SafeCloseable safeCloseable =
 				CompanyThreadLocal.setWithSafeCloseable(companyId)) {
 
-			Date date = new Date();
-
-			Role role = _roleLocalService.getRole(
-				companyId, RoleConstants.ADMINISTRATOR);
+			String password = PwdGenerator.getPassword(20);
 
 			String screenName = _getScreenName(userId, 0);
 
 			String emailAddress = screenName + StringPool.AT + mx;
 
-			String password = PwdGenerator.getPassword(20);
+			Date date = new Date();
+			Role role = _roleLocalService.getRole(
+				companyId, RoleConstants.ADMINISTRATOR);
 
 			User user = _userLocalService.addUser(
 				0, companyId, false, password, password, true, null,
