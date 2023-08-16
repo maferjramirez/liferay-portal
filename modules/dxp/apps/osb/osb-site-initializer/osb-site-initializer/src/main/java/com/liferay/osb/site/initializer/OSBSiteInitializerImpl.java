@@ -54,7 +54,8 @@ public class OSBSiteInitializerImpl implements OSBSiteInitializer {
 
 			if (sxpBlueprint == null) {
 				_log.error(
-					"Unable to transform SXPBlueprint from JSON: " + json);
+					"Unable to transform search experiences blueprint from " +
+						"JSON: " + json);
 
 				continue;
 			}
