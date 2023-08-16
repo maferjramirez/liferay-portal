@@ -661,6 +661,27 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 	}
 
 	@Override
+	public List<MBMessage> getGroupUserMessageBoardMessagesActivity(
+			long groupId, long userId, int start, int end)
+		throws PortalException {
+
+		_userPermission.check(getPermissionChecker(), userId, ActionKeys.VIEW);
+
+		return mbMessageLocalService.getGroupUserMessageBoardMessagesActivity(
+			groupId, userId, start, end);
+	}
+
+	public int getGroupUserMessageBoardMessagesActivityCount(
+			long groupId, long userId)
+		throws PortalException {
+
+		_userPermission.check(getPermissionChecker(), userId, ActionKeys.VIEW);
+
+		return mbMessageLocalService.
+			getGroupUserMessageBoardMessagesActivityCount(groupId, userId);
+	}
+
+	@Override
 	public MBMessage getMBMessageByExternalReferenceCode(
 			String externalReferenceCode, long groupId)
 		throws PortalException {
@@ -692,27 +713,6 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 
 		return mbMessageLocalService.getMessageDisplay(
 			getGuestOrUserId(), messageId, status);
-	}
-
-	@Override
-	public List<MBMessage> getGroupUserMessageBoardMessagesActivity(
-			long groupId, long userId, int start, int end)
-		throws PortalException {
-
-		_userPermission.check(getPermissionChecker(), userId, ActionKeys.VIEW);
-
-		return mbMessageLocalService.getGroupUserMessageBoardMessagesActivity(
-			groupId, userId, start, end);
-	}
-
-	public int getGroupUserMessageBoardMessagesActivityCount(
-			long groupId, long userId)
-		throws PortalException {
-
-		_userPermission.check(getPermissionChecker(), userId, ActionKeys.VIEW);
-
-		return mbMessageLocalService.
-			getGroupUserMessageBoardMessagesActivityCount(groupId, userId);
 	}
 
 	@Override

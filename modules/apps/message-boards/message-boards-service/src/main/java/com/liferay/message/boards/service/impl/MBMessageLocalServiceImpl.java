@@ -1307,6 +1307,116 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	@Override
+	public List<MBMessage> getGroupUserMessageBoardMessagesActivity(
+		long groupId, long userId, int start, int end) {
+
+		MBMessageTable aliasMBMessageTable = MBMessageTable.INSTANCE.as(
+			"aliasMBMessageTable");
+
+		DSLQuery dslQuery = DSLQueryFactoryUtil.select(
+			MBMessageTable.INSTANCE
+		).from(
+			MBMessageTable.INSTANCE
+		).where(
+			MBMessageTable.INSTANCE.modifiedDate.in(
+				DSLQueryFactoryUtil.select(
+					DSLFunctionFactoryUtil.max(
+						MBMessageTable.INSTANCE.modifiedDate)
+				).from(
+					aliasMBMessageTable
+				).where(
+					MBMessageTable.INSTANCE.rootMessageId.eq(
+						MBMessageTable.INSTANCE.parentMessageId
+					).and(
+						MBMessageTable.INSTANCE.categoryId.eq(
+							aliasMBMessageTable.categoryId)
+					).and(
+						MBMessageTable.INSTANCE.groupId.eq(groupId)
+					).and(
+						MBMessageTable.INSTANCE.userId.eq(userId)
+					)
+				)
+			).or(
+				MBMessageTable.INSTANCE.parentMessageId.eq(
+					0L
+				).and(
+					MBMessageTable.INSTANCE.rootMessageId.notIn(
+						DSLQueryFactoryUtil.select(
+							MBMessageTable.INSTANCE.parentMessageId
+						).from(
+							MBMessageTable.INSTANCE
+						).where(
+							MBMessageTable.INSTANCE.rootMessageId.eq(
+								MBMessageTable.INSTANCE.parentMessageId)
+						))
+				).and(
+					MBMessageTable.INSTANCE.groupId.eq(groupId)
+				).and(
+					MBMessageTable.INSTANCE.userId.eq(userId)
+				)
+			)
+		).orderBy(
+			MBMessageTable.INSTANCE.modifiedDate.descending()
+		).limit(
+			start, end
+		);
+
+		return mbMessagePersistence.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int getGroupUserMessageBoardMessagesActivityCount(
+		long groupId, long userId) {
+
+		MBMessageTable aliasMBMessageTable = MBMessageTable.INSTANCE.as(
+			"aliasMBMessageTable");
+
+		return mbMessagePersistence.dslQueryCount(
+			DSLQueryFactoryUtil.count(
+			).from(
+				MBMessageTable.INSTANCE
+			).where(
+				MBMessageTable.INSTANCE.modifiedDate.in(
+					DSLQueryFactoryUtil.select(
+						DSLFunctionFactoryUtil.max(
+							MBMessageTable.INSTANCE.modifiedDate)
+					).from(
+						aliasMBMessageTable
+					).where(
+						MBMessageTable.INSTANCE.rootMessageId.eq(
+							MBMessageTable.INSTANCE.parentMessageId
+						).and(
+							MBMessageTable.INSTANCE.categoryId.eq(
+								aliasMBMessageTable.categoryId)
+						).and(
+							MBMessageTable.INSTANCE.groupId.eq(groupId)
+						).and(
+							MBMessageTable.INSTANCE.userId.eq(userId)
+						)
+					)
+				).or(
+					MBMessageTable.INSTANCE.parentMessageId.eq(
+						0L
+					).and(
+						MBMessageTable.INSTANCE.groupId.eq(groupId)
+					).and(
+						MBMessageTable.INSTANCE.rootMessageId.notIn(
+							DSLQueryFactoryUtil.select(
+								MBMessageTable.INSTANCE.parentMessageId
+							).from(
+								MBMessageTable.INSTANCE
+							).where(
+								MBMessageTable.INSTANCE.rootMessageId.eq(
+									MBMessageTable.INSTANCE.parentMessageId)
+							))
+					).and(
+						MBMessageTable.INSTANCE.userId.eq(userId)
+					)
+				)
+			));
+	}
+
+	@Override
 	public MBMessage getLastThreadMessage(long threadId, int status)
 		throws PortalException {
 
@@ -1464,116 +1574,6 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		}
 
 		return count;
-	}
-
-	@Override
-	public List<MBMessage> getGroupUserMessageBoardMessagesActivity(
-		long groupId, long userId, int start, int end) {
-
-		MBMessageTable aliasMBMessageTable = MBMessageTable.INSTANCE.as(
-			"aliasMBMessageTable");
-
-		DSLQuery dslQuery = DSLQueryFactoryUtil.select(
-			MBMessageTable.INSTANCE
-		).from(
-			MBMessageTable.INSTANCE
-		).where(
-			MBMessageTable.INSTANCE.modifiedDate.in(
-				DSLQueryFactoryUtil.select(
-					DSLFunctionFactoryUtil.max(
-						MBMessageTable.INSTANCE.modifiedDate)
-				).from(
-					aliasMBMessageTable
-				).where(
-					MBMessageTable.INSTANCE.rootMessageId.eq(
-						MBMessageTable.INSTANCE.parentMessageId
-					).and(
-						MBMessageTable.INSTANCE.categoryId.eq(
-							aliasMBMessageTable.categoryId)
-					).and(
-						MBMessageTable.INSTANCE.groupId.eq(groupId)
-					).and(
-						MBMessageTable.INSTANCE.userId.eq(userId)
-					)
-				)
-			).or(
-				MBMessageTable.INSTANCE.parentMessageId.eq(
-					0L
-				).and(
-					MBMessageTable.INSTANCE.rootMessageId.notIn(
-						DSLQueryFactoryUtil.select(
-							MBMessageTable.INSTANCE.parentMessageId
-						).from(
-							MBMessageTable.INSTANCE
-						).where(
-							MBMessageTable.INSTANCE.rootMessageId.eq(
-								MBMessageTable.INSTANCE.parentMessageId)
-						))
-				).and(
-					MBMessageTable.INSTANCE.groupId.eq(groupId)
-				).and(
-					MBMessageTable.INSTANCE.userId.eq(userId)
-				)
-			)
-		).orderBy(
-			MBMessageTable.INSTANCE.modifiedDate.descending()
-		).limit(
-			start, end
-		);
-
-		return mbMessagePersistence.dslQuery(dslQuery);
-	}
-
-	@Override
-	public int getGroupUserMessageBoardMessagesActivityCount(
-		long groupId, long userId) {
-
-		MBMessageTable aliasMBMessageTable = MBMessageTable.INSTANCE.as(
-			"aliasMBMessageTable");
-
-		return mbMessagePersistence.dslQueryCount(
-			DSLQueryFactoryUtil.count(
-			).from(
-				MBMessageTable.INSTANCE
-			).where(
-				MBMessageTable.INSTANCE.modifiedDate.in(
-					DSLQueryFactoryUtil.select(
-						DSLFunctionFactoryUtil.max(
-							MBMessageTable.INSTANCE.modifiedDate)
-					).from(
-						aliasMBMessageTable
-					).where(
-						MBMessageTable.INSTANCE.rootMessageId.eq(
-							MBMessageTable.INSTANCE.parentMessageId
-						).and(
-							MBMessageTable.INSTANCE.categoryId.eq(
-								aliasMBMessageTable.categoryId)
-						).and(
-							MBMessageTable.INSTANCE.groupId.eq(groupId)
-						).and(
-							MBMessageTable.INSTANCE.userId.eq(userId)
-						)
-					)
-				).or(
-					MBMessageTable.INSTANCE.parentMessageId.eq(
-						0L
-					).and(
-						MBMessageTable.INSTANCE.groupId.eq(groupId)
-					).and(
-						MBMessageTable.INSTANCE.rootMessageId.notIn(
-							DSLQueryFactoryUtil.select(
-								MBMessageTable.INSTANCE.parentMessageId
-							).from(
-								MBMessageTable.INSTANCE
-							).where(
-								MBMessageTable.INSTANCE.rootMessageId.eq(
-									MBMessageTable.INSTANCE.parentMessageId)
-							))
-					).and(
-						MBMessageTable.INSTANCE.userId.eq(userId)
-					)
-				)
-			));
 	}
 
 	@Override
