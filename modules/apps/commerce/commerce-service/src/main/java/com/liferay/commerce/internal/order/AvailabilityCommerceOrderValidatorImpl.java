@@ -107,9 +107,10 @@ public class AvailabilityCommerceOrderValidatorImpl
 			!BigDecimalUtil.eq(
 				quantity, commerceInventoryBookedQuantity.getQuantity())) {
 
+			BigDecimal bookedQuantity = BigDecimal.ZERO;
+
 			BigDecimal commerceInventoryWarehouseItemQuantity =
 				commerceInventoryBookedQuantity.getQuantity();
-			BigDecimal bookedQuantity = BigDecimal.ZERO;
 
 			if (commerceInventoryWarehouseItemQuantity != null) {
 				bookedQuantity = commerceInventoryWarehouseItemQuantity;

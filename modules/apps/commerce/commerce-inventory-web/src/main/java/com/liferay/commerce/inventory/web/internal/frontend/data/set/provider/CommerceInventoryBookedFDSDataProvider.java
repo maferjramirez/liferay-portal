@@ -79,6 +79,7 @@ public class CommerceInventoryBookedFDSDataProvider
 							getCommerceInventoryBookedQuantityId());
 
 			int bookedQuantity = 0;
+
 			BigDecimal commerceInventoryWarehouseItemQuantity =
 				commerceInventoryBookedQuantity.getQuantity();
 
