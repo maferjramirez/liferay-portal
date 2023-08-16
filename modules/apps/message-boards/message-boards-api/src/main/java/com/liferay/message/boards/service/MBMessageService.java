@@ -200,6 +200,16 @@ public interface MBMessageService extends BaseService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<MBMessage> getGroupUserMessageBoardMessagesActivity(
+			long groupId, long userId, int start, int end)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getGroupUserMessageBoardMessagesActivityCount(
+			long groupId, long userId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public MBMessage getMBMessageByExternalReferenceCode(
 			String externalReferenceCode, long groupId)
 		throws PortalException;
@@ -217,16 +227,6 @@ public interface MBMessageService extends BaseService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MBMessage> getGroupUserMessageBoardMessagesActivity(
-			long userId, long groupId, int start, int end)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupUserMessageBoardMessagesActivityCount(
-			long userId, long groupId)
-		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public String[] getTempAttachmentNames(long groupId, String folderName)
