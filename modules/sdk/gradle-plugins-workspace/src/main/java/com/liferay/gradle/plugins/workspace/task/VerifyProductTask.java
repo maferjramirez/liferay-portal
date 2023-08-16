@@ -48,46 +48,44 @@ public class VerifyProductTask extends DefaultTask {
 
 		if (Objects.isNull(productInfo)) {
 			throw new GradleException(
-				"Can not get produtInfo for product '" + _product + "'");
+				"Unable to get produt info for product '" + _product + "'");
 		}
 
 		if (Validator.isNull(_extension.getAppServerTomcatVersion()) &&
 			Validator.isNull(productInfo.getAppServerTomcatVersion())) {
 
 			throw new GradleException(
-				"Can not get correct tomcat version for product '" + _product +
-					"'");
+				"Unable to get Tomcat version for product '" + _product + "'");
 		}
 
 		if (Validator.isNull(_extension.getBundleChecksumMD5()) &&
 			Validator.isNull(productInfo.getBundleChecksumMD5())) {
 
 			throw new GradleException(
-				"Can not get correct bundleChecksumMD5 for product '" +
-					_product + "'");
+				"Unable to get bundle checksum MD5 for product '" + _product +
+					"'");
 		}
 
 		if (Validator.isNull(_extension.getBundleUrl()) &&
 			Validator.isNull(productInfo.getBundleUrl())) {
 
 			throw new GradleException(
-				"Can not get correct bundle url for product '" + _product +
-					"'");
+				"Unable to get bundle URL for product '" + _product + "'");
 		}
 
 		if (Validator.isNull(_extension.getDockerImageLiferay()) &&
 			Validator.isNull(productInfo.getLiferayDockerImage())) {
 
 			throw new GradleException(
-				"Can not get correct liferay docker image for product '" +
-					_product + "'");
+				"Unable to get Liferay Docker image for product '" + _product +
+					"'");
 		}
 
 		if (Validator.isNull(_extension.getTargetPlatformVersion()) &&
 			Validator.isNull(productInfo.getTargetPlatformVersion())) {
 
 			throw new GradleException(
-				"Can not get correct target platform version for product '" +
+				"Unable to get target platform version for product '" +
 					_product + "'");
 		}
 	}
