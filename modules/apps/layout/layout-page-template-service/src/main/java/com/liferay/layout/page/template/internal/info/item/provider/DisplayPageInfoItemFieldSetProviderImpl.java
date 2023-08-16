@@ -90,16 +90,16 @@ public class DisplayPageInfoItemFieldSetProviderImpl
 				).build(),
 				_getDefaultDisplayPageURL(infoItemReference, themeDisplay)));
 
+		String url =
+			themeDisplay.getPortalURL() + _portal.getPathContext() +
+				"/display-page/custom/";
+
 		List<LayoutPageTemplateEntry> layoutPageTemplateEntries =
 			_layoutPageTemplateEntryService.getLayoutPageTemplateEntries(
 				themeDisplay.getScopeGroupId(),
 				_portal.getClassNameId(infoItemReference.getClassName()),
 				GetterUtil.getLong(infoItemFormVariationKey),
 				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE);
-
-		String url =
-			themeDisplay.getPortalURL() + _portal.getPathContext() +
-				"/display-page/custom/";
 
 		for (LayoutPageTemplateEntry layoutPageTemplateEntry :
 				layoutPageTemplateEntries) {
