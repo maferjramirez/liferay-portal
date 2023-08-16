@@ -313,7 +313,7 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Could not force propagation from site template to site",
+					"Unable to force propagation from site template to site",
 					exception);
 			}
 		}
