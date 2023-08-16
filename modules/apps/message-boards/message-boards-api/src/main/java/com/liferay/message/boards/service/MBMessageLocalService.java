@@ -605,11 +605,11 @@ public interface MBMessageLocalService
 		String className, long classPK, int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MBMessage> getSiteUserMessageBoardMessagesActivity(
+	public List<MBMessage> getGroupUserMessageBoardMessagesActivity(
 		long groupId, long userId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSiteUserMessageBoardMessagesActivityCount(
+	public int getGroupUserMessageBoardMessagesActivityCount(
 		long groupId, long userId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

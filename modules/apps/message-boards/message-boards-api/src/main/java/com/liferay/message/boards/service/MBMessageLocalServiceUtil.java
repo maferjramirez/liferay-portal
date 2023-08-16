@@ -822,17 +822,17 @@ public class MBMessageLocalServiceUtil {
 			className, classPK, status);
 	}
 
-	public static List<MBMessage> getSiteUserMessageBoardMessagesActivity(
+	public static List<MBMessage> getGroupUserMessageBoardMessagesActivity(
 		long groupId, long userId, int start, int end) {
 
-		return getService().getSiteUserMessageBoardMessagesActivity(
+		return getService().getGroupUserMessageBoardMessagesActivity(
 			groupId, userId, start, end);
 	}
 
-	public static int getSiteUserMessageBoardMessagesActivityCount(
+	public static int getGroupUserMessageBoardMessagesActivityCount(
 		long groupId, long userId) {
 
-		return getService().getSiteUserMessageBoardMessagesActivityCount(
+		return getService().getGroupUserMessageBoardMessagesActivityCount(
 			groupId, userId);
 	}
 

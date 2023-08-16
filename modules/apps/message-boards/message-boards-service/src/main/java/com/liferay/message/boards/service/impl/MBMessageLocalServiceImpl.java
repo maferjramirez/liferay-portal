@@ -1467,7 +1467,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	@Override
-	public List<MBMessage> getSiteUserMessageBoardMessagesActivity(
+	public List<MBMessage> getGroupUserMessageBoardMessagesActivity(
 		long groupId, long userId, int start, int end) {
 
 		MBMessageTable aliasMBMessageTable = MBMessageTable.INSTANCE.as(
@@ -1525,7 +1525,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	@Override
-	public int getSiteUserMessageBoardMessagesActivityCount(
+	public int getGroupUserMessageBoardMessagesActivityCount(
 		long groupId, long userId) {
 
 		MBMessageTable aliasMBMessageTable = MBMessageTable.INSTANCE.as(

@@ -219,12 +219,12 @@ public interface MBMessageService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MBMessage> getSiteUserMessageBoardMessagesActivity(
+	public List<MBMessage> getGroupUserMessageBoardMessagesActivity(
 			long userId, long groupId, int start, int end)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSiteUserMessageBoardMessagesActivityCount(
+	public int getGroupUserMessageBoardMessagesActivityCount(
 			long userId, long groupId)
 		throws PortalException;
 

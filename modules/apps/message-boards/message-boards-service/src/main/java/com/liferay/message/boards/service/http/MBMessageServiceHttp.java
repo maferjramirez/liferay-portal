@@ -1116,7 +1116,7 @@ public class MBMessageServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.message.boards.model.MBMessage>
-			getSiteUserMessageBoardMessagesActivity(
+			getGroupUserMessageBoardMessagesActivity(
 				HttpPrincipal httpPrincipal, long userId, long groupId,
 				int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -1159,7 +1159,7 @@ public class MBMessageServiceHttp {
 		}
 	}
 
-	public static int getSiteUserMessageBoardMessagesActivityCount(
+	public static int getGroupUserMessageBoardMessagesActivityCount(
 			HttpPrincipal httpPrincipal, long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 

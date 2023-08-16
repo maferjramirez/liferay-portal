@@ -928,19 +928,19 @@ public class MBMessageLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.List<MBMessage> getSiteUserMessageBoardMessagesActivity(
+	public java.util.List<MBMessage> getGroupUserMessageBoardMessagesActivity(
 		long groupId, long userId, int start, int end) {
 
-		return _mbMessageLocalService.getSiteUserMessageBoardMessagesActivity(
+		return _mbMessageLocalService.getGroupUserMessageBoardMessagesActivity(
 			groupId, userId, start, end);
 	}
 
 	@Override
-	public int getSiteUserMessageBoardMessagesActivityCount(
+	public int getGroupUserMessageBoardMessagesActivityCount(
 		long groupId, long userId) {
 
 		return _mbMessageLocalService.
-			getSiteUserMessageBoardMessagesActivityCount(groupId, userId);
+			getGroupUserMessageBoardMessagesActivityCount(groupId, userId);
 	}
 
 	@Override

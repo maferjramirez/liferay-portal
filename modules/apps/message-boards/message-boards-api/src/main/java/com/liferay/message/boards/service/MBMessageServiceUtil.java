@@ -305,19 +305,19 @@ public class MBMessageServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static List<MBMessage> getSiteUserMessageBoardMessagesActivity(
+	public static List<MBMessage> getGroupUserMessageBoardMessagesActivity(
 			long userId, long groupId, int start, int end)
 		throws PortalException {
 
-		return getService().getSiteUserMessageBoardMessagesActivity(
+		return getService().getGroupUserMessageBoardMessagesActivity(
 			userId, groupId, start, end);
 	}
 
-	public static int getSiteUserMessageBoardMessagesActivityCount(
+	public static int getGroupUserMessageBoardMessagesActivityCount(
 			long userId, long groupId)
 		throws PortalException {
 
-		return getService().getSiteUserMessageBoardMessagesActivityCount(
+		return getService().getGroupUserMessageBoardMessagesActivityCount(
 			userId, groupId);
 	}
 

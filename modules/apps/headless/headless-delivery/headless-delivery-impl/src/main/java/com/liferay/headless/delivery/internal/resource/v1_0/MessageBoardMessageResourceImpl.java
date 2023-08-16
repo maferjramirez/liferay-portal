@@ -361,11 +361,11 @@ public class MessageBoardMessageResourceImpl
 
 		return Page.of(
 			transform(
-				_mbMessageService.getSiteUserMessageBoardMessagesActivity(
+				_mbMessageService.getGroupUserMessageBoardMessagesActivity(
 					siteId, userId, start, end),
 				this::_toMessageBoardMessage),
 			pagination,
-			_mbMessageService.getSiteUserMessageBoardMessagesActivityCount(
+			_mbMessageService.getGroupUserMessageBoardMessagesActivityCount(
 				siteId, userId));
 	}
 
