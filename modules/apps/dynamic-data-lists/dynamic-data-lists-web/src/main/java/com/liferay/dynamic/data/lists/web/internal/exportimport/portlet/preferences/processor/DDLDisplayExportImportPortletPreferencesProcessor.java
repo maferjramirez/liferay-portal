@@ -100,7 +100,7 @@ public class DDLDisplayExportImportPortletPreferencesProcessor
 		if (recordSetId == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"No recordSetId found in preferences of portlet " +
+					"No record set ID found in preferences of portlet " +
 						portletId);
 			}
 
@@ -134,7 +134,7 @@ public class DDLDisplayExportImportPortletPreferencesProcessor
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Dynamic Data Lists are not staged in the site " +
+					"Dynamic data lists are not staged in group " +
 						group.getName());
 			}
 
@@ -155,7 +155,7 @@ public class DDLDisplayExportImportPortletPreferencesProcessor
 				_log.warn(
 					StringBundler.concat(
 						"Portlet ", portletId,
-						" refers to an invalid recordSetId ", recordSetId));
+						" references invalid record set ID ", recordSetId));
 			}
 
 			portletDataContext.setScopeGroupId(scopeGroupId);
