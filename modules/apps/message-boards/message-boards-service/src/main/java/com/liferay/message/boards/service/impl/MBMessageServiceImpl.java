@@ -696,23 +696,23 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 
 	@Override
 	public List<MBMessage> getGroupUserMessageBoardMessagesActivity(
-			long userId, long groupId, int start, int end)
+			long groupId, long userId, int start, int end)
 		throws PortalException {
 
 		_userPermission.check(getPermissionChecker(), userId, ActionKeys.VIEW);
 
 		return mbMessageLocalService.getGroupUserMessageBoardMessagesActivity(
-			userId, groupId, start, end);
+			groupId, userId, start, end);
 	}
 
 	public int getGroupUserMessageBoardMessagesActivityCount(
-			long userId, long groupId)
+			long groupId, long userId)
 		throws PortalException {
 
 		_userPermission.check(getPermissionChecker(), userId, ActionKeys.VIEW);
 
 		return mbMessageLocalService.
-			getGroupUserMessageBoardMessagesActivityCount(userId, groupId);
+			getGroupUserMessageBoardMessagesActivityCount(groupId, userId);
 	}
 
 	@Override
