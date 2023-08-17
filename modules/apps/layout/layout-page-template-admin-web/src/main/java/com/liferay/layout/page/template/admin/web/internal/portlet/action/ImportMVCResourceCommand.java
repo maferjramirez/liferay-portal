@@ -66,7 +66,7 @@ public class ImportMVCResourceCommand extends BaseMVCResourceCommand {
 		boolean overwrite = ParamUtil.getBoolean(
 			resourceRequest, "overwrite", true);
 
-		JSONObject jsonObject = _importPageTemplates(
+		JSONObject jsonObject = _importFile(
 			file, themeDisplay.getScopeGroupId(),
 			layoutPageTemplateCollectionId, themeDisplay.getLocale(), overwrite,
 			themeDisplay.getUserId());
@@ -75,7 +75,7 @@ public class ImportMVCResourceCommand extends BaseMVCResourceCommand {
 			resourceRequest, resourceResponse, jsonObject);
 	}
 
-	private JSONObject _importPageTemplates(
+	private JSONObject _importFile(
 		File file, long groupId, long layoutPageTemplateCollectionId,
 		Locale locale, boolean overwrite, long userId) {
 

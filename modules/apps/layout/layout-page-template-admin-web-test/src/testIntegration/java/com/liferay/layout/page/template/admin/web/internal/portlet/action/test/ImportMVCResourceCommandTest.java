@@ -85,7 +85,7 @@ public class ImportMVCResourceCommandTest {
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		JSONObject jsonObject = ReflectionTestUtil.invoke(
-			_mvcResourceCommand, "_importPageTemplates",
+			_mvcResourceCommand, "_importFile",
 			new Class<?>[] {
 				File.class, long.class, long.class, Locale.class, boolean.class,
 				long.class
