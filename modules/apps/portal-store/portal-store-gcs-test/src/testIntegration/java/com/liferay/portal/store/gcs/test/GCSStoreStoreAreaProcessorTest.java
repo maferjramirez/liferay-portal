@@ -109,8 +109,9 @@ public class GCSStoreStoreAreaProcessorTest {
 
 	@AfterClass
 	public static void tearDownClass() throws Exception {
-		ConfigurationTestUtil.deleteConfiguration(_configuration);
 		_companyLocalService.deleteCompany(_company);
+
+		ConfigurationTestUtil.deleteConfiguration(_configuration);
 	}
 
 	@Before
