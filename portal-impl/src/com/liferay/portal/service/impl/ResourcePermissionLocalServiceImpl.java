@@ -1964,8 +1964,8 @@ public class ResourcePermissionLocalServiceImpl
 			if ((serviceContext != null) &&
 				serviceContext.isAddGuestPermissions()) {
 
-				// Don't add guest permissions when you've already added group
-				// permissions and the given group is the guest group.
+				// Do not add guest permissions when you have already added
+				// group permissions and the given group is the guest group
 
 				List<String> actions = null;
 

@@ -392,10 +392,10 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 				companyRolesMap, companyId, name, description, type);
 		}
 
+		List<String> primKeys = new ArrayList<>();
+
 		String[] allSystemRoles = ArrayUtil.append(
 			systemRoles, systemOrganizationRoles, systemSiteRoles);
-
-		List<String> primKeys = new ArrayList<>();
 
 		for (String roleName : allSystemRoles) {
 			Role role = getRole(companyId, roleName);
