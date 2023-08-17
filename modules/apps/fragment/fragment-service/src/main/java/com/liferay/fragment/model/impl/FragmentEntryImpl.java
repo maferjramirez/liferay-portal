@@ -177,7 +177,7 @@ public class FragmentEntryImpl extends FragmentEntryBaseImpl {
 		JSONObject jsonObject = JSONUtil.put(
 			"cacheable",
 			() -> {
-				if (getCacheable()) {
+				if (isCacheable()) {
 					return true;
 				}
 
