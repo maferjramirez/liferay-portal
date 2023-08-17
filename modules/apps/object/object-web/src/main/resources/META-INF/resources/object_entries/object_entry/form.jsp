@@ -267,9 +267,9 @@ portletDisplay.setURLBack(backURL);
 											alertElement.className =
 												'alert alert-danger';
 											alertElement.setAttribute('role', 'alert');
-											alertElement.style.width = '800px';
-											alertElement.style.margin = '2rem auto 0';
 											alertElement.style.bottom = '20px';
+											alertElement.style.margin = '2rem auto 0';
+											alertElement.style.width = '800px';
 
 											alertElement.insertAdjacentHTML(
 												'afterbegin',

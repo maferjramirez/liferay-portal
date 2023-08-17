@@ -14,6 +14,7 @@ import com.liferay.portal.catapult.PortalCatapult;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.CompanyLocalService;
@@ -117,9 +118,7 @@ public class FunctionObjectValidationRuleEngineImpl
 		JSONObject originalJSONObject = _jsonFactory.createJSONObject(
 			objectEntry);
 
-		JSONObject payloadJSONObject = _jsonFactory.createJSONObject();
-
-		payloadJSONObject.put(
+		JSONObject payloadJSONObject = JSONUtil.put(
 			"creator", originalJSONObject.getJSONObject("creator")
 		).put(
 			"dateCreated", originalJSONObject.get("dateCreated")

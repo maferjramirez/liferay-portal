@@ -245,16 +245,16 @@ public class ObjectEntryVariablesUtil {
 
 			variables.remove("values");
 
+			allowedVariables.put(
+				"entryDTO",
+				payloadJSONObject.get(
+					"objectEntryDTO" + objectDefinition.getShortName()));
+
 			Object objectEntryId = variables.get("objectEntryId");
 
 			if (objectEntryId != null) {
 				allowedVariables.put("id", objectEntryId);
 			}
-
-			allowedVariables.put(
-				"entryDTO",
-				payloadJSONObject.get(
-					"objectEntryDTO" + objectDefinition.getShortName()));
 		}
 
 		variables.remove("creator");
