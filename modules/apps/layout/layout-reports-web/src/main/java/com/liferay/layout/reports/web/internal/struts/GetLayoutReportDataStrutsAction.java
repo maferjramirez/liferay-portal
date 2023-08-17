@@ -134,7 +134,7 @@ public class GetLayoutReportDataStrutsAction implements StrutsAction {
 		return null;
 	}
 
-	private SegmentsExperience _fetchSegmentsExperienceFromRequest(
+	private SegmentsExperience _fetchSegmentsExperience(
 		HttpServletRequest httpServletRequest) {
 
 		long segmentsExperienceId = ParamUtil.getLong(
@@ -259,8 +259,8 @@ public class GetLayoutReportDataStrutsAction implements StrutsAction {
 			HttpServletRequest httpServletRequest, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		SegmentsExperience segmentsExperience =
-			_fetchSegmentsExperienceFromRequest(httpServletRequest);
+		SegmentsExperience segmentsExperience = _fetchSegmentsExperience(
+			httpServletRequest);
 
 		long plid = themeDisplay.getPlid();
 
