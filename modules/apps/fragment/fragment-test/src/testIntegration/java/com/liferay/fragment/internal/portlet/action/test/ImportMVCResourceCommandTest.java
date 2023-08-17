@@ -75,7 +75,7 @@ public class ImportMVCResourceCommandTest {
 	@Test
 	public void test() throws Exception {
 		JSONObject jsonObject = ReflectionTestUtil.invoke(
-			_mvcResourceCommand, "_importFragments",
+			_mvcResourceCommand, "_importFragmentEntries",
 			new Class<?>[] {
 				File.class, long.class, long.class, Locale.class, boolean.class,
 				long.class

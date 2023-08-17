@@ -67,7 +67,7 @@ public class ImportMVCResourceCommand extends BaseMVCResourceCommand {
 
 		boolean overwrite = ParamUtil.getBoolean(resourceRequest, "overwrite");
 
-		_importFragments(
+		_importFragmentEntries(
 			file, fragmentCollectionId, themeDisplay.getScopeGroupId(),
 			themeDisplay.getLocale(), overwrite, themeDisplay.getUserId());
 
@@ -75,7 +75,7 @@ public class ImportMVCResourceCommand extends BaseMVCResourceCommand {
 			resourceRequest, resourceResponse, jsonObject);
 	}
 
-	private JSONObject _importFragments(
+	private JSONObject _importFragmentEntries(
 		File file, long fragmentCollectionId, long groupId, Locale locale,
 		boolean overwrite, long userId) {
 
