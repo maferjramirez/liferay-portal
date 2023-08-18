@@ -322,8 +322,8 @@ public class SearchResultResourceImpl extends BaseSearchResultResourceImpl {
 	}
 
 	private boolean _isObjectToDTOEntryClassName(String entryClassName) {
-		if (entryClassName.startsWith(ObjectDefinition.class.getName()) ||
-			entryClassName.equals(Layout.class.getName())) {
+		if (entryClassName.equals(Layout.class.getName()) ||
+			entryClassName.startsWith(ObjectDefinition.class.getName())) {
 
 			return true;
 		}
