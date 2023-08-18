@@ -150,17 +150,19 @@ public class SiteNavigationMenuExportImportPortletPreferencesProcessor
 						serviceBuilderPortletPreferences :
 							serviceBuilderPortletPreferencesList) {
 
-					if (serviceBuilderPortletPreferences.getCompanyId() ==
+					if (serviceBuilderPortletPreferences.getCompanyId() !=
 							portletDataContext.getCompanyId()) {
 
-						PortletPreferences originalPortletPreferences =
-							_portletPreferenceValueLocalService.getPreferences(
-								serviceBuilderPortletPreferences);
-
-						siteNavigationMenuId = GetterUtil.getLong(
-							originalPortletPreferences.getValue(
-								"siteNavigationMenuId", "0"));
+						continue;
 					}
+
+					PortletPreferences originalPortletPreferences =
+						_portletPreferenceValueLocalService.getPreferences(
+							serviceBuilderPortletPreferences);
+
+					siteNavigationMenuId = GetterUtil.getLong(
+						originalPortletPreferences.getValue(
+							"siteNavigationMenuId", "0"));
 				}
 			}
 
