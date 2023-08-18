@@ -115,7 +115,7 @@ Sets the port number assigned to the BrowserMob Proxy server.
 
 ### report.type
 
-Sets type of report to generate. The only supported type currently is `usage`
+Sets type of report to generate. The only supported type currently is `usage`.
 
 ### save.screenshot
 
