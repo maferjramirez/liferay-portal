@@ -186,11 +186,11 @@ public class SearchResultResourceImpl extends BaseSearchResultResourceImpl {
 	}
 
 	private Object _fetchObject(String entryClassName, Long entryClassPK) {
-		if (entryClassName.startsWith(ObjectDefinition.class.getName())) {
-			return _objectEntryLocalService.fetchObjectEntry(entryClassPK);
-		}
-		else if (entryClassName.equals(Layout.class.getName())) {
+		if (entryClassName.equals(Layout.class.getName())) {
 			return _layoutLocalService.fetchLayout(entryClassPK);
+		}
+		else if (entryClassName.startsWith(ObjectDefinition.class.getName())) {
+			return _objectEntryLocalService.fetchObjectEntry(entryClassPK);
 		}
 
 		return null;
