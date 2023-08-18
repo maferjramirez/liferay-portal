@@ -81,6 +81,8 @@ public class APIApplicationRelevantObjectEntryModelListener
 					_objectFieldLocalService.getObjectField(
 						objectEntry.getObjectDefinitionId(), "baseURL");
 
+				String label = objectField.getLabel(user.getLocale());
+
 				String message = null;
 				String messageKey = null;
 
@@ -94,8 +96,6 @@ public class APIApplicationRelevantObjectEntryModelListener
 					messageKey =
 						"x-can-have-a-maximum-of-255-alphanumeric-characters";
 				}
-
-				String label = objectField.getLabel(user.getLocale());
 
 				throw new ObjectEntryValuesException.InvalidObjectField(
 					Arrays.asList(label, "\"/\""),
