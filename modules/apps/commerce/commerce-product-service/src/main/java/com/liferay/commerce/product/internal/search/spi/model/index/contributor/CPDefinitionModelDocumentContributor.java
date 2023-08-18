@@ -106,7 +106,6 @@ public class CPDefinitionModelDocumentContributor
 			document.addKeyword(
 				CPField.ACCOUNT_GROUP_FILTER_ENABLED,
 				cpDefinition.isAccountGroupFilterEnabled());
-
 			document.addKeyword(
 				CPField.ASSET_CATEGORY_NAMES,
 				_toLowerCaseStringArray(
