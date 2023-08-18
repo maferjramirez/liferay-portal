@@ -70,9 +70,12 @@ public class OpenAPIUtil {
 			else {
 				String methodNamePart = _formatSingular(pathName);
 
-				String s = StringUtil.toLowerCase(methodNamePart);
+				String methodNamePartLowerCase = StringUtil.toLowerCase(
+					methodNamePart);
 
-				if (s.endsWith(StringUtil.toLowerCase(schemaName))) {
+				if (methodNamePartLowerCase.endsWith(
+						StringUtil.toLowerCase(schemaName))) {
+
 					char c = methodNamePart.charAt(
 						methodNamePart.length() - schemaName.length());
 
