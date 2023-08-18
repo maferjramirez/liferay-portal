@@ -34,8 +34,9 @@ public class OpenAPIUtil {
 
 		methodNameParts.add(StringUtil.toLowerCase(method.name()));
 
-		String[] pathParts = path.split("/");
 		String pluralSchemaName = TextFormatter.formatPlural(schemaName);
+
+		String[] pathParts = path.split("/");
 
 		for (int i = 0; i < pathParts.length; i++) {
 			String pathPart = pathParts[i];
@@ -56,34 +57,34 @@ public class OpenAPIUtil {
 				if (!pathName.endsWith(pluralSchemaName) &&
 					previousMethodNamePart.endsWith(schemaName)) {
 
-					String string = StringUtil.replaceLast(
+					String methodNamePart = StringUtil.replaceLast(
 						previousMethodNamePart, schemaName,
 						pluralSchemaName);
 
 					methodNameParts.set(
-						methodNameParts.size() - 1, string);
+						methodNameParts.size() - 1, methodNamePart);
 				}
 
 				methodNameParts.add(pathName + "Page");
 			}
 			else {
-				String segment = _formatSingular(pathName);
+				String methodNamePart = _formatSingular(pathName);
 
-				String s = StringUtil.toLowerCase(segment);
+				String s = StringUtil.toLowerCase(methodNamePart);
 
 				if (s.endsWith(StringUtil.toLowerCase(schemaName))) {
-					char c = segment.charAt(
-						segment.length() - schemaName.length());
+					char c = methodNamePart.charAt(
+						methodNamePart.length() - schemaName.length());
 
 					if (Character.isUpperCase(c)) {
-						String substring = segment.substring(
-							0, segment.length() - schemaName.length());
+						String substring = methodNamePart.substring(
+							0, methodNamePart.length() - schemaName.length());
 
-						segment = substring + schemaName;
+						methodNamePart = substring + schemaName;
 					}
 				}
 
-				methodNameParts.add(segment);
+				methodNameParts.add(methodNamePart);
 			}
 		}
 
