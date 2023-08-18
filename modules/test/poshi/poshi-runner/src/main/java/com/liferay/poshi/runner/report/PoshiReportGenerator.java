@@ -80,9 +80,7 @@ public class PoshiReportGenerator {
 			}
 		}
 
-		List<Element> childElementList = element.elements();
-
-		for (Element childElement : childElementList) {
+		for (Element childElement : element.elements()) {
 			_storeMacroExecuteElements(childElement);
 		}
 	}
