@@ -411,8 +411,7 @@ public class SearchResultResourceImpl extends BaseSearchResultResourceImpl {
 				if (object == null) {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
-							"DTO converter for " + entryClassName +
-								" not found");
+							"No DTO converter found for " + entryClassName);
 					}
 				}
 
