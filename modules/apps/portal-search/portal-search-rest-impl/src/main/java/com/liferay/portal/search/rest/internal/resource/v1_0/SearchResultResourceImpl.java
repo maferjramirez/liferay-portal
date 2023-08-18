@@ -545,16 +545,13 @@ public class SearchResultResourceImpl extends BaseSearchResultResourceImpl {
 
 			if (assetRenderer != null) {
 				_setDescription(assetRenderer, fields, searchResult);
-
 				_setDTOFields(
 					embedded, entryClassName, entryClassPK, fields,
 					searchResult);
-
 				_setTitle(assetRenderer, fields, searchResult);
 			}
 
 			_setDateModified(document, fields, searchResult);
-
 			_setScore(fields, searchHit, searchResult);
 
 			searchResults.add(searchResult);
