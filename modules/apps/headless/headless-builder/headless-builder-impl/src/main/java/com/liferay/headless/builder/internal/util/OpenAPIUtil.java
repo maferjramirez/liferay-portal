@@ -30,17 +30,17 @@ public class OpenAPIUtil {
 			return operationId;
 		}
 
-		List<String> methodNameSegments = new ArrayList<>();
+		List<String> methodNameParts = new ArrayList<>();
 
-		methodNameSegments.add(StringUtil.toLowerCase(method.name()));
+		methodNameParts.add(StringUtil.toLowerCase(method.name()));
 
-		String[] pathSegments = path.split("/");
+		String[] pathParts = path.split("/");
 		String pluralSchemaName = TextFormatter.formatPlural(schemaName);
 
-		for (int i = 0; i < pathSegments.length; i++) {
-			String pathSegment = pathSegments[i];
+		for (int i = 0; i < pathParts.length; i++) {
+			String pathPart = pathParts[i];
 
-			String pathName = CamelCaseUtil.toCamelCase(pathSegment);
+			String pathName = CamelCaseUtil.toCamelCase(pathPart);
 
 			if (StringUtil.equalsIgnoreCase(pathName, pluralSchemaName)) {
 				pathName = pluralSchemaName;
@@ -49,22 +49,22 @@ public class OpenAPIUtil {
 				pathName = StringUtil.upperCaseFirstLetter(pathName);
 			}
 
-			if (i == (pathSegments.length - 1)) {
-				String previousMethodNameSegment = methodNameSegments.get(
-					methodNameSegments.size() - 1);
+			if (i == (pathParts.length - 1)) {
+				String previousMethodNamePart = methodNameParts.get(
+					methodNameParts.size() - 1);
 
 				if (!pathName.endsWith(pluralSchemaName) &&
-					previousMethodNameSegment.endsWith(schemaName)) {
+					previousMethodNamePart.endsWith(schemaName)) {
 
 					String string = StringUtil.replaceLast(
-						previousMethodNameSegment, schemaName,
+						previousMethodNamePart, schemaName,
 						pluralSchemaName);
 
-					methodNameSegments.set(
-						methodNameSegments.size() - 1, string);
+					methodNameParts.set(
+						methodNameParts.size() - 1, string);
 				}
 
-				methodNameSegments.add(pathName + "Page");
+				methodNameParts.add(pathName + "Page");
 			}
 			else {
 				String segment = _formatSingular(pathName);
@@ -83,11 +83,11 @@ public class OpenAPIUtil {
 					}
 				}
 
-				methodNameSegments.add(segment);
+				methodNameParts.add(segment);
 			}
 		}
 
-		return StringUtil.merge(methodNameSegments, "");
+		return StringUtil.merge(methodNameParts, "");
 	}
 
 	private static String _formatSingular(String s) {

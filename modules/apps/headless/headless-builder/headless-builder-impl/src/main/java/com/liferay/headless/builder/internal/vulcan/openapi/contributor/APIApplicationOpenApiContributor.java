@@ -166,6 +166,8 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 	}
 
 	private PathItem _toOpenAPIPathItem(APIApplication.Endpoint endpoint) {
+		Operation operation = new Operation();
+
 		String schemaName = null;
 
 		APIApplication.Schema responseSchema = endpoint.getResponseSchema();
@@ -176,8 +178,6 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 
 		String operationId = OpenAPIUtil.getOperationId(
 			endpoint.getMethod(), endpoint.getPath(), schemaName);
-
-		Operation operation = new Operation();
 
 		operation.setOperationId(operationId);
 
