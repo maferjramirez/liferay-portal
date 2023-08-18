@@ -26,6 +26,10 @@ public class OpenAPIUtilTest {
 	@Test
 	public void testGetOperationId() {
 		Assert.assertEquals(
+			"getCamelSchemasPage",
+			OpenAPIUtil.getOperationId(
+				Http.Method.GET, "/camelschemas", "CamelSchema"));
+		Assert.assertEquals(
 			"getPathNamePage",
 			OpenAPIUtil.getOperationId(Http.Method.GET, "/path-name", null));
 		Assert.assertEquals(
@@ -33,21 +37,17 @@ public class OpenAPIUtilTest {
 			OpenAPIUtil.getOperationId(
 				Http.Method.GET, "/path-name", "Schema"));
 		Assert.assertEquals(
+			"getSchemasWhateverPage",
+			OpenAPIUtil.getOperationId(
+				Http.Method.GET, "/schema/whatever", "Schema"));
+		Assert.assertEquals(
 			"getSegmentASegmentBPage",
 			OpenAPIUtil.getOperationId(
 				Http.Method.GET, "/segment-a/segment-b", "Schema"));
 		Assert.assertEquals(
-			"getCamelSchemasPage",
-			OpenAPIUtil.getOperationId(
-				Http.Method.GET, "/camelschemas", "CamelSchema"));
-		Assert.assertEquals(
 			"getWhateverPage",
 			OpenAPIUtil.getOperationId(
 				Http.Method.GET, "/whatever", "CamelSchema"));
-		Assert.assertEquals(
-			"getSchemasWhateverPage",
-			OpenAPIUtil.getOperationId(
-				Http.Method.GET, "/schema/whatever", "Schema"));
 	}
 
 }
