@@ -50,7 +50,6 @@ public class APIApplicationRelevantObjectEntryModelListenerTest
 				"headless-builder/applications", Http.Method.POST
 			).toString(),
 			JSONCompareMode.STRICT);
-
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"status", "BAD_REQUEST"
@@ -71,12 +70,11 @@ public class APIApplicationRelevantObjectEntryModelListenerTest
 				"headless-builder/applications", Http.Method.POST
 			).toString(),
 			JSONCompareMode.STRICT);
-
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"status", "BAD_REQUEST"
 			).put(
-				"title", "Base URL must contain only lowercase characters."
+				"title", "Base URL must contain only lower case characters."
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
 				JSONUtil.put(

@@ -87,8 +87,8 @@ public class APIApplicationRelevantObjectEntryModelListener
 				String messageKey = null;
 
 				if (!StringUtil.isLowerCase(baseURL)) {
-					message = "%s must contain only lowercase characters.";
-					messageKey = "x-must-contain-only-lowercase-characters";
+					message = "%s must contain only lower case characters.";
+					messageKey = "x-must-contain-only-lower-case-characters";
 				}
 				else {
 					message =
