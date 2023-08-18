@@ -58,8 +58,7 @@ public class OpenAPIUtil {
 					previousMethodNamePart.endsWith(schemaName)) {
 
 					String methodNamePart = StringUtil.replaceLast(
-						previousMethodNamePart, schemaName,
-						pluralSchemaName);
+						previousMethodNamePart, schemaName, pluralSchemaName);
 
 					methodNameParts.set(
 						methodNameParts.size() - 1, methodNamePart);
