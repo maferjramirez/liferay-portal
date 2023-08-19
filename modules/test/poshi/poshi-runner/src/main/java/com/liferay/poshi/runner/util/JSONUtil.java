@@ -33,10 +33,10 @@ public class JSONUtil {
 	}
 
 	public static void assertJSONValue(
-			String jsonString, String jsonPath, String value)
+			String json, String path, String value)
 		throws Exception {
 
-		String jsonValue = getWithJSONPath(jsonString, jsonPath);
+		String jsonValue = getWithJSONPath(json, path);
 
 		if (!value.equals(jsonValue)) {
 			throw new RuntimeException(
@@ -57,10 +57,10 @@ public class JSONUtil {
 	}
 
 	public static void assertNotJSONValue(
-			String jsonString, String jsonPath, String value)
+			String json, String path, String value)
 		throws Exception {
 
-		String jsonValue = getWithJSONPath(jsonString, jsonPath);
+		String jsonValue = getWithJSONPath(json, path);
 
 		if (value.equals(jsonValue)) {
 			throw new RuntimeException(
@@ -97,8 +97,8 @@ public class JSONUtil {
 		return jsonObject1.equals(jsonObject2);
 	}
 
-	public static String formatJSONString(String jsonString) {
-		JSONObject jsonObject = toJSONObject(jsonString);
+	public static String formatJSONString(String json) {
+		JSONObject jsonObject = toJSONObject(json);
 
 		return jsonObject.toString();
 	}
@@ -151,20 +151,20 @@ public class JSONUtil {
 		return jsonObject.optString(name);
 	}
 
-	public static String getWithJSONPath(String jsonString, String jsonPath) {
-		return getWithJSONPath(jsonString, jsonPath, "true");
+	public static String getWithJSONPath(String json, String path) {
+		return getWithJSONPath(json, path, "true");
 	}
 
 	public static String getWithJSONPath(
-		String jsonString, String jsonPath, String format) {
+		String json, String path, String format) {
 
-		DocumentContext documentContext = JsonPath.parse(jsonString);
+		DocumentContext documentContext = JsonPath.parse(json);
 
-		Object object = documentContext.read(jsonPath);
+		Object object = documentContext.read(path);
 
 		if (object == null) {
 			throw new RuntimeException(
-				"Invalid JSON path " + jsonPath + " in " + jsonString);
+				"Invalid JSON path " + path + " in " + json);
 		}
 
 		if (Boolean.parseBoolean(format) && (object instanceof List)) {
@@ -182,21 +182,21 @@ public class JSONUtil {
 		return jsonObject1.similar(jsonObject2);
 	}
 
-	public static JSONArray toJSONArray(String jsonString) {
+	public static JSONArray toJSONArray(String json) {
 		try {
-			return new JSONArray(jsonString);
+			return new JSONArray(json);
 		}
 		catch (JSONException jsonException) {
-			throw new RuntimeException("Invalid JSON: '" + jsonString + "'");
+			throw new RuntimeException("Invalid JSON: '" + json + "'");
 		}
 	}
 
-	public static JSONObject toJSONObject(String jsonString) {
+	public static JSONObject toJSONObject(String json) {
 		try {
-			return new JSONObject(jsonString);
+			return new JSONObject(json);
 		}
 		catch (JSONException jsonException) {
-			throw new RuntimeException("Invalid JSON: '" + jsonString + "'");
+			throw new RuntimeException("Invalid JSON: '" + json + "'");
 		}
 	}
 
