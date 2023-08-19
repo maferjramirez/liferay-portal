@@ -63,18 +63,18 @@ public class LanguageResourcesTest {
 	}
 
 	@Test
-	public void testLanguageResource() {
+	public void testGet() {
 
-		// Test 1, default locale
+		// Default locale
 
 		Assert.assertEquals("Year", _language.get(_locale, "year", null));
 
-		// Test 2, supported locale
+		// Supported locale
 
 		Assert.assertEquals(
 			"Année", _language.get(LocaleUtil.FRANCE, "year", null));
 
-		// Test 3, unsupported locale
+		// Unsupported locale
 
 		Assert.assertEquals(
 			"Year", _language.get(new Locale("ps", "AF"), "year", null));
