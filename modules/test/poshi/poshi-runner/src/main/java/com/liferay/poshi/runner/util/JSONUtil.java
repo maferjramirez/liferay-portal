@@ -32,8 +32,7 @@ public class JSONUtil {
 		}
 	}
 
-	public static void assertJSONValue(
-			String json, String path, String value)
+	public static void assertJSONValue(String json, String path, String value)
 		throws Exception {
 
 		String jsonValue = getWithJSONPath(json, path);
