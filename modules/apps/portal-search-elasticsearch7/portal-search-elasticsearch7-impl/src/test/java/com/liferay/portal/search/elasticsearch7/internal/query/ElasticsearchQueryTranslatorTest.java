@@ -82,11 +82,11 @@ public class ElasticsearchQueryTranslatorTest {
 
 	@Test
 	public void testTranslateInnerBoostBooleanQuery() {
+		BooleanQuery booleanQuery = new BooleanQueryImpl();
+
 		Query query = new MatchAllQueryImpl();
 
 		query.setBoost(_BOOST);
-
-		BooleanQuery booleanQuery = new BooleanQueryImpl();
 
 		booleanQuery.addMustQueryClauses(query);
 
