@@ -63,11 +63,9 @@ import org.osgi.util.tracker.ServiceTracker;
 
 LayoutPrototype layoutPrototype = LayoutPrototypeLocalServiceUtil.getLayoutPrototype(${layoutPrototypeId});
 
-ServiceTracker<LayoutSetPrototypeHelper, LayoutSetPrototypeHelper> serviceTracker;
-
 BundleContext bundleContext = SystemBundleUtil.getBundleContext();
 
-serviceTracker = new ServiceTracker<>(bundleContext, LayoutSetPrototypeHelper.class, null);
+ServiceTracker<LayoutSetPrototypeHelper, LayoutSetPrototypeHelper> serviceTracker = new ServiceTracker<>(bundleContext, LayoutSetPrototypeHelper.class, null);
 
 serviceTracker.open();
 
