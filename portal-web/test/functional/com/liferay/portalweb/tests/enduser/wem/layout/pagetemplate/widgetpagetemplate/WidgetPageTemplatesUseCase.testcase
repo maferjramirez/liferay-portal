@@ -61,17 +61,13 @@ import com.liferay.portal.kernel.service.LayoutPrototypeLocalServiceUtil;
 import org.osgi.framework.BundleContext;
 import org.osgi.util.tracker.ServiceTracker;
 
-LayoutPrototype layoutPrototype = LayoutPrototypeLocalServiceUtil.getLayoutPrototype(${layoutPrototypeId});
-
-BundleContext bundleContext = SystemBundleUtil.getBundleContext();
-
-ServiceTracker<LayoutSetPrototypeHelper, LayoutSetPrototypeHelper> serviceTracker = new ServiceTracker<>(bundleContext, LayoutSetPrototypeHelper.class, null);
+ServiceTracker<LayoutSetPrototypeHelper, LayoutSetPrototypeHelper> serviceTracker = new ServiceTracker<>(SystemBundleUtil.getBundleContext(), LayoutSetPrototypeHelper.class, null);
 
 serviceTracker.open();
 
 Object layoutSetPrototypeHelperImpl = serviceTracker.getService();
 
-layoutSetPrototypeHelperImpl.setMergeFailCount(layoutPrototype, 4);
+layoutSetPrototypeHelperImpl.setMergeFailCount(LayoutPrototypeLocalServiceUtil.getLayoutPrototype(${layoutPrototypeId}), 4);
 
 serviceTracker.close();''';
 
