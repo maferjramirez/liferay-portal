@@ -294,8 +294,8 @@ public class ObjectRelationshipLocalServiceTest {
 
 		AssertUtils.assertFailure(
 			ObjectRelationshipEdgeException.class,
-			"Object relationship must be between modifiable object " +
-				"definitions to be an edge of a root context",
+			"Object relationship must not be between unmodifiable system " +
+				"object definitions to be an edge of a root context",
 			() -> _objectRelationshipLocalService.updateObjectRelationship(
 				objectRelationship2.getObjectRelationshipId(), 0,
 				objectRelationship2.getDeletionType(), true,

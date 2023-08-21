@@ -704,13 +704,13 @@ public class ObjectRelationshipLocalServiceImpl
 				"Reverse object relationships cannot be updated");
 		}
 
-		_validateEdge(edge, objectRelationship);
 		_validateParameterObjectFieldId(
 			_objectDefinitionPersistence.findByPrimaryKey(
 				objectRelationship.getObjectDefinitionId1()),
 			_objectDefinitionPersistence.findByPrimaryKey(
 				objectRelationship.getObjectDefinitionId2()),
 			parameterObjectFieldId, objectRelationship.getType());
+		_validateEdge(edge, objectRelationship);
 
 		if (Objects.equals(
 				objectRelationship.getType(),
@@ -1036,7 +1036,6 @@ public class ObjectRelationshipLocalServiceImpl
 		ObjectDefinition objectDefinition1 =
 			objectDefinitionLocalService.getObjectDefinition(
 				objectRelationship.getObjectDefinitionId1());
-
 		ObjectDefinition objectDefinition2 =
 			objectDefinitionLocalService.getObjectDefinition(
 				objectRelationship.getObjectDefinitionId2());
@@ -1045,8 +1044,8 @@ public class ObjectRelationshipLocalServiceImpl
 			objectDefinition2.isUnmodifiableSystemObject()) {
 
 			throw new ObjectRelationshipEdgeException(
-				"Object relationship must be between modifiable object " +
-					"definitions to be an edge of a root context");
+				"Object relationship must not be between unmodifiable system " +
+					"object definitions to be an edge of a root context");
 		}
 
 		if (!Objects.equals(
