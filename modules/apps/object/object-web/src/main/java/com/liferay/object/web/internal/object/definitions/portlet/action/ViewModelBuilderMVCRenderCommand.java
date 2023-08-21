@@ -53,7 +53,6 @@ public class ViewModelBuilderMVCRenderCommand implements MVCRenderCommand {
 				_objectDefinitionModelResourcePermission,
 				_objectEntryManagerRegistry, _objectScopeProviderRegistry,
 				_panelCategoryRegistry));
-
 		renderRequest.setAttribute(
 			ObjectWebKeys.OBJECT_DEFINITIONS_RELATIONSHIP_DISPLAY_CONTEXT,
 			new ObjectDefinitionsRelationshipsDisplayContext(
