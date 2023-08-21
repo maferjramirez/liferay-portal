@@ -8,7 +8,6 @@
 <%@ include file="/portlet_list/init.jsp" %>
 
 <%
-RenderControlsDisplayContext renderControlsDisplayContext = new RenderControlsDisplayContext(request);
 String action = (String)request.getAttribute("render_controls.jsp-action");
 boolean childControl = GetterUtil.getBoolean(String.valueOf(request.getAttribute("render_controls.jsp-childControl")));
 PortletDataHandlerControl[] controls = (PortletDataHandlerControl[])request.getAttribute("render_controls.jsp-controls");
@@ -79,6 +78,10 @@ for (int i = 0; i < controls.length; i++) {
 
 					<aui:input name="<%= controlName %>" type="hidden" value="<%= MapUtil.getBoolean(parameterMap, controlName, control.getDefaultState()) || MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.PORTLET_DATA_ALL) %>" />
 				</c:if>
+
+				<%
+				RenderControlsDisplayContext renderControlsDisplayContext = new RenderControlsDisplayContext(request);
+				%>
 
 				<aui:input checked="<%= renderControlsDisplayContext.isControlCheckboxEnabled(control, parameterMap) %>" data="<%= data %>" disabled="<%= disabled %>" helpMessage="<%= control.getHelpMessage(locale, action) %>" ignoreRequestValue="<%= disabled %>" label="<%= controlLabel %>" name="<%= controlInputName %>" type="checkbox" />
 
