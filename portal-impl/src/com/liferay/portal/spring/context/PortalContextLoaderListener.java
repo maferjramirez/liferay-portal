@@ -143,8 +143,6 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 			_log.error(exception);
 		}
 
-		// Hypersonic
-
 		DB db = DBManagerUtil.getDB();
 
 		if (db.getDBType() == DBType.HYPERSONIC) {
