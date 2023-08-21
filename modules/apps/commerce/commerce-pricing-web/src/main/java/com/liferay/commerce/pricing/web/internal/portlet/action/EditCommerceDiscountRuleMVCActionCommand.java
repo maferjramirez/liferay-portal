@@ -104,9 +104,9 @@ public class EditCommerceDiscountRuleMVCActionCommand
 	private void _updateCommerceDiscountRule(ActionRequest actionRequest)
 		throws Exception {
 
+		String name = ParamUtil.getString(actionRequest, "name");
 		String commerceDiscountRuleType = ParamUtil.getString(
 			actionRequest, "commerceDiscountRuleType");
-		String name = ParamUtil.getString(actionRequest, "name");
 		String typeSettings = ParamUtil.getString(
 			actionRequest, "typeSettings");
 
