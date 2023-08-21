@@ -1030,6 +1030,21 @@ public class ObjectRelationshipLocalServiceImpl
 			return;
 		}
 
+		if (!Objects.equals(
+				objectRelationship.getType(),
+				ObjectRelationshipConstants.TYPE_ONE_TO_MANY)) {
+
+			throw new ObjectRelationshipEdgeException(
+				"Object relationship must be one to many to be an edge of a " +
+					"root context");
+		}
+
+		if (objectRelationship.isSelf()) {
+			throw new ObjectRelationshipEdgeException(
+				"Object relationship must not be a self-relationship to be " +
+					"an edge of a root context");
+		}
+
 		ObjectDefinitionLocalService objectDefinitionLocalService =
 			_objectDefinitionLocalServiceSnapshot.get();
 
@@ -1046,21 +1061,6 @@ public class ObjectRelationshipLocalServiceImpl
 			throw new ObjectRelationshipEdgeException(
 				"Object relationship must not be between unmodifiable system " +
 					"object definitions to be an edge of a root context");
-		}
-
-		if (!Objects.equals(
-				objectRelationship.getType(),
-				ObjectRelationshipConstants.TYPE_ONE_TO_MANY)) {
-
-			throw new ObjectRelationshipEdgeException(
-				"Object relationship must be one to many to be an edge of a " +
-					"root context");
-		}
-
-		if (objectRelationship.isSelf()) {
-			throw new ObjectRelationshipEdgeException(
-				"Object relationship must not be a self-relationship to be " +
-					"an edge of a root context");
 		}
 	}
 
