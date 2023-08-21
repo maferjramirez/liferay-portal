@@ -36,7 +36,7 @@ public interface ExportImportServiceConfiguration {
 
 	@Meta.AD(
 		deflt = "true",
-		description = "if-checked,-then-the-generated-previews-and-thumbnails-will-be-included-during-staging-process",
+		description = "if-checked,-then-the-generated-previews-and-thumbnails-will-be-included-during-the-staging-process",
 		name = "include-thumbnails-and-previews-during-staging",
 		required = false
 	)
