@@ -65,9 +65,9 @@ ServiceTracker<LayoutSetPrototypeHelper, LayoutSetPrototypeHelper> serviceTracke
 
 serviceTracker.open();
 
-Object layoutSetPrototypeHelperImpl = serviceTracker.getService();
+Object layoutSetPrototypeHelper = serviceTracker.getService();
 
-layoutSetPrototypeHelperImpl.setMergeFailCount(LayoutPrototypeLocalServiceUtil.getLayoutPrototype(${layoutPrototypeId}), 4);
+layoutSetPrototypeHelper.setMergeFailCount(LayoutPrototypeLocalServiceUtil.getLayoutPrototype(${layoutPrototypeId}), 4);
 
 serviceTracker.close();''';
 
