@@ -557,7 +557,7 @@ public class DBTest {
 	@Test
 	public void testRenameTablesRollback() throws Exception {
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
-				_CLASS_NAME_DAO_DB_BASEDB, LoggerTestUtil.OFF)) {
+				"com.liferay.portal.dao.db.BaseDB", LoggerTestUtil.OFF)) {
 
 			_db.renameTables(
 				_connection,
@@ -738,9 +738,6 @@ public class DBTest {
 			ArrayUtil.sortedUnique(columnNames),
 			ArrayUtil.sortedUnique(indexMetadata.getColumnNames()));
 	}
-
-	private static final String _CLASS_NAME_DAO_DB_BASEDB =
-		"com.liferay.portal.dao.db.BaseDB";
 
 	private static final String _INDEX_NAME = "IX_TEMP";
 

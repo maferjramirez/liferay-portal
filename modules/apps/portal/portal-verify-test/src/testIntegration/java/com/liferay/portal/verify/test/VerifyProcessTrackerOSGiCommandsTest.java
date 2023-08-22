@@ -77,7 +77,9 @@ public class VerifyProcessTrackerOSGiCommandsTest {
 	@Test
 	public void testRegisterFailedVerifyProcess() {
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
-				_CLASS_NAME_VERIFY_PROCESS_TRACKER, LoggerTestUtil.OFF)) {
+				"com.liferay.portal.verify.extender.internal.osgi.commands." +
+					"VerifyProcessTrackerOSGiCommands",
+				LoggerTestUtil.OFF)) {
 
 			_forceFailure = true;
 
@@ -321,10 +323,6 @@ public class VerifyProcessTrackerOSGiCommandsTest {
 		return () -> ReflectionTestUtil.setFieldValue(
 			StartupHelperUtil.class, "_upgrading", false);
 	}
-
-	private static final String _CLASS_NAME_VERIFY_PROCESS_TRACKER =
-		"com.liferay.portal.verify.extender.internal.osgi.commands." +
-			"VerifyProcessTrackerOSGiCommands";
 
 	private static BundleContext _bundleContext;
 	private static String _symbolicName;
