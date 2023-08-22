@@ -60,12 +60,12 @@ public class CPInstanceUnitOfMeasureModelListenerTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_cpInstance = CPTestUtil.addCPInstanceWithRandomSkuFromCatalog(
-			_group.getGroupId());
 		_commercePriceList = CommercePriceListTestUtil.addCommercePriceList(
 			_group.getGroupId(), true,
 			CommercePriceListConstants.TYPE_PRICE_LIST,
 			RandomTestUtil.nextDouble());
+		_cpInstance = CPTestUtil.addCPInstanceWithRandomSkuFromCatalog(
+			_group.getGroupId());
 	}
 
 	@Test
