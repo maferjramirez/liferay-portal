@@ -41,6 +41,11 @@ public class OpenAPIUtilTest {
 			OpenAPIUtil.getOperationId(
 				Http.Method.GET, "/schema/whatever", "Schema"));
 		Assert.assertEquals(
+			"getScopeScopeKeySiteScopedPathPage",
+			OpenAPIUtil.getOperationId(
+				Http.Method.GET, "/scopes/{scopeKey}/site-scoped-path",
+				"Schema"));
+		Assert.assertEquals(
 			"getSegmentASegmentBPage",
 			OpenAPIUtil.getOperationId(
 				Http.Method.GET, "/segment-a/segment-b", "Schema"));
@@ -48,11 +53,6 @@ public class OpenAPIUtilTest {
 			"getWhateverPage",
 			OpenAPIUtil.getOperationId(
 				Http.Method.GET, "/whatever", "CamelSchema"));
-		Assert.assertEquals(
-			"getScopeScopeKeySiteScopedPathPage",
-			OpenAPIUtil.getOperationId(
-				Http.Method.GET, "/scopes/{scopeKey}/site-scoped-path",
-				"Schema"));
 	}
 
 }
