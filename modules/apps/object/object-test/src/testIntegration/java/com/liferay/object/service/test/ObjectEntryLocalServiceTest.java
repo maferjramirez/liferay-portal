@@ -668,6 +668,32 @@ public class ObjectEntryLocalServiceTest {
 			"objectEntryERC", _objectDefinition.getObjectDefinitionId());
 
 		ObjectFieldTestUtil.withEncryptedObjectFieldProperties(
+			"", true, "",
+			() -> {
+				AssertUtils.assertFailure(
+					IllegalArgumentException.class,
+					"Please insert an encryption key or remove the object's " +
+						"encryption field to recover these entries.",
+					() -> _objectEntryLocalService.getValues(
+						objectEntry.getObjectEntryId()));
+
+				AssertUtils.assertFailure(
+					SystemException.class,
+					IllegalArgumentException.class.getName() + ": Empty key",
+					() -> _addObjectEntry(
+						HashMapBuilder.<String, Serializable>put(
+							"emailAddress", RandomTestUtil.randomString()
+						).put(
+							"emailAddressRequired", "athanasius@liferay.com"
+						).put(
+							"encrypted", RandomTestUtil.randomString()
+						).put(
+							"listTypeEntryKeyRequired", "listTypeEntryKey1"
+						).build()));
+
+				_assertCount(1);
+			});
+		ObjectFieldTestUtil.withEncryptedObjectFieldProperties(
 			"", true, key,
 			() -> {
 				AssertUtils.assertFailure(
@@ -700,36 +726,8 @@ public class ObjectEntryLocalServiceTest {
 
 				_assertCount(1);
 			});
-
 		ObjectFieldTestUtil.withEncryptedObjectFieldProperties(
 			"AES", true, "",
-			() -> {
-				AssertUtils.assertFailure(
-					IllegalArgumentException.class,
-					"Please insert an encryption key or remove the object's " +
-						"encryption field to recover these entries.",
-					() -> _objectEntryLocalService.getValues(
-						objectEntry.getObjectEntryId()));
-
-				AssertUtils.assertFailure(
-					SystemException.class,
-					IllegalArgumentException.class.getName() + ": Empty key",
-					() -> _addObjectEntry(
-						HashMapBuilder.<String, Serializable>put(
-							"emailAddress", RandomTestUtil.randomString()
-						).put(
-							"emailAddressRequired", "athanasius@liferay.com"
-						).put(
-							"encrypted", RandomTestUtil.randomString()
-						).put(
-							"listTypeEntryKeyRequired", "listTypeEntryKey1"
-						).build()));
-
-				_assertCount(1);
-			});
-
-		ObjectFieldTestUtil.withEncryptedObjectFieldProperties(
-			"", true, "",
 			() -> {
 				AssertUtils.assertFailure(
 					IllegalArgumentException.class,
