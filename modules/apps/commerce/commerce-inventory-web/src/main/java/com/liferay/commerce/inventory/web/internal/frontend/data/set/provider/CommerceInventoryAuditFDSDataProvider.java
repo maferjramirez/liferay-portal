@@ -65,7 +65,6 @@ public class CommerceInventoryAuditFDSDataProvider
 			themeDisplay.getTimeZone());
 
 		String sku = ParamUtil.getString(httpServletRequest, "sku");
-
 		String unitOfMeasureKey = ParamUtil.getString(
 			httpServletRequest, "unitOfMeasureKey");
 
@@ -119,7 +118,6 @@ public class CommerceInventoryAuditFDSDataProvider
 		throws PortalException {
 
 		String sku = ParamUtil.getString(httpServletRequest, "sku");
-
 		String unitOfMeasureKey = ParamUtil.getString(
 			httpServletRequest, "sku");
 

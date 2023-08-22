@@ -59,7 +59,6 @@ public class CommerceInventoryBookedFDSDataProvider
 		List<BookedQuantity> bookedQuantities = new ArrayList<>();
 
 		String sku = ParamUtil.getString(httpServletRequest, "sku");
-
 		String unitOfMeasureKey = ParamUtil.getString(
 			httpServletRequest, "unitOfMeasureKey");
 
@@ -109,7 +108,6 @@ public class CommerceInventoryBookedFDSDataProvider
 		throws PortalException {
 
 		String sku = ParamUtil.getString(httpServletRequest, "sku");
-
 		String unitOfMeasureKey = ParamUtil.getString(
 			httpServletRequest, "unitOfMeasureKey");
 
