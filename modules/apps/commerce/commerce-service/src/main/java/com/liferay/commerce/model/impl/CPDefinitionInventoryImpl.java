@@ -36,11 +36,8 @@ public class CPDefinitionInventoryImpl extends CPDefinitionInventoryBaseImpl {
 
 		Arrays.sort(allowedOrderQuantities);
 
-		List<BigDecimal> allowedOrderQuantityList =
-			TransformUtil.transformToList(
-				allowedOrderQuantities, BigDecimal::valueOf);
-
-		return allowedOrderQuantityList.toArray(new BigDecimal[0]);
+		return TransformUtil.transform(
+			allowedOrderQuantities, BigDecimal::valueOf, BigDecimal.class);
 	}
 
 }
