@@ -77,20 +77,22 @@ public class HeadlessBuilderResourceImpl {
 		for (APIApplication.Endpoint endpoint :
 				contextAPIApplication.getEndpoints()) {
 
-			if ((endpoint.getScope() == scope) &&
-				Objects.equals(endpoint.getPath(), "/" + path)) {
+			if ((endpoint.getScope() != scope) ||
+				!Objects.equals(endpoint.getPath(), "/" + path)) {
 
-				if (endpoint.getResponseSchema() == null) {
-					return Response.noContent(
-					).build();
-				}
+				continue;
+			}
 
-				return Response.ok(
-					_endpointHelper.getResponseEntityMapsPage(
-						contextCompany.getCompanyId(), endpoint, filterString,
-						pagination, scopeKey)
+			if (endpoint.getResponseSchema() == null) {
+				return Response.noContent(
 				).build();
 			}
+
+			return Response.ok(
+				_endpointHelper.getResponseEntityMapsPage(
+					contextCompany.getCompanyId(), endpoint, filterString,
+					pagination, scopeKey)
+			).build();
 		}
 
 		throw new NoSuchModelException(
