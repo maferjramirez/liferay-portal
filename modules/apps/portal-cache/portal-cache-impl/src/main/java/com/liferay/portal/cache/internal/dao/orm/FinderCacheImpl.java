@@ -385,10 +385,10 @@ public class FinderCacheImpl
 		removeCache(_getCacheNameWithPagination(cacheName));
 		removeCache(_getCacheNameWithoutPagination(cacheName));
 
+		String tableName = null;
+
 		ArgumentsResolverHolder argumentsResolverHolder =
 			_serviceTrackerMap.getService(cacheName);
-
-		String tableName = null;
 
 		if (argumentsResolverHolder == null) {
 			tableName = cacheName;
