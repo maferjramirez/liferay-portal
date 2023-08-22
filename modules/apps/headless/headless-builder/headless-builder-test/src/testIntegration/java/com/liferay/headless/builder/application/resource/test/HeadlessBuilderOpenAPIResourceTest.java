@@ -238,7 +238,7 @@ public class HeadlessBuilderOpenAPIResourceTest extends BaseTestCase {
 				).build()),
 			ObjectDefinitionConstants.SCOPE_COMPANY);
 
-		_siteScopedObjectDefinition1 = _publishObjectDefinition(
+		_siteScopedObjectDefinition = _publishObjectDefinition(
 			Arrays.asList(
 				new TextObjectFieldBuilder(
 				).externalReferenceCode(
@@ -560,7 +560,7 @@ public class HeadlessBuilderOpenAPIResourceTest extends BaseTestCase {
 							"externalReferenceCode", _API_SITE_SCOPED_SCHEMA_ERC
 						).put(
 							"mainObjectDefinitionERC",
-							_siteScopedObjectDefinition1.
+							_siteScopedObjectDefinition.
 								getExternalReferenceCode()
 						).put(
 							"name", "SiteScopedSchemaName"
@@ -727,6 +727,6 @@ public class HeadlessBuilderOpenAPIResourceTest extends BaseTestCase {
 	private ObjectRelationshipLocalService _objectRelationshipLocalService;
 
 	@DeleteAfterTestRun
-	private ObjectDefinition _siteScopedObjectDefinition1;
+	private ObjectDefinition _siteScopedObjectDefinition;
 
 }
