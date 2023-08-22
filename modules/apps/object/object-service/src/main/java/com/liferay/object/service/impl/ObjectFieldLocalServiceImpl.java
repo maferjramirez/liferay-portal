@@ -1160,8 +1160,8 @@ public class ObjectFieldLocalServiceImpl
 				 ObjectFieldConstants.BUSINESS_TYPE_ATTACHMENT))) {
 
 			throw new ObjectFieldBusinessTypeException(
-				"Aggregation and Attachment business types are not supported " +
-					"for the Salesforce storage type");
+				"Salesforce storage type does not aggregation and attachment " +
+					"business types");
 		}
 
 		_validateBusinessTypeEncrypted(
