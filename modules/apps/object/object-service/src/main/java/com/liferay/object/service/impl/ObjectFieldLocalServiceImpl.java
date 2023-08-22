@@ -1151,10 +1151,9 @@ public class ObjectFieldLocalServiceImpl
 			ObjectDefinition objectDefinition, String businessType)
 		throws PortalException {
 
-		if (objectDefinition.getStorageType(
-			).equals(
-				ObjectDefinitionConstants.STORAGE_TYPE_SALESFORCE
-			) &&
+		if (Objects.equals(
+				objectDefinition.getStorageType(),
+				ObjectDefinitionConstants.STORAGE_TYPE_SALESFORCE) &&
 			(businessType.equals(
 				ObjectFieldConstants.BUSINESS_TYPE_AGGREGATION) ||
 			 businessType.equals(
