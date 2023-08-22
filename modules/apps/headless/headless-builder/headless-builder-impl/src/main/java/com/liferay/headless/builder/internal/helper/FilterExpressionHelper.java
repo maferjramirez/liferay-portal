@@ -41,6 +41,8 @@ public class FilterExpressionHelper {
 			return null;
 		}
 
+		Expression endpointFilterExpression = null;
+
 		APIApplication.Schema schema = endpoint.getResponseSchema();
 
 		String objectDefinitionExternalReferenceCode =
@@ -53,8 +55,6 @@ public class FilterExpressionHelper {
 
 		EntityModel entityModel = _entityModelProvider.getEntityModel(
 			objectDefinition);
-
-		Expression endpointFilterExpression = null;
 
 		if (filter != null) {
 			endpointFilterExpression = _objectDefinitionFilterParser.parse(
