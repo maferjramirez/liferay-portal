@@ -11,7 +11,6 @@
 CommerceOrderEditDisplayContext commerceOrderEditDisplayContext = (CommerceOrderEditDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommerceOrder commerceOrder = commerceOrderEditDisplayContext.getCommerceOrder();
-
 long commerceOrderId = commerceOrderEditDisplayContext.getCommerceOrderId();
 %>
 
