@@ -242,12 +242,11 @@ public class ClientExtensionProjectConfigurator
 		_nodeBuildConfigurer.apply(
 			project, assembleClientExtensionTaskProvider);
 
-		WorkspaceExtension workspaceExtension = GradleUtil.getExtension(
-			(ExtensionAware)project.getGradle(), WorkspaceExtension.class);
-
 		_addDockerTasks(
 			project, assembleClientExtensionTaskProvider,
-			createClientExtensionConfigTaskProvider, workspaceExtension);
+			createClientExtensionConfigTaskProvider,
+			GradleUtil.getExtension(
+				(ExtensionAware)project.getGradle(), WorkspaceExtension.class));
 	}
 
 	@Override
@@ -332,15 +331,6 @@ public class ClientExtensionProjectConfigurator
 			DockerRegistryCredentials dockerRegistryCredentials =
 				dockerBuildImage.getRegistryCredentials();
 
-			String dockerUserName = workspaceExtension.getDockerUserName();
-
-			if (Objects.nonNull(dockerUserName)) {
-				Property<String> userNameProperty =
-					dockerRegistryCredentials.getUsername();
-
-				userNameProperty.set(dockerUserName);
-			}
-
 			String dockerUserAccessToken =
 				workspaceExtension.getDockerUserAccessToken();
 
@@ -349,6 +339,15 @@ public class ClientExtensionProjectConfigurator
 					dockerRegistryCredentials.getPassword();
 
 				passwordProperty.set(dockerUserAccessToken);
+			}
+
+			String dockerUserName = workspaceExtension.getDockerUserName();
+
+			if (Objects.nonNull(dockerUserName)) {
+				Property<String> userNameProperty =
+					dockerRegistryCredentials.getUsername();
+
+				userNameProperty.set(dockerUserName);
 			}
 		}
 
