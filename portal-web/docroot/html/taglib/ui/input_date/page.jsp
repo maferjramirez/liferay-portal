@@ -74,9 +74,10 @@ if (!BrowserSnifferUtil.isMobile(request)) {
 
 	// Replace single quotes to prevent the string from breaking when passing
 	// into the A.DatePicker mask. This is used for the zh_HK locale which
-	// returns the format yyyy'年'MM'月'dd'日'.
+	// returns the format yyyy'年'MM'月'dd'日'. See LPS-191923.
 
 	mask = mask.replaceAll("'", "");
+
 	mask = mask.replaceAll("yyyy", "%Y");
 	mask = mask.replaceAll("MM", "%m");
 	mask = mask.replaceAll("dd", "%d");
