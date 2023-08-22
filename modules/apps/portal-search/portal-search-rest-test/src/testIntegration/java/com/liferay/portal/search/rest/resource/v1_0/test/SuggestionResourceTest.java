@@ -43,8 +43,12 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 				).getPlid(),
 				"everything", "Document",
 				new SuggestionsContributorConfiguration[] {
-					_getSuggestionsContributorConfiguration(
-						"basic", displayGroupName)
+					new SuggestionsContributorConfiguration() {
+						{
+							setContributorName("basic");
+							setDisplayGroupName(displayGroupName);
+						}
+					}
 				});
 
 		Assert.assertEquals(1, suggestionPage.getTotalCount());
@@ -69,22 +73,6 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 
 		Assert.assertEquals(
 			title, suggestionAttributesJSONObject.get("assetSearchSummary"));
-	}
-
-	private SuggestionsContributorConfiguration
-		_getSuggestionsContributorConfiguration(
-			String contributorName, String displayGroupName) {
-
-		SuggestionsContributorConfiguration
-			suggestionsContributorConfiguration =
-				new SuggestionsContributorConfiguration();
-
-		suggestionsContributorConfiguration.setContributorName(contributorName);
-
-		suggestionsContributorConfiguration.setDisplayGroupName(
-			displayGroupName);
-
-		return suggestionsContributorConfiguration;
 	}
 
 }
