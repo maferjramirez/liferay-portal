@@ -159,7 +159,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 
 		_siteScopedObjectRelationship1 = _addObjectRelationship(
 			_siteScopedObjectDefinition1, _siteScopedObjectDefinition2);
-
 		_siteScopedObjectRelationship2 = _addObjectRelationship(
 			_siteScopedObjectDefinition2, _siteScopedObjectDefinition3);
 
@@ -169,13 +168,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		_addAggregationObjectField(
 			_siteScopedObjectDefinition2,
 			_siteScopedObjectRelationship2.getName());
-
-		_documentResource = DocumentResource.builder(
-		).authentication(
-			"test@liferay.com", "test"
-		).locale(
-			LocaleUtil.getDefault()
-		).build();
 
 		_group = GroupTestUtil.addGroup();
 	}
