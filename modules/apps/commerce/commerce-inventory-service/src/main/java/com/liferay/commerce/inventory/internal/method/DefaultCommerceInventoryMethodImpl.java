@@ -54,14 +54,14 @@ public class DefaultCommerceInventoryMethodImpl
 		propagation = Propagation.REQUIRED, rollbackFor = Exception.class
 	)
 	public void consumeQuantity(
-			long userId, long bookedQuantityId,
+			long userId, long commerceBookedQuantityId,
 			long commerceInventoryWarehouseId, BigDecimal quantity, String sku,
 			String unitOfMeasureKey, Map<String, String> context)
 		throws PortalException {
 
-		if (bookedQuantityId > 0) {
+		if (commerceBookedQuantityId > 0) {
 			_commerceBookedQuantityLocalService.consumeCommerceBookedQuantity(
-				bookedQuantityId, quantity);
+				commerceBookedQuantityId, quantity);
 		}
 
 		decreaseStockQuantity(
@@ -83,7 +83,7 @@ public class DefaultCommerceInventoryMethodImpl
 						getCommerceInventoryEngineContributors()) {
 
 			commerceInventoryEngineContributor.consumeQuantityContribute(
-				userId, bookedQuantityId, commerceInventoryWarehouseId,
+				userId, commerceBookedQuantityId, commerceInventoryWarehouseId,
 				quantity, sku, unitOfMeasureKey, context);
 		}
 	}
