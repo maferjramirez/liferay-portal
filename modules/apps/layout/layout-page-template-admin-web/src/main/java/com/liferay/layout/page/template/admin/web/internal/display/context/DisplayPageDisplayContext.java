@@ -57,7 +57,7 @@ public class DisplayPageDisplayContext {
 
 		displayPagesSearchContainer.setOrderByCol(getOrderByCol());
 		displayPagesSearchContainer.setOrderByComparator(
-			_getCollectionsOrderByComparator());
+			_getOrderByComparator());
 		displayPagesSearchContainer.setOrderByType(getOrderByType());
 
 		if (isSearch()) {
@@ -202,7 +202,7 @@ public class DisplayPageDisplayContext {
 		return false;
 	}
 
-	private OrderByComparator<Object> _getCollectionsOrderByComparator() {
+	private OrderByComparator<Object> _getOrderByComparator() {
 		boolean orderByAsc = false;
 
 		if (Objects.equals(getOrderByType(), "asc")) {
