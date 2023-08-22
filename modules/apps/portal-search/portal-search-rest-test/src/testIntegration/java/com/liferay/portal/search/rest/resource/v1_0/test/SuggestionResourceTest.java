@@ -6,7 +6,6 @@
 package com.liferay.portal.search.rest.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -65,19 +64,11 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 		Assert.assertEquals(title, suggestion.getText());
 
 		JSONObject suggestionAttributesJSONObject =
-			_getSuggestionAttributesJSONObject(suggestion);
+			JSONFactoryUtil.createJSONObject(
+				String.valueOf(suggestion.getAttributes()));
 
 		Assert.assertEquals(
 			title, suggestionAttributesJSONObject.get("assetSearchSummary"));
-	}
-
-	private JSONObject _getSuggestionAttributesJSONObject(Suggestion suggestion)
-		throws Exception {
-
-		Object suggestionAttributes = suggestion.getAttributes();
-
-		return JSONFactoryUtil.createJSONObject(
-			suggestionAttributes.toString());
 	}
 
 	private SuggestionsContributorConfiguration
