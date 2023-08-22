@@ -333,7 +333,7 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 	public void testLogEvents() throws Exception {
 		_appender.start();
 
-		LogEvent event = Log4jLogEvent.newBuilder(
+		LogEvent logEvent = Log4jLogEvent.newBuilder(
 		).setLoggerName(
 			"Warn"
 		).setLevel(
@@ -342,9 +342,9 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 			new SimpleMessage("Warning")
 		).build();
 
-		_appender.append(event);
+		_appender.append(logEvent);
 
-		_appender.append(event);
+		_appender.append(logEvent);
 
 		Log log = LogFactoryUtil.getLog(UpgradeProcess.class);
 
