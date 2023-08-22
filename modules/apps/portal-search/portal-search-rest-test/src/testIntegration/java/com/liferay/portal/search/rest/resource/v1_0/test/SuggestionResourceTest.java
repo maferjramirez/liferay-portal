@@ -33,11 +33,16 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 
 		String title = "Document Title";
 
-		_addJournalArticle(title);
+		JournalTestUtil.addArticle(testGroup.getGroupId(), title, "");
 
 		Page<SuggestionsContributorResults> suggestionPage =
-			_postSuggestionsPage(
-				"Document",
+			suggestionResource.postSuggestionsPage(
+				"http://localhost:8080/web/guest/home", "%2Fsearch",
+				testGroup.getGroupId(), "q",
+				LayoutTestUtil.addTypePortletLayout(
+					testGroup
+				).getPlid(),
+				"everything", "Document",
 				new SuggestionsContributorConfiguration[] {
 					_getSuggestionsContributorConfiguration(
 						"basic", displayGroupName)
@@ -66,12 +71,7 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 			title, suggestionAttributesJSONObject.get("assetSearchSummary"));
 	}
 
-	private JournalArticle _addJournalArticle(String title) throws Exception {
-		return JournalTestUtil.addArticle(testGroup.getGroupId(), title, "");
-	}
-
-	private JSONObject _getSuggestionAttributesJSONObject(
-			Suggestion suggestion)
+	private JSONObject _getSuggestionAttributesJSONObject(Suggestion suggestion)
 		throws Exception {
 
 		Object suggestionAttributes = suggestion.getAttributes();
@@ -94,21 +94,6 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 			displayGroupName);
 
 		return suggestionsContributorConfiguration;
-	}
-
-	private Page<SuggestionsContributorResults> _postSuggestionsPage(
-			String search,
-			SuggestionsContributorConfiguration[]
-				suggestionsContributorConfigurations)
-		throws Exception {
-
-		return suggestionResource.postSuggestionsPage(
-			"http://localhost:8080/web/guest/home", "%2Fsearch",
-			testGroup.getGroupId(), "q",
-			LayoutTestUtil.addTypePortletLayout(
-				testGroup
-			).getPlid(),
-			"everything", search, suggestionsContributorConfigurations);
 	}
 
 }
