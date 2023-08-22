@@ -60,7 +60,7 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 		Assert.assertEquals(title, suggestion.getText());
 
 		JSONObject suggestionAttributesJSONObject =
-			_getSuggestionAttributesAsJSONObject(suggestion);
+			_getSuggestionAttributesJSONObject(suggestion);
 
 		Assert.assertEquals(
 			title, suggestionAttributesJSONObject.get("assetSearchSummary"));
@@ -70,7 +70,7 @@ public class SuggestionResourceTest extends BaseSuggestionResourceTestCase {
 		return JournalTestUtil.addArticle(testGroup.getGroupId(), title, "");
 	}
 
-	private JSONObject _getSuggestionAttributesAsJSONObject(
+	private JSONObject _getSuggestionAttributesJSONObject(
 			Suggestion suggestion)
 		throws Exception {
 
