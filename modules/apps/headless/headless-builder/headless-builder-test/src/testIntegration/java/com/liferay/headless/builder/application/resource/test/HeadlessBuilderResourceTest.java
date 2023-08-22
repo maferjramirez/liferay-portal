@@ -120,6 +120,8 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			LocaleUtil.getDefault()
 		).build();
 
+		_group = GroupTestUtil.addGroup();
+
 		List<ListTypeEntry> listTypeEntries = TransformUtil.transformToList(
 			ListTypeValue.values(),
 			listTypeValue -> ListTypeEntryUtil.createListTypeEntry(
@@ -168,8 +170,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		_addAggregationObjectField(
 			_siteScopedObjectDefinition2,
 			_siteScopedObjectRelationship2.getName());
-
-		_group = GroupTestUtil.addGroup();
 	}
 
 	@Test
