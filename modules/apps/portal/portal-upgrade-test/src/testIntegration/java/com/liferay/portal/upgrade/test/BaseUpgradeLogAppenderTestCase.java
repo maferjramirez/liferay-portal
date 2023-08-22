@@ -343,7 +343,6 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 		).build();
 
 		_appender.append(logEvent);
-
 		_appender.append(logEvent);
 
 		Log log = LogFactoryUtil.getLog(UpgradeProcess.class);
