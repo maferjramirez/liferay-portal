@@ -95,6 +95,18 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		return new ResponseEntity<>(json, HttpStatus.OK);
 	}
 
+	private Mono<ResponseEntity<String>> _transform(
+		ResponseEntity<String> responseEntity) {
+
+		HttpStatus httpStatus = responseEntity.getStatusCode();
+
+		if (httpStatus.is2xxSuccessful()) {
+			return Mono.just(responseEntity);
+		}
+
+		return Mono.error(new RuntimeException(httpStatus.getReasonPhrase()));
+	}
+
 	private Mono<ResponseEntity<String>> assignAccountRoleToUser(
 		WebClient webClient, Jwt jwt, String accountERC, Integer accountRoleId,
 		String email) {
@@ -124,17 +136,6 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).flatMap(
 			responseEntity -> _transform(responseEntity)
 		);
-	}
-
-	private Mono<ResponseEntity<String>> _transform(ResponseEntity<String> responseEntity) {
-		HttpStatus httpStatus = responseEntity.getStatusCode();
-
-		if (httpStatus.is2xxSuccessful()) {
-			return Mono.just(responseEntity);
-		}
-
-		return Mono.error(
-			new RuntimeException(httpStatus.getReasonPhrase()));
 	}
 
 	private Mono<ResponseEntity<String>> createBusinessAccount(
