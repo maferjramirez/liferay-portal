@@ -35,9 +35,9 @@ import org.springframework.web.reactive.function.client.WebClient;
  * @author Allen Ziegenfus
  */
 @RestController
-public class TicketRestController extends BaseRestController {
+public class ObjectActionTicketRestController extends BaseRestController {
 
-	@PostMapping("/ticket")
+	@PostMapping("/object/action/ticket")
 	public ResponseEntity<String> post(
 			@AuthenticationPrincipal Jwt jwt, @RequestBody String json)
 		throws Exception {
@@ -122,7 +122,8 @@ public class TicketRestController extends BaseRestController {
 				).header(
 					HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
 				).header(
-					HttpHeaders.USER_AGENT, TicketRestController.class.getName()
+					HttpHeaders.USER_AGENT,
+					ObjectActionTicketRestController.class.getName()
 				).endpoint(
 					"learn.liferay.com", 443, "https"
 				).build();
@@ -172,7 +173,7 @@ public class TicketRestController extends BaseRestController {
 	}
 
 	private static final Log _log = LogFactory.getLog(
-		TicketRestController.class);
+		ObjectActionTicketRestController.class);
 
 	@Value("${com.liferay.lxc.dxp.mainDomain}")
 	private String _lxcDXPMainDomain;

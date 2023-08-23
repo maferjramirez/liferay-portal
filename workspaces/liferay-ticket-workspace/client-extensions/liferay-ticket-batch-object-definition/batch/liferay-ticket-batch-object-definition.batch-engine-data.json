@@ -38,10 +38,10 @@
 					"errorMessage": {
 					},
 					"label": {
-						"en_US": "Liferay Ticket Etc Documentation Referral"
+						"en_US": "Liferay Ticket Etc Spring Boot Object Action Ticket"
 					},
 					"name": "LiferayTicketEtcDocumentationReferral",
-					"objectActionExecutorKey": "function#liferay-ticket-etc-documentation-referral",
+					"objectActionExecutorKey": "function#liferay-ticket-etc-spring-boot-object-action-ticket",
 					"objectActionTriggerKey": "onAfterAdd",
 					"parameters": {
 					},
