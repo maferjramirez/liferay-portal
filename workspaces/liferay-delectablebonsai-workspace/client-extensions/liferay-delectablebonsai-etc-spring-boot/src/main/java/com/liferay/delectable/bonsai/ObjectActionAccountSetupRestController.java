@@ -59,7 +59,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 					" ", "_"
 				);
 
-		String email = propertiesJSONObject.getString("applicantEmail");
+		String accountEmailAddress = propertiesJSONObject.getString("applicantEmail");
 
 		WebClient.Builder builder = WebClient.builder();
 
@@ -95,7 +95,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 				StringBundler.concat(
 					"o/headless-admin-user/v1.0/accounts",
 					"/by-external-reference-code/", accountExternalReferenceCode,
-					"/user-accounts/by-email-address/", email)
+					"/user-accounts/by-email-address/", accountEmailAddress)
 			).retrieve(
 			).toEntity(
 				String.class
@@ -137,7 +137,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 						"o/headless-admin-user/v1.0/accounts",
 						"/by-external-reference-code/", accountExternalReferenceCode,
 						"/account-roles/", accountRoleId,
-						"/user-accounts/by-email-address/", email)
+						"/user-accounts/by-email-address/", accountEmailAddress)
 				).retrieve(
 				).toEntity(
 					String.class
