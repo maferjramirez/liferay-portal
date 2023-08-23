@@ -71,20 +71,67 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
 		).build();
 
-		createBusinessAccount(
-			webClient, accountERC, accountName
+		webClient.post(
+		).uri(
+			"o/headless-admin-user/v1.0/accounts"
+		).bodyValue(
+			"{\"externalReferenceCode\": \"" + accountERC + "\", \"name\": \"" +
+				accountName + "\", \"type\": \"business\"}"
+		).retrieve(
+		).toEntity(
+			String.class
+		).flatMap(
+			responseEntity -> _transform(responseEntity)
 		).doOnSuccess(
 			responseEntity -> logResponse(responseEntity, "Account Created")
 		).then(
-			associateUserWithAccount(webClient, accountERC, email)
+			webClient.post(
+			).uri(
+				"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts/by-email-address/{emailAddress}",
+				accountERC, email
+			).retrieve(
+			).toEntity(
+				String.class
+			).flatMap(
+				responseEntity -> _transform(responseEntity)
+			)
 		).doOnSuccess(
 			responseEntity -> logResponse(responseEntity, "User Assigned")
 		).then(
-			getRoleId(webClient, accountERC)
+			webClient.get(
+			).uri(
+				uriBuilder -> uriBuilder.path(
+					"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/account-roles"
+				).queryParam(
+					"filter", "name eq 'Account Administrator'"
+				).build(
+					accountERC
+				)
+			).retrieve(
+			).bodyToMono(
+				String.class
+			).map(
+				pageJSON -> new JSONObject(
+					pageJSON
+				).getJSONArray(
+					"items"
+				).getJSONObject(
+					0
+				).getInt(
+					"id"
+				)
+			)
 		).flatMap(
 			accountRoleId -> {
-				return assignAccountRoleToUser(
-					webClient, accountERC, accountRoleId, email
+				return webClient.post(
+				).uri(
+					"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/account-roles/{accountRoleId}/user-accounts/by-email-address/{emailAddress}",
+					accountERC, accountRoleId, email
+				).retrieve(
+				).toEntity(
+					String.class
+				).flatMap(
+					responseEntity -> _transform(responseEntity)
 				).doOnSuccess(
 					responseEntity -> logResponse(
 						responseEntity, "Role Assigned")
@@ -105,80 +152,6 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		}
 
 		return Mono.error(new RuntimeException(httpStatus.getReasonPhrase()));
-	}
-
-	private Mono<ResponseEntity<String>> assignAccountRoleToUser(
-		WebClient webClient, String accountERC, Integer accountRoleId,
-		String email) {
-
-		return webClient.post(
-		).uri(
-			"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/account-roles/{accountRoleId}/user-accounts/by-email-address/{emailAddress}",
-			accountERC, accountRoleId, email
-		).retrieve(
-		).toEntity(
-			String.class
-		).flatMap(
-			responseEntity -> _transform(responseEntity)
-		);
-	}
-
-	private Mono<ResponseEntity<String>> associateUserWithAccount(
-		WebClient webClient, String accountERC, String email) {
-
-		return webClient.post(
-		).uri(
-			"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts/by-email-address/{emailAddress}",
-			accountERC, email
-		).retrieve(
-		).toEntity(
-			String.class
-		).flatMap(
-			responseEntity -> _transform(responseEntity)
-		);
-	}
-
-	private Mono<ResponseEntity<String>> createBusinessAccount(
-		WebClient webClient, String accountERC, String accountName) {
-
-		return webClient.post(
-		).uri(
-			"o/headless-admin-user/v1.0/accounts"
-		).bodyValue(
-			"{\"externalReferenceCode\": \"" + accountERC + "\", \"name\": \"" +
-				accountName + "\", \"type\": \"business\"}"
-		).retrieve(
-		).toEntity(
-			String.class
-		).flatMap(
-			responseEntity -> _transform(responseEntity)
-		);
-	}
-
-	private Mono<Integer> getRoleId(WebClient webClient, String accountERC) {
-		return webClient.get(
-		).uri(
-			uriBuilder -> uriBuilder.path(
-				"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/account-roles"
-			).queryParam(
-				"filter", "name eq 'Account Administrator'"
-			).build(
-				accountERC
-			)
-		).retrieve(
-		).bodyToMono(
-			String.class
-		).map(
-			json -> new JSONObject(
-				json
-			).getJSONArray(
-				"items"
-			).getJSONObject(
-				0
-			).getInt(
-				"id"
-			)
-		);
 	}
 
 	private void logResponse(
