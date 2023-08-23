@@ -42,15 +42,15 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 
 		log(jwt, _log, json);
 
-		JSONObject payload = new JSONObject(json);
+		JSONObject jsonObject = new JSONObject(json);
 
-		JSONObject jsonApplicationDTO = payload.getJSONObject(
+		JSONObject objectEntryDTODistributorApplicationJSONObject = jsonObject.getJSONObject(
 			"objectEntryDTODistributorApplication");
 
-		JSONObject jsonProperties = jsonApplicationDTO.getJSONObject(
+		JSONObject propertiesJSONObject = objectEntryDTODistributorApplicationJSONObject.getJSONObject(
 			"properties");
 
-		String accountName = jsonProperties.getString("businessName");
+		String accountName = propertiesJSONObject.getString("businessName");
 
 		String accountERC =
 			"ACCOUNT_" +
@@ -59,7 +59,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 					" ", "_"
 				);
 
-		String email = jsonProperties.getString("applicantEmail");
+		String email = propertiesJSONObject.getString("applicantEmail");
 
 		WebClient.Builder builder = WebClient.builder();
 
