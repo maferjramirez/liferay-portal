@@ -135,7 +135,7 @@
 					"label": {
 						"en_US": "Resolution"
 					},
-					"listTypeDefinitionExternalReferenceCode": "J3Y7_LIST_TICKET_RESOLUTIONS",
+					"listTypeDefinitionExternalReferenceCode": "J3Y7_TICKET_RESOLUTIONS",
 					"name": "resolution",
 					"objectFieldSettings": [
 					],

@@ -74,10 +74,10 @@
 			}
 		},
 		{
-			"externalReferenceCode": "J3Y7_LIST_TICKET_RESOLUTIONS",
+			"externalReferenceCode": "J3Y7_TICKET_RESOLUTIONS",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "UNRESOLVED_RESOLUTION",
+					"externalReferenceCode": "UNRESOLVED",
 					"key": "unresolved",
 					"name": "Unresolved",
 					"name_i18n": {
@@ -85,7 +85,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "FIXED_RESOLUTION",
+					"externalReferenceCode": "FIXED",
 					"key": "fixed",
 					"name": "Fixed",
 					"name_i18n": {
@@ -93,7 +93,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "DUPLICATE_RESOLUTION",
+					"externalReferenceCode": "DUPLICATE",
 					"key": "duplicate",
 					"name": "Duplicate",
 					"name_i18n": {
@@ -101,7 +101,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "EXPIRED_RESOLUTION",
+					"externalReferenceCode": "EXPIRED",
 					"key": "expired",
 					"name": "Expired",
 					"name_i18n": {
@@ -109,7 +109,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "DONE_RESOLUTION",
+					"externalReferenceCode": "DONE",
 					"key": "done",
 					"name": "Done",
 					"name_i18n": {
@@ -117,7 +117,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "APPROVED_RESOLUTION",
+					"externalReferenceCode": "APPROVED",
 					"key": "approved",
 					"name": "Approved",
 					"name_i18n": {
@@ -125,7 +125,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "REJECTED_RESOLUTION",
+					"externalReferenceCode": "REJECTED",
 					"key": "rejected",
 					"name": "Rejected",
 					"name_i18n": {
@@ -133,9 +133,9 @@
 					}
 				}
 			],
-			"name": "J3Y7_LIST_TICKET_RESOLUTIONS",
+			"name": "J3Y7 Ticket Resolutions",
 			"name_i18n": {
-				"en-US": "J3Y7 LIST_TICKET_RESOLUTIONS"
+				"en-US": "J3Y7 Ticket Resolutions"
 			}
 		},
 		{
