@@ -43,21 +43,7 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 
 		log(jwt, _log, json);
 
-		String transitionName = "auto-approve";
-
 		JSONObject payloadJSONObject = new JSONObject(json);
-
-		JSONObject entryDTOJSONObject = payloadJSONObject.getJSONObject("entryDTO");
-
-		JSONObject applicationStateJSONObject = entryDTOJSONObject.getJSONObject("applicationState");
-
-		String applicationStateKey = applicationStateJSONObject.getString("key");
-
-		if (Objects.equals("approved", applicationStateKey) ||
-			Objects.equals("denied", applicationStateKey)) {
-
-			transitionName = "review";
-		}
 
 		WebClient.Builder builder = WebClient.builder();
 
@@ -73,7 +59,7 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 		).uri(
 			payloadJSONObject.getString("transitionURL")
 		).bodyValue(
-			"{\"transitionName\": \"" + transitionName + "\"}"
+			"{\"transitionName\": \"" + _getTransitionName(payloadJSONObject) + "\"}"
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).exchangeToMono(
@@ -101,6 +87,22 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 		).subscribe();
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
+	}
+
+	private String _getTransitionName(JSONObject payloadJSONObject) {
+		JSONObject entryDTOJSONObject = payloadJSONObject.getJSONObject("entryDTO");
+
+		JSONObject applicationStateJSONObject = entryDTOJSONObject.getJSONObject("applicationState");
+
+		String applicationStateKey = applicationStateJSONObject.getString("key");
+
+		if (Objects.equals("approved", applicationStateKey) ||
+			Objects.equals("denied", applicationStateKey)) {
+
+			return "review";
+		}
+
+		return "auto-approve";
 	}
 
 	private static final Log _log = LogFactory.getLog(
