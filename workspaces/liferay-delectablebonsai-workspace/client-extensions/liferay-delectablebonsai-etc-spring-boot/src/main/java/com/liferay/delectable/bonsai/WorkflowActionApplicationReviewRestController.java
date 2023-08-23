@@ -1,9 +1,11 @@
 /**
- * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-FileCopyrightText: (c) 2023 Liferay, Inc. https://liferay.com
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
 package com.liferay.delectable.bonsai;
+
+import java.util.Objects;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,8 +27,6 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 import reactor.core.publisher.Mono;
 
-import java.util.Objects;
-
 /**
  * @author Raymond Augé
  * @author Gregory Amerson
@@ -34,7 +34,8 @@ import java.util.Objects;
  */
 @RequestMapping("/workflow/action/applicationreview")
 @RestController
-public class WorkflowActionApplicationReviewRestController extends BaseRestController {
+public class WorkflowActionApplicationReviewRestController
+	extends BaseRestController {
 
 	@PostMapping
 	public ResponseEntity<String> post(
@@ -92,12 +93,14 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 	private String _getTransitionName(JSONObject jsonObject) {
 		JSONObject entryDTOJSONObject = jsonObject.getJSONObject("entryDTO");
 
-		JSONObject applicationStateJSONObject = entryDTOJSONObject.getJSONObject("applicationState");
+		JSONObject applicationStateJSONObject =
+			entryDTOJSONObject.getJSONObject("applicationState");
 
-		String applicationStateKey = applicationStateJSONObject.getString("key");
+		String applicationStateKey = applicationStateJSONObject.getString(
+			"key");
 
-		if (Objects.equals("approved", applicationStateKey) ||
-			Objects.equals("denied", applicationStateKey)) {
+		if (Objects.equals(applicationStateKey, "approved") ||
+			Objects.equals(applicationStateKey, "denied")) {
 
 			return "review";
 		}

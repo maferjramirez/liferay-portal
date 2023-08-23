@@ -1,5 +1,5 @@
 /**
- * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-FileCopyrightText: (c) 2023 Liferay, Inc. https://liferay.com
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
@@ -8,7 +8,6 @@ package com.liferay.delectable.bonsai;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import org.springframework.http.HttpHeaders;
@@ -22,11 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import reactor.core.publisher.Mono;
-
-import java.util.Objects;
 
 /**
  * @author Raymond Augé
@@ -45,13 +41,20 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 
 		JSONObject payload = new JSONObject(json);
 
-		JSONObject jsonApplicationDTO = payload.getJSONObject("objectEntryDTODistributorApplication");
+		JSONObject jsonApplicationDTO = payload.getJSONObject(
+			"objectEntryDTODistributorApplication");
 
-		JSONObject jsonProperties = jsonApplicationDTO.getJSONObject("properties");
+		JSONObject jsonProperties = jsonApplicationDTO.getJSONObject(
+			"properties");
 
 		String accountName = jsonProperties.getString("businessName");
 
-		String accountERC = "ACCOUNT_" + accountName.toUpperCase().replace(" ", "_");
+		String accountERC =
+			"ACCOUNT_" +
+				accountName.toUpperCase(
+				).replace(
+					" ", "_"
+				);
 
 		String email = jsonProperties.getString("applicantEmail");
 
@@ -81,18 +84,78 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 					return assignAccountRoleToUser(
 						webClient, jwt, accountERC, accountRoleId, email
 					).doOnSuccess(
-						responseEntity -> logResponse(responseEntity, "Role Assigned")
+						responseEntity -> logResponse(
+							responseEntity, "Role Assigned")
 					);
 				}
 			).subscribe();
-
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			_log.error("JSON: " + json, exception);
 
 			return new ResponseEntity<>(json, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
+	}
+
+	private Mono<ResponseEntity<String>> assignAccountRoleToUser(
+		WebClient webClient, Jwt jwt, String accountERC, Integer accountRoleId,
+		String email) {
+
+		return webClient.post(
+		).uri(
+			"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/account-roles/{accountRoleId}/user-accounts/by-email-address/{emailAddress}",
+			accountERC, accountRoleId, email
+		).header(
+			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
+		).retrieve(
+		).toEntity(
+			String.class
+		).flatMap(
+			thirdResponseEntity -> {
+				if (thirdResponseEntity.getStatusCode(
+					).is2xxSuccessful()) {
+
+					return Mono.just(thirdResponseEntity);
+				}
+
+				String thirdPostErrorMessage =
+					"Failed to associate user with account: " +
+						thirdResponseEntity.getBody();
+
+				return Mono.error(new RuntimeException(thirdPostErrorMessage));
+			}
+		);
+	}
+
+	private Mono<ResponseEntity<String>> associateUserWithAccount(
+		WebClient webClient, Jwt jwt, String accountERC, String email) {
+
+		return webClient.post(
+		).uri(
+			"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts/by-email-address/{emailAddress}",
+			accountERC, email
+		).header(
+			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
+		).retrieve(
+		).toEntity(
+			String.class
+		).flatMap(
+			secondResponseEntity -> {
+				if (secondResponseEntity.getStatusCode(
+					).is2xxSuccessful()) {
+
+					return Mono.just(secondResponseEntity);
+				}
+
+				String secondPostErrorMessage =
+					"Failed to associate user with account: " +
+						secondResponseEntity.getBody();
+
+				return Mono.error(new RuntimeException(secondPostErrorMessage));
+			}
+		);
 	}
 
 	private Mono<ResponseEntity<String>> createBusinessAccount(
@@ -102,7 +165,8 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).uri(
 			"o/headless-admin-user/v1.0/accounts"
 		).bodyValue(
-			"{\"externalReferenceCode\": \"" + accountERC + "\", \"name\": \"" + accountName + "\", \"type\": \"business\"}"
+			"{\"externalReferenceCode\": \"" + accountERC + "\", \"name\": \"" +
+				accountName + "\", \"type\": \"business\"}"
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).retrieve(
@@ -110,66 +174,24 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			String.class
 		).flatMap(
 			firstResponseEntity -> {
-				if (firstResponseEntity.getStatusCode().is2xxSuccessful()) {
+				if (firstResponseEntity.getStatusCode(
+					).is2xxSuccessful()) {
+
 					return Mono.just(firstResponseEntity);
 				}
-				else {
-					String firstPostErrorMessage = "Failed to create business account: " + firstResponseEntity.getBody();
-					return Mono.error(new RuntimeException(firstPostErrorMessage));
-				}
-			}
-		);
-	}
-	
-	private Mono<ResponseEntity<String>> associateUserWithAccount(
-		WebClient webClient, Jwt jwt, String accountERC, String email) {
 
-		return webClient.post(
-		).uri(
-			"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts/by-email-address/{emailAddress}", accountERC, email
-		).header(
-			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
-		).retrieve(
-		).toEntity(
-			String.class
-		).flatMap(
-			secondResponseEntity -> {
-				if (secondResponseEntity.getStatusCode().is2xxSuccessful()) {
-					return Mono.just(secondResponseEntity);
-				}
-				else {
-					String secondPostErrorMessage = "Failed to associate user with account: " + secondResponseEntity.getBody();
-					return Mono.error(new RuntimeException(secondPostErrorMessage));
-				}
-			}
-		);
-	}
-	
-	private Mono<ResponseEntity<String>> assignAccountRoleToUser(
-		WebClient webClient, Jwt jwt, String accountERC, Integer accountRoleId, String email) {
+				String firstPostErrorMessage =
+					"Failed to create business account: " +
+						firstResponseEntity.getBody();
 
-		return webClient.post(
-		).uri(
-			"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/account-roles/{accountRoleId}/user-accounts/by-email-address/{emailAddress}", accountERC, accountRoleId, email
-		).header(
-			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
-		).retrieve(
-		).toEntity(
-			String.class
-		).flatMap(
-			thirdResponseEntity -> {
-				if (thirdResponseEntity.getStatusCode().is2xxSuccessful()) {
-					return Mono.just(thirdResponseEntity);
-				}
-				else {
-					String thirdPostErrorMessage = "Failed to associate user with account: " + thirdResponseEntity.getBody();
-					return Mono.error(new RuntimeException(thirdPostErrorMessage));
-				}
+				return Mono.error(new RuntimeException(firstPostErrorMessage));
 			}
 		);
 	}
 
-	private Mono<Integer> getRoleId(WebClient webClient, Jwt jwt, String accountERC) {
+	private Mono<Integer> getRoleId(
+		WebClient webClient, Jwt jwt, String accountERC) {
+
 		return webClient.get(
 		).uri(
 			uriBuilder -> uriBuilder.path(
@@ -199,11 +221,11 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 
 	private void logResponse(
 		ResponseEntity<String> responseEntity, String requestName) {
-		
+
 		HttpStatus statusCode = responseEntity.getStatusCode();
 
 		String responseBody = responseEntity.getBody();
-	
+
 		_log.info("Output: " + requestName + " - HTTP Status: " + statusCode);
 
 		_log.info("Response: " + responseBody);
