@@ -51,7 +51,7 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommand
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		JSONArray edgeCandidatesJSONArray = jsonFactory.createJSONArray();
+		JSONArray edgeCandidatesJSONArray = _jsonFactory.createJSONArray();
 
 		Locale locale = _portal.getLocale(resourceRequest);
 
@@ -93,7 +93,7 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommand
 				continue;
 			}
 
-			JSONArray ancestorsJSONArray = jsonFactory.createJSONArray();
+			JSONArray ancestorsJSONArray = _jsonFactory.createJSONArray();
 
 			List<Edge> edges = tree.getAncestorEdges(
 				objectDefinition1.getObjectDefinitionId());
@@ -175,7 +175,7 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommand
 	}
 
 	@Reference
-	private JSONFactory jsonFactory;
+	private JSONFactory _jsonFactory;
 
 	@Reference
 	private ObjectDefinitionLocalService _objectDefinitionLocalService;
