@@ -25,7 +25,7 @@
 	],
 	"items": [
 		{
-			"externalReferenceCode": "J3Y7_TICKET_PRIORITIES",
+			"externalReferenceCode": "J3Y7_PRIORITIES",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "CRITICAL",
@@ -68,13 +68,13 @@
 					}
 				}
 			],
-			"name": "J3Y7 Ticket Priorities",
+			"name": "J3Y7 Priorities",
 			"name_i18n": {
-				"en-US": "J3Y7 Ticket Priorities"
+				"en-US": "J3Y7 Priorities"
 			}
 		},
 		{
-			"externalReferenceCode": "J3Y7_TICKET_RESOLUTIONS",
+			"externalReferenceCode": "J3Y7_RESOLUTIONS",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "APPROVED",
@@ -133,16 +133,16 @@
 					}
 				}
 			],
-			"name": "J3Y7 Ticket Resolutions",
+			"name": "J3Y7 Resolutions",
 			"name_i18n": {
-				"en-US": "J3Y7 Ticket Resolutions"
+				"en-US": "J3Y7 Resolutions"
 			}
 		},
 		{
-			"externalReferenceCode": "J3Y7_LIST_TICKET_REGIONS",
+			"externalReferenceCode": "J3Y7_REGIONS",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "APAC_REGION",
+					"externalReferenceCode": "APAC",
 					"key": "aPAC",
 					"name": "APAC",
 					"name_i18n": {
@@ -150,7 +150,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "EMEA_REGION",
+					"externalReferenceCode": "EMEA",
 					"key": "eMEA",
 					"name": "EMEA",
 					"name_i18n": {
@@ -158,7 +158,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "LATAM_REGION",
+					"externalReferenceCode": "LATAM",
 					"key": "lATAM",
 					"name": "LATAM",
 					"name_i18n": {
@@ -166,7 +166,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "NORAM_REGION",
+					"externalReferenceCode": "NORAM",
 					"key": "nORAM",
 					"name": "NORAM",
 					"name_i18n": {
@@ -174,16 +174,16 @@
 					}
 				}
 			],
-			"name": "J3Y7_LIST_TICKET_REGIONS",
+			"name": "J3Y7 Regions",
 			"name_i18n": {
-				"en-US": "J3Y7 LIST_TICKET_REGIONS"
+				"en-US": "J3Y7 Regions"
 			}
 		},
 		{
-			"externalReferenceCode": "J3Y7_LIST_TICKET_STATUSES",
+			"externalReferenceCode": "J3Y7_STATUSES",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "ANSWERED_STATUS",
+					"externalReferenceCode": "ANSWERED",
 					"key": "answered",
 					"name": "Answered",
 					"name_i18n": {
@@ -191,7 +191,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "CLOSED_STATUS",
+					"externalReferenceCode": "CLOSED",
 					"key": "closed",
 					"name": "Closed",
 					"name_i18n": {
@@ -199,7 +199,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "ESCALATED_STATUS",
+					"externalReferenceCode": "ESCALATED",
 					"key": "escalated",
 					"name": "Escalated",
 					"name_i18n": {
@@ -207,7 +207,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "IN_PROGRESS_STATUS",
+					"externalReferenceCode": "IN_PROGRESS",
 					"key": "inProgress",
 					"name": "In Progress",
 					"name_i18n": {
@@ -215,7 +215,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "IN_REVIEW_STATUS",
+					"externalReferenceCode": "IN_REVIEW",
 					"key": "inReview",
 					"name": "In Review",
 					"name_i18n": {
@@ -223,7 +223,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "OPEN_STATUS",
+					"externalReferenceCode": "OPEN",
 					"key": "open",
 					"name": "Open",
 					"name_i18n": {
@@ -231,7 +231,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "QUEUED_STATUS",
+					"externalReferenceCode": "QUEUED",
 					"key": "queued",
 					"name": "Queued",
 					"name_i18n": {
@@ -239,7 +239,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "VERIFYING_STATUS",
+					"externalReferenceCode": "VERIFYING",
 					"key": "verifying",
 					"name": "Verifying",
 					"name_i18n": {
@@ -247,7 +247,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "WAITING_STATUS",
+					"externalReferenceCode": "WAITING",
 					"key": "waiting",
 					"name": "Waiting",
 					"name_i18n": {
@@ -255,16 +255,16 @@
 					}
 				}
 			],
-			"name": "J3Y7_LIST_TICKET_STATUSES",
+			"name": "J3Y7 Statuses",
 			"name_i18n": {
-				"en-US": "J3Y7 LIST_TICKET_STATUSES"
+				"en-US": "J3Y7 Statuses"
 			}
 		},
 		{
-			"externalReferenceCode": "J3Y7_LIST_TICKET_TYPES",
+			"externalReferenceCode": "J3Y7_TYPES",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "ACCOUNT_ISSUE_TYPE",
+					"externalReferenceCode": "ACCOUNT_ISSUE",
 					"key": "accountIssue",
 					"name": "Account Issue",
 					"name_i18n": {
@@ -272,7 +272,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "APPLICATION_TYPE",
+					"externalReferenceCode": "APPLICATION",
 					"key": "application",
 					"name": "Application",
 					"name_i18n": {
@@ -280,7 +280,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "CREDIT_LIMIT_TYPE",
+					"externalReferenceCode": "CREDIT_LIMIT",
 					"key": "creditLimitIncrease",
 					"name": "Credit Limit Increase",
 					"name_i18n": {
@@ -288,7 +288,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "DELIVERY_ISSUE_TYPE",
+					"externalReferenceCode": "DELIVERY_ISSUE",
 					"key": "deliveryIssue",
 					"name": "Delivery Issue",
 					"name_i18n": {
@@ -296,7 +296,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "ORDER_ISSUE_TYPE",
+					"externalReferenceCode": "ORDER_ISSUE",
 					"key": "orderIssue",
 					"name": "Order Issue",
 					"name_i18n": {
@@ -304,7 +304,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "OTHER_TYPE",
+					"externalReferenceCode": "OTHER",
 					"key": "other",
 					"name": "Other",
 					"name_i18n": {
@@ -312,7 +312,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "PRODUCT_ISSUE_TYPE",
+					"externalReferenceCode": "PRODUCT_ISSUE",
 					"key": "productIssue",
 					"name": "Product Issue",
 					"name_i18n": {
@@ -320,7 +320,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "SITE_ISSUE_TYPE",
+					"externalReferenceCode": "SITE_ISSUE",
 					"key": "siteIssue",
 					"name": "Site Issue",
 					"name_i18n": {
@@ -328,9 +328,9 @@
 					}
 				}
 			],
-			"name": "J3Y7_LIST_TICKET_TYPES",
+			"name": "J3Y7 Types",
 			"name_i18n": {
-				"en-US": "J3Y7 LIST_TICKET_TYPES"
+				"en-US": "J3Y7 Types"
 			}
 		}
 	]
