@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
-
+import com.liferay.petra.string.StringBundler;
 import reactor.core.publisher.Mono;
 
 /**
@@ -87,8 +87,11 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).then(
 			webClient.post(
 			).uri(
-				"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts/by-email-address/{emailAddress}",
-				accountERC, email
+				StringBundler.concat(
+					"o/headless-admin-user/v1.0/accounts",
+					"/by-external-reference-code/",
+					accountERC, "/user-accounts/by-email-address/",
+					email)
 			).retrieve(
 			).toEntity(
 				String.class
@@ -101,12 +104,13 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			webClient.get(
 			).uri(
 				uriBuilder -> uriBuilder.path(
-					"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/account-roles"
+					StringBundler.concat(
+						"o/headless-admin-user/v1.0/accounts",
+						"/by-external-reference-code/", accountERC,
+						"/account-roles")
 				).queryParam(
 					"filter", "name eq 'Account Administrator'"
-				).build(
-					accountERC
-				)
+				).build()
 			).retrieve(
 			).bodyToMono(
 				String.class
@@ -125,8 +129,11 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			accountRoleId -> {
 				return webClient.post(
 				).uri(
-					"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/account-roles/{accountRoleId}/user-accounts/by-email-address/{emailAddress}",
-					accountERC, accountRoleId, email
+					StringBundler.concat(
+						"o/headless-admin-user/v1.0/accounts",
+						"/by-external-reference-code/", accountERC,
+						"/account-roles/", accountRoleId,
+						"/user-accounts/by-email-address/", email)
 				).retrieve(
 				).toEntity(
 					String.class
