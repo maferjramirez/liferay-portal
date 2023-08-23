@@ -24,10 +24,10 @@
 			"containsHeaders": "true",
 			"createStrategy": "UPSERT",
 			"onErrorFail": "false",
-			"taskItemDelegateName": "C_F4E4Ticket",
+			"taskItemDelegateName": "C_J3Y7Ticket",
 			"updateStrategy": "UPDATE"
 		},
-		"taskItemDelegateName": "C_F4E4Ticket",
+		"taskItemDelegateName": "C_J3Y7Ticket",
 		"userId": 0,
 		"version": "v1.0"
 	},
