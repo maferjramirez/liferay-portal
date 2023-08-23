@@ -107,16 +107,16 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).toEntity(
 			String.class
 		).flatMap(
-			thirdResponseEntity -> {
-				HttpStatus httpStatus = thirdResponseEntity.getStatusCode();
+			responseEntity -> {
+				HttpStatus httpStatus = responseEntity.getStatusCode();
 
 				if (httpStatus.is2xxSuccessful()) {
-					return Mono.just(thirdResponseEntity);
+					return Mono.just(responseEntity);
 				}
 
 				String thirdPostErrorMessage =
 					"Failed to associate user with account: " +
-						thirdResponseEntity.getBody();
+						responseEntity.getBody();
 
 				return Mono.error(new RuntimeException(thirdPostErrorMessage));
 			}
@@ -136,16 +136,16 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).toEntity(
 			String.class
 		).flatMap(
-			secondResponseEntity -> {
-				HttpStatus httpStatus = secondResponseEntity.getStatusCode();
+			responseEntity -> {
+				HttpStatus httpStatus = responseEntity.getStatusCode();
 
 				if (httpStatus.is2xxSuccessful()) {
-					return Mono.just(secondResponseEntity);
+					return Mono.just(responseEntity);
 				}
 
 				String secondPostErrorMessage =
 					"Failed to associate user with account: " +
-						secondResponseEntity.getBody();
+						responseEntity.getBody();
 
 				return Mono.error(new RuntimeException(secondPostErrorMessage));
 			}
@@ -167,16 +167,16 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).toEntity(
 			String.class
 		).flatMap(
-			firstResponseEntity -> {
-				HttpStatus httpStatus = firstResponseEntity.getStatusCode();
+			responseEntity -> {
+				HttpStatus httpStatus = responseEntity.getStatusCode();
 
 				if (httpStatus.is2xxSuccessful()) {
-					return Mono.just(firstResponseEntity);
+					return Mono.just(responseEntity);
 				}
 
 				String firstPostErrorMessage =
 					"Failed to create business account: " +
-						firstResponseEntity.getBody();
+						responseEntity.getBody();
 
 				return Mono.error(new RuntimeException(firstPostErrorMessage));
 			}
