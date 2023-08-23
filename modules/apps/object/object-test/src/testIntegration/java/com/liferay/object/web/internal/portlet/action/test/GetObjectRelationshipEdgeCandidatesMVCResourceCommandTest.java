@@ -58,11 +58,12 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommandTest {
 
 	@Test
 	public void testGetObjectRelationships() throws Exception {
+
+		// Object definition, hierarchical structure, not root
+
 		Tree tree = TreeTestUtil.createTree(
 			_objectDefinitionLocalService, _objectRelationshipLocalService,
 			_treeFactory);
-
-		// Object Definition inside a hierarchical structure and is not the root
 
 		ObjectDefinition objectDefinitionAAAA =
 			ObjectDefinitionTestUtil.addObjectDefinition(
@@ -138,8 +139,7 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommandTest {
 				0, objectDefinitionAAAA.getObjectDefinitionId()
 			).toString());
 
-		// Object Definition inside a hierarchical structure and is the maximum
-		// height
+		// Object definition, hierarchical structure, maximum height
 
 		Assert.assertEquals(
 			_jsonFactory.createJSONArray(
@@ -151,7 +151,7 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommandTest {
 		_objectRelationshipLocalService.deleteObjectRelationship(
 			objectRelationshipAAA_AAAA.getObjectRelationshipId());
 
-		// Object Definition inside a hierarchical structure and is the root
+		// Object definition, hierarchical structure, root
 
 		ObjectRelationship objectRelationshipA_AAAA =
 			_objectRelationshipLocalService.addObjectRelationship(
@@ -185,7 +185,7 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommandTest {
 		_objectRelationshipLocalService.deleteObjectRelationship(
 			objectRelationshipA_AAAA.getObjectRelationshipId());
 
-		// Object Definition is not inside a hierarchical structure
+		// Object definition, not hierarchical structure
 
 		ObjectDefinition objectDefinitionBBB =
 			ObjectDefinitionTestUtil.addObjectDefinition(
@@ -237,6 +237,9 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommandTest {
 		MockLiferayResourceRequest mockLiferayResourceRequest =
 			new MockLiferayResourceRequest();
 
+		mockLiferayResourceRequest.addParameter("depth", String.valueOf(depth));
+		mockLiferayResourceRequest.addParameter(
+			"objectDefinitionId", String.valueOf(objectDefinitionId));
 		mockLiferayResourceRequest.setAttribute(
 			JavaConstants.JAVAX_PORTLET_CONFIG,
 			PortletConfigFactoryUtil.create(
@@ -251,10 +254,6 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommandTest {
 
 		mockLiferayResourceRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, themeDisplay);
-
-		mockLiferayResourceRequest.addParameter("depth", String.valueOf(depth));
-		mockLiferayResourceRequest.addParameter(
-			"objectDefinitionId", String.valueOf(objectDefinitionId));
 
 		MockLiferayResourceResponse mockLiferayResourceResponse =
 			new MockLiferayResourceResponse();
