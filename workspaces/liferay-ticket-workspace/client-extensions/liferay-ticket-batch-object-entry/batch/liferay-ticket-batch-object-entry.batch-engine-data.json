@@ -1,19 +1,19 @@
 {
 	"actions": {
 		"create": {
-			"href": "http://localhost:8080/o/c/f4e4tickets/",
+			"href": "http://localhost:8080/o/c/j3y7tickets/",
 			"method": "POST"
 		},
 		"createBatch": {
-			"href": "http://localhost:8080/o/c/f4e4tickets/batch",
+			"href": "http://localhost:8080/o/c/j3y7tickets/batch",
 			"method": "POST"
 		},
 		"deleteBatch": {
-			"href": "http://localhost:8080/o/c/f4e4tickets/batch",
+			"href": "http://localhost:8080/o/c/j3y7tickets/batch",
 			"method": "DELETE"
 		},
 		"updateBatch": {
-			"href": "http://localhost:8080/o/c/f4e4tickets/batch",
+			"href": "http://localhost:8080/o/c/j3y7tickets/batch",
 			"method": "PUT"
 		}
 	},

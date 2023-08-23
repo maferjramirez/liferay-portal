@@ -1,4 +1,3 @@
-{
 	"actions": {
 		"create": {
 			"href": "http://localhost:8080/o/headless-admin-list-type/v1.0/list-type-definitions",
@@ -26,7 +25,7 @@
 	],
 	"items": [
 		{
-			"externalReferenceCode": "F4E4_LIST_TICKET_PRIORITIES",
+			"externalReferenceCode": "J3Y7_LIST_TICKET_PRIORITIES",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "MINOR_PRIORITY",
@@ -69,13 +68,13 @@
 					}
 				}
 			],
-			"name": "F4E4_LIST_TICKET_PRIORITIES",
+			"name": "J3Y7_LIST_TICKET_PRIORITIES",
 			"name_i18n": {
-				"en-US": "F4E4 LIST_TICKET_PRIORITIES"
+				"en-US": "J3Y7 LIST_TICKET_PRIORITIES"
 			}
 		},
 		{
-			"externalReferenceCode": "F4E4_LIST_TICKET_RESOLUTIONS",
+			"externalReferenceCode": "J3Y7_LIST_TICKET_RESOLUTIONS",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "UNRESOLVED_RESOLUTION",
@@ -134,13 +133,13 @@
 					}
 				}
 			],
-			"name": "F4E4_LIST_TICKET_RESOLUTIONS",
+			"name": "J3Y7_LIST_TICKET_RESOLUTIONS",
 			"name_i18n": {
-				"en-US": "F4E4 LIST_TICKET_RESOLUTIONS"
+				"en-US": "J3Y7 LIST_TICKET_RESOLUTIONS"
 			}
 		},
 		{
-			"externalReferenceCode": "F4E4_LIST_TICKET_REGIONS",
+			"externalReferenceCode": "J3Y7_LIST_TICKET_REGIONS",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "NORAM_REGION",
@@ -175,13 +174,13 @@
 					}
 				}
 			],
-			"name": "F4E4_LIST_TICKET_REGIONS",
+			"name": "J3Y7_LIST_TICKET_REGIONS",
 			"name_i18n": {
-				"en-US": "F4E4 LIST_TICKET_REGIONS"
+				"en-US": "J3Y7 LIST_TICKET_REGIONS"
 			}
 		},
 		{
-			"externalReferenceCode": "F4E4_LIST_TICKET_STATUSES",
+			"externalReferenceCode": "J3Y7_LIST_TICKET_STATUSES",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "OPEN_STATUS",
@@ -256,13 +255,13 @@
 					}
 				}
 			],
-			"name": "F4E4_LIST_TICKET_STATUSES",
+			"name": "J3Y7_LIST_TICKET_STATUSES",
 			"name_i18n": {
-				"en-US": "F4E4 LIST_TICKET_STATUSES"
+				"en-US": "J3Y7 LIST_TICKET_STATUSES"
 			}
 		},
 		{
-			"externalReferenceCode": "F4E4_LIST_TICKET_TYPES",
+			"externalReferenceCode": "J3Y7_LIST_TICKET_TYPES",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "APPLICATION_TYPE",
@@ -329,9 +328,9 @@
 					}
 				}
 			],
-			"name": "F4E4_LIST_TICKET_TYPES",
+			"name": "J3Y7_LIST_TICKET_TYPES",
 			"name_i18n": {
-				"en-US": "F4E4 LIST_TICKET_TYPES"
+				"en-US": "J3Y7 LIST_TICKET_TYPES"
 			}
 		}
 	]

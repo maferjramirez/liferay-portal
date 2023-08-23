@@ -1,4 +1,3 @@
-{
 	"actions": {
 		"createBatch": {
 			"href": "/o/headless-batch-engine/v1.0/import-task/com.liferay.object.admin.rest.dto.v1_0.ObjectDefinition",
@@ -26,11 +25,11 @@
 			"enableCategorization": true,
 			"enableComments": true,
 			"enableObjectEntryHistory": true,
-			"externalReferenceCode": "F4E4_TICKET",
+			"externalReferenceCode": "J3Y7_TICKET",
 			"label": {
-				"en_US": "F4E4 Ticket"
+				"en_US": "J3Y7 Ticket"
 			},
-			"name": "F4E4Ticket",
+			"name": "J3Y7Ticket",
 			"objectActions": [
 				{
 					"active": false,
@@ -84,7 +83,7 @@
 						},
 						{
 							"name": "storageDLFolderPath",
-							"value": "/F4E4Ticket"
+							"value": "/J3Y7Ticket"
 						}
 					],
 					"required": false,
@@ -118,7 +117,7 @@
 					"label": {
 						"en_US": "Priority"
 					},
-					"listTypeDefinitionExternalReferenceCode": "F4E4_LIST_TICKET_PRIORITIES",
+					"listTypeDefinitionExternalReferenceCode": "J3Y7_LIST_TICKET_PRIORITIES",
 					"name": "priority",
 					"objectFieldSettings": [
 					],
@@ -136,7 +135,7 @@
 					"label": {
 						"en_US": "Resolution"
 					},
-					"listTypeDefinitionExternalReferenceCode": "F4E4_LIST_TICKET_RESOLUTIONS",
+					"listTypeDefinitionExternalReferenceCode": "J3Y7_LIST_TICKET_RESOLUTIONS",
 					"name": "resolution",
 					"objectFieldSettings": [
 					],
@@ -188,7 +187,7 @@
 					"label": {
 						"en_US": "Support Region"
 					},
-					"listTypeDefinitionExternalReferenceCode": "F4E4_LIST_TICKET_REGIONS",
+					"listTypeDefinitionExternalReferenceCode": "J3Y7_LIST_TICKET_REGIONS",
 					"name": "supportRegion",
 					"objectFieldSettings": [
 					],
@@ -207,7 +206,7 @@
 					"label": {
 						"en_US": "Ticket Status"
 					},
-					"listTypeDefinitionExternalReferenceCode": "F4E4_LIST_TICKET_STATUSES",
+					"listTypeDefinitionExternalReferenceCode": "J3Y7_LIST_TICKET_STATUSES",
 					"name": "ticketStatus",
 					"objectFieldSettings": [
 						{
@@ -493,7 +492,7 @@
 					"label": {
 						"en_US": "Type"
 					},
-					"listTypeDefinitionExternalReferenceCode": "F4E4_LIST_TICKET_TYPES",
+					"listTypeDefinitionExternalReferenceCode": "J3Y7_LIST_TICKET_TYPES",
 					"name": "type",
 					"objectFieldSettings": [
 					],
@@ -513,10 +512,10 @@
 			"panelCategoryKey": "control_panel.object",
 			"parameterRequired": false,
 			"pluralLabel": {
-				"en_US": "F4E4 Tickets"
+				"en_US": "J3Y7 Tickets"
 			},
 			"portlet": true,
-			"restContextPath": "/o/c/F4E4_tickets",
+			"restContextPath": "/o/c/J3Y7_tickets",
 			"scope": "company",
 			"status": {
 				"code": 0,
