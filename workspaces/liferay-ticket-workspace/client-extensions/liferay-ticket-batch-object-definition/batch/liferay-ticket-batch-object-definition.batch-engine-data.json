@@ -515,7 +515,7 @@
 				"en_US": "J3Y7 Tickets"
 			},
 			"portlet": true,
-			"restContextPath": "/o/c/J3Y7_tickets",
+			"restContextPath": "/o/c/j3y7tickets",
 			"scope": "company",
 			"status": {
 				"code": 0,
