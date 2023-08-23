@@ -107,16 +107,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).toEntity(
 			String.class
 		).flatMap(
-			responseEntity -> {
-				HttpStatus httpStatus = responseEntity.getStatusCode();
-
-				if (httpStatus.is2xxSuccessful()) {
-					return Mono.just(responseEntity);
-				}
-
-				return Mono.error(
-					new RuntimeException(httpStatus.getReasonPhrase()));
-			}
+			responseEntity -> _transform(responseEntity)
 		);
 	}
 
@@ -131,17 +122,19 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).toEntity(
 			String.class
 		).flatMap(
-			responseEntity -> {
-				HttpStatus httpStatus = responseEntity.getStatusCode();
-
-				if (httpStatus.is2xxSuccessful()) {
-					return Mono.just(responseEntity);
-				}
-
-				return Mono.error(
-					new RuntimeException(httpStatus.getReasonPhrase()));
-			}
+			responseEntity -> _transform(responseEntity)
 		);
+	}
+
+	private Mono<ResponseEntity<String>> _transform(ResponseEntity<String> responseEntity) {
+		HttpStatus httpStatus = responseEntity.getStatusCode();
+
+		if (httpStatus.is2xxSuccessful()) {
+			return Mono.just(responseEntity);
+		}
+
+		return Mono.error(
+			new RuntimeException(httpStatus.getReasonPhrase()));
 	}
 
 	private Mono<ResponseEntity<String>> createBusinessAccount(
@@ -157,16 +150,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).toEntity(
 			String.class
 		).flatMap(
-			responseEntity -> {
-				HttpStatus httpStatus = responseEntity.getStatusCode();
-
-				if (httpStatus.is2xxSuccessful()) {
-					return Mono.just(responseEntity);
-				}
-
-				return Mono.error(
-					new RuntimeException(httpStatus.getReasonPhrase()));
-			}
+			responseEntity -> _transform(responseEntity)
 		);
 	}
 
