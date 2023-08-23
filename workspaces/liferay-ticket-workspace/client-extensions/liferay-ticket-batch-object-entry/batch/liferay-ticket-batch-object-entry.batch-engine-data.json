@@ -48,7 +48,7 @@
 				"label": "approved",
 				"label_i18n": "Approved"
 			},
-			"subject": "Web Site is not responding",
+			"subject": "Website is not responding",
 			"supportRegion": {
 				"key": "lATAM",
 				"name": "LATAM"
