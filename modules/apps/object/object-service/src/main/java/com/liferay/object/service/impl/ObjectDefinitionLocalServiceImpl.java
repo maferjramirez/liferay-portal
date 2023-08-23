@@ -738,6 +738,14 @@ public class ObjectDefinitionLocalServiceImpl
 	public void setAopProxy(Object aopProxy) {
 		super.setAopProxy(aopProxy);
 
+		Map<Long, List<ServiceRegistration<?>>> activeServiceRegistrationsMap =
+			new ConcurrentHashMap<>();
+		InactiveObjectDefinitionDeployer inactiveObjectDefinitionDeployer =
+			new InactiveObjectDefinitionDeployerImpl(
+				_bundleContext, _objectEntryService, _objectFieldLocalService,
+				_objectRelationshipLocalService);
+		Map<Long, List<ServiceRegistration<?>>>
+			inactiveServiceRegistrationsMap = new ConcurrentHashMap<>();
 		ObjectDefinitionDeployer objectDefinitionDeployer =
 			new ObjectDefinitionDeployerImpl(
 				_accountEntryLocalService,
@@ -755,17 +763,6 @@ public class ObjectDefinitionLocalServiceImpl
 				_userLocalService, _resourcePermissionLocalService,
 				_workflowStatusModelPreFilterContributor,
 				_userGroupRoleLocalService);
-
-		InactiveObjectDefinitionDeployer inactiveObjectDefinitionDeployer =
-			new InactiveObjectDefinitionDeployerImpl(
-				_bundleContext, _objectEntryService, _objectFieldLocalService,
-				_objectRelationshipLocalService);
-
-		Map<Long, List<ServiceRegistration<?>>> activeServiceRegistrationsMap =
-			new ConcurrentHashMap<>();
-
-		Map<Long, List<ServiceRegistration<?>>>
-			inactiveServiceRegistrationsMap = new ConcurrentHashMap<>();
 
 		_companyLocalService.forEachCompanyId(
 			companyId -> {
@@ -787,11 +784,10 @@ public class ObjectDefinitionLocalServiceImpl
 				}
 			});
 
-		_serviceRegistrationsMaps.put(
-			objectDefinitionDeployer, activeServiceRegistrationsMap);
-
 		_inactiveObjectDefinitionsServiceRegistrationsMaps.put(
 			inactiveObjectDefinitionDeployer, inactiveServiceRegistrationsMap);
+		_serviceRegistrationsMaps.put(
+			objectDefinitionDeployer, activeServiceRegistrationsMap);
 
 		_objectDefinitionDeployerServiceTracker = new ServiceTracker<>(
 			_bundleContext, ObjectDefinitionDeployer.class,
