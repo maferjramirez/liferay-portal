@@ -43,8 +43,6 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 
 		log(jwt, _log, json);
 
-		JSONObject payloadJSONObject = new JSONObject(json);
-
 		WebClient.Builder builder = WebClient.builder();
 
 		WebClient webClient = builder.baseUrl(
@@ -55,11 +53,13 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
 		).build();
 
+		JSONObject jsonObject = new JSONObject(json);
+
 		webClient.post(
 		).uri(
-			payloadJSONObject.getString("transitionURL")
+			jsonObject.getString("transitionURL")
 		).bodyValue(
-			"{\"transitionName\": \"" + _getTransitionName(payloadJSONObject) + "\"}"
+			"{\"transitionName\": \"" + _getTransitionName(jsonObject) + "\"}"
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).exchangeToMono(
@@ -89,8 +89,8 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 		return new ResponseEntity<>(json, HttpStatus.OK);
 	}
 
-	private String _getTransitionName(JSONObject payloadJSONObject) {
-		JSONObject entryDTOJSONObject = payloadJSONObject.getJSONObject("entryDTO");
+	private String _getTransitionName(JSONObject jsonObject) {
+		JSONObject entryDTOJSONObject = jsonObject.getJSONObject("entryDTO");
 
 		JSONObject applicationStateJSONObject = entryDTOJSONObject.getJSONObject("applicationState");
 
