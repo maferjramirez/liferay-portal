@@ -128,6 +128,24 @@
 				{
 					"DBType": "String",
 					"businessType": "Picklist",
+					"externalReferenceCode": "REGION",
+					"indexed": true,
+					"indexedAsKeyword": false,
+					"indexedLanguageId": "en_US",
+					"label": {
+						"en_US": "Region"
+					},
+					"listTypeDefinitionExternalReferenceCode": "J3Y7_REGIONS",
+					"name": "region",
+					"objectFieldSettings": [
+					],
+					"required": true,
+					"state": false,
+					"type": "String"
+				},
+				{
+					"DBType": "String",
+					"businessType": "Picklist",
 					"externalReferenceCode": "RESOLUTION",
 					"indexed": true,
 					"indexedAsKeyword": false,
@@ -176,24 +194,6 @@
 					"required": false,
 					"state": false,
 					"type": "Clob"
-				},
-				{
-					"DBType": "String",
-					"businessType": "Picklist",
-					"externalReferenceCode": "REGION",
-					"indexed": true,
-					"indexedAsKeyword": false,
-					"indexedLanguageId": "en_US",
-					"label": {
-						"en_US": "Region"
-					},
-					"listTypeDefinitionExternalReferenceCode": "J3Y7_REGIONS",
-					"name": "region",
-					"objectFieldSettings": [
-					],
-					"required": true,
-					"state": false,
-					"type": "String"
 				},
 				{
 					"DBType": "String",
