@@ -117,7 +117,7 @@
 					"label": {
 						"en_US": "Priority"
 					},
-					"listTypeDefinitionExternalReferenceCode": "J3Y7_LIST_TICKET_PRIORITIES",
+					"listTypeDefinitionExternalReferenceCode": "J3Y7_TICKET_PRIORITIES",
 					"name": "priority",
 					"objectFieldSettings": [
 					],
