@@ -53,7 +53,9 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 
 		String applicationStateKey = applicationStateJSONObject.getString("key");
 
-		if (Objects.equals("approved", applicationStateKey) || Objects.equals("denied", applicationStateKey)) {
+		if (Objects.equals("approved", applicationStateKey) ||
+			Objects.equals("denied", applicationStateKey)) {
+
 			transition = "review";
 		}
 
