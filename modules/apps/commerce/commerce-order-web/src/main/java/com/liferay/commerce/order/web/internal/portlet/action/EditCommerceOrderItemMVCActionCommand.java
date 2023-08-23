@@ -127,6 +127,9 @@ public class EditCommerceOrderItemMVCActionCommand
 		long commerceOrderId = ParamUtil.getLong(
 			actionRequest, "commerceOrderId");
 
+		String unitOfMeasureKey = ParamUtil.getString(
+			actionRequest, "unitOfMeasureKey");
+
 		CommerceContext commerceContext =
 			(CommerceContext)actionRequest.getAttribute(
 				CommerceWebKeys.COMMERCE_CONTEXT);
@@ -136,8 +139,6 @@ public class EditCommerceOrderItemMVCActionCommand
 
 		long[] cpInstanceIds = ParamUtil.getLongValues(
 			actionRequest, "cpInstanceIds");
-		String unitOfMeasureKey = ParamUtil.getString(
-			actionRequest, "unitOfMeasureKey");
 
 		for (long cpInstanceId : cpInstanceIds) {
 			_commerceOrderItemService.addCommerceOrderItem(

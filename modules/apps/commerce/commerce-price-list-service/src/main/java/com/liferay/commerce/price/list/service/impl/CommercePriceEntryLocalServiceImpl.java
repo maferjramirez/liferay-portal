@@ -997,13 +997,11 @@ public class CommercePriceEntryLocalServiceImpl
 				cpInstanceId, unitOfMeasureKey);
 
 		if (cpInstanceUnitOfMeasure != null) {
-			int unitOfMeasurePrecision = cpInstanceUnitOfMeasure.getPrecision();
-
 			BigDecimal incrementalOrderQuantity =
 				cpInstanceUnitOfMeasure.getIncrementalOrderQuantity();
 
 			return incrementalOrderQuantity.setScale(
-				unitOfMeasurePrecision, RoundingMode.HALF_UP);
+				cpInstanceUnitOfMeasure.getPrecision(), RoundingMode.HALF_UP);
 		}
 
 		return null;

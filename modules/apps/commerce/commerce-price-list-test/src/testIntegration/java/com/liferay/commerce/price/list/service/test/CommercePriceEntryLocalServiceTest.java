@@ -580,10 +580,9 @@ public class CommercePriceEntryLocalServiceTest {
 				unitOfMeasureKey1);
 
 		Assert.assertEquals(
-			unitOfMeasureKey1, commercePriceEntry.getUnitOfMeasureKey());
-
-		Assert.assertEquals(
 			incrementalOrderQuantity1, commercePriceEntry.getQuantity());
+		Assert.assertEquals(
+			unitOfMeasureKey1, commercePriceEntry.getUnitOfMeasureKey());
 
 		commercePriceEntry =
 			CommercePriceEntryTestUtil.addOrUpdateCommercePriceEntry(
@@ -594,10 +593,9 @@ public class CommercePriceEntryLocalServiceTest {
 				unitOfMeasureKey2);
 
 		Assert.assertEquals(
-			unitOfMeasureKey2, commercePriceEntry.getUnitOfMeasureKey());
-
-		Assert.assertEquals(
 			incrementalOrderQuantity2, commercePriceEntry.getQuantity());
+		Assert.assertEquals(
+			unitOfMeasureKey2, commercePriceEntry.getUnitOfMeasureKey());
 	}
 
 	@Test(expected = CommercePriceEntryUnitOfMeasureKeyException.class)
