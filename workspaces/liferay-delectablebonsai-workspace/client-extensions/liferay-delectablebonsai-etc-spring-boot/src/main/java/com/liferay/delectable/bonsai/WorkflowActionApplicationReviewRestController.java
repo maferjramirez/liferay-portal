@@ -38,7 +38,8 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 
 	@PostMapping
 	public ResponseEntity<String> post(
-		@AuthenticationPrincipal Jwt jwt, @RequestBody String json) {
+			@AuthenticationPrincipal Jwt jwt, @RequestBody String json)
+		throws Exception {
 
 		log(jwt, _log, json);
 
@@ -56,53 +57,46 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 			transition = "review";
 		}
 
-		try {
-			WebClient.Builder builder = WebClient.builder();
+		WebClient.Builder builder = WebClient.builder();
 
-			WebClient webClient = builder.baseUrl(
-				lxcDXPServerProtocol + "://" + lxcDXPMainDomain
-			).defaultHeader(
-				HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
-			).defaultHeader(
-				HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
-			).build();
+		WebClient webClient = builder.baseUrl(
+			lxcDXPServerProtocol + "://" + lxcDXPMainDomain
+		).defaultHeader(
+			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
+		).defaultHeader(
+			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
+		).build();
 
-			webClient.post(
-			).uri(
-				payload.getString("transitionURL")
-			).bodyValue(
-				"{\"transitionName\": \"" + transition + "\"}"
-			).header(
-				HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
-			).exchangeToMono(
-				clientResponse -> {
-					HttpStatus httpStatus = clientResponse.statusCode();
+		webClient.post(
+		).uri(
+			payload.getString("transitionURL")
+		).bodyValue(
+			"{\"transitionName\": \"" + transition + "\"}"
+		).header(
+			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
+		).exchangeToMono(
+			clientResponse -> {
+				HttpStatus httpStatus = clientResponse.statusCode();
 
-					if (httpStatus.is2xxSuccessful()) {
-						return clientResponse.bodyToMono(String.class);
-					}
-					else if (httpStatus.is4xxClientError()) {
-						return Mono.just(httpStatus.getReasonPhrase());
-					}
-
-					Mono<WebClientResponseException> mono =
-						clientResponse.createException();
-
-					return mono.flatMap(Mono::error);
+				if (httpStatus.is2xxSuccessful()) {
+					return clientResponse.bodyToMono(String.class);
 				}
-			).doOnNext(
-				output -> {
-					if (_log.isInfoEnabled()) {
-						_log.info("Output: " + output);
-					}
+				else if (httpStatus.is4xxClientError()) {
+					return Mono.just(httpStatus.getReasonPhrase());
 				}
-			).subscribe();
-		}
-		catch (Exception exception) {
-			_log.error("JSON: " + json, exception);
 
-			return new ResponseEntity<>(json, HttpStatus.UNPROCESSABLE_ENTITY);
-		}
+				Mono<WebClientResponseException> mono =
+					clientResponse.createException();
+
+				return mono.flatMap(Mono::error);
+			}
+		).doOnNext(
+			output -> {
+				if (_log.isInfoEnabled()) {
+					_log.info("Output: " + output);
+				}
+			}
+		).subscribe();
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
 	}
