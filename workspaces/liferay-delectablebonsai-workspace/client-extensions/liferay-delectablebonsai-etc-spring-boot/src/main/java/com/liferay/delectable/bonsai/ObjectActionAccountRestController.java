@@ -31,9 +31,9 @@ import reactor.core.publisher.Mono;
  * @author Gregory Amerson
  * @author Brian Wing Shun Chan
  */
-@RequestMapping("/object/action/accountsetup")
+@RequestMapping("/object/action/account")
 @RestController
-public class ObjectActionAccountSetupRestController extends BaseRestController {
+public class ObjectActionAccountRestController extends BaseRestController {
 
 	@PostMapping
 	public ResponseEntity<String> post(
@@ -172,6 +172,6 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 	}
 
 	private static final Log _log = LogFactory.getLog(
-		ObjectActionAccountSetupRestController.class);
+		ObjectActionAccountRestController.class);
 
 }

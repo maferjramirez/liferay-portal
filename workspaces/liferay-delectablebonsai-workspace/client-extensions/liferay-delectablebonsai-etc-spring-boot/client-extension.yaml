@@ -8,13 +8,13 @@ liferay-delectablebonsai-etc-spring-boot-oauth-application-user-agent:
         - Liferay.Headless.Admin.User.everything
         - Liferay.Headless.Admin.Workflow.everything
     type: oAuthApplicationUserAgent
-liferay-delectablebonsai-etc-spring-boot-object-action-accountsetup:
-    name: Liferay Delectable Bonsai Etc Spring Boot Object Action Account Setup
+liferay-delectablebonsai-etc-spring-boot-object-action-account:
+    name: Liferay Delectable Bonsai Etc Spring Boot Object Action Account
     oAuth2ApplicationExternalReferenceCode: liferay-delectablebonsai-etc-spring-boot-oauth-application-user-agent
-    resourcePath: /object/action/accountsetup
+    resourcePath: /object/action/account
     type: objectAction
-liferay-delectablebonsai-etc-spring-boot-workflow-action-applicationreview:
-    name: Liferay Delectable Bonsai Etc Spring Boot Workflow Action Application Review
+liferay-delectablebonsai-etc-spring-boot-workflow-action-application:
+    name: Liferay Delectable Bonsai Etc Spring Boot Workflow Action Application
     oAuth2ApplicationExternalReferenceCode: liferay-delectablebonsai-etc-spring-boot-oauth-application-user-agent
-    resourcePath: /workflow/action/applicationreview
+    resourcePath: /workflow/action/application
     type: workflowAction

@@ -32,9 +32,9 @@ import reactor.core.publisher.Mono;
  * @author Gregory Amerson
  * @author Brian Wing Shun Chan
  */
-@RequestMapping("/workflow/action/applicationreview")
+@RequestMapping("/workflow/action/application")
 @RestController
-public class WorkflowActionApplicationReviewRestController
+public class WorkflowActionApplicationRestController
 	extends BaseRestController {
 
 	@PostMapping
@@ -109,6 +109,6 @@ public class WorkflowActionApplicationReviewRestController
 	}
 
 	private static final Log _log = LogFactory.getLog(
-		WorkflowActionApplicationReviewRestController.class);
+		WorkflowActionApplicationRestController.class);
 
 }
