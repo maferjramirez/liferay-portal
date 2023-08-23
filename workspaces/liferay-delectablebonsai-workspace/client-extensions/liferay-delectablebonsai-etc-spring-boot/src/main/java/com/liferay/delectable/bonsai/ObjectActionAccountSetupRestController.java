@@ -52,7 +52,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 
 		String accountName = propertiesJSONObject.getString("businessName");
 
-		String accountERC =
+		String accountExternalReferenceCode =
 			"ACCOUNT_" +
 				accountName.toUpperCase(
 				).replace(
@@ -77,8 +77,10 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).uri(
 			"o/headless-admin-user/v1.0/accounts"
 		).bodyValue(
-			"{\"externalReferenceCode\": \"" + accountERC + "\", \"name\": \"" +
-				accountName + "\", \"type\": \"business\"}"
+			StringBundler.concat(
+				"{\"externalReferenceCode\": \"",
+				accountExternalReferenceCode, "\", \"name\": \"",
+				accountName, "\", \"type\": \"business\"}")
 		).retrieve(
 		).toEntity(
 			String.class
@@ -92,7 +94,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			).uri(
 				StringBundler.concat(
 					"o/headless-admin-user/v1.0/accounts",
-					"/by-external-reference-code/", accountERC,
+					"/by-external-reference-code/", accountExternalReferenceCode,
 					"/user-accounts/by-email-address/", email)
 			).retrieve(
 			).toEntity(
@@ -108,7 +110,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 				uriBuilder -> uriBuilder.path(
 					StringBundler.concat(
 						"o/headless-admin-user/v1.0/accounts",
-						"/by-external-reference-code/", accountERC,
+						"/by-external-reference-code/", accountExternalReferenceCode,
 						"/account-roles")
 				).queryParam(
 					"filter", "name eq 'Account Administrator'"
@@ -133,7 +135,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 				).uri(
 					StringBundler.concat(
 						"o/headless-admin-user/v1.0/accounts",
-						"/by-external-reference-code/", accountERC,
+						"/by-external-reference-code/", accountExternalReferenceCode,
 						"/account-roles/", accountRoleId,
 						"/user-accounts/by-email-address/", email)
 				).retrieve(
