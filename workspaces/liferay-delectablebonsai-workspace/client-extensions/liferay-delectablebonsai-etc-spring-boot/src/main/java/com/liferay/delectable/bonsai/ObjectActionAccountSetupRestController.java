@@ -114,11 +114,8 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 					return Mono.just(responseEntity);
 				}
 
-				String thirdPostErrorMessage =
-					"Failed to associate user with account: " +
-						responseEntity.getBody();
-
-				return Mono.error(new RuntimeException(thirdPostErrorMessage));
+				return Mono.error(
+					new RuntimeException(httpStatus.getReasonPhrase()));
 			}
 		);
 	}
@@ -143,11 +140,8 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 					return Mono.just(responseEntity);
 				}
 
-				String secondPostErrorMessage =
-					"Failed to associate user with account: " +
-						responseEntity.getBody();
-
-				return Mono.error(new RuntimeException(secondPostErrorMessage));
+				return Mono.error(
+					new RuntimeException(httpStatus.getReasonPhrase()));
 			}
 		);
 	}
@@ -174,11 +168,8 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 					return Mono.just(responseEntity);
 				}
 
-				String firstPostErrorMessage =
-					"Failed to create business account: " +
-						responseEntity.getBody();
-
-				return Mono.error(new RuntimeException(firstPostErrorMessage));
+				return Mono.error(
+					new RuntimeException(httpStatus.getReasonPhrase()));
 			}
 		);
 	}
