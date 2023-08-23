@@ -28,7 +28,7 @@
 			"externalReferenceCode": "J3Y7_TICKET_PRIORITIES",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "MINOR_PRIORITY",
+					"externalReferenceCode": "MINOR",
 					"key": "minor",
 					"name": "Minor",
 					"name_i18n": {
@@ -36,7 +36,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "MODERATE_PRIORITY",
+					"externalReferenceCode": "MODERATE",
 					"key": "moderate",
 					"name": "Moderate",
 					"name_i18n": {
@@ -44,7 +44,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "MAJOR_PRIORITY",
+					"externalReferenceCode": "MAJOR",
 					"key": "major",
 					"name": "Major",
 					"name_i18n": {
@@ -52,7 +52,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "CRITICAL_PRIORITY",
+					"externalReferenceCode": "CRITICAL",
 					"key": "critical",
 					"name": "Critical",
 					"name_i18n": {
@@ -60,7 +60,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "UNASSIGNED_PRIORITY",
+					"externalReferenceCode": "UNASSIGNED",
 					"key": "unassigned",
 					"name": "Unassigned",
 					"name_i18n": {
