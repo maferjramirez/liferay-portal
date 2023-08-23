@@ -50,6 +50,8 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		JSONObject propertiesJSONObject = objectEntryDTODistributorApplicationJSONObject.getJSONObject(
 			"properties");
 
+		String accountEmailAddress = propertiesJSONObject.getString("applicantEmail");
+
 		String accountName = propertiesJSONObject.getString("businessName");
 
 		String accountExternalReferenceCode =
@@ -58,8 +60,6 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 				).replace(
 					" ", "_"
 				);
-
-		String accountEmailAddress = propertiesJSONObject.getString("applicantEmail");
 
 		WebClient.Builder builder = WebClient.builder();
 
