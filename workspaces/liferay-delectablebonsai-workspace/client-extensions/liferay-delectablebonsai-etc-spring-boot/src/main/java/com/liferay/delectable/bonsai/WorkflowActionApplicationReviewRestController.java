@@ -45,13 +45,13 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 
 		String transition = "auto-approve";
 
-		JSONObject payload = new JSONObject(json);
+		JSONObject payloadJSONObject = new JSONObject(json);
 
-		JSONObject entryDTO = payload.getJSONObject("entryDTO");
+		JSONObject entryDTOJSONObject = payloadJSONObject.getJSONObject("entryDTO");
 
-		JSONObject applicationState = entryDTO.getJSONObject("applicationState");
+		JSONObject applicationStateJSONObject = entryDTOJSONObject.getJSONObject("applicationState");
 
-		String applicationStateKey = applicationState.getString("key");
+		String applicationStateKey = applicationStateJSONObject.getString("key");
 
 		if (Objects.equals("approved", applicationStateKey) || Objects.equals("denied", applicationStateKey)) {
 			transition = "review";
@@ -69,7 +69,7 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 
 		webClient.post(
 		).uri(
-			payload.getString("transitionURL")
+			payloadJSONObject.getString("transitionURL")
 		).bodyValue(
 			"{\"transitionName\": \"" + transition + "\"}"
 		).header(
