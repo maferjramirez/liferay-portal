@@ -5,6 +5,8 @@
 
 package com.liferay.delectable.bonsai;
 
+import com.liferay.petra.string.StringBundler;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
-import com.liferay.petra.string.StringBundler;
+
 import reactor.core.publisher.Mono;
 
 /**
@@ -83,15 +85,15 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).flatMap(
 			responseEntity -> _transform(responseEntity)
 		).doOnSuccess(
-			responseEntity -> _log("Created account: " + responseEntity.getBody())
+			responseEntity -> _log(
+				"Created account: " + responseEntity.getBody())
 		).then(
 			webClient.post(
 			).uri(
 				StringBundler.concat(
 					"o/headless-admin-user/v1.0/accounts",
-					"/by-external-reference-code/",
-					accountERC, "/user-accounts/by-email-address/",
-					email)
+					"/by-external-reference-code/", accountERC,
+					"/user-accounts/by-email-address/", email)
 			).retrieve(
 			).toEntity(
 				String.class
@@ -140,12 +142,19 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 				).flatMap(
 					responseEntity -> _transform(responseEntity)
 				).doOnSuccess(
-					responseEntity -> _log("Assigned role: " + responseEntity.getBody())
+					responseEntity -> _log(
+						"Assigned role: " + responseEntity.getBody())
 				);
 			}
 		).subscribe();
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
+	}
+
+	private void _log(String message) {
+		if (_log.isInfoEnabled()) {
+			_log.info(message);
+		}
 	}
 
 	private Mono<ResponseEntity<String>> _transform(
@@ -158,12 +167,6 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		}
 
 		return Mono.error(new RuntimeException(httpStatus.getReasonPhrase()));
-	}
-
-	private void _log(String message) {
-		if (_log.isInfoEnabled()) {
-			_log.info(message);
-		}
 	}
 
 	private static final Log _log = LogFactory.getLog(
