@@ -25,7 +25,7 @@ public class Tree {
 		this.rootNode = rootNode;
 	}
 
-	public List<Edge> getAncestorsPath(long objectDefinitionId) {
+	public List<Edge> getAncestorEdges(long objectDefinitionId) {
 		Node node = getNode(objectDefinitionId);
 
 		if (node.isRoot()) {
