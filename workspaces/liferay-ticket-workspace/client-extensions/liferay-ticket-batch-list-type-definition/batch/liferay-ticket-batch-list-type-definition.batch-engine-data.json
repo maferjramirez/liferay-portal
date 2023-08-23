@@ -28,6 +28,22 @@
 			"externalReferenceCode": "J3Y7_TICKET_PRIORITIES",
 			"listTypeEntries": [
 				{
+					"externalReferenceCode": "CRITICAL",
+					"key": "critical",
+					"name": "Critical",
+					"name_i18n": {
+						"en-US": "Critical"
+					}
+				},
+				{
+					"externalReferenceCode": "MAJOR",
+					"key": "major",
+					"name": "Major",
+					"name_i18n": {
+						"en-US": "Major"
+					}
+				},
+				{
 					"externalReferenceCode": "MINOR",
 					"key": "minor",
 					"name": "Minor",
@@ -41,22 +57,6 @@
 					"name": "Moderate",
 					"name_i18n": {
 						"en-US": "Moderate"
-					}
-				},
-				{
-					"externalReferenceCode": "MAJOR",
-					"key": "major",
-					"name": "Major",
-					"name_i18n": {
-						"en-US": "Major"
-					}
-				},
-				{
-					"externalReferenceCode": "CRITICAL",
-					"key": "critical",
-					"name": "Critical",
-					"name_i18n": {
-						"en-US": "Critical"
 					}
 				},
 				{
@@ -77,19 +77,19 @@
 			"externalReferenceCode": "J3Y7_TICKET_RESOLUTIONS",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "UNRESOLVED",
-					"key": "unresolved",
-					"name": "Unresolved",
+					"externalReferenceCode": "APPROVED",
+					"key": "approved",
+					"name": "Approved",
 					"name_i18n": {
-						"en-US": "Unresolved"
+						"en-US": "Approved"
 					}
 				},
 				{
-					"externalReferenceCode": "FIXED",
-					"key": "fixed",
-					"name": "Fixed",
+					"externalReferenceCode": "DONE",
+					"key": "done",
+					"name": "Done",
 					"name_i18n": {
-						"en-US": "Fixed"
+						"en-US": "Done"
 					}
 				},
 				{
@@ -109,19 +109,11 @@
 					}
 				},
 				{
-					"externalReferenceCode": "DONE",
-					"key": "done",
-					"name": "Done",
+					"externalReferenceCode": "FIXED",
+					"key": "fixed",
+					"name": "Fixed",
 					"name_i18n": {
-						"en-US": "Done"
-					}
-				},
-				{
-					"externalReferenceCode": "APPROVED",
-					"key": "approved",
-					"name": "Approved",
-					"name_i18n": {
-						"en-US": "Approved"
+						"en-US": "Fixed"
 					}
 				},
 				{
@@ -130,6 +122,14 @@
 					"name": "Rejected",
 					"name_i18n": {
 						"en-US": "Rejected"
+					}
+				},
+				{
+					"externalReferenceCode": "UNRESOLVED",
+					"key": "unresolved",
+					"name": "Unresolved",
+					"name_i18n": {
+						"en-US": "Unresolved"
 					}
 				}
 			],
@@ -142,19 +142,11 @@
 			"externalReferenceCode": "J3Y7_LIST_TICKET_REGIONS",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "NORAM_REGION",
-					"key": "nORAM",
-					"name": "NORAM",
+					"externalReferenceCode": "APAC_REGION",
+					"key": "aPAC",
+					"name": "APAC",
 					"name_i18n": {
-						"en-US": "NORAM"
-					}
-				},
-				{
-					"externalReferenceCode": "LATAM_REGION",
-					"key": "lATAM",
-					"name": "LATAM",
-					"name_i18n": {
-						"en-US": "LATAM"
+						"en-US": "APAC"
 					}
 				},
 				{
@@ -166,11 +158,19 @@
 					}
 				},
 				{
-					"externalReferenceCode": "APAC_REGION",
-					"key": "aPAC",
-					"name": "APAC",
+					"externalReferenceCode": "LATAM_REGION",
+					"key": "lATAM",
+					"name": "LATAM",
 					"name_i18n": {
-						"en-US": "APAC"
+						"en-US": "LATAM"
+					}
+				},
+				{
+					"externalReferenceCode": "NORAM_REGION",
+					"key": "nORAM",
+					"name": "NORAM",
+					"name_i18n": {
+						"en-US": "NORAM"
 					}
 				}
 			],
@@ -183,43 +183,19 @@
 			"externalReferenceCode": "J3Y7_LIST_TICKET_STATUSES",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "OPEN_STATUS",
-					"key": "open",
-					"name": "Open",
-					"name_i18n": {
-						"en-US": "Open"
-					}
-				},
-				{
-					"externalReferenceCode": "VERIFYING_STATUS",
-					"key": "verifying",
-					"name": "Verifying",
-					"name_i18n": {
-						"en-US": "Verifying"
-					}
-				},
-				{
-					"externalReferenceCode": "QUEUED_STATUS",
-					"key": "queued",
-					"name": "Queued",
-					"name_i18n": {
-						"en-US": "Queued"
-					}
-				},
-				{
-					"externalReferenceCode": "IN_PROGRESS_STATUS",
-					"key": "inProgress",
-					"name": "In Progress",
-					"name_i18n": {
-						"en-US": "In Progress"
-					}
-				},
-				{
 					"externalReferenceCode": "ANSWERED_STATUS",
 					"key": "answered",
 					"name": "Answered",
 					"name_i18n": {
 						"en-US": "Answered"
+					}
+				},
+				{
+					"externalReferenceCode": "CLOSED_STATUS",
+					"key": "closed",
+					"name": "Closed",
+					"name_i18n": {
+						"en-US": "Closed"
 					}
 				},
 				{
@@ -231,6 +207,14 @@
 					}
 				},
 				{
+					"externalReferenceCode": "IN_PROGRESS_STATUS",
+					"key": "inProgress",
+					"name": "In Progress",
+					"name_i18n": {
+						"en-US": "In Progress"
+					}
+				},
+				{
 					"externalReferenceCode": "IN_REVIEW_STATUS",
 					"key": "inReview",
 					"name": "In Review",
@@ -239,19 +223,35 @@
 					}
 				},
 				{
+					"externalReferenceCode": "OPEN_STATUS",
+					"key": "open",
+					"name": "Open",
+					"name_i18n": {
+						"en-US": "Open"
+					}
+				},
+				{
+					"externalReferenceCode": "QUEUED_STATUS",
+					"key": "queued",
+					"name": "Queued",
+					"name_i18n": {
+						"en-US": "Queued"
+					}
+				},
+				{
+					"externalReferenceCode": "VERIFYING_STATUS",
+					"key": "verifying",
+					"name": "Verifying",
+					"name_i18n": {
+						"en-US": "Verifying"
+					}
+				},
+				{
 					"externalReferenceCode": "WAITING_STATUS",
 					"key": "waiting",
 					"name": "Waiting",
 					"name_i18n": {
 						"en-US": "Waiting"
-					}
-				},
-				{
-					"externalReferenceCode": "CLOSED_STATUS",
-					"key": "closed",
-					"name": "Closed",
-					"name_i18n": {
-						"en-US": "Closed"
 					}
 				}
 			],
@@ -263,6 +263,14 @@
 		{
 			"externalReferenceCode": "J3Y7_LIST_TICKET_TYPES",
 			"listTypeEntries": [
+				{
+					"externalReferenceCode": "ACCOUNT_ISSUE_TYPE",
+					"key": "accountIssue",
+					"name": "Account Issue",
+					"name_i18n": {
+						"en-US": "Account Issue"
+					}
+				},
 				{
 					"externalReferenceCode": "APPLICATION_TYPE",
 					"key": "application",
@@ -280,19 +288,11 @@
 					}
 				},
 				{
-					"externalReferenceCode": "ACCOUNT_ISSUE_TYPE",
-					"key": "accountIssue",
-					"name": "Account Issue",
+					"externalReferenceCode": "DELIVERY_ISSUE_TYPE",
+					"key": "deliveryIssue",
+					"name": "Delivery Issue",
 					"name_i18n": {
-						"en-US": "Account Issue"
-					}
-				},
-				{
-					"externalReferenceCode": "PRODUCT_ISSUE_TYPE",
-					"key": "productIssue",
-					"name": "Product Issue",
-					"name_i18n": {
-						"en-US": "Product Issue"
+						"en-US": "Delivery Issue"
 					}
 				},
 				{
@@ -304,11 +304,19 @@
 					}
 				},
 				{
-					"externalReferenceCode": "DELIVERY_ISSUE_TYPE",
-					"key": "deliveryIssue",
-					"name": "Delivery Issue",
+					"externalReferenceCode": "OTHER_TYPE",
+					"key": "other",
+					"name": "Other",
 					"name_i18n": {
-						"en-US": "Delivery Issue"
+						"en-US": "Other"
+					}
+				},
+				{
+					"externalReferenceCode": "PRODUCT_ISSUE_TYPE",
+					"key": "productIssue",
+					"name": "Product Issue",
+					"name_i18n": {
+						"en-US": "Product Issue"
 					}
 				},
 				{
@@ -317,14 +325,6 @@
 					"name": "Site Issue",
 					"name_i18n": {
 						"en-US": "Site Issue"
-					}
-				},
-				{
-					"externalReferenceCode": "OTHER_TYPE",
-					"key": "other",
-					"name": "Other",
-					"name_i18n": {
-						"en-US": "Other"
 					}
 				}
 			],
