@@ -6,6 +6,7 @@
 package com.liferay.delectable.bonsai;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -56,10 +57,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 
 		String accountExternalReferenceCode =
 			"ACCOUNT_" +
-				accountName.toUpperCase(
-				).replace(
-					" ", "_"
-				);
+				StringUtil.replace(accountName.toUpperCase(), " ", "_");
 
 		WebClient.Builder builder = WebClient.builder();
 
