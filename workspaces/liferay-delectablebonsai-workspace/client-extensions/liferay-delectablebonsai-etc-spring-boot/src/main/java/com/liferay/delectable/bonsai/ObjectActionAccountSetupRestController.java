@@ -108,9 +108,9 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			String.class
 		).flatMap(
 			thirdResponseEntity -> {
-				if (thirdResponseEntity.getStatusCode(
-					).is2xxSuccessful()) {
+				HttpStatus httpStatus = thirdResponseEntity.getStatusCode();
 
+				if (httpStatus.is2xxSuccessful()) {
 					return Mono.just(thirdResponseEntity);
 				}
 
@@ -137,9 +137,9 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			String.class
 		).flatMap(
 			secondResponseEntity -> {
-				if (secondResponseEntity.getStatusCode(
-					).is2xxSuccessful()) {
+				HttpStatus httpStatus = secondResponseEntity.getStatusCode();
 
+				if (httpStatus.is2xxSuccessful()) {
 					return Mono.just(secondResponseEntity);
 				}
 
@@ -168,9 +168,9 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			String.class
 		).flatMap(
 			firstResponseEntity -> {
-				if (firstResponseEntity.getStatusCode(
-					).is2xxSuccessful()) {
+				HttpStatus httpStatus = firstResponseEntity.getStatusCode();
 
+				if (httpStatus.is2xxSuccessful()) {
 					return Mono.just(firstResponseEntity);
 				}
 
