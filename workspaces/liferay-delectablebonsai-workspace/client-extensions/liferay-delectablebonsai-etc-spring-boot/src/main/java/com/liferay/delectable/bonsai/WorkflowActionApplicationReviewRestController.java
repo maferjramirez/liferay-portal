@@ -51,6 +51,8 @@ public class WorkflowActionApplicationReviewRestController
 		).defaultHeader(
 			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
 		).defaultHeader(
+			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
+		).defaultHeader(
 			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
 		).build();
 
@@ -61,8 +63,6 @@ public class WorkflowActionApplicationReviewRestController
 			jsonObject.getString("transitionURL")
 		).bodyValue(
 			"{\"transitionName\": \"" + _getTransitionName(jsonObject) + "\"}"
-		).header(
-			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).exchangeToMono(
 			clientResponse -> {
 				HttpStatus httpStatus = clientResponse.statusCode();
