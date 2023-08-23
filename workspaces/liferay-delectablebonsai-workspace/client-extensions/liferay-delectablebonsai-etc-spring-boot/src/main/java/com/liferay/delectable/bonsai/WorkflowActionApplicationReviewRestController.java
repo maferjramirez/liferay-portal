@@ -43,7 +43,7 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 
 		log(jwt, _log, json);
 
-		String transition = "auto-approve";
+		String transitionName = "auto-approve";
 
 		JSONObject payloadJSONObject = new JSONObject(json);
 
@@ -56,7 +56,7 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 		if (Objects.equals("approved", applicationStateKey) ||
 			Objects.equals("denied", applicationStateKey)) {
 
-			transition = "review";
+			transitionName = "review";
 		}
 
 		WebClient.Builder builder = WebClient.builder();
@@ -73,7 +73,7 @@ public class WorkflowActionApplicationReviewRestController extends BaseRestContr
 		).uri(
 			payloadJSONObject.getString("transitionURL")
 		).bodyValue(
-			"{\"transitionName\": \"" + transition + "\"}"
+			"{\"transitionName\": \"" + transitionName + "\"}"
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).exchangeToMono(
