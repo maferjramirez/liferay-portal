@@ -72,19 +72,19 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).build();
 
 		createBusinessAccount(
-			webClient, jwt, accountERC, accountName
+			webClient, accountERC, accountName
 		).doOnSuccess(
 			responseEntity -> logResponse(responseEntity, "Account Created")
 		).then(
-			associateUserWithAccount(webClient, jwt, accountERC, email)
+			associateUserWithAccount(webClient, accountERC, email)
 		).doOnSuccess(
 			responseEntity -> logResponse(responseEntity, "User Assigned")
 		).then(
-			getRoleId(webClient, jwt, accountERC)
+			getRoleId(webClient, accountERC)
 		).flatMap(
 			accountRoleId -> {
 				return assignAccountRoleToUser(
-					webClient, jwt, accountERC, accountRoleId, email
+					webClient, accountERC, accountRoleId, email
 				).doOnSuccess(
 					responseEntity -> logResponse(
 						responseEntity, "Role Assigned")
@@ -108,7 +108,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 	}
 
 	private Mono<ResponseEntity<String>> assignAccountRoleToUser(
-		WebClient webClient, Jwt jwt, String accountERC, Integer accountRoleId,
+		WebClient webClient, String accountERC, Integer accountRoleId,
 		String email) {
 
 		return webClient.post(
@@ -124,7 +124,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 	}
 
 	private Mono<ResponseEntity<String>> associateUserWithAccount(
-		WebClient webClient, Jwt jwt, String accountERC, String email) {
+		WebClient webClient, String accountERC, String email) {
 
 		return webClient.post(
 		).uri(
@@ -139,7 +139,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 	}
 
 	private Mono<ResponseEntity<String>> createBusinessAccount(
-		WebClient webClient, Jwt jwt, String accountERC, String accountName) {
+		WebClient webClient, String accountERC, String accountName) {
 
 		return webClient.post(
 		).uri(
@@ -155,9 +155,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		);
 	}
 
-	private Mono<Integer> getRoleId(
-		WebClient webClient, Jwt jwt, String accountERC) {
-
+	private Mono<Integer> getRoleId(WebClient webClient, String accountERC) {
 		return webClient.get(
 		).uri(
 			uriBuilder -> uriBuilder.path(
