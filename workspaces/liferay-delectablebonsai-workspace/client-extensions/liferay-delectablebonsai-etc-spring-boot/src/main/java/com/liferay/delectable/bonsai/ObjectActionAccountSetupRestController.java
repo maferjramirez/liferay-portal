@@ -83,7 +83,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).flatMap(
 			responseEntity -> _transform(responseEntity)
 		).doOnSuccess(
-			responseEntity -> logResponse(responseEntity, "Account Created")
+			responseEntity -> _log("Created account: " + responseEntity.getBody())
 		).then(
 			webClient.post(
 			).uri(
@@ -96,7 +96,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 				responseEntity -> _transform(responseEntity)
 			)
 		).doOnSuccess(
-			responseEntity -> logResponse(responseEntity, "User Assigned")
+			responseEntity -> _log("Assigned user: " + responseEntity.getBody())
 		).then(
 			webClient.get(
 			).uri(
@@ -133,8 +133,7 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 				).flatMap(
 					responseEntity -> _transform(responseEntity)
 				).doOnSuccess(
-					responseEntity -> logResponse(
-						responseEntity, "Role Assigned")
+					responseEntity -> _log("Assigned role: " + responseEntity.getBody())
 				);
 			}
 		).subscribe();
@@ -154,16 +153,10 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		return Mono.error(new RuntimeException(httpStatus.getReasonPhrase()));
 	}
 
-	private void logResponse(
-		ResponseEntity<String> responseEntity, String requestName) {
-
-		HttpStatus statusCode = responseEntity.getStatusCode();
-
-		String responseBody = responseEntity.getBody();
-
-		_log.info("Output: " + requestName + " - HTTP Status: " + statusCode);
-
-		_log.info("Response: " + responseBody);
+	private void _log(String message) {
+		if (_log.isInfoEnabled()) {
+			_log.info(message);
+		}
 	}
 
 	private static final Log _log = LogFactory.getLog(
