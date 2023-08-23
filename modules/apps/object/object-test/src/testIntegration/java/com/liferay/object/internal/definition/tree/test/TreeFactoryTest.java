@@ -42,14 +42,14 @@ public class TreeFactoryTest {
 
 	@Test
 	public void testCreate() throws PortalException {
+		Queue<String> queue = new LinkedList<>(
+			Arrays.asList("A", "AA", "AB", "AAA", "AAB"));
+
 		Tree tree = TreeTestUtil.createTree(
 			_objectDefinitionLocalService, _objectRelationshipLocalService,
 			_treeFactory);
 
 		Iterator<Node> iterator = tree.iterator();
-
-		Queue<String> queue = new LinkedList<>(
-			Arrays.asList("A", "AA", "AB", "AAA", "AAB"));
 
 		while (iterator.hasNext()) {
 			Node node = iterator.next();

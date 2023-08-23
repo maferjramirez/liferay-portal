@@ -145,9 +145,6 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommand
 			resourceRequest, resourceResponse, edgeCandidatesJSONArray);
 	}
 
-	@Reference
-	protected JSONFactory jsonFactory;
-
 	private long _getObjectDefinitionId(ResourceRequest resourceRequest)
 		throws Exception {
 
@@ -176,6 +173,9 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommand
 
 		return true;
 	}
+
+	@Reference
+	private JSONFactory jsonFactory;
 
 	@Reference
 	private ObjectDefinitionLocalService _objectDefinitionLocalService;

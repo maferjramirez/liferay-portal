@@ -41,6 +41,7 @@ public class TreeFactoryImpl implements TreeFactory {
 
 			if (ListUtil.isNotEmpty(nodes)) {
 				node.setChildNodes(nodes);
+
 				queue.addAll(nodes);
 			}
 		}
