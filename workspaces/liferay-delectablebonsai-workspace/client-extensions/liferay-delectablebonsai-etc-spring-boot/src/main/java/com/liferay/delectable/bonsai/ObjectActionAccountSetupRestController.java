@@ -35,7 +35,8 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 
 	@PostMapping
 	public ResponseEntity<String> post(
-		@AuthenticationPrincipal Jwt jwt, @RequestBody String json) {
+			@AuthenticationPrincipal Jwt jwt, @RequestBody String json)
+		throws Exception {
 
 		log(jwt, _log, json);
 
@@ -58,43 +59,36 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 
 		String email = jsonProperties.getString("applicantEmail");
 
-		try {
-			WebClient.Builder builder = WebClient.builder();
+		WebClient.Builder builder = WebClient.builder();
 
-			WebClient webClient = builder.baseUrl(
-				lxcDXPServerProtocol + "://" + lxcDXPMainDomain
-			).defaultHeader(
-				HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
-			).defaultHeader(
-				HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
-			).build();
+		WebClient webClient = builder.baseUrl(
+			lxcDXPServerProtocol + "://" + lxcDXPMainDomain
+		).defaultHeader(
+			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
+		).defaultHeader(
+			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
+		).build();
 
-			createBusinessAccount(
-				webClient, jwt, accountERC, accountName
-			).doOnSuccess(
-				responseEntity -> logResponse(responseEntity, "Account Created")
-			).then(
-				associateUserWithAccount(webClient, jwt, accountERC, email)
-			).doOnSuccess(
-				responseEntity -> logResponse(responseEntity, "User Assigned")
-			).then(
-				getRoleId(webClient, jwt, accountERC)
-			).flatMap(
-				accountRoleId -> {
-					return assignAccountRoleToUser(
-						webClient, jwt, accountERC, accountRoleId, email
-					).doOnSuccess(
-						responseEntity -> logResponse(
-							responseEntity, "Role Assigned")
-					);
-				}
-			).subscribe();
-		}
-		catch (Exception exception) {
-			_log.error("JSON: " + json, exception);
-
-			return new ResponseEntity<>(json, HttpStatus.UNPROCESSABLE_ENTITY);
-		}
+		createBusinessAccount(
+			webClient, jwt, accountERC, accountName
+		).doOnSuccess(
+			responseEntity -> logResponse(responseEntity, "Account Created")
+		).then(
+			associateUserWithAccount(webClient, jwt, accountERC, email)
+		).doOnSuccess(
+			responseEntity -> logResponse(responseEntity, "User Assigned")
+		).then(
+			getRoleId(webClient, jwt, accountERC)
+		).flatMap(
+			accountRoleId -> {
+				return assignAccountRoleToUser(
+					webClient, jwt, accountERC, accountRoleId, email
+				).doOnSuccess(
+					responseEntity -> logResponse(
+						responseEntity, "Role Assigned")
+				);
+			}
+		).subscribe();
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
 	}
