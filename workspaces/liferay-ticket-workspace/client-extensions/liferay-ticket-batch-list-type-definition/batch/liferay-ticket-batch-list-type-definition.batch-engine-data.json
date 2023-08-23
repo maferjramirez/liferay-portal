@@ -74,6 +74,47 @@
 			}
 		},
 		{
+			"externalReferenceCode": "J3Y7_REGIONS",
+			"listTypeEntries": [
+				{
+					"externalReferenceCode": "APAC",
+					"key": "aPAC",
+					"name": "APAC",
+					"name_i18n": {
+						"en-US": "APAC"
+					}
+				},
+				{
+					"externalReferenceCode": "EMEA",
+					"key": "eMEA",
+					"name": "EMEA",
+					"name_i18n": {
+						"en-US": "EMEA"
+					}
+				},
+				{
+					"externalReferenceCode": "LATAM",
+					"key": "lATAM",
+					"name": "LATAM",
+					"name_i18n": {
+						"en-US": "LATAM"
+					}
+				},
+				{
+					"externalReferenceCode": "NORAM",
+					"key": "nORAM",
+					"name": "NORAM",
+					"name_i18n": {
+						"en-US": "NORAM"
+					}
+				}
+			],
+			"name": "J3Y7 Regions",
+			"name_i18n": {
+				"en-US": "J3Y7 Regions"
+			}
+		},
+		{
 			"externalReferenceCode": "J3Y7_RESOLUTIONS",
 			"listTypeEntries": [
 				{
@@ -136,47 +177,6 @@
 			"name": "J3Y7 Resolutions",
 			"name_i18n": {
 				"en-US": "J3Y7 Resolutions"
-			}
-		},
-		{
-			"externalReferenceCode": "J3Y7_REGIONS",
-			"listTypeEntries": [
-				{
-					"externalReferenceCode": "APAC",
-					"key": "aPAC",
-					"name": "APAC",
-					"name_i18n": {
-						"en-US": "APAC"
-					}
-				},
-				{
-					"externalReferenceCode": "EMEA",
-					"key": "eMEA",
-					"name": "EMEA",
-					"name_i18n": {
-						"en-US": "EMEA"
-					}
-				},
-				{
-					"externalReferenceCode": "LATAM",
-					"key": "lATAM",
-					"name": "LATAM",
-					"name_i18n": {
-						"en-US": "LATAM"
-					}
-				},
-				{
-					"externalReferenceCode": "NORAM",
-					"key": "nORAM",
-					"name": "NORAM",
-					"name_i18n": {
-						"en-US": "NORAM"
-					}
-				}
-			],
-			"name": "J3Y7 Regions",
-			"name_i18n": {
-				"en-US": "J3Y7 Regions"
 			}
 		},
 		{
