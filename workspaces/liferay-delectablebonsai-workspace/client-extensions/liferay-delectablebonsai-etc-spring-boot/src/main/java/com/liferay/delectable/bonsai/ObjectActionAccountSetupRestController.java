@@ -6,7 +6,6 @@
 package com.liferay.delectable.bonsai;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -45,19 +44,23 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 
 		JSONObject jsonObject = new JSONObject(json);
 
-		JSONObject objectEntryDTODistributorApplicationJSONObject = jsonObject.getJSONObject(
-			"objectEntryDTODistributorApplication");
+		JSONObject objectEntryDTODistributorApplicationJSONObject =
+			jsonObject.getJSONObject("objectEntryDTODistributorApplication");
 
-		JSONObject propertiesJSONObject = objectEntryDTODistributorApplicationJSONObject.getJSONObject(
-			"properties");
+		JSONObject propertiesJSONObject =
+			objectEntryDTODistributorApplicationJSONObject.getJSONObject(
+				"properties");
 
-		String accountEmailAddress = propertiesJSONObject.getString("applicantEmail");
+		String accountEmailAddress = propertiesJSONObject.getString(
+			"applicantEmail");
 
 		String accountName = propertiesJSONObject.getString("businessName");
 
-		String accountExternalReferenceCode =
-			"ACCOUNT_" +
-				StringUtil.replace(accountName.toUpperCase(), " ", "_");
+		String accountExternalReferenceCode = "ACCOUNT_".concat(
+			accountName.toUpperCase(
+			).replace(
+				' ', '_'
+			));
 
 		WebClient.Builder builder = WebClient.builder();
 
@@ -76,9 +79,8 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			"o/headless-admin-user/v1.0/accounts"
 		).bodyValue(
 			StringBundler.concat(
-				"{\"externalReferenceCode\": \"",
-				accountExternalReferenceCode, "\", \"name\": \"",
-				accountName, "\", \"type\": \"business\"}")
+				"{\"externalReferenceCode\": \"", accountExternalReferenceCode,
+				"\", \"name\": \"", accountName, "\", \"type\": \"business\"}")
 		).retrieve(
 		).toEntity(
 			String.class
@@ -92,7 +94,8 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			).uri(
 				StringBundler.concat(
 					"o/headless-admin-user/v1.0/accounts",
-					"/by-external-reference-code/", accountExternalReferenceCode,
+					"/by-external-reference-code/",
+					accountExternalReferenceCode,
 					"/user-accounts/by-email-address/", accountEmailAddress)
 			).retrieve(
 			).toEntity(
@@ -108,8 +111,8 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 				uriBuilder -> uriBuilder.path(
 					StringBundler.concat(
 						"o/headless-admin-user/v1.0/accounts",
-						"/by-external-reference-code/", accountExternalReferenceCode,
-						"/account-roles")
+						"/by-external-reference-code/",
+						accountExternalReferenceCode, "/account-roles")
 				).queryParam(
 					"filter", "name eq 'Account Administrator'"
 				).build()
@@ -128,24 +131,23 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 				)
 			)
 		).flatMap(
-			accountRoleId -> {
-				return webClient.post(
-				).uri(
-					StringBundler.concat(
-						"o/headless-admin-user/v1.0/accounts",
-						"/by-external-reference-code/", accountExternalReferenceCode,
-						"/account-roles/", accountRoleId,
-						"/user-accounts/by-email-address/", accountEmailAddress)
-				).retrieve(
-				).toEntity(
-					String.class
-				).flatMap(
-					responseEntity -> _transform(responseEntity)
-				).doOnSuccess(
-					responseEntity -> _log(
-						"Assigned role: " + responseEntity.getBody())
-				);
-			}
+			accountRoleId -> webClient.post(
+			).uri(
+				StringBundler.concat(
+					"o/headless-admin-user/v1.0/accounts",
+					"/by-external-reference-code/",
+					accountExternalReferenceCode, "/account-roles/",
+					accountRoleId, "/user-accounts/by-email-address/",
+					accountEmailAddress)
+			).retrieve(
+			).toEntity(
+				String.class
+			).flatMap(
+				responseEntity -> _transform(responseEntity)
+			).doOnSuccess(
+				responseEntity -> _log(
+					"Assigned role: " + responseEntity.getBody())
+			)
 		).subscribe();
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
