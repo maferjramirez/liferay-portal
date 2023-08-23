@@ -66,6 +66,8 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).defaultHeader(
 			HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE
 		).defaultHeader(
+			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
+		).defaultHeader(
 			HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE
 		).build();
 
@@ -101,8 +103,6 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).uri(
 			"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/account-roles/{accountRoleId}/user-accounts/by-email-address/{emailAddress}",
 			accountERC, accountRoleId, email
-		).header(
-			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).retrieve(
 		).toEntity(
 			String.class
@@ -127,8 +127,6 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).uri(
 			"o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts/by-email-address/{emailAddress}",
 			accountERC, email
-		).header(
-			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).retrieve(
 		).toEntity(
 			String.class
@@ -155,8 +153,6 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 		).bodyValue(
 			"{\"externalReferenceCode\": \"" + accountERC + "\", \"name\": \"" +
 				accountName + "\", \"type\": \"business\"}"
-		).header(
-			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).retrieve(
 		).toEntity(
 			String.class
@@ -186,8 +182,6 @@ public class ObjectActionAccountSetupRestController extends BaseRestController {
 			).build(
 				accountERC
 			)
-		).header(
-			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).retrieve(
 		).bodyToMono(
 			String.class
