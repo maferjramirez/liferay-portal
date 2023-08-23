@@ -180,15 +180,15 @@
 				{
 					"DBType": "String",
 					"businessType": "Picklist",
-					"externalReferenceCode": "SUPPORT_REGION",
+					"externalReferenceCode": "REGION",
 					"indexed": true,
 					"indexedAsKeyword": false,
 					"indexedLanguageId": "en_US",
 					"label": {
-						"en_US": "Support Region"
+						"en_US": "Region"
 					},
 					"listTypeDefinitionExternalReferenceCode": "J3Y7_REGIONS",
-					"name": "supportRegion",
+					"name": "region",
 					"objectFieldSettings": [
 					],
 					"required": true,
