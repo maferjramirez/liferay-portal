@@ -36,6 +36,11 @@
 					"type": "TASK"
 				},
 				{
+					"label": "Machine Review",
+					"name": "machine-review",
+					"type": "TASK"
+				},
+				{
 					"label": "Start",
 					"name": "start",
 					"type": "INITIAL_STATE"
@@ -43,11 +48,6 @@
 				{
 					"label": "Update",
 					"name": "update",
-					"type": "TASK"
-				},
-				{
-					"label": "Machine Review",
-					"name": "machine-review",
 					"type": "TASK"
 				}
 			],
@@ -57,15 +57,15 @@
 			},
 			"transitions": [
 				{
-					"label": "Reject",
-					"name": "reject",
-					"sourceNodeName": "manager-review",
-					"targetNodeName": "update"
-				},
-				{
 					"label": "Approve",
 					"name": "approve",
 					"sourceNodeName": "manager-review",
+					"targetNodeName": "approved"
+				},
+				{
+					"label": "Auto Approve",
+					"name": "auto-approve",
+					"sourceNodeName": "machine-review",
 					"targetNodeName": "approved"
 				},
 				{
@@ -75,21 +75,21 @@
 					"targetNodeName": "machine-review"
 				},
 				{
-					"label": "Resubmit",
-					"name": "resubmit",
-					"sourceNodeName": "update",
-					"targetNodeName": "manager-review"
-				},
-				{
-					"label": "Auto Approve",
-					"name": "auto-approve",
-					"sourceNodeName": "machine-review",
-					"targetNodeName": "approved"
+					"label": "Reject",
+					"name": "reject",
+					"sourceNodeName": "manager-review",
+					"targetNodeName": "update"
 				},
 				{
 					"label": "Review",
 					"name": "review",
 					"sourceNodeName": "machine-review",
+					"targetNodeName": "manager-review"
+				},
+				{
+					"label": "Resubmit",
+					"name": "resubmit",
+					"sourceNodeName": "update",
 					"targetNodeName": "manager-review"
 				}
 			],
