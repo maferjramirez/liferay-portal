@@ -26,27 +26,27 @@
 			"name": "D4B8 Hybrid Approver",
 			"nodes": [
 				{
-					"label": "\n\t\t\t\tApproved\n\t\t\t",
+					"label": "Approved",
 					"name": "approved",
 					"type": "TERMINAL_STATE"
 				},
 				{
-					"label": "\n\t\t\t\tManager Review\n\t\t\t",
+					"label": "Manager Review",
 					"name": "manager-review",
 					"type": "TASK"
 				},
 				{
-					"label": "\n\t\t\t\tStart\n\t\t\t",
+					"label": "Start",
 					"name": "start",
 					"type": "INITIAL_STATE"
 				},
 				{
-					"label": "\n\t\t\t\tupdate\n\t\t\t",
+					"label": "update",
 					"name": "update",
 					"type": "TASK"
 				},
 				{
-					"label": "\n\t\t\t\tMachine Review\n\t\t\t",
+					"label": "Machine Review",
 					"name": "machine-review",
 					"type": "TASK"
 				}
@@ -57,37 +57,37 @@
 			},
 			"transitions": [
 				{
-					"label": "\n\t\t\t\t\t\tReject\n\t\t\t\t\t",
+					"label": "Reject",
 					"name": "reject",
 					"sourceNodeName": "manager-review",
 					"targetNodeName": "update"
 				},
 				{
-					"label": "\n\t\t\t\t\t\tApprove\n\t\t\t\t\t",
+					"label": "Approve",
 					"name": "approve",
 					"sourceNodeName": "manager-review",
 					"targetNodeName": "approved"
 				},
 				{
-					"label": "\n\t\t\t\t\t\tInitial Review\n\t\t\t\t\t",
+					"label": "Initial Review",
 					"name": "initial-review",
 					"sourceNodeName": "start",
 					"targetNodeName": "machine-review"
 				},
 				{
-					"label": "\n\t\t\t\t\t\tResubmit\n\t\t\t\t\t",
+					"label": "Resubmit",
 					"name": "resubmit",
 					"sourceNodeName": "update",
 					"targetNodeName": "manager-review"
 				},
 				{
-					"label": "\n\t\t\t\t\t\tAuto-Approve\n\t\t\t\t\t",
+					"label": "Auto-Approve",
 					"name": "auto-approve",
 					"sourceNodeName": "machine-review",
 					"targetNodeName": "approved"
 				},
 				{
-					"label": "\n\t\t\t\t\t\tReview\n\t\t\t\t\t",
+					"label": "Review",
 					"name": "review",
 					"sourceNodeName": "machine-review",
 					"targetNodeName": "manager-review"
