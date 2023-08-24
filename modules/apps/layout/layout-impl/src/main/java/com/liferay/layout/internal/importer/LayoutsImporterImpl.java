@@ -1631,9 +1631,6 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 			return _layoutLocalService.updateLayout(layout);
 		}
 
-		ServiceContext serviceContext =
-			ServiceContextThreadLocal.getServiceContext();
-
 		UnicodeProperties unicodeProperties =
 			layout.getTypeSettingsProperties();
 
@@ -1671,6 +1668,9 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 		if (Validator.isNotNull(settings.getCss())) {
 			layout.setCss(settings.getCss());
 		}
+
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Map<String, Serializable> favIconMap =
 			(Map<String, Serializable>)settings.getFavIcon();
