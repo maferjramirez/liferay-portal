@@ -150,7 +150,6 @@ public class JournalArticleLocalServiceTest {
 		_group = GroupTestUtil.addGroup();
 		_journalFolderFixture = new JournalFolderFixture(
 			_journalFolderLocalService);
-
 		_themeDisplay = _getThemeDisplay();
 	}
 

@@ -432,7 +432,6 @@ public class JournalArticleServiceTest {
 
 		Assert.assertEquals(
 			journalArticles.toString(), 2, journalArticles.size());
-
 		Assert.assertTrue(journalArticles.contains(approvedJournalArticle));
 		Assert.assertTrue(journalArticles.contains(expiredJournalArticle));
 
@@ -574,7 +573,6 @@ public class JournalArticleServiceTest {
 
 		Assert.assertEquals(
 			journalArticles.toString(), 2, journalArticles.size());
-
 		Assert.assertTrue(journalArticles.contains(approvedJournalArticle));
 		Assert.assertTrue(journalArticles.contains(expiredJournalArticle));
 
