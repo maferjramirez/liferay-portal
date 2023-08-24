@@ -740,7 +740,7 @@ public class ObjectEntryRelatedObjectsResourceTest {
 
 		_assertEquals(_objectEntry2, jsonArray);
 
-		// Many to many and one to many relationships simultaneously
+		// Many to many and one to many relationships
 
 		ObjectRelationship objectRelationship2 = _addObjectRelationship(
 			_objectDefinition1, _objectDefinition3,
