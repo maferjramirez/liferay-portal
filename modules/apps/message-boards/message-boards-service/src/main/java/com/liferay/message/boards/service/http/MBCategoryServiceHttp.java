@@ -210,15 +210,14 @@ public class MBCategoryServiceHttp {
 		}
 	}
 
-	public static com.liferay.message.boards.model.MBCategory
-			fetchMBCategoryByFriendlyURL(
-				HttpPrincipal httpPrincipal, long groupId, String friendlyURL)
+	public static com.liferay.message.boards.model.MBCategory fetchMBCategory(
+			HttpPrincipal httpPrincipal, long groupId, String friendlyURL)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				MBCategoryServiceUtil.class, "fetchMBCategoryByFriendlyURL",
-				_fetchMBCategoryByFriendlyURLParameterTypes4);
+				MBCategoryServiceUtil.class, "fetchMBCategory",
+				_fetchMBCategoryParameterTypes4);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, friendlyURL);
@@ -1573,10 +1572,8 @@ public class MBCategoryServiceHttp {
 		new Class[] {long.class, boolean.class};
 	private static final Class<?>[] _deleteCategoryParameterTypes3 =
 		new Class[] {long.class, long.class};
-	private static final Class<?>[]
-		_fetchMBCategoryByFriendlyURLParameterTypes4 = new Class[] {
-			long.class, String.class
-		};
+	private static final Class<?>[] _fetchMBCategoryParameterTypes4 =
+		new Class[] {long.class, String.class};
 	private static final Class<?>[] _getCategoriesParameterTypes5 =
 		new Class[] {long.class};
 	private static final Class<?>[] _getCategoriesParameterTypes6 =

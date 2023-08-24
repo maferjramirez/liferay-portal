@@ -72,11 +72,10 @@ public class MBCategoryServiceUtil {
 		getService().deleteCategory(groupId, categoryId);
 	}
 
-	public static MBCategory fetchMBCategoryByFriendlyURL(
-			long groupId, String friendlyURL)
+	public static MBCategory fetchMBCategory(long groupId, String friendlyURL)
 		throws PortalException {
 
-		return getService().fetchMBCategoryByFriendlyURL(groupId, friendlyURL);
+		return getService().fetchMBCategory(groupId, friendlyURL);
 	}
 
 	public static List<MBCategory> getCategories(long groupId) {

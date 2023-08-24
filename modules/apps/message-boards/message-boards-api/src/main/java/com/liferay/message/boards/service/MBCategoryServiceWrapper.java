@@ -72,12 +72,10 @@ public class MBCategoryServiceWrapper
 	}
 
 	@Override
-	public MBCategory fetchMBCategoryByFriendlyURL(
-			long groupId, String friendlyURL)
+	public MBCategory fetchMBCategory(long groupId, String friendlyURL)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _mbCategoryService.fetchMBCategoryByFriendlyURL(
-			groupId, friendlyURL);
+		return _mbCategoryService.fetchMBCategory(groupId, friendlyURL);
 	}
 
 	@Override

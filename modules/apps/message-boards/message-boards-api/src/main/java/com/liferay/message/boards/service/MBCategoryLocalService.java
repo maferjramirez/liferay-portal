@@ -250,8 +250,7 @@ public interface MBCategoryLocalService
 	public MBCategory fetchMBCategory(long categoryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public MBCategory fetchMBCategoryByFriendlyURL(
-		long groupId, String friendlyURL);
+	public MBCategory fetchMBCategory(long groupId, String friendlyURL);
 
 	/**
 	 * Returns the message boards category matching the UUID and group.
