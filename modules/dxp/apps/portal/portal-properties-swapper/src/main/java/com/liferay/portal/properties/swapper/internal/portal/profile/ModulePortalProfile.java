@@ -35,10 +35,10 @@ public class ModulePortalProfile extends BaseDSModulePortalProfile {
 			Collections.singleton(PortalProfile.PORTAL_PROFILE_NAME_DXP),
 			DefaultCompanyLogoSwapper.class.getName(),
 			DefaultCompanyNameSwapper.class.getName(),
-			SwapDefaultGuestGroupLogoPortalInstanceLifecycleListener.class.
-				getName(),
 			DefaultLiferayLogoSwapper.class.getName(),
-			DefaultLiferayNameSwapper.class.getName());
+			DefaultLiferayNameSwapper.class.getName(),
+			SwapDefaultGuestGroupLogoPortalInstanceLifecycleListener.class.
+				getName());
 	}
 
 	@Reference(target = ModuleServiceLifecycle.PORTAL_INITIALIZED, unbind = "-")
