@@ -806,7 +806,6 @@ public class ObjectEntryRelatedObjectsResourceTest {
 				Http.Method.GET
 			).toString(),
 			JSONCompareMode.LENIENT);
-
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"items",
