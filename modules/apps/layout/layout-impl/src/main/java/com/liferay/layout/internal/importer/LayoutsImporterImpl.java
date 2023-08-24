@@ -1665,6 +1665,19 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 			layout.setColorSchemeId(settings.getColorSchemeName());
 		}
 
+		StyleBook styleBook = settings.getStyleBook();
+
+		if (styleBook != null) {
+			StyleBookEntry styleBookEntry =
+				_styleBookEntryLocalService.fetchStyleBookEntry(
+					layout.getGroupId(), styleBook.getKey());
+
+			if (styleBookEntry != null) {
+				layout.setStyleBookEntryId(
+					styleBookEntry.getStyleBookEntryId());
+			}
+		}
+
 		if (Validator.isNotNull(settings.getCss())) {
 			layout.setCss(settings.getCss());
 		}
@@ -1700,19 +1713,6 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 			if (masterLayoutPageTemplateEntry != null) {
 				layout.setMasterLayoutPlid(
 					masterLayoutPageTemplateEntry.getPlid());
-			}
-		}
-
-		StyleBook styleBook = settings.getStyleBook();
-
-		if (styleBook != null) {
-			StyleBookEntry styleBookEntry =
-				_styleBookEntryLocalService.fetchStyleBookEntry(
-					layout.getGroupId(), styleBook.getKey());
-
-			if (styleBookEntry != null) {
-				layout.setStyleBookEntryId(
-					styleBookEntry.getStyleBookEntryId());
 			}
 		}
 
