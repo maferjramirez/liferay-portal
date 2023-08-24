@@ -694,8 +694,8 @@ public class JournalArticleServiceTest {
 
 		_addApprovedJournalArticle(
 			journalFolder, RandomTestUtil.randomString());
-		_addExpiredJournalArticle(journalFolder, RandomTestUtil.randomString());
 		_addDeletedJournalArticle(journalFolder, RandomTestUtil.randomString());
+		_addExpiredJournalArticle(journalFolder, RandomTestUtil.randomString());
 
 		_assertGetArticlesCount(
 			journalFolder, 1, WorkflowConstants.STATUS_APPROVED);
