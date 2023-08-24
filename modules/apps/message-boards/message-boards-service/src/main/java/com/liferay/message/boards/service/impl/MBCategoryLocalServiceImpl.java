@@ -304,9 +304,7 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 		mbCategoryLocalService.deleteMBCategory(category);
 	}
 
-	public MBCategory fetchMBCategoryByFriendlyURL(
-		long groupId, String friendlyURL) {
-
+	public MBCategory fetchMBCategory(long groupId, String friendlyURL) {
 		return mbCategoryPersistence.fetchByG_F(groupId, friendlyURL);
 	}
 
