@@ -41,7 +41,7 @@
 					"type": "INITIAL_STATE"
 				},
 				{
-					"label": "update",
+					"label": "Update",
 					"name": "update",
 					"type": "TASK"
 				},
@@ -81,7 +81,7 @@
 					"targetNodeName": "manager-review"
 				},
 				{
-					"label": "Auto-Approve",
+					"label": "Auto Approve",
 					"name": "auto-approve",
 					"sourceNodeName": "machine-review",
 					"targetNodeName": "approved"
