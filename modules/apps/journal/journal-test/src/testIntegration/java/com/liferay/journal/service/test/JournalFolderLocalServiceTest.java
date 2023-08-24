@@ -55,9 +55,6 @@ public class JournalFolderLocalServiceTest {
 
 	@Test
 	public void testGetFoldersAndArticlesCount() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		JournalFolderFixture journalFolderFixture = new JournalFolderFixture(
 			_journalFolderLocalService);
 
@@ -70,7 +67,9 @@ public class JournalFolderLocalServiceTest {
 			_group.getGroupId(), parentJournalFolder.getFolderId(),
 			RandomTestUtil.randomString());
 
-		_addExpiredJournalArticle(journalFolder, serviceContext);
+		_addExpiredJournalArticle(
+			journalFolder,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 		_addDeletedJournalArticle(journalFolder);
 
 		List<Long> folderIds = Arrays.asList(
