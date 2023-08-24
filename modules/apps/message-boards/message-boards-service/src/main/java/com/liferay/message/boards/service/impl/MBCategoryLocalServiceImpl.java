@@ -114,7 +114,7 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 		category.setDescription(description);
 		category.setDisplayStyle(displayStyle);
 		category.setFriendlyURL(
-			_getMBCategoryFriendlyURL(groupId, categoryId, name));
+			_getUniqueFriendlyURL(groupId, categoryId, name));
 		category.setExpandoBridgeAttributes(serviceContext);
 
 		category = mbCategoryPersistence.update(category);
@@ -864,7 +864,7 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 		return mbCategoryPersistence.update(category);
 	}
 
-	private String _getMBCategoryFriendlyURL(
+	private String _getUniqueFriendlyURL(
 		long groupId, long categoryId, String name) {
 
 		if (Validator.isNull(name)) {
