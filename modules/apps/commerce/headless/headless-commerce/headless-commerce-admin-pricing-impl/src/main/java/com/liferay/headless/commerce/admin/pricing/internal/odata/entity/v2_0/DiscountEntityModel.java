@@ -30,13 +30,13 @@ public class DiscountEntityModel implements EntityModel {
 			new CollectionEntityField(
 				new IntegerEntityField(
 					"channelId", locale -> "commerceChannelId")),
+			new CollectionEntityField(
+				new IntegerEntityField(
+					"orderTypeId", locale -> "commerceOrderTypeId")),
 			new DateTimeEntityField(
 				"modifiedDate",
 				locale -> Field.getSortableFieldName(Field.MODIFIED_DATE),
-				locale -> Field.MODIFIED_DATE),
-			new CollectionEntityField(
-				new IntegerEntityField(
-					"orderTypeId", locale -> "commerceOrderTypeId")));
+				locale -> Field.MODIFIED_DATE));
 	}
 
 	@Override
