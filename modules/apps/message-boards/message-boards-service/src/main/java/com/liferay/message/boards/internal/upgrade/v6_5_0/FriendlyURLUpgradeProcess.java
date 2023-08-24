@@ -36,8 +36,8 @@ public class FriendlyURLUpgradeProcess extends UpgradeProcess {
 				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
 						connection,
-						"update MBCategory set friendlyURL = ?" +
-							"where categoryId = ?")) {
+						"update MBCategory set friendlyURL = ? where " +
+							"categoryId = ?")) {
 
 				int count = 0;
 				String currentFriendlyURL = null;

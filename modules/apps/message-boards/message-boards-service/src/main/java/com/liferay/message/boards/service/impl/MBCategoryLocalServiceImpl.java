@@ -864,39 +864,6 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 		return mbCategoryPersistence.update(category);
 	}
 
-	private String _getUniqueFriendlyURL(
-		long groupId, long categoryId, String name) {
-
-		if (Validator.isNull(name)) {
-			return String.valueOf(categoryId);
-		}
-
-		name = StringUtil.toLowerCase(name.trim());
-
-		if (Validator.isNull(name) || Validator.isNumber(name)) {
-			name = String.valueOf(categoryId);
-		}
-		else {
-			name = _friendlyURLNormalizer.normalizeWithPeriodsAndSlashes(name);
-		}
-
-		name = ModelHintsUtil.trimString(
-			MBCategory.class.getName(), "friendlyURL", name);
-
-		String friendlyURL = name;
-
-		MBCategory mbCategory = mbCategoryPersistence.fetchByG_F(
-			groupId, friendlyURL);
-
-		for (int i = 1; mbCategory != null; i++) {
-			friendlyURL = name + StringPool.DASH + i;
-
-			mbCategory = mbCategoryPersistence.fetchByG_F(groupId, friendlyURL);
-		}
-
-		return friendlyURL;
-	}
-
 	private long _getParentCategoryId(long groupId, long parentCategoryId) {
 		if ((parentCategoryId !=
 				MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) &&
@@ -949,6 +916,39 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 		}
 
 		return parentCategoryId;
+	}
+
+	private String _getUniqueFriendlyURL(
+		long groupId, long categoryId, String name) {
+
+		if (Validator.isNull(name)) {
+			return String.valueOf(categoryId);
+		}
+
+		name = StringUtil.toLowerCase(name.trim());
+
+		if (Validator.isNull(name) || Validator.isNumber(name)) {
+			name = String.valueOf(categoryId);
+		}
+		else {
+			name = _friendlyURLNormalizer.normalizeWithPeriodsAndSlashes(name);
+		}
+
+		name = ModelHintsUtil.trimString(
+			MBCategory.class.getName(), "friendlyURL", name);
+
+		String friendlyURL = name;
+
+		MBCategory mbCategory = mbCategoryPersistence.fetchByG_F(
+			groupId, friendlyURL);
+
+		for (int i = 1; mbCategory != null; i++) {
+			friendlyURL = name + StringPool.DASH + i;
+
+			mbCategory = mbCategoryPersistence.fetchByG_F(groupId, friendlyURL);
+		}
+
+		return friendlyURL;
 	}
 
 	private void _mergeCategories(MBCategory fromCategory, long toCategoryId)
