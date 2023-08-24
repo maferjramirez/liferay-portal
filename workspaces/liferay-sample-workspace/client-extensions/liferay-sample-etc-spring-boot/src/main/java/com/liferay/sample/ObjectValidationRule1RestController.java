@@ -5,6 +5,8 @@
 
 package com.liferay.sample;
 
+import java.util.Objects;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -34,15 +36,11 @@ public class ObjectValidationRule1RestController extends BaseRestController {
 
 		JSONObject jsonObject = new JSONObject(json);
 
-		jsonObject.put("validationCriteriaMet", true);
-
-		if (jsonObject.get(
-				"name"
-			).equals(
-				"Invalid Name"
-			)) {
-
+		if (Objects.equals(jsonObject.get("name"), "Invalid Name")) {
 			jsonObject.put("validationCriteriaMet", false);
+		}
+		else {
+			jsonObject.put("validationCriteriaMet", true);
 		}
 
 		return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
