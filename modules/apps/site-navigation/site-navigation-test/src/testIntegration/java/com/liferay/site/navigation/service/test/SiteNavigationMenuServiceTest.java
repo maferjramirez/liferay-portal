@@ -66,13 +66,13 @@ public class SiteNavigationMenuServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_user = UserTestUtil.addUser(
-			_companyLocalService.getCompany(TestPropsValues.getCompanyId()));
-
 		_group = GroupTestUtil.addGroup();
 
 		_groupUser = UserTestUtil.addGroupUser(
 			_group, RoleConstants.POWER_USER);
+
+		_user = UserTestUtil.addUser(
+			_companyLocalService.getCompany(TestPropsValues.getCompanyId()));
 
 		UserTestUtil.setUser(_user);
 	}
@@ -122,7 +122,7 @@ public class SiteNavigationMenuServiceTest {
 			_group.getGroupId(), RandomTestUtil.randomString(),
 			SiteNavigationConstants.TYPE_DEFAULT, serviceContext);
 
-		_deleteSiteMemberRoleResourcePermission(
+		_deleteSiteMemberRoleResourcePermissions(
 			SiteNavigationConstants.RESOURCE_NAME);
 	}
 
@@ -141,7 +141,7 @@ public class SiteNavigationMenuServiceTest {
 		_siteNavigationMenuService.addSiteNavigationMenu(
 			_group.getGroupId(), RandomTestUtil.randomString(), serviceContext);
 
-		_deleteSiteMemberRoleResourcePermission(
+		_deleteSiteMemberRoleResourcePermissions(
 			SiteNavigationConstants.RESOURCE_NAME);
 	}
 
@@ -173,7 +173,7 @@ public class SiteNavigationMenuServiceTest {
 		_siteNavigationMenuService.deleteSiteNavigationMenu(
 			siteNavigationMenu.getSiteNavigationMenuId());
 
-		_deleteSiteMemberRoleResourcePermission(
+		_deleteSiteMemberRoleResourcePermissions(
 			SiteNavigationMenu.class.getName());
 	}
 
@@ -191,7 +191,7 @@ public class SiteNavigationMenuServiceTest {
 		_siteNavigationMenuService.fetchSiteNavigationMenu(
 			siteNavigationMenu.getSiteNavigationMenuId());
 
-		_deleteSiteMemberRoleResourcePermission(
+		_deleteSiteMemberRoleResourcePermissions(
 			SiteNavigationMenu.class.getName());
 	}
 
@@ -456,7 +456,7 @@ public class SiteNavigationMenuServiceTest {
 			siteNavigationMenu.getType(), siteNavigationMenu.isAuto(),
 			serviceContext);
 
-		_deleteSiteMemberRoleResourcePermission(
+		_deleteSiteMemberRoleResourcePermissions(
 			SiteNavigationMenu.class.getName());
 	}
 
@@ -481,7 +481,7 @@ public class SiteNavigationMenuServiceTest {
 			siteNavigationMenu.getSiteNavigationMenuId(),
 			RandomTestUtil.randomString(), serviceContext);
 
-		_deleteSiteMemberRoleResourcePermission(
+		_deleteSiteMemberRoleResourcePermissions(
 			SiteNavigationMenu.class.getName());
 	}
 
@@ -498,7 +498,7 @@ public class SiteNavigationMenuServiceTest {
 			permission);
 	}
 
-	private void _deleteSiteMemberRoleResourcePermission(String name)
+	private void _deleteSiteMemberRoleResourcePermissions(String name)
 		throws Exception {
 
 		ResourcePermissionLocalServiceUtil.deleteResourcePermissions(
