@@ -70,13 +70,15 @@ public class EditCommerceInventoryWarehouseItemMVCActionCommand
 			_updateCommerceInventoryWarehouseItem(ActionRequest actionRequest)
 		throws PortalException {
 
+		CommerceInventoryWarehouseItem commerceInventoryWarehouseItem = null;
+
 		long commerceInventoryWarehouseItemId = ParamUtil.getLong(
 			actionRequest, "commerceInventoryWarehouseItemId");
+
 		BigDecimal quantity = (BigDecimal)ParamUtil.getNumber(
 			actionRequest, "quantity", BigDecimal.ZERO);
 		String unitOfMeasureKey = ParamUtil.getString(
 			actionRequest, "unitOfMeasureKey");
-		CommerceInventoryWarehouseItem commerceInventoryWarehouseItem = null;
 
 		if (commerceInventoryWarehouseItemId > 0) {
 			long mvccVersion = ParamUtil.getLong(actionRequest, "mvccVersion");
