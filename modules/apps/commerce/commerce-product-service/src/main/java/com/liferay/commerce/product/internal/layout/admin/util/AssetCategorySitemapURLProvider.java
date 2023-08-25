@@ -64,7 +64,7 @@ public class AssetCategorySitemapURLProvider implements SitemapURLProvider {
 			return;
 		}
 
-		if (SitemapURLProviderUtil.layoutContainsPortletId(
+		if (SitemapURLProviderUtil.hasPortletId(
 				layout, CPPortletKeys.CP_CATEGORY_CONTENT_WEB)) {
 
 			Group group = layoutSet.getGroup();

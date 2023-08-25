@@ -71,7 +71,7 @@ public class CPDefinitionSitemapURLProvider implements SitemapURLProvider {
 			return;
 		}
 
-		if (SitemapURLProviderUtil.layoutContainsPortletId(
+		if (SitemapURLProviderUtil.hasPortletId(
 				layout, CPPortletKeys.CP_CONTENT_WEB)) {
 
 			long groupId =

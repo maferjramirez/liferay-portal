@@ -46,7 +46,7 @@ public class SitemapURLProviderUtil {
 		return alternateFriendlyURLs;
 	}
 
-	protected static boolean layoutContainsPortletId(
+	protected static boolean hasPortletId(
 		Layout layout, String portletId) {
 
 		LayoutTypePortlet layoutTypePortlet =
