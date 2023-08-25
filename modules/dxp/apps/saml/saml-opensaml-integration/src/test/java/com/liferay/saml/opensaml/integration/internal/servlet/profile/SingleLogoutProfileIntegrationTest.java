@@ -71,6 +71,9 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 
 		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
 
+		ReflectionTestUtil.setFieldValue(
+			_relayStateHelper, "_portalUUID", new PortalUUIDImpl());
+
 		_samlIdpSpConnectionLocalService = getMockPortletService(
 			SamlIdpSpConnectionLocalServiceUtil.class,
 			SamlIdpSpConnectionLocalService.class);
@@ -82,9 +85,6 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 			SamlSpSessionLocalService.class);
 
 		_singleLogoutProfileImpl = new SingleLogoutProfileImpl();
-
-		ReflectionTestUtil.setFieldValue(
-			_relayStateHelper, "_portalUUID", new PortalUUIDImpl());
 
 		ReflectionTestUtil.setFieldValue(
 			_singleLogoutProfileImpl, "identifierGenerationStrategyFactory",
