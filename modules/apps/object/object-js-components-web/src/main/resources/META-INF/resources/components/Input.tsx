@@ -20,6 +20,7 @@ export const Input = React.forwardRef<HTMLInputElement, IProps>(
 			name,
 			onChange,
 			onInput,
+			readOnly,
 			required,
 			type,
 			value,
@@ -45,6 +46,7 @@ export const Input = React.forwardRef<HTMLInputElement, IProps>(
 					name={name}
 					onChange={onChange}
 					onInput={onInput}
+					readOnly={readOnly}
 					ref={ref}
 					type={type}
 					value={value}
