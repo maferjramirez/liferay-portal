@@ -320,10 +320,8 @@ public class UserDisplayContext {
 
 		allGroups.addAll(getGroups());
 		allGroups.addAll(getInheritedSiteGroups());
-
 		allGroups.addAll(
 			GroupLocalServiceUtil.getOrganizationsGroups(getOrganizations()));
-
 		allGroups.addAll(
 			GroupLocalServiceUtil.getUserGroupsGroups(getUserGroups()));
 
