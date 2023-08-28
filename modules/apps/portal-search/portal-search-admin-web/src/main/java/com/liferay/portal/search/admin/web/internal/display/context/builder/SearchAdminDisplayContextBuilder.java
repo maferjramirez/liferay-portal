@@ -15,7 +15,7 @@ import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.search.admin.web.internal.display.context.SearchAdminDisplayContext;
 import com.liferay.portal.search.index.IndexInformation;
 
@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -86,29 +87,28 @@ public class SearchAdminDisplayContextBuilder {
 	}
 
 	protected Map<String, List<Indexer<?>>> getIndexersMap() {
-		if (Validator.isNull(IndexerRegistryUtil.getIndexers())) {
+		Set<Indexer<?>> indexersSet = IndexerRegistryUtil.getIndexers();
+
+		if (SetUtil.isEmpty(indexersSet)) {
 			return Collections.emptyMap();
 		}
 
-		List<Indexer<?>> indexers = new ArrayList<>(
-			IndexerRegistryUtil.getIndexers());
+		Map<String, List<Indexer<?>>> indexersMap = new HashMap<>();
+
+		List<Indexer<?>> indexers = new ArrayList<>(indexersSet);
 
 		Collections.sort(indexers, new IndexerClassNameComparator(true));
 
-		Map<String, List<Indexer<?>>> indexersMap = new HashMap<>();
-
 		for (Indexer<?> indexer : indexers) {
-			String indexerClassNameCategory = "com.liferay.custom";
+			String key = "com.liferay.custom";
 
 			try {
-				Matcher indexerClassNameCategoryMatcher =
-					_indexerClassNameCategoryPattern.matcher(
-						indexer.getClassName());
+				Matcher matcher = _indexerClassNameCategoryPattern.matcher(
+					indexer.getClassName());
 
-				indexerClassNameCategoryMatcher.find();
+				matcher.find();
 
-				indexerClassNameCategory =
-					indexerClassNameCategoryMatcher.group(1);
+				key = matcher.group(1);
 			}
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
@@ -119,17 +119,17 @@ public class SearchAdminDisplayContextBuilder {
 				}
 			}
 
-			if (indexersMap.containsKey(indexerClassNameCategory)) {
+			if (indexersMap.containsKey(key)) {
 				List<Indexer<?>> indexerClassNameList = new ArrayList<>(
-					indexersMap.get(indexerClassNameCategory));
+					indexersMap.get(key));
 
 				indexerClassNameList.add(indexer);
 
-				indexersMap.put(indexerClassNameCategory, indexerClassNameList);
+				indexersMap.put(key, indexerClassNameList);
 			}
 			else {
 				indexersMap.put(
-					indexerClassNameCategory, ListUtil.fromArray(indexer));
+					key, ListUtil.fromArray(indexer));
 			}
 		}
 
