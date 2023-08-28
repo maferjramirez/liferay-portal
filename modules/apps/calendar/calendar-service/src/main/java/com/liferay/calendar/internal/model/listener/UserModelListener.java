@@ -52,15 +52,13 @@ public class UserModelListener extends BaseModelListener<User> {
 
 			Group group = user.getGroup();
 
-			long groupId = (group == null) ? 0 : group.getGroupId();
-
 			calendarResource.setNameMap(
 				_localization.populateLocalizationMap(
 					HashMapBuilder.put(
 						LocaleUtil.getSiteDefault(), user.getFullName()
 					).build(),
 					LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
-					groupId));
+					(group == null) ? 0 : group.getGroupId()));
 
 			_calendarResourceLocalService.updateCalendarResource(
 				calendarResource);
