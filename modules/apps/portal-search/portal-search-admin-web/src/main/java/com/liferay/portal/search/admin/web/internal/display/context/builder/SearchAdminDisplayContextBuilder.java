@@ -52,7 +52,6 @@ public class SearchAdminDisplayContextBuilder {
 			new SearchAdminDisplayContext();
 
 		searchAdminDisplayContext.setIndexersMap(getIndexersMap());
-
 		searchAdminDisplayContext.setIndexReindexerClassNames(
 			_indexReindexerClassNames);
 
@@ -70,6 +69,7 @@ public class SearchAdminDisplayContextBuilder {
 		}
 
 		searchAdminDisplayContext.setNavigationItemList(navigationItemList);
+
 		searchAdminDisplayContext.setSelectedTab(selectedTab);
 
 		return searchAdminDisplayContext;
