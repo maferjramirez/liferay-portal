@@ -32,12 +32,12 @@ public class EventRequestPortletManager extends BasePortletManager {
 
 	@Override
 	protected PortletSummaryStatistics getPortletSummaryStatistics() {
-		return _eventRequestSummaryStatistics;
+		return _portletSummaryStatistics;
 	}
 
 	@Reference(
 		target = "(component.name=com.liferay.portal.monitoring.internal.statistics.portlet.EventRequestSummaryStatistics)"
 	)
-	private PortletSummaryStatistics _eventRequestSummaryStatistics;
+	private PortletSummaryStatistics _portletSummaryStatistics;
 
 }
