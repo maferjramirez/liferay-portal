@@ -66,7 +66,7 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 				getNotificationQueueEntriesCount());
 
 		NotificationTemplate notificationTemplate = _addNotificationTemplate(
-			StringPool.FALSE);
+			false);
 
 		ObjectAction objectAction = objectActionLocalService.addObjectAction(
 			RandomTestUtil.randomString(), TestPropsValues.getUserId(),
@@ -103,7 +103,7 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 		notificationQueueEntryLocalService.deleteNotificationQueueEntry(
 			notificationQueueEntries.get(0));
 
-		notificationTemplate = _addNotificationTemplate(StringPool.TRUE);
+		notificationTemplate = _addNotificationTemplate(true);
 
 		objectActionLocalService.updateObjectAction(
 			RandomTestUtil.randomString(), objectAction.getObjectActionId(),
@@ -158,7 +158,7 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 	}
 
 	private NotificationTemplate _addNotificationTemplate(
-			String singleRecipient)
+			boolean singleRecipient)
 		throws Exception {
 
 		return notificationTemplateLocalService.addNotificationTemplate(
@@ -179,7 +179,7 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 						Collections.singletonMap(
 							LocaleUtil.US, "[%CURRENT_USER_FIRST_NAME%]")),
 					createNotificationRecipientSetting(
-						"singleRecipient", singleRecipient),
+						"singleRecipient", String.valueOf(singleRecipient)),
 					createNotificationRecipientSetting(
 						"to",
 						Collections.singletonMap(
