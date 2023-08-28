@@ -294,20 +294,9 @@ public class UserResourceDTOConverter
 			{
 				id = organization.getOrganizationId();
 				name = organization.getName();
-				roleBriefs = TransformUtil.transformToArray(
-					_roleLocalService.getUserGroupRoles(
-						user.getUserId(), organization.getGroupId()),
-					role -> {
-						if (!_rolePermission.contains(
-								GuestOrUserUtil.getPermissionChecker(),
-								role.getRoleId(), ActionKeys.VIEW)) {
-
-							return null;
-						}
-
-						return _toRoleBrief(dtoConverterContext, role);
-					},
-					RoleBrief.class);
+				roleBriefs = _toRoleBriefs(
+					dtoConverterContext, organization.getGroupId(),
+					user.getUserId());
 			}
 		};
 	}
@@ -343,6 +332,25 @@ public class UserResourceDTOConverter
 		};
 	}
 
+	private RoleBrief[] _toRoleBriefs(
+			DTOConverterContext dtoConverterContext, long groupId, long userId)
+		throws Exception {
+
+		return TransformUtil.transformToArray(
+			_roleLocalService.getUserGroupRoles(userId, groupId),
+			role -> {
+				if (!_rolePermission.contains(
+						GuestOrUserUtil.getPermissionChecker(),
+						role.getRoleId(), ActionKeys.VIEW)) {
+
+					return null;
+				}
+
+				return _toRoleBrief(dtoConverterContext, role);
+			},
+			RoleBrief.class);
+	}
+
 	private SiteBrief _toSiteBrief(
 			DTOConverterContext dtoConverterContext, Group group, User user)
 		throws Exception {
@@ -359,20 +367,8 @@ public class UserResourceDTOConverter
 				name_i18n = LocalizedMapUtil.getI18nMap(
 					dtoConverterContext.isAcceptAllLanguages(),
 					group.getNameMap());
-				roleBriefs = TransformUtil.transformToArray(
-					_roleLocalService.getUserGroupRoles(
-						user.getUserId(), group.getGroupId()),
-					role -> {
-						if (!_rolePermission.contains(
-								GuestOrUserUtil.getPermissionChecker(),
-								role.getRoleId(), ActionKeys.VIEW)) {
-
-							return null;
-						}
-
-						return _toRoleBrief(dtoConverterContext, role);
-					},
-					RoleBrief.class);
+				roleBriefs = _toRoleBriefs(
+					dtoConverterContext, group.getGroupId(), user.getUserId());
 			}
 		};
 	}
