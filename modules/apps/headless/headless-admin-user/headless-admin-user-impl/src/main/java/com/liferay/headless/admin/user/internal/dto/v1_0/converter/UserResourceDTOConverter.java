@@ -59,6 +59,8 @@ import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 import com.liferay.portal.vulcan.dto.converter.DTOConverterContext;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 
+import java.util.Collection;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -223,16 +225,8 @@ public class UserResourceDTOConverter
 						UserBag userBag = _userBagFactory.create(
 							user.getUserId());
 
-						return TransformUtil.transformToArray(
-							userBag.getRoles(),
-							role -> {
-								if (!_hasViewPermission(role)) {
-									return null;
-								}
-
-								return _toRoleBrief(dtoConverterContext, role);
-							},
-							RoleBrief.class);
+						return _toRoleBriefs(
+							dtoConverterContext, userBag.getRoles());
 					});
 			}
 		};
@@ -248,12 +242,6 @@ public class UserResourceDTOConverter
 				}
 			}
 		};
-	}
-
-	private boolean _hasViewPermission(Role role) throws Exception {
-		return _roleModelResourcePermission.contains(
-			PermissionThreadLocal.getPermissionChecker(), role,
-			ActionKeys.VIEW);
 	}
 
 	private AccountBrief _toAccountBrief(
@@ -295,8 +283,9 @@ public class UserResourceDTOConverter
 				id = organization.getOrganizationId();
 				name = organization.getName();
 				roleBriefs = _toRoleBriefs(
-					dtoConverterContext, organization.getGroupId(),
-					user.getUserId());
+					dtoConverterContext,
+					_roleLocalService.getUserGroupRoles(
+						user.getUserId(), organization.getGroupId()));
 			}
 		};
 	}
@@ -333,13 +322,16 @@ public class UserResourceDTOConverter
 	}
 
 	private RoleBrief[] _toRoleBriefs(
-			DTOConverterContext dtoConverterContext, long groupId, long userId)
+			DTOConverterContext dtoConverterContext, Collection<Role> roles)
 		throws Exception {
 
 		return TransformUtil.transformToArray(
-			_roleLocalService.getUserGroupRoles(userId, groupId),
+			roles,
 			role -> {
-				if (!_hasViewPermission(role)) {
+				if (!_roleModelResourcePermission.contains(
+						PermissionThreadLocal.getPermissionChecker(), role,
+						ActionKeys.VIEW)) {
+
 					return null;
 				}
 
@@ -365,7 +357,9 @@ public class UserResourceDTOConverter
 					dtoConverterContext.isAcceptAllLanguages(),
 					group.getNameMap());
 				roleBriefs = _toRoleBriefs(
-					dtoConverterContext, group.getGroupId(), user.getUserId());
+					dtoConverterContext,
+					_roleLocalService.getUserGroupRoles(
+						user.getUserId(), group.getGroupId()));
 			}
 		};
 	}
