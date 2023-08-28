@@ -145,14 +145,16 @@ public class GetCollectionWarningMessageMVCResourceCommand
 				_layoutListRetrieverRegistry.getLayoutListRetriever(type);
 
 		if (layoutListRetriever == null) {
-			throw new Exception("Unable to get collection for type " + type);
+			throw new Exception(
+				"Layout list retriever is null for type " + type);
 		}
 
 		ListObjectReferenceFactory<?> listObjectReferenceFactory =
 			_listObjectReferenceFactoryRegistry.getListObjectReference(type);
 
 		if (listObjectReferenceFactory == null) {
-			throw new Exception("Unable to get collection for type " + type);
+			throw new Exception(
+				"List object reference factory is null for type " + type);
 		}
 
 		DefaultLayoutListRetrieverContext defaultLayoutListRetrieverContext =
@@ -198,7 +200,8 @@ public class GetCollectionWarningMessageMVCResourceCommand
 		if (!(layoutStructureItem instanceof
 				CollectionStyledLayoutStructureItem)) {
 
-			throw new Exception("Unable to get collection item for " + itemId);
+			throw new Exception(
+				"Layout structure item is null for item ID " + itemId);
 		}
 
 		CollectionStyledLayoutStructureItem
