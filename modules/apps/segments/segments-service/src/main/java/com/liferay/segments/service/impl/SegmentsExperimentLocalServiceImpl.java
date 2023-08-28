@@ -86,7 +86,7 @@ public class SegmentsExperimentLocalServiceImpl
 
 		_validate(name, goal, status, status);
 
-		_validateDuplicatedSegmentsExperiment(
+		_validateDuplicateSegmentsExperiment(
 			serviceContext.getScopeGroupId(), segmentsExperienceId, plid);
 
 		SegmentsExperiment segmentsExperiment =
@@ -524,7 +524,7 @@ public class SegmentsExperimentLocalServiceImpl
 		}
 	}
 
-	private void _validateDuplicatedSegmentsExperiment(
+	private void _validateDuplicateSegmentsExperiment(
 			long groupId, long segmentsExperienceId, long plid)
 		throws PortalException {
 
