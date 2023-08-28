@@ -149,7 +149,7 @@ public class GetLayoutReportsGooglePageSpeedDataStrutsActionTest {
 	}
 
 	@Test
-	public void testGetDataWithApiKeyInSiteConfiguration() throws Exception {
+	public void testGetDataWithAPIKeyInSiteConfiguration() throws Exception {
 		LayoutReportsTestUtil.
 			withLayoutReportsGooglePageSpeedGroupConfiguration(
 				RandomTestUtil.randomString(), true, _group.getGroupId(),
@@ -310,7 +310,7 @@ public class GetLayoutReportsGooglePageSpeedDataStrutsActionTest {
 	}
 
 	@Test
-	public void testGetDataWithoutApiKey() throws Exception {
+	public void testGetDataWithoutAPIKey() throws Exception {
 		LayoutReportsTestUtil.
 			withLayoutReportsGooglePageSpeedGroupConfiguration(
 				StringPool.BLANK, true, _group.getGroupId(),
