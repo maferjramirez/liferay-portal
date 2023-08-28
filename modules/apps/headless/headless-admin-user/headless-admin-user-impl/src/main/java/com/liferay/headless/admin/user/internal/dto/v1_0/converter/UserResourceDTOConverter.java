@@ -61,9 +61,6 @@ import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 import com.liferay.portal.vulcan.dto.converter.DTOConverterContext;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -259,25 +256,6 @@ public class UserResourceDTOConverter
 		};
 	}
 
-	private List<Role> _getUserGroupRoles(long userId, long groupId)
-		throws Exception {
-
-		List<Role> roles = _roleLocalService.getUserGroupRoles(userId, groupId);
-
-		List<Role> filteredRoles = new ArrayList<>();
-
-		for (Role role : roles) {
-			if (_rolePermission.contains(
-					GuestOrUserUtil.getPermissionChecker(), role.getRoleId(),
-					ActionKeys.VIEW)) {
-
-				filteredRoles.add(role);
-			}
-		}
-
-		return filteredRoles;
-	}
-
 	private AccountBrief _toAccountBrief(
 			AccountEntryUserRel accountEntryUserRel,
 			DTOConverterContext dtoConverterContext, User user)
@@ -317,9 +295,18 @@ public class UserResourceDTOConverter
 				id = organization.getOrganizationId();
 				name = organization.getName();
 				roleBriefs = TransformUtil.transformToArray(
-					_getUserGroupRoles(
+					_roleLocalService.getUserGroupRoles(
 						user.getUserId(), organization.getGroupId()),
-					role -> _toRoleBrief(dtoConverterContext, role),
+					role -> {
+						if (!_rolePermission.contains(
+								GuestOrUserUtil.getPermissionChecker(),
+								role.getRoleId(), ActionKeys.VIEW)) {
+
+							return null;
+						}
+
+						return _toRoleBrief(dtoConverterContext, role);
+					},
 					RoleBrief.class);
 			}
 		};
@@ -373,8 +360,18 @@ public class UserResourceDTOConverter
 					dtoConverterContext.isAcceptAllLanguages(),
 					group.getNameMap());
 				roleBriefs = TransformUtil.transformToArray(
-					_getUserGroupRoles(user.getUserId(), group.getGroupId()),
-					role -> _toRoleBrief(dtoConverterContext, role),
+					_roleLocalService.getUserGroupRoles(
+						user.getUserId(), group.getGroupId()),
+					role -> {
+						if (!_rolePermission.contains(
+								GuestOrUserUtil.getPermissionChecker(),
+								role.getRoleId(), ActionKeys.VIEW)) {
+
+							return null;
+						}
+
+						return _toRoleBrief(dtoConverterContext, role);
+					},
 					RoleBrief.class);
 			}
 		};
