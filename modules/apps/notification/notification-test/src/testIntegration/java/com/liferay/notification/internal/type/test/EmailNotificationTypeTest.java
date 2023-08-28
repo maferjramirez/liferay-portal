@@ -139,14 +139,14 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 			notificationQueueEntries.toString(), 2,
 			notificationQueueEntries.size());
 
-		List<String> expectedToRecipients = ListUtil.sort(
+		List<String> expectedToEmailAddresss = ListUtil.sort(
 			Arrays.asList(user1.getEmailAddress(), user2.getEmailAddress()));
 
 		_assertNotificationQueueEntry(
-			true, expectedToRecipients.get(0), notificationQueueEntries.get(0));
+			true, expectedToEmailAddresss.get(0), notificationQueueEntries.get(0));
 
 		_assertNotificationQueueEntry(
-			true, expectedToRecipients.get(1), notificationQueueEntries.get(1));
+			true, expectedToEmailAddresss.get(1), notificationQueueEntries.get(1));
 
 		for (NotificationQueueEntry notificationQueueEntry :
 				notificationQueueEntries) {
@@ -217,11 +217,11 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 	}
 
 	private void _assertNotificationQueueEntry(
-		boolean expectedSingleRecipient, String expectedToRecipient,
+		boolean expectedSingleRecipient, String expectedToEmailAddress,
 		NotificationQueueEntry notificationQueueEntry) {
 
 		Assert.assertNotNull(
-			MailServiceTestUtil.getMailMessages("To", expectedToRecipient));
+			MailServiceTestUtil.getMailMessages("To", expectedToEmailAddress));
 
 		assertTermValues(
 			getTermValues(),
@@ -257,7 +257,7 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 
 		Arrays.sort(actualEmailAddresses);
 
-		String[] expectedEmailAddresses = StringUtil.split(expectedToRecipient);
+		String[] expectedEmailAddresses = StringUtil.split(expectedToEmailAddress);
 
 		Arrays.sort(expectedEmailAddresses);
 
