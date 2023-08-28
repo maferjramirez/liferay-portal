@@ -113,10 +113,10 @@ public class FriendlyURLServlet extends HttpServlet {
 			String friendlyURL = path.substring(pos);
 
 			if (friendlyURL.startsWith(
-					DLFriendlyURLConstants.DOCUMENT_PATH_PREFIX)) {
+					DLFriendlyURLConstants.PATH_PREFIX_DOCUMENT)) {
 
 				String fileEntryFriendlyURL = friendlyURL.substring(
-					DLFriendlyURLConstants.DOCUMENT_PATH_PREFIX.length() - 1);
+					DLFriendlyURLConstants.PATH_PREFIX_DOCUMENT.length() - 1);
 
 				groupFriendlyURL = fileEntryFriendlyURL.substring(
 					0, fileEntryFriendlyURL.indexOf(CharPool.SLASH, 1));

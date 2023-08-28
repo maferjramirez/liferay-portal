@@ -193,7 +193,7 @@ public class ComboServlet extends HttpServlet {
 			}
 
 			if (!modulePath.startsWith(
-					DLFriendlyURLConstants.DOCUMENT_PATH_PREFIX) &&
+					DLFriendlyURLConstants.PATH_PREFIX_DOCUMENT) &&
 				!extension.equals(pathExtension)) {
 
 				httpServletResponse.setHeader(
@@ -543,7 +543,7 @@ public class ComboServlet extends HttpServlet {
 		}
 
 		if (moduleName.startsWith(
-				DLFriendlyURLConstants.DOCUMENT_PATH_PREFIX)) {
+				DLFriendlyURLConstants.PATH_PREFIX_DOCUMENT)) {
 
 			return true;
 		}

@@ -10,6 +10,6 @@ package com.liferay.portlet.documentlibrary.constants;
  */
 public class DLFriendlyURLConstants {
 
-	public static final String DOCUMENT_PATH_PREFIX = "/documents/d/";
+	public static final String PATH_PREFIX_DOCUMENT = "/documents/d/";
 
 }
