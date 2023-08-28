@@ -16,8 +16,8 @@ import java.util.Map;
  */
 public class SearchAdminDisplayContext {
 
-	public Map<String, List<Indexer<?>>> getIndexerMap() {
-		return _indexerMap;
+	public Map<String, List<Indexer<?>>> getIndexersMap() {
+		return _indexersMap;
 	}
 
 	public List<String> getIndexReindexerClassNames() {
@@ -32,8 +32,8 @@ public class SearchAdminDisplayContext {
 		return _selectedTab;
 	}
 
-	public void setIndexerMap(Map<String, List<Indexer<?>>> indexerMap) {
-		_indexerMap = indexerMap;
+	public void setIndexersMap(Map<String, List<Indexer<?>>> indexersMap) {
+		_indexersMap = indexersMap;
 	}
 
 	public void setIndexReindexerClassNames(
@@ -50,7 +50,7 @@ public class SearchAdminDisplayContext {
 		_selectedTab = selectedTab;
 	}
 
-	private Map<String, List<Indexer<?>>> _indexerMap;
+	private Map<String, List<Indexer<?>>> _indexersMap;
 	private List<String> _indexReindexerClassNames;
 	private NavigationItemList _navigationItemList;
 	private String _selectedTab;

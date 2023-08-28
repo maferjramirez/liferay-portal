@@ -51,7 +51,7 @@ public class SearchAdminDisplayContextBuilder {
 		SearchAdminDisplayContext searchAdminDisplayContext =
 			new SearchAdminDisplayContext();
 
-		searchAdminDisplayContext.setIndexerMap(getIndexerMap());
+		searchAdminDisplayContext.setIndexersMap(getIndexersMap());
 
 		searchAdminDisplayContext.setIndexReindexerClassNames(
 			_indexReindexerClassNames);
@@ -85,7 +85,7 @@ public class SearchAdminDisplayContextBuilder {
 		_indexReindexerClassNames = indexReindexerClassNames;
 	}
 
-	protected Map<String, List<Indexer<?>>> getIndexerMap() {
+	protected Map<String, List<Indexer<?>>> getIndexersMap() {
 		if (Validator.isNull(IndexerRegistryUtil.getIndexers())) {
 			return Collections.emptyMap();
 		}
@@ -95,7 +95,7 @@ public class SearchAdminDisplayContextBuilder {
 
 		Collections.sort(indexers, new IndexerClassNameComparator(true));
 
-		Map<String, List<Indexer<?>>> indexerMap = new HashMap<>();
+		Map<String, List<Indexer<?>>> indexersMap = new HashMap<>();
 
 		for (Indexer<?> indexer : indexers) {
 			String indexerClassNameCategory = "com.liferay.custom";
@@ -119,21 +119,21 @@ public class SearchAdminDisplayContextBuilder {
 				}
 			}
 
-			if (indexerMap.containsKey(indexerClassNameCategory)) {
+			if (indexersMap.containsKey(indexerClassNameCategory)) {
 				List<Indexer<?>> indexerClassNameList = new ArrayList<>(
-					indexerMap.get(indexerClassNameCategory));
+					indexersMap.get(indexerClassNameCategory));
 
 				indexerClassNameList.add(indexer);
 
-				indexerMap.put(indexerClassNameCategory, indexerClassNameList);
+				indexersMap.put(indexerClassNameCategory, indexerClassNameList);
 			}
 			else {
-				indexerMap.put(
+				indexersMap.put(
 					indexerClassNameCategory, ListUtil.fromArray(indexer));
 			}
 		}
 
-		return new TreeMap<>(indexerMap);
+		return new TreeMap<>(indexersMap);
 	}
 
 	protected String getSelectedTab() {
