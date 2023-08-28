@@ -253,16 +253,18 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 			expectedSingleRecipient,
 			notificationRecipientSettingsMap.get("singleRecipient"));
 
-		String[] actualEmailAddresses = StringUtil.split(
+		String[] expectedToEmailAddressesArray = StringUtil.split(
+			expectedToEmailAddress);
+
+		Arrays.sort(expectedToEmailAddressesArray);
+
+		String[] actualToEmailAddressesArray = StringUtil.split(
 			String.valueOf(notificationRecipientSettingsMap.get("to")));
 
-		Arrays.sort(actualEmailAddresses);
+		Arrays.sort(actualToEmailAddressesArray);
 
-		String[] expectedEmailAddresses = StringUtil.split(expectedToEmailAddress);
-
-		Arrays.sort(expectedEmailAddresses);
-
-		Assert.assertArrayEquals(expectedEmailAddresses, actualEmailAddresses);
+		Assert.assertArrayEquals(
+			expectedToEmailAddressesArray, actualToEmailAddressesArray);
 	}
 
 }
