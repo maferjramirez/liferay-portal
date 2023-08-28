@@ -160,15 +160,15 @@ page import="java.util.Map" %>
 								</li>
 
 								<%
-								Map<String, List<Indexer<?>>> indexerMap = searchAdminDisplayContext.getIndexerMap();
+								Map<String, List<Indexer<?>>> indexersMap = searchAdminDisplayContext.getIndexersMap();
 
-								for (Map.Entry<String, List<Indexer<?>>> mapEntry : indexerMap.entrySet()) {
-									List<Indexer<?>> indexers = mapEntry.getValue();
+								for (Map.Entry<String, List<Indexer<?>>> entry : indexersMap.entrySet()) {
+									List<Indexer<?>> indexers = entry.getValue();
 								%>
 
 									<li class="list-group-header">
 										<h3 class="list-group-header-title">
-											<liferay-ui:message key='<%= "model.resource." + mapEntry.getKey() %>' />
+											<liferay-ui:message key='<%= "model.resource." + entry.getKey() %>' />
 										</h3>
 									</li>
 
