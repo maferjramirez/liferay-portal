@@ -95,11 +95,11 @@ public class SearchAdminDisplayContextBuilder {
 
 		Map<String, List<Indexer<?>>> indexersMap = new HashMap<>();
 
-		List<Indexer<?>> indexers = new ArrayList<>(indexersSet);
+		for (Indexer<?> indexer :
+				ListUtil.sort(
+					new ArrayList<Indexer<?>>(indexersSet),
+					new IndexerClassNameComparator(true))) {
 
-		Collections.sort(indexers, new IndexerClassNameComparator(true));
-
-		for (Indexer<?> indexer : indexers) {
 			String key = "com.liferay.custom";
 
 			try {
@@ -120,16 +120,15 @@ public class SearchAdminDisplayContextBuilder {
 			}
 
 			if (indexersMap.containsKey(key)) {
-				List<Indexer<?>> indexerClassNameList = new ArrayList<>(
+				List<Indexer<?>> indexers = new ArrayList<>(
 					indexersMap.get(key));
 
-				indexerClassNameList.add(indexer);
+				indexers.add(indexer);
 
-				indexersMap.put(key, indexerClassNameList);
+				indexersMap.put(key, indexers);
 			}
 			else {
-				indexersMap.put(
-					key, ListUtil.fromArray(indexer));
+				indexersMap.put(key, ListUtil.fromArray(indexer));
 			}
 		}
 
