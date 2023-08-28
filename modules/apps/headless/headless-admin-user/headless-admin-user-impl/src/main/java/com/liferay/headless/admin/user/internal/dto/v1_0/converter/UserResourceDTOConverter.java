@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
-import com.liferay.portal.kernel.security.auth.GuestOrUserUtil;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.permission.UserBag;
@@ -52,7 +51,6 @@ import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserGroupLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.service.permission.RolePermission;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -228,11 +226,7 @@ public class UserResourceDTOConverter
 						return TransformUtil.transformToArray(
 							userBag.getRoles(),
 							role -> {
-								if (!_roleModelResourcePermission.contains(
-										PermissionThreadLocal.
-											getPermissionChecker(),
-										role, ActionKeys.VIEW)) {
-
+								if (!_hasViewPermission(role)) {
 									return null;
 								}
 
@@ -254,6 +248,12 @@ public class UserResourceDTOConverter
 				}
 			}
 		};
+	}
+
+	private boolean _hasViewPermission(Role role) throws Exception {
+		return _roleModelResourcePermission.contains(
+			PermissionThreadLocal.getPermissionChecker(), role,
+			ActionKeys.VIEW);
 	}
 
 	private AccountBrief _toAccountBrief(
@@ -339,10 +339,7 @@ public class UserResourceDTOConverter
 		return TransformUtil.transformToArray(
 			_roleLocalService.getUserGroupRoles(userId, groupId),
 			role -> {
-				if (!_rolePermission.contains(
-						GuestOrUserUtil.getPermissionChecker(),
-						role.getRoleId(), ActionKeys.VIEW)) {
-
+				if (!_hasViewPermission(role)) {
 					return null;
 				}
 
@@ -410,9 +407,6 @@ public class UserResourceDTOConverter
 		target = "(model.class.name=com.liferay.portal.kernel.model.Role)"
 	)
 	private ModelResourcePermission<Role> _roleModelResourcePermission;
-
-	@Reference
-	private RolePermission _rolePermission;
 
 	@Reference
 	private UserBagFactory _userBagFactory;
