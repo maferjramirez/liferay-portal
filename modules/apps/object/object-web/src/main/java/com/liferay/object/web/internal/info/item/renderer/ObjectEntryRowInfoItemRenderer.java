@@ -152,16 +152,16 @@ public class ObjectEntryRowInfoItemRenderer
 			else if (objectField.compareBusinessType(
 						ObjectFieldConstants.BUSINESS_TYPE_DATE)) {
 
-				Format dateFormat = FastDateFormatFactoryUtil.getDate(
+				Format format = FastDateFormatFactoryUtil.getDate(
 					DateFormat.DEFAULT, themeDisplay.getLocale(),
 					themeDisplay.getTimeZone());
 
-				values.put(objectField.getName(), dateFormat.format(value));
+				values.put(objectField.getName(), format.format(value));
 			}
 			else if (objectField.compareBusinessType(
 						ObjectFieldConstants.BUSINESS_TYPE_DATE_TIME)) {
 
-				Format dateFormat = FastDateFormatFactoryUtil.getDateTime(
+				Format format = FastDateFormatFactoryUtil.getDateTime(
 					DateFormat.DEFAULT, DateFormat.DEFAULT,
 					themeDisplay.getLocale(), themeDisplay.getTimeZone());
 
@@ -170,7 +170,7 @@ public class ObjectEntryRowInfoItemRenderer
 
 				values.put(
 					objectField.getName(),
-					dateFormat.format(Date.from(zonedDateTime.toInstant())));
+					format.format(Date.from(zonedDateTime.toInstant())));
 			}
 			else if (objectField.compareBusinessType(
 						ObjectFieldConstants.
