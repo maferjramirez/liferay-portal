@@ -143,10 +143,11 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 			Arrays.asList(user1.getEmailAddress(), user2.getEmailAddress()));
 
 		_assertNotificationQueueEntry(
-			true, expectedToEmailAddresss.get(0), notificationQueueEntries.get(0));
-
+			true, expectedToEmailAddresss.get(0),
+			notificationQueueEntries.get(0));
 		_assertNotificationQueueEntry(
-			true, expectedToEmailAddresss.get(1), notificationQueueEntries.get(1));
+			true, expectedToEmailAddresss.get(1),
+			notificationQueueEntries.get(1));
 
 		for (NotificationQueueEntry notificationQueueEntry :
 				notificationQueueEntries) {
