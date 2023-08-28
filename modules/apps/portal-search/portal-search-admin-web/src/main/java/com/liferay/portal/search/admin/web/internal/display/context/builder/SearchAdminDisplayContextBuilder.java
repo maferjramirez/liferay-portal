@@ -103,8 +103,7 @@ public class SearchAdminDisplayContextBuilder {
 			String key = "com.liferay.custom";
 
 			try {
-				Matcher matcher = _indexerClassNameCategoryPattern.matcher(
-					indexer.getClassName());
+				Matcher matcher = _pattern.matcher(indexer.getClassName());
 
 				matcher.find();
 
@@ -181,8 +180,8 @@ public class SearchAdminDisplayContextBuilder {
 	private static final Log _log = LogFactoryUtil.getLog(
 		SearchAdminDisplayContextBuilder.class);
 
-	private static final Pattern _indexerClassNameCategoryPattern =
-		Pattern.compile("([\\w\\.]+)\\.model\\.[\\w\\.]+");
+	private static final Pattern _pattern = Pattern.compile(
+		"([\\w\\.]+)\\.model\\.[\\w\\.]+");
 
 	private IndexInformation _indexInformation;
 	private List<String> _indexReindexerClassNames;
