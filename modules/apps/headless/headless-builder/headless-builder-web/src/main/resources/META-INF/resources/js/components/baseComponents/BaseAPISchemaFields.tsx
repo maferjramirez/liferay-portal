@@ -179,7 +179,7 @@ export default function BaseAPISchemaFields({
 					}
 					disabled={disableObjectSelect}
 					dropDownSearchAriaLabel={Liferay.Language.get(
-						'search-for-an-object-definition-or-use-the-arrow-keys-to-navigate-and-select-an-object-from-the-list'
+						'search-for-an-object-definition-or-use-the-arrow-keys-to-navigate-and-select-an-object-definition-from-the-list'
 					)}
 					invalid={displayError.mainObjectDefinitionERC}
 					onClick={handleSelectObject}
