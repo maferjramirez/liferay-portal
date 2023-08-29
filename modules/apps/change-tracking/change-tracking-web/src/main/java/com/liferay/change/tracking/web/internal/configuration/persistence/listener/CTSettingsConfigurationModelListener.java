@@ -107,8 +107,8 @@ public class CTSettingsConfigurationModelListener
 				_setUpRemotePublications(companyId, properties);
 			}
 			else {
-				properties.put("sandboxEnabled", false);
 				properties.put("remoteEnabled", false);
+				properties.put("sandboxEnabled", false);
 			}
 
 			_cleanUpRemotePublications(companyId, properties);
