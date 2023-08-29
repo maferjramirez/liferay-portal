@@ -412,10 +412,6 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 				fdsViewObjectDefinition, fdsViewObjectEntry,
 				"fdsViewFDSDynamicFilterRelationship"));
 
-		if (fdsFilterObjectEntries.isEmpty()) {
-			return _jsonFactory.createJSONArray();
-		}
-
 		return JSONUtil.toJSONArray(
 			fdsFilterObjectEntries,
 			(ObjectEntry fdsFilterObjectEntry) -> {
