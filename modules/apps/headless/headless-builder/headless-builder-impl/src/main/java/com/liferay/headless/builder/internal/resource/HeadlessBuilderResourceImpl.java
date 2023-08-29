@@ -33,7 +33,7 @@ public class HeadlessBuilderResourceImpl {
 
 		_endpointHelper = endpointHelper;
 
-		setApiApplication(apiApplication);
+		setAPIApplication(apiApplication);
 	}
 
 	@GET
@@ -85,7 +85,7 @@ public class HeadlessBuilderResourceImpl {
 				pathParameterValue));
 	}
 
-	public void setApiApplication(APIApplication apiApplication) {
+	public void setAPIApplication(APIApplication apiApplication) {
 		_apiApplication = apiApplication;
 		_endpointMatcher = new EndpointMatcher(apiApplication.getEndpoints());
 	}

@@ -51,7 +51,7 @@ public class APIApplicationPublisherImpl implements APIApplicationPublisher {
 			_headlessBuilderResourceImpls.get(osgiJaxRsName);
 
 		if (headlessBuilderResourceImpl != null) {
-			headlessBuilderResourceImpl.setApiApplication(apiApplication);
+			headlessBuilderResourceImpl.setAPIApplication(apiApplication);
 
 			return;
 		}
