@@ -88,7 +88,7 @@ public class WorkflowDefinitionContentUtil {
 	}
 
 	private static void _appendAttributes(
-		JSONObject jsonObject, StringBuilder contentSB) {
+		JSONObject jsonObject, StringBuilder sb) {
 
 		for (String key : jsonObject.keySet()) {
 			if (key.equals("#cdata-value") || key.equals("#child-nodes") ||
@@ -97,16 +97,16 @@ public class WorkflowDefinitionContentUtil {
 				continue;
 			}
 
-			contentSB.append(StringPool.SPACE);
+			sb.append(StringPool.SPACE);
 
-			contentSB.append(key);
+			sb.append(key);
 
-			contentSB.append(StringPool.EQUAL);
-			contentSB.append(StringPool.QUOTE);
+			sb.append(StringPool.EQUAL);
+			sb.append(StringPool.QUOTE);
 
-			contentSB.append(jsonObject.get(key));
+			sb.append(jsonObject.get(key));
 
-			contentSB.append(StringPool.QUOTE);
+			sb.append(StringPool.QUOTE);
 		}
 	}
 
@@ -158,7 +158,7 @@ public class WorkflowDefinitionContentUtil {
 	}
 
 	private static void _appendValue(
-		JSONObject jsonObject, StringBuilder contentSB) {
+		JSONObject jsonObject, StringBuilder sb) {
 
 		if (jsonObject.has("#cdata-value")) {
 			JSONArray jsonArray = jsonObject.getJSONArray("#cdata-value");
@@ -180,10 +180,10 @@ public class WorkflowDefinitionContentUtil {
 
 			cdataSB.append(StringPool.CDATA_CLOSE);
 
-			contentSB.append(cdataSB);
+			sb.append(cdataSB);
 		}
 		else if (jsonObject.has("#value")) {
-			contentSB.append(jsonObject.getString("#value"));
+			sb.append(jsonObject.getString("#value"));
 		}
 	}
 
@@ -226,28 +226,28 @@ public class WorkflowDefinitionContentUtil {
 	}
 
 	private static void _toNode(
-		JSONObject jsonObject, StringBuilder contentSB) {
+		JSONObject jsonObject, StringBuilder sb) {
 
-		contentSB.append(StringPool.LESS_THAN);
-		contentSB.append(jsonObject.getString("#tag-name"));
+		sb.append(StringPool.LESS_THAN);
+		sb.append(jsonObject.getString("#tag-name"));
 
-		_appendAttributes(jsonObject, contentSB);
+		_appendAttributes(jsonObject, sb);
 
-		contentSB.append(StringPool.GREATER_THAN);
+		sb.append(StringPool.GREATER_THAN);
 
-		_appendValue(jsonObject, contentSB);
+		_appendValue(jsonObject, sb);
 
 		JSONArray childNodesJSONArray = jsonObject.getJSONArray("#child-nodes");
 
 		if (childNodesJSONArray != null) {
 			childNodesJSONArray.forEach(
-				object -> _toNode((JSONObject)object, contentSB));
+				object -> _toNode((JSONObject)object, sb));
 		}
 
-		contentSB.append(StringPool.LESS_THAN);
-		contentSB.append(StringPool.FORWARD_SLASH);
-		contentSB.append(jsonObject.getString("#tag-name"));
-		contentSB.append(StringPool.GREATER_THAN);
+		sb.append(StringPool.LESS_THAN);
+		sb.append(StringPool.FORWARD_SLASH);
+		sb.append(jsonObject.getString("#tag-name"));
+		sb.append(StringPool.GREATER_THAN);
 	}
 
 }
