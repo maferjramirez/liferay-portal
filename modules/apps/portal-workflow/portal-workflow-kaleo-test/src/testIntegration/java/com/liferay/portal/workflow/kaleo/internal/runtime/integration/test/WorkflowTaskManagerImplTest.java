@@ -1582,7 +1582,7 @@ public class WorkflowTaskManagerImplTest extends BaseWorkflowManagerTestCase {
 				_log.debug(workflowException);
 			}
 
-			String content = _readFileToJSONString(
+			String content = _readFileToJSON(
 				"join-xor-workflow-definition.xml");
 
 			_workflowDefinitionManager.deployWorkflowDefinition(
@@ -1617,7 +1617,7 @@ public class WorkflowTaskManagerImplTest extends BaseWorkflowManagerTestCase {
 				_log.debug(workflowException);
 			}
 
-			String content = _readFileToJSONString(fileName);
+			String content = _readFileToJSON(fileName);
 
 			_workflowDefinitionManager.deployWorkflowDefinition(
 				_adminUser.getCompanyId(), _adminUser.getUserId(), name, name,
@@ -1635,7 +1635,7 @@ public class WorkflowTaskManagerImplTest extends BaseWorkflowManagerTestCase {
 				_log.debug(workflowException);
 			}
 
-			String content = _readFileToJSONString(
+			String content = _readFileToJSON(
 				"single-approver-site-member-workflow-definition.xml");
 
 			_workflowDefinitionManager.deployWorkflowDefinition(
@@ -1812,7 +1812,7 @@ public class WorkflowTaskManagerImplTest extends BaseWorkflowManagerTestCase {
 			workflowTask.getWorkflowTaskId());
 	}
 
-	private String _readFileToJSONString(String fileName) throws Exception {
+	private String _readFileToJSON(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
 		return WorkflowDefinitionContentUtil.toJSON(
