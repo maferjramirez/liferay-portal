@@ -140,7 +140,7 @@ public class KBTemplatesManagementToolbarDisplayContext
 	public List<DropdownItem> getOrderByDropdownItems() {
 		return new DropdownItemList() {
 			{
-				final Map<String, String> orderColumnsMap = HashMapBuilder.put(
+				Map<String, String> orderColumnsMap = HashMapBuilder.put(
 					"create-date", "create-date"
 				).put(
 					"modified-date", "modified-date"

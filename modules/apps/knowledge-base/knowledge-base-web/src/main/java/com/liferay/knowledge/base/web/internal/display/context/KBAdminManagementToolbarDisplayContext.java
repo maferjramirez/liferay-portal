@@ -359,7 +359,7 @@ public class KBAdminManagementToolbarDisplayContext {
 	public List<DropdownItem> getOrderByDropdownItems() {
 		return new DropdownItemList() {
 			{
-				final Map<String, String> orderColumnsMap = HashMapBuilder.put(
+				Map<String, String> orderColumnsMap = HashMapBuilder.put(
 					"modified-date", "modified-date"
 				).put(
 					"priority", "priority"

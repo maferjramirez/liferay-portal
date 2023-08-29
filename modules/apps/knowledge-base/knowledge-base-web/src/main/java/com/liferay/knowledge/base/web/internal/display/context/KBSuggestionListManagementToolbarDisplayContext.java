@@ -135,7 +135,7 @@ public class KBSuggestionListManagementToolbarDisplayContext {
 	public List<DropdownItem> getOrderByDropdownItems() {
 		return new DropdownItemList() {
 			{
-				final Map<String, String> orderColumnsMap = new HashMap<>();
+				Map<String, String> orderColumnsMap = new HashMap<>();
 
 				String navigation = _getNavigation();
 
