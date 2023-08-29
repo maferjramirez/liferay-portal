@@ -284,8 +284,8 @@ public class SXPBlueprintResourceImpl extends BaseSXPBlueprintResourceImpl {
 		sxpBlueprint.setId(sxpBlueprintId);
 
 		com.liferay.search.experiences.model.SXPBlueprint
-			serviceBuilderSXPBlueprint =
-				_sxpBlueprintService.fetchSXPBlueprintById(sxpBlueprintId);
+			serviceBuilderSXPBlueprint = _sxpBlueprintService.fetchSXPBlueprint(
+				sxpBlueprintId);
 
 		if (serviceBuilderSXPBlueprint != null) {
 			return _updateSXPBlueprint(sxpBlueprintId, sxpBlueprint);

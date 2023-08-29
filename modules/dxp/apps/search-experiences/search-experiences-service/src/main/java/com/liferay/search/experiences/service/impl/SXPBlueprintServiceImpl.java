@@ -82,7 +82,7 @@ public class SXPBlueprintServiceImpl extends SXPBlueprintServiceBaseImpl {
 	}
 
 	@Override
-	public SXPBlueprint fetchSXPBlueprintById(long sxpBlueprintId)
+	public SXPBlueprint fetchSXPBlueprint(long sxpBlueprintId)
 		throws PortalException {
 
 		SXPBlueprint sxpBlueprint = sxpBlueprintLocalService.fetchSXPBlueprint(
