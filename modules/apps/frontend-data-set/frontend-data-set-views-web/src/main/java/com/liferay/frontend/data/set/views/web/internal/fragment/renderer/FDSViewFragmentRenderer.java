@@ -61,6 +61,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -399,25 +401,19 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 					StringPool.COMMA)),
 			Long::parseLong);
 
-		Collection<ObjectEntry> fdsFilters = new ArrayList<>();
-
-		fdsFilters.addAll(
-			_getRelatedObjectEntries(
-				fdsViewObjectDefinition, fdsViewObjectEntry,
-				"fdsViewFDSDateFilterRelationship"));
-
-		fdsFilters.addAll(
-			_getRelatedObjectEntries(
-				fdsViewObjectDefinition, fdsViewObjectEntry,
-				"fdsViewFDSDynamicFilterRelationship"));
-
-		List<ObjectEntry> fdsFiltersObjectEntries = new ArrayList<>(fdsFilters);
-
-		Collections.sort(
-			fdsFiltersObjectEntries,
+		Set<ObjectEntry> fdsFiltersObjectEntries = new TreeSet<>(
 			Comparator.comparing(
 				ObjectEntry::getId,
 				Comparator.comparingInt(idsOrder::indexOf)));
+
+		fdsFiltersObjectEntries.addAll(
+			_getRelatedObjectEntries(
+				fdsViewObjectDefinition, fdsViewObjectEntry,
+				"fdsViewFDSDateFilterRelationship"));
+		fdsFiltersObjectEntries.addAll(
+			_getRelatedObjectEntries(
+				fdsViewObjectDefinition, fdsViewObjectEntry,
+				"fdsViewFDSDynamicFilterRelationship"));
 
 		if ((fdsFiltersObjectEntries == null) ||
 			fdsFiltersObjectEntries.isEmpty()) {
