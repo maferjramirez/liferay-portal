@@ -61,7 +61,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testCDataToJSON() throws Exception {
+	public void testCDATAToJSON() throws Exception {
 		JSONObject jsonObject = _toJSONObject("cdata.xml");
 
 		Assert.assertEquals("metadata", jsonObject.getString("#tag-name"));
@@ -71,7 +71,6 @@ public class WorkflowDefinitionContentUtilTest {
 		JSONArray jsonArray = jsonObject.getJSONArray("#cdata-value");
 
 		Assert.assertEquals(jsonArray.toString(), 8, jsonArray.length());
-
 		Assert.assertTrue(
 			StringUtil.contains(
 				jsonArray.getString(2), "xy", StringPool.BLANK));
@@ -82,7 +81,7 @@ public class WorkflowDefinitionContentUtilTest {
 			StringUtil.contains(
 				jsonArray.getString(4), "36", StringPool.BLANK));
 
-		// Assert that 1 tab is converted to 4 spaces
+		// 1 tab to 4 spaces
 
 		Assert.assertEquals(
 			jsonArray.getString(1), 12,
@@ -90,7 +89,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testCDataToXML() throws Exception {
+	public void testCDATAToXML() throws Exception {
 		Document document = _toDocument("cdata.json");
 
 		Element rootElement = document.getDocumentElement();
