@@ -286,8 +286,6 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 	}
 
 	private JSONObject _getDateJSONObject(Object fdsDateFilterMax) {
-		JSONObject jsonObject = _jsonFactory.createJSONObject();
-
 		Timestamp fdsDateFilterMaxTimestamp = (Timestamp)fdsDateFilterMax;
 
 		Date fdsDateFilterMaxDate = new Date(
@@ -297,15 +295,13 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 
 		calendar.setTime(fdsDateFilterMaxDate);
 
-		jsonObject.put(
+		return JSONUtil.put(
 			"day", calendar.get(Calendar.DATE)
 		).put(
 			"month", calendar.get(Calendar.MONTH) + 1
 		).put(
 			"year", calendar.get(Calendar.YEAR)
 		);
-
-		return jsonObject;
 	}
 
 	private JSONObject _getFDSDateFilterJSONObject(
