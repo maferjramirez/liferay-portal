@@ -197,9 +197,9 @@ public class WorkflowDefinitionContentUtil {
 		_appendAttributes(element, jsonObject);
 		_appendValue(element, jsonObject);
 
-		NodeList nodeList = element.getChildNodes();
-
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		NodeList nodeList = element.getChildNodes();
 
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node node = nodeList.item(i);
