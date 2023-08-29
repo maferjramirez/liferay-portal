@@ -358,7 +358,6 @@ public class UserIndexerIndexedFieldsTest {
 
 		indexedFieldsFixture.populateDate(
 			Field.CREATE_DATE, user.getCreateDate(), map);
-
 		indexedFieldsFixture.populateDate(
 			Field.MODIFIED_DATE, user.getModifiedDate(), map);
 

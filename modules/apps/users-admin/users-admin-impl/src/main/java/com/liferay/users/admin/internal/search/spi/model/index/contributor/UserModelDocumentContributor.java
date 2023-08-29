@@ -64,8 +64,8 @@ public class UserModelDocumentContributor
 				user.getUserId());
 
 			document.addKeyword(Field.COMPANY_ID, user.getCompanyId());
-			document.addKeyword(Field.GROUP_ID, activeTransitiveGroupIds);
 			document.addDate(Field.CREATE_DATE, user.getCreateDate());
+			document.addKeyword(Field.GROUP_ID, activeTransitiveGroupIds);
 			document.addDate(Field.MODIFIED_DATE, user.getModifiedDate());
 			document.addKeyword(Field.SCOPE_GROUP_ID, activeTransitiveGroupIds);
 			document.addKeyword(Field.STATUS, user.getStatus());
