@@ -108,7 +108,7 @@ import com.liferay.portal.security.permission.SimplePermissionChecker;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.workflow.comparator.WorkflowComparatorFactory;
-import com.liferay.portal.workflow.kaleo.definition.converter.util.WorkflowDefinitionContentConverterUtil;
+import com.liferay.portal.workflow.kaleo.definition.util.WorkflowDefinitionContentUtil;
 import com.liferay.portal.workflow.manager.WorkflowDefinitionManager;
 
 import java.util.ArrayList;
@@ -1815,7 +1815,7 @@ public class WorkflowTaskManagerImplTest extends BaseWorkflowManagerTestCase {
 	private String _readFileToJSONString(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
-		return WorkflowDefinitionContentConverterUtil.toJSON(
+		return WorkflowDefinitionContentUtil.toJSON(
 			StringUtil.read(clazz.getClassLoader(), _getBasePath() + fileName));
 	}
 

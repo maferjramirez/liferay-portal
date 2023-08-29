@@ -16,7 +16,7 @@ import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.workflow.kaleo.definition.converter.util.WorkflowDefinitionContentConverterUtil;
+import com.liferay.portal.workflow.kaleo.definition.util.WorkflowDefinitionContentUtil;
 import com.liferay.portal.workflow.manager.WorkflowDefinitionManager;
 
 import java.io.InputStream;
@@ -54,7 +54,7 @@ public class WorkflowDefinitionManagerTest extends BaseWorkflowManagerTestCase {
 
 	@Test
 	public void testDeployWorkflowDefinitionWithJSONContent() throws Exception {
-		String content = WorkflowDefinitionContentConverterUtil.toJSON(
+		String content = WorkflowDefinitionContentUtil.toJSON(
 			StringUtil.read(
 				getResourceInputStream(
 					"single-approver-workflow-definition.xml")));

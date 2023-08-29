@@ -48,8 +48,8 @@ import com.liferay.portal.workflow.kaleo.definition.Transition;
 import com.liferay.portal.workflow.kaleo.definition.UpdateStatusAction;
 import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
 import com.liferay.portal.workflow.kaleo.definition.UserRecipient;
-import com.liferay.portal.workflow.kaleo.definition.converter.util.WorkflowDefinitionContentConverterUtil;
 import com.liferay.portal.workflow.kaleo.definition.parser.WorkflowModelParser;
+import com.liferay.portal.workflow.kaleo.definition.util.WorkflowDefinitionContentUtil;
 
 import java.io.InputStream;
 
@@ -111,7 +111,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		if (Validator.isNotNull(content) &&
 			content.startsWith(StringPool.OPEN_CURLY_BRACE)) {
 
-			return WorkflowDefinitionContentConverterUtil.toXML(content);
+			return WorkflowDefinitionContentUtil.toXML(content);
 		}
 
 		return content;

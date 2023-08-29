@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-package com.liferay.portal.workflow.kaleo.definition.converter.util;
+package com.liferay.portal.workflow.kaleo.definition.util;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.json.JSONFactoryImpl;
@@ -40,7 +40,7 @@ import org.xml.sax.InputSource;
 /**
  * @author Rafael Praxedes
  */
-public class WorkflowDefinitionContentConverterUtilTest {
+public class WorkflowDefinitionContentUtilTest {
 
 	@ClassRule
 	@Rule
@@ -66,14 +66,13 @@ public class WorkflowDefinitionContentConverterUtilTest {
 
 		Assert.assertEquals(
 			"metadata",
-			jsonObject.getString(
-				WorkflowDefinitionContentConverterUtil.TAG_NAME));
+			jsonObject.getString(WorkflowDefinitionContentUtil.TAG_NAME));
 
 		Assert.assertTrue(
-			jsonObject.has(WorkflowDefinitionContentConverterUtil.CDATA_VALUE));
+			jsonObject.has(WorkflowDefinitionContentUtil.CDATA_VALUE));
 
 		JSONArray jsonArray = jsonObject.getJSONArray(
-			WorkflowDefinitionContentConverterUtil.CDATA_VALUE);
+			WorkflowDefinitionContentUtil.CDATA_VALUE);
 
 		Assert.assertEquals(jsonArray.toString(), 8, jsonArray.length());
 
@@ -144,11 +143,10 @@ public class WorkflowDefinitionContentConverterUtilTest {
 
 		Assert.assertEquals(
 			"container-tag",
-			jsonObject.getString(
-				WorkflowDefinitionContentConverterUtil.TAG_NAME));
+			jsonObject.getString(WorkflowDefinitionContentUtil.TAG_NAME));
 
 		JSONArray childJSONArray = jsonObject.getJSONArray(
-			WorkflowDefinitionContentConverterUtil.CHILD_NODES);
+			WorkflowDefinitionContentUtil.CHILD_NODES);
 
 		Assert.assertEquals(2, childJSONArray.length());
 
@@ -156,23 +154,19 @@ public class WorkflowDefinitionContentConverterUtilTest {
 
 		Assert.assertEquals(
 			"repeatable-tag",
-			childJSONObject.getString(
-				WorkflowDefinitionContentConverterUtil.TAG_NAME));
+			childJSONObject.getString(WorkflowDefinitionContentUtil.TAG_NAME));
 		Assert.assertEquals(
 			"first",
-			childJSONObject.getString(
-				WorkflowDefinitionContentConverterUtil.VALUE));
+			childJSONObject.getString(WorkflowDefinitionContentUtil.VALUE));
 
 		childJSONObject = childJSONArray.getJSONObject(1);
 
 		Assert.assertEquals(
 			"repeatable-tag",
-			childJSONObject.getString(
-				WorkflowDefinitionContentConverterUtil.TAG_NAME));
+			childJSONObject.getString(WorkflowDefinitionContentUtil.TAG_NAME));
 		Assert.assertEquals(
 			"second",
-			childJSONObject.getString(
-				WorkflowDefinitionContentConverterUtil.VALUE));
+			childJSONObject.getString(WorkflowDefinitionContentUtil.VALUE));
 	}
 
 	@Test
@@ -203,12 +197,11 @@ public class WorkflowDefinitionContentConverterUtilTest {
 
 		Assert.assertEquals(
 			"test",
-			jsonObject.getString(
-				WorkflowDefinitionContentConverterUtil.TAG_NAME));
+			jsonObject.getString(WorkflowDefinitionContentUtil.TAG_NAME));
 
 		Assert.assertEquals(
 			"simple tag",
-			jsonObject.getString(WorkflowDefinitionContentConverterUtil.VALUE));
+			jsonObject.getString(WorkflowDefinitionContentUtil.VALUE));
 	}
 
 	@Test
@@ -230,11 +223,10 @@ public class WorkflowDefinitionContentConverterUtilTest {
 
 		Assert.assertEquals(
 			"labels",
-			jsonObject.getString(
-				WorkflowDefinitionContentConverterUtil.TAG_NAME));
+			jsonObject.getString(WorkflowDefinitionContentUtil.TAG_NAME));
 
 		JSONArray childJSONArray = jsonObject.getJSONArray(
-			WorkflowDefinitionContentConverterUtil.CHILD_NODES);
+			WorkflowDefinitionContentUtil.CHILD_NODES);
 
 		Assert.assertEquals(1, childJSONArray.length());
 
@@ -242,8 +234,7 @@ public class WorkflowDefinitionContentConverterUtilTest {
 
 		Assert.assertEquals(
 			"Label",
-			labelJSONObject.getString(
-				WorkflowDefinitionContentConverterUtil.VALUE));
+			labelJSONObject.getString(WorkflowDefinitionContentUtil.VALUE));
 
 		Assert.assertEquals("en_US", labelJSONObject.getString("language-id"));
 	}
@@ -288,13 +279,12 @@ public class WorkflowDefinitionContentConverterUtilTest {
 		return documentBuilder.parse(
 			new InputSource(
 				new StringReader(
-					WorkflowDefinitionContentConverterUtil.toXML(
-						_read(jsonFileName)))));
+					WorkflowDefinitionContentUtil.toXML(_read(jsonFileName)))));
 	}
 
 	private JSONObject _toJSONObject(String xmlFileName) throws Exception {
 		return JSONFactoryUtil.createJSONObject(
-			WorkflowDefinitionContentConverterUtil.toJSON(_read(xmlFileName)));
+			WorkflowDefinitionContentUtil.toJSON(_read(xmlFileName)));
 	}
 
 }
