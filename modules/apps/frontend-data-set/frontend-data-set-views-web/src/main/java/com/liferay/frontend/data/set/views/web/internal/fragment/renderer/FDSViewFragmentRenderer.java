@@ -51,11 +51,8 @@ import java.io.Writer;
 
 import java.sql.Timestamp;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -306,27 +303,25 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 
 	private JSONArray _getFieldsJSONArray(
 			FragmentEntryLink fragmentEntryLink,
-			ObjectDefinition objectDefinition, ObjectEntry objectEntry)
+			ObjectDefinition fdsViewObjectDefinition,
+			ObjectEntry fdsViewObjectEntry)
 		throws Exception {
 
-		List<ObjectEntry> fdsFieldObjectEntries = new ArrayList<>(
-			_getRelatedObjectEntries(
-				objectDefinition, objectEntry, "fdsViewFDSFieldRelationship"));
-
-		Map<String, Object> fdsViewProperties = objectEntry.getProperties();
-
-		List<Long> fdsFieldIds = ListUtil.toList(
-			Arrays.asList(
-				StringUtil.split(
-					(String)fdsViewProperties.get("fdsFieldsOrder"),
-					StringPool.COMMA)),
+		List<Long> ids = ListUtil.toList(
+			ListUtil.fromString(
+				MapUtil.getString(
+					fdsViewObjectEntry.getProperties(), "fdsFieldsOrder"),
+				StringPool.COMMA),
 			Long::parseLong);
 
-		Collections.sort(
-			fdsFieldObjectEntries,
+		Set<ObjectEntry> fdsFieldObjectEntries = new TreeSet<>(
 			Comparator.comparing(
-				ObjectEntry::getId,
-				Comparator.comparingInt(fdsFieldIds::indexOf)));
+				ObjectEntry::getId, Comparator.comparingInt(ids::indexOf)));
+
+		fdsFieldObjectEntries.addAll(
+			_getRelatedObjectEntries(
+				fdsViewObjectDefinition, fdsViewObjectEntry,
+				"fdsViewFDSFieldRelationship"));
 
 		return JSONUtil.toJSONArray(
 			fdsFieldObjectEntries,
@@ -459,8 +454,8 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 	}
 
 	private Collection<ObjectEntry> _getRelatedObjectEntries(
-			ObjectDefinition objectDefinition, ObjectEntry objectEntry,
-			String relationshipName)
+			ObjectDefinition fdsViewObjectDefinition,
+			ObjectEntry fdsViewObjectEntry, String relationshipName)
 		throws Exception {
 
 		DTOConverterContext dtoConverterContext =
@@ -471,12 +466,12 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 		DefaultObjectEntryManager defaultObjectEntryManager =
 			DefaultObjectEntryManagerProvider.provide(
 				_objectEntryManagerRegistry.getObjectEntryManager(
-					objectDefinition.getStorageType()));
+					fdsViewObjectDefinition.getStorageType()));
 
 		Page<ObjectEntry> relatedObjectEntriesPage =
 			defaultObjectEntryManager.getObjectEntryRelatedObjectEntries(
-				dtoConverterContext, objectDefinition, objectEntry.getId(),
-				relationshipName,
+				dtoConverterContext, fdsViewObjectDefinition,
+				fdsViewObjectEntry.getId(), relationshipName,
 				Pagination.of(QueryUtil.ALL_POS, QueryUtil.ALL_POS));
 
 		return relatedObjectEntriesPage.getItems();
