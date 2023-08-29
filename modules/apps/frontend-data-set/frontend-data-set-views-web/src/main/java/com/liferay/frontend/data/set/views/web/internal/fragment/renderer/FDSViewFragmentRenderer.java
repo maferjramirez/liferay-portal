@@ -304,27 +304,6 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 		);
 	}
 
-	private JSONObject _getFDSDateFilterJSONObject(
-		ObjectEntry fdsDateFilterObjectEntry) {
-
-		Map<String, Object> fdsDateFilterProperties =
-			fdsDateFilterObjectEntry.getProperties();
-
-		return JSONUtil.put(
-			"entityFieldType", fdsDateFilterProperties.get("type")
-		).put(
-			"id", fdsDateFilterProperties.get("fieldName")
-		).put(
-			"label", fdsDateFilterProperties.get("name")
-		).put(
-			"max", _getDateJSONObject(fdsDateFilterProperties.get("to"))
-		).put(
-			"min", _getDateJSONObject(fdsDateFilterProperties.get("from"))
-		).put(
-			"type", "dateRange"
-		);
-	}
-
 	private JSONArray _getFieldsJSONArray(
 			FragmentEntryLink fragmentEntryLink,
 			ObjectDefinition objectDefinition, ObjectEntry objectEntry)
@@ -415,15 +394,28 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 		return JSONUtil.toJSONArray(
 			fdsFilterObjectEntries,
 			(ObjectEntry fdsFilterObjectEntry) -> {
+				Map<String, Object> properties =
+					fdsFilterObjectEntry.getProperties();
+
 				if (!Objects.equals(
-						MapUtil.getString(
-							fdsFilterObjectEntry.getProperties(), "type"),
-						"date")) {
+						MapUtil.getString(properties, "type"), "date")) {
 
 					return null;
 				}
 
-				return _getFDSDateFilterJSONObject(fdsFilterObjectEntry);
+				return JSONUtil.put(
+					"entityFieldType", properties.get("type")
+				).put(
+					"id", properties.get("fieldName")
+				).put(
+					"label", properties.get("name")
+				).put(
+					"max", _getDateJSONObject(properties.get("to"))
+				).put(
+					"min", _getDateJSONObject(properties.get("from"))
+				).put(
+					"type", "dateRange"
+				);
 			});
 	}
 
