@@ -244,7 +244,8 @@ public class WorkflowDefinitionContentUtilTest {
 		Class<?> clazz = getClass();
 
 		return StringUtil.read(
-			clazz.getResourceAsStream("dependencies/" + fileName));
+			clazz.getResourceAsStream(
+				"dependencies/WorkflowDefinitionContentUtilTest." + fileName));
 	}
 
 	private Document _toDocument(String jsonFileName) throws Exception {
