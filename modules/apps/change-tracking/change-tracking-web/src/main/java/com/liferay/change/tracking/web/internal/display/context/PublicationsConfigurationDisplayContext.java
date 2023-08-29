@@ -38,9 +38,9 @@ public class PublicationsConfigurationDisplayContext {
 				themeDisplay.getCompanyId());
 
 		_publicationsEnabled = ctSettingsConfiguration.enabled();
-		_remoteEnabled = ctSettingsConfiguration.remoteEnabled();
 		_remoteClientId = ctSettingsConfiguration.remoteClientId();
 		_remoteClientSecret = ctSettingsConfiguration.remoteClientSecret();
+		_remoteEnabled = ctSettingsConfiguration.remoteEnabled();
 		_sandboxOnlyEnabled = ctSettingsConfiguration.sandboxEnabled();
 		_unapprovedChangesAllowed =
 			ctSettingsConfiguration.unapprovedChangesAllowed();
