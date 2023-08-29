@@ -64,15 +64,11 @@ public class WorkflowDefinitionContentUtilTest {
 	public void testConvertCDataContentToJSON() throws Exception {
 		JSONObject jsonObject = _toJSONObject("cdata.xml");
 
-		Assert.assertEquals(
-			"metadata",
-			jsonObject.getString("#tag-name"));
+		Assert.assertEquals("metadata", jsonObject.getString("#tag-name"));
 
-		Assert.assertTrue(
-			jsonObject.has("#cdata-value"));
+		Assert.assertTrue(jsonObject.has("#cdata-value"));
 
-		JSONArray jsonArray = jsonObject.getJSONArray(
-			"#cdata-value");
+		JSONArray jsonArray = jsonObject.getJSONArray("#cdata-value");
 
 		Assert.assertEquals(jsonArray.toString(), 8, jsonArray.length());
 
@@ -141,32 +137,23 @@ public class WorkflowDefinitionContentUtilTest {
 	public void testConvertRepeatableTagToJSON() throws Exception {
 		JSONObject jsonObject = _toJSONObject("repeatable-tag.xml");
 
-		Assert.assertEquals(
-			"container-tag",
-			jsonObject.getString("#tag-name"));
+		Assert.assertEquals("container-tag", jsonObject.getString("#tag-name"));
 
-		JSONArray childJSONArray = jsonObject.getJSONArray(
-			"#child-nodes");
+		JSONArray childJSONArray = jsonObject.getJSONArray("#child-nodes");
 
 		Assert.assertEquals(2, childJSONArray.length());
 
 		JSONObject childJSONObject = childJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
-			"repeatable-tag",
-			childJSONObject.getString("#tag-name"));
-		Assert.assertEquals(
-			"first",
-			childJSONObject.getString("#value"));
+			"repeatable-tag", childJSONObject.getString("#tag-name"));
+		Assert.assertEquals("first", childJSONObject.getString("#value"));
 
 		childJSONObject = childJSONArray.getJSONObject(1);
 
 		Assert.assertEquals(
-			"repeatable-tag",
-			childJSONObject.getString("#tag-name"));
-		Assert.assertEquals(
-			"second",
-			childJSONObject.getString("#value"));
+			"repeatable-tag", childJSONObject.getString("#tag-name"));
+		Assert.assertEquals("second", childJSONObject.getString("#value"));
 	}
 
 	@Test
@@ -195,13 +182,9 @@ public class WorkflowDefinitionContentUtilTest {
 	public void testConvertSimpleTagToJSON() throws Exception {
 		JSONObject jsonObject = _toJSONObject("simple-tag.xml");
 
-		Assert.assertEquals(
-			"test",
-			jsonObject.getString("#tag-name"));
+		Assert.assertEquals("test", jsonObject.getString("#tag-name"));
 
-		Assert.assertEquals(
-			"simple tag",
-			jsonObject.getString("#value"));
+		Assert.assertEquals("simple tag", jsonObject.getString("#value"));
 	}
 
 	@Test
@@ -221,20 +204,15 @@ public class WorkflowDefinitionContentUtilTest {
 	public void testConvertTagWithAttributesToJSON() throws Exception {
 		JSONObject jsonObject = _toJSONObject("tag-with-attributes.xml");
 
-		Assert.assertEquals(
-			"labels",
-			jsonObject.getString("#tag-name"));
+		Assert.assertEquals("labels", jsonObject.getString("#tag-name"));
 
-		JSONArray childJSONArray = jsonObject.getJSONArray(
-			"#child-nodes");
+		JSONArray childJSONArray = jsonObject.getJSONArray("#child-nodes");
 
 		Assert.assertEquals(1, childJSONArray.length());
 
 		JSONObject labelJSONObject = childJSONArray.getJSONObject(0);
 
-		Assert.assertEquals(
-			"Label",
-			labelJSONObject.getString("#value"));
+		Assert.assertEquals("Label", labelJSONObject.getString("#value"));
 
 		Assert.assertEquals("en_US", labelJSONObject.getString("language-id"));
 	}
