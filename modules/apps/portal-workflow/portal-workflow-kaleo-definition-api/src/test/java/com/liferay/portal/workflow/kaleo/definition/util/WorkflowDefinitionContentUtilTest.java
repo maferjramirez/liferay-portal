@@ -61,7 +61,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testConvertCDataToJSON() throws Exception {
+	public void testCDataToJSON() throws Exception {
 		JSONObject jsonObject = _toJSONObject("cdata.xml");
 
 		Assert.assertEquals("metadata", jsonObject.getString("#tag-name"));
@@ -90,7 +90,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testConvertCDataToXML() throws Exception {
+	public void testCDataToXML() throws Exception {
 		Document document = _toDocument("cdata.json");
 
 		Element rootElement = document.getDocumentElement();
@@ -134,7 +134,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testConvertRepeatableTagToJSON() throws Exception {
+	public void testRepeatableTagToJSON() throws Exception {
 		JSONObject jsonObject = _toJSONObject("repeatable-tag.xml");
 
 		Assert.assertEquals("container-tag", jsonObject.getString("#tag-name"));
@@ -157,7 +157,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testConvertRepeatableTagToXML() throws Exception {
+	public void testRepeatableTagToXML() throws Exception {
 		Document document = _toDocument("repeatable-tag.json");
 
 		Element rootElement = document.getDocumentElement();
@@ -179,7 +179,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testConvertSimpleTagToJSON() throws Exception {
+	public void testSimpleTagToJSON() throws Exception {
 		JSONObject jsonObject = _toJSONObject("simple-tag.xml");
 
 		Assert.assertEquals("test", jsonObject.getString("#tag-name"));
@@ -188,7 +188,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testConvertSimpleTagToXML() throws Exception {
+	public void testSimpleTagToXML() throws Exception {
 		Document document = _toDocument("simple-tag.json");
 
 		Element rootElement = document.getDocumentElement();
@@ -201,7 +201,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testConvertTagWithAttributesToJSON() throws Exception {
+	public void testTagWithAttributesToJSON() throws Exception {
 		JSONObject jsonObject = _toJSONObject("tag-with-attributes.xml");
 
 		Assert.assertEquals("labels", jsonObject.getString("#tag-name"));
@@ -218,7 +218,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testConvertTagWithAttributesToXML() throws Exception {
+	public void testTagWithAttributesToXML() throws Exception {
 		Document document = _toDocument("tag-with-attributes.json");
 
 		Element rootElement = document.getDocumentElement();
