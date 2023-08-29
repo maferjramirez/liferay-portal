@@ -109,7 +109,7 @@ public class PortalTestSuiteUpstreamControllerBuildRunner
 			return;
 		}
 
-		String jenkinsAuthenticationToken;
+		String jenkinsAuthenticationToken = null;
 
 		try {
 			Properties buildProperties =
