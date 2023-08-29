@@ -92,7 +92,7 @@ public class SXPElementServiceImpl extends SXPElementServiceBaseImpl {
 	}
 
 	@Override
-	public SXPElement fetchSXPElementById(long sxpElementId)
+	public SXPElement fetchSXPElement(long sxpElementId)
 		throws PortalException {
 
 		SXPElement sxpElement = sxpElementLocalService.fetchSXPElement(

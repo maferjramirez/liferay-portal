@@ -299,7 +299,7 @@ public class SXPElementResourceImpl extends BaseSXPElementResourceImpl {
 		throws Exception {
 
 		com.liferay.search.experiences.model.SXPElement
-			serviceBuilderSXPElement = _sxpElementService.fetchSXPElementById(
+			serviceBuilderSXPElement = _sxpElementService.fetchSXPElement(
 				sxpElementId);
 
 		return _putSXPElement(serviceBuilderSXPElement, sxpElement);
