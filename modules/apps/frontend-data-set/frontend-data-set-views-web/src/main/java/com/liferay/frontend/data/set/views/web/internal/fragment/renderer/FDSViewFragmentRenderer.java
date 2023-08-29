@@ -391,13 +391,13 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 			ObjectEntry fdsViewObjectEntry)
 		throws Exception {
 
-		Map<String, Object> fdsViewProperties =
+		Map<String, Object> fdsViewObjectEntryProperties =
 			fdsViewObjectEntry.getProperties();
 
 		List<Long> ids = ListUtil.toList(
 			Arrays.asList(
 				StringUtil.split(
-					(String)fdsViewProperties.get("fdsFiltersOrder"),
+					(String)fdsViewObjectEntryProperties.get("fdsFiltersOrder"),
 					StringPool.COMMA)),
 			Long::parseLong);
 
@@ -421,10 +421,12 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 		return JSONUtil.toJSONArray(
 			fdsFiltersObjectEntries,
 			(ObjectEntry fdsFilterObjectEntry) -> {
-				Map<String, Object> fdsFiltersProperties =
+				Map<String, Object> fdsFilterObjectEntryProperties =
 					fdsFilterObjectEntry.getProperties();
 
-				if (!Objects.equals(fdsFiltersProperties.get("type"), "date")) {
+				if (!Objects.equals(
+						fdsFilterObjectEntryProperties.get("type"), "date")) {
+
 					return null;
 				}
 
