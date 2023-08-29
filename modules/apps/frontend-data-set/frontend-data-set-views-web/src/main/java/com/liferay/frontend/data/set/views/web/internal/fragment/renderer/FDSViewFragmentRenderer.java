@@ -394,7 +394,7 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 		Map<String, Object> fdsViewProperties =
 			fdsViewObjectEntry.getProperties();
 
-		List<Long> idsOrder = ListUtil.toList(
+		List<Long> ids = ListUtil.toList(
 			Arrays.asList(
 				StringUtil.split(
 					(String)fdsViewProperties.get("fdsFiltersOrder"),
@@ -404,7 +404,7 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 		Set<ObjectEntry> fdsFiltersObjectEntries = new TreeSet<>(
 			Comparator.comparing(
 				ObjectEntry::getId,
-				Comparator.comparingInt(idsOrder::indexOf)));
+				Comparator.comparingInt(ids::indexOf)));
 
 		fdsFiltersObjectEntries.addAll(
 			_getRelatedObjectEntries(
@@ -415,9 +415,7 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 				fdsViewObjectDefinition, fdsViewObjectEntry,
 				"fdsViewFDSDynamicFilterRelationship"));
 
-		if ((fdsFiltersObjectEntries == null) ||
-			fdsFiltersObjectEntries.isEmpty()) {
-
+		if (fdsFiltersObjectEntries.isEmpty()) {
 			return _jsonFactory.createJSONArray();
 		}
 
