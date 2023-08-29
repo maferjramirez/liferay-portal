@@ -111,6 +111,7 @@ public class WorkflowDefinitionContentUtil {
 		}
 
 		Node valueNode = null;
+
 		NodeList nodeList = element.getChildNodes();
 
 		for (int i = 0; i < nodeList.getLength(); i++) {
