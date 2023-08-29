@@ -101,9 +101,7 @@ public class HeadlessBuilderResourceImpl {
 
 		if ((endpoint == null) || (endpoint.getScope() != scope)) {
 			throw new NoSuchModelException(
-				String.format(
-					"Endpoint /%s does not exist for %s", path,
-					_apiApplication.getTitle()));
+				"Endpoint /%s does not exist for " + path);
 		}
 
 		if (endpoint.getResponseSchema() == null) {
