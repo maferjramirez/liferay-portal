@@ -285,15 +285,12 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 		return _interpolateURL(sb.toString(), httpServletRequest);
 	}
 
-	private JSONObject _getDateJSONObject(Object fdsDateFilterMax) {
-		Timestamp fdsDateFilterMaxTimestamp = (Timestamp)fdsDateFilterMax;
-
-		Date fdsDateFilterMaxDate = new Date(
-			fdsDateFilterMaxTimestamp.getTime());
-
+	private JSONObject _getDateJSONObject(Object object) {
 		Calendar calendar = Calendar.getInstance();
 
-		calendar.setTime(fdsDateFilterMaxDate);
+		Timestamp timestamp = (Timestamp)object;
+
+		calendar.setTime(new Date(timestamp.getTime()));
 
 		return JSONUtil.put(
 			"day", calendar.get(Calendar.DATE)
