@@ -282,13 +282,13 @@ public class SXPBlueprintResourceImpl extends BaseSXPBlueprintResourceImpl {
 		SXPBlueprintUtil.unpack(sxpBlueprint);
 
 		com.liferay.search.experiences.model.SXPBlueprint
-			serviceBuilderSxpBlueprint =
+			serviceBuilderSXPBlueprint =
 				_sxpBlueprintService.fetchSXPBlueprintById(sxpBlueprintId);
 
 		sxpBlueprint.setId(sxpBlueprintId);
 
-		if (serviceBuilderSxpBlueprint != null) {
-			return _updateSxpBlueprint(sxpBlueprintId, sxpBlueprint);
+		if (serviceBuilderSXPBlueprint != null) {
+			return _updateSXPBlueprint(sxpBlueprintId, sxpBlueprint);
 		}
 
 		return postSXPBlueprint(sxpBlueprint);
@@ -300,15 +300,15 @@ public class SXPBlueprintResourceImpl extends BaseSXPBlueprintResourceImpl {
 		throws Exception {
 
 		com.liferay.search.experiences.model.SXPBlueprint
-			serviceBuilderSxpBlueprint =
+			serviceBuilderSXPBlueprint =
 				_sxpBlueprintService.fetchSXPBlueprintByExternalReferenceCode(
 					externalReferenceCode, contextCompany.getCompanyId());
 
 		sxpBlueprint.setExternalReferenceCode(externalReferenceCode);
 
-		if (serviceBuilderSxpBlueprint != null) {
-			return _updateSxpBlueprint(
-				serviceBuilderSxpBlueprint.getSXPBlueprintId(), sxpBlueprint);
+		if (serviceBuilderSXPBlueprint != null) {
+			return _updateSXPBlueprint(
+				serviceBuilderSXPBlueprint.getSXPBlueprintId(), sxpBlueprint);
 		}
 
 		return postSXPBlueprint(sxpBlueprint);
@@ -335,7 +335,7 @@ public class SXPBlueprintResourceImpl extends BaseSXPBlueprintResourceImpl {
 		return "1.0";
 	}
 
-	private SXPBlueprint _updateSxpBlueprint(
+	private SXPBlueprint _updateSXPBlueprint(
 			Long sxpBlueprintId, SXPBlueprint sxpBlueprint)
 		throws Exception {
 
