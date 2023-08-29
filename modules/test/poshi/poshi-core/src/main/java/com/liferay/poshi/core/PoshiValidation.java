@@ -2116,18 +2116,20 @@ public class PoshiValidation {
 			PoshiElementException.getFilteredExceptions(
 				new ArrayList<>(_exceptions));
 
-		if (!filteredExceptions.isEmpty()) {
-			System.out.println("\n\n");
-			System.out.println(filteredExceptions.size());
-			System.out.println(" errors in POSHI\n\n");
-
-			for (Exception exception : filteredExceptions) {
-				System.out.println(exception.getMessage());
-				System.out.println("\n\n");
-			}
-
-			throw new Exception();
+		if (filteredExceptions.isEmpty()) {
+			return;
 		}
+
+		System.out.println("\n\n");
+		System.out.println(filteredExceptions.size());
+		System.out.println(" errors in POSHI\n\n");
+
+		for (Exception exception : filteredExceptions) {
+			System.out.println(exception.getMessage());
+			System.out.println("\n\n");
+		}
+
+		throw new Exception();
 	}
 
 	private static void _throwWarnings(List<Exception> warnings) {

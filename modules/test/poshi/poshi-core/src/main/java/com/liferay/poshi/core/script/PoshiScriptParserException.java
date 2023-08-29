@@ -59,34 +59,36 @@ public class PoshiScriptParserException extends PoshiElementException {
 			List<Exception> filteredExceptions = getFilteredExceptions(
 				new ArrayList<>(_poshiScriptParserExceptions));
 
-			if (!filteredExceptions.isEmpty()) {
-				StringBuilder sb = new StringBuilder();
-
-				sb.append("\n\n");
-				sb.append(filteredExceptions.size());
-				sb.append(" error");
-
-				if (filteredExceptions.size() > 1) {
-					sb.append("s");
-				}
-
-				sb.append(" in Poshi Script syntax\n\n");
-
-				int i = 1;
-
-				for (Exception exception : filteredExceptions) {
-					sb.append(i);
-					sb.append(". ");
-					sb.append(exception.getMessage());
-					sb.append("\n\n");
-
-					i++;
-				}
-
-				System.out.println(sb.toString());
-
-				throw new Exception("Found Poshi script syntax errors");
+			if (filteredExceptions.isEmpty()) {
+				return;
 			}
+
+			StringBuilder sb = new StringBuilder();
+
+			sb.append("\n\n");
+			sb.append(filteredExceptions.size());
+			sb.append(" error");
+
+			if (filteredExceptions.size() > 1) {
+				sb.append("s");
+			}
+
+			sb.append(" in Poshi Script syntax\n\n");
+
+			int i = 1;
+
+			for (Exception exception : filteredExceptions) {
+				sb.append(i);
+				sb.append(". ");
+				sb.append(exception.getMessage());
+				sb.append("\n\n");
+
+				i++;
+			}
+
+			System.out.println(sb.toString());
+
+			throw new Exception("Found Poshi script syntax errors");
 		}
 	}
 
