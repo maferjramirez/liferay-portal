@@ -399,25 +399,25 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 				StringPool.COMMA),
 			Long::parseLong);
 
-		Set<ObjectEntry> fdsFiltersObjectEntries = new TreeSet<>(
+		Set<ObjectEntry> fdsFilterObjectEntries = new TreeSet<>(
 			Comparator.comparing(
 				ObjectEntry::getId, Comparator.comparingInt(ids::indexOf)));
 
-		fdsFiltersObjectEntries.addAll(
+		fdsFilterObjectEntries.addAll(
 			_getRelatedObjectEntries(
 				fdsViewObjectDefinition, fdsViewObjectEntry,
 				"fdsViewFDSDateFilterRelationship"));
-		fdsFiltersObjectEntries.addAll(
+		fdsFilterObjectEntries.addAll(
 			_getRelatedObjectEntries(
 				fdsViewObjectDefinition, fdsViewObjectEntry,
 				"fdsViewFDSDynamicFilterRelationship"));
 
-		if (fdsFiltersObjectEntries.isEmpty()) {
+		if (fdsFilterObjectEntries.isEmpty()) {
 			return _jsonFactory.createJSONArray();
 		}
 
 		return JSONUtil.toJSONArray(
-			fdsFiltersObjectEntries,
+			fdsFilterObjectEntries,
 			(ObjectEntry fdsFilterObjectEntry) -> {
 				if (!Objects.equals(
 						MapUtil.getString(
