@@ -184,7 +184,7 @@ public class DirectServletRegistryUtil {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Reloading of dependant JSP is disabled because your " +
-						"Servlet container is not a variant of Jasper",
+						"servlet container is not a variant of Jasper",
 					noSuchMethodException);
 			}
 
