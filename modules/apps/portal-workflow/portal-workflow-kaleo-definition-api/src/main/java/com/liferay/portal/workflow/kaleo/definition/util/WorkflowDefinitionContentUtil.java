@@ -114,10 +114,10 @@ public class WorkflowDefinitionContentUtil {
 		String content = null;
 		boolean cdata = false;
 
-		NodeList childNodes = element.getChildNodes();
+		NodeList nodeList = element.getChildNodes();
 
-		for (int i = 0; i < childNodes.getLength(); i++) {
-			Node node = childNodes.item(i);
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node node = nodeList.item(i);
 
 			if (!(node instanceof Text) || !_hasContent(node.getNodeValue())) {
 				continue;
