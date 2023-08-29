@@ -98,14 +98,10 @@ public class WorkflowDefinitionContentUtil {
 			}
 
 			sb.append(StringPool.SPACE);
-
 			sb.append(key);
-
 			sb.append(StringPool.EQUAL);
 			sb.append(StringPool.QUOTE);
-
 			sb.append(jsonObject.get(key));
-
 			sb.append(StringPool.QUOTE);
 		}
 	}
