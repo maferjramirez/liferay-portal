@@ -57,7 +57,7 @@ public class GetLayoutsStrutsAction implements StrutsAction {
 		int end = ParamUtil.getInteger(
 			httpServletRequest, "end", start + pageSize);
 
-		int finalEnd = Math.max(start, end);
+		int startEndMax = Math.max(start, end);
 
 		ServletResponseUtil.write(
 			httpServletResponse,
@@ -67,7 +67,7 @@ public class GetLayoutsStrutsAction implements StrutsAction {
 					int childLayoutsCount = _layoutService.getLayoutsCount(
 						groupId, privateLayout, parentLayoutId);
 
-					if (childLayoutsCount > finalEnd) {
+					if (childLayoutsCount > startEndMax) {
 						return true;
 					}
 
