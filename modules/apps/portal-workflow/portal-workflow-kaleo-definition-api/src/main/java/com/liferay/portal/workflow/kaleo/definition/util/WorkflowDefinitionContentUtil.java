@@ -78,10 +78,10 @@ public class WorkflowDefinitionContentUtil {
 	private static void _appendAttributes(
 		Element element, JSONObject jsonObject) {
 
-		NamedNodeMap attributes = element.getAttributes();
+		NamedNodeMap namedNodeMap = element.getAttributes();
 
-		for (int i = 0; i < attributes.getLength(); i++) {
-			Node node = attributes.item(i);
+		for (int i = 0; i < namedNodeMap.getLength(); i++) {
+			Node node = namedNodeMap.item(i);
 
 			jsonObject.put(node.getNodeName(), node.getNodeValue());
 		}
