@@ -56,18 +56,10 @@ public class UpdateGlobalPublicationsConfigurationMVCActionCommand
 			actionRequest, CTPortletKeys.PUBLICATIONS,
 			PortletRequest.RENDER_PHASE);
 
-		long companyId = themeDisplay.getCompanyId();
-
 		boolean enablePublications = ParamUtil.getBoolean(
 			actionRequest, "enablePublications");
-
-		String clientId = ParamUtil.getString(actionRequest, "clientId");
-		String clientSecret = ParamUtil.getString(
-			actionRequest, "clientSecret");
 		boolean enableManageRemotely = ParamUtil.getBoolean(
 			actionRequest, "enableManageRemotely");
-		boolean enableSandboxOnly = ParamUtil.getBoolean(
-			actionRequest, "enableSandboxOnly");
 		boolean enableUnapprovedChanges = ParamUtil.getBoolean(
 			actionRequest, "enableUnapprovedChanges");
 
@@ -77,17 +69,20 @@ public class UpdateGlobalPublicationsConfigurationMVCActionCommand
 				ActionKeys.CONFIGURATION);
 
 			_ctSettingsConfigurationHelper.save(
-				companyId,
+				themeDisplay.getCompanyId(),
 				HashMapBuilder.<String, Object>put(
 					"enabled", enablePublications
 				).put(
-					"remoteClientId", clientId
+					"remoteClientId",
+					ParamUtil.getString(actionRequest, "clientId")
 				).put(
-					"remoteClientSecret", clientSecret
+					"remoteClientSecret",
+					ParamUtil.getString(actionRequest, "clientSecret")
 				).put(
 					"remoteEnabled", enableManageRemotely
 				).put(
-					"sandboxEnabled", enableSandboxOnly
+					"sandboxEnabled",
+					ParamUtil.getBoolean(actionRequest, "enableSandboxOnly")
 				).put(
 					"unapprovedChangesAllowed", enableUnapprovedChanges
 				).build());
