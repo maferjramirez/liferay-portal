@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -391,14 +392,11 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 			ObjectEntry fdsViewObjectEntry)
 		throws Exception {
 
-		Map<String, Object> fdsViewObjectEntryProperties =
-			fdsViewObjectEntry.getProperties();
-
 		List<Long> ids = ListUtil.toList(
-			Arrays.asList(
-				StringUtil.split(
-					(String)fdsViewObjectEntryProperties.get("fdsFiltersOrder"),
-					StringPool.COMMA)),
+			ListUtil.fromString(
+				MapUtil.getString(
+					fdsViewObjectEntry.getProperties(), "fdsFiltersOrder"),
+				StringPool.COMMA),
 			Long::parseLong);
 
 		Set<ObjectEntry> fdsFiltersObjectEntries = new TreeSet<>(
@@ -421,11 +419,10 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 		return JSONUtil.toJSONArray(
 			fdsFiltersObjectEntries,
 			(ObjectEntry fdsFilterObjectEntry) -> {
-				Map<String, Object> fdsFilterObjectEntryProperties =
-					fdsFilterObjectEntry.getProperties();
-
 				if (!Objects.equals(
-						fdsFilterObjectEntryProperties.get("type"), "date")) {
+						MapUtil.getString(
+							fdsFilterObjectEntry.getProperties(), "type"),
+						"date")) {
 
 					return null;
 				}
