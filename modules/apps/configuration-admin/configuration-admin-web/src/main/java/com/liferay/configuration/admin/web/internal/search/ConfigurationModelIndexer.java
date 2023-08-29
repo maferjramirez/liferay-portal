@@ -241,6 +241,7 @@ public class ConfigurationModelIndexer
 		}
 
 		_serviceRegistration.unregister();
+
 		_stopBundleTracker();
 	}
 
