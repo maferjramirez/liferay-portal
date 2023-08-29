@@ -61,7 +61,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testConvertCDataContentToJSON() throws Exception {
+	public void testConvertCDataToJSON() throws Exception {
 		JSONObject jsonObject = _toJSONObject("cdata.xml");
 
 		Assert.assertEquals("metadata", jsonObject.getString("#tag-name"));
@@ -90,7 +90,7 @@ public class WorkflowDefinitionContentUtilTest {
 	}
 
 	@Test
-	public void testConvertCDataContentToXML() throws Exception {
+	public void testConvertCDataToXML() throws Exception {
 		Document document = _toDocument("cdata.json");
 
 		Element rootElement = document.getDocumentElement();
