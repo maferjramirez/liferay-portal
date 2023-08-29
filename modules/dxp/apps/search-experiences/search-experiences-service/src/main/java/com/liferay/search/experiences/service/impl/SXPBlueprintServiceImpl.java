@@ -65,13 +65,11 @@ public class SXPBlueprintServiceImpl extends SXPBlueprintServiceBaseImpl {
 	}
 
 	@Override
-	public SXPBlueprint fetchSXPBlueprintByExternalReferenceCode(
-			String externalReferenceCode, long companyId)
+	public SXPBlueprint fetchSXPBlueprint(long sxpBlueprintId)
 		throws PortalException {
 
-		SXPBlueprint sxpBlueprint =
-			sxpBlueprintLocalService.fetchSXPBlueprintByExternalReferenceCode(
-				externalReferenceCode, companyId);
+		SXPBlueprint sxpBlueprint = sxpBlueprintLocalService.fetchSXPBlueprint(
+			sxpBlueprintId);
 
 		if (sxpBlueprint != null) {
 			_sxpBlueprintModelResourcePermission.check(
@@ -82,11 +80,13 @@ public class SXPBlueprintServiceImpl extends SXPBlueprintServiceBaseImpl {
 	}
 
 	@Override
-	public SXPBlueprint fetchSXPBlueprint(long sxpBlueprintId)
+	public SXPBlueprint fetchSXPBlueprintByExternalReferenceCode(
+			String externalReferenceCode, long companyId)
 		throws PortalException {
 
-		SXPBlueprint sxpBlueprint = sxpBlueprintLocalService.fetchSXPBlueprint(
-			sxpBlueprintId);
+		SXPBlueprint sxpBlueprint =
+			sxpBlueprintLocalService.fetchSXPBlueprintByExternalReferenceCode(
+				externalReferenceCode, companyId);
 
 		if (sxpBlueprint != null) {
 			_sxpBlueprintModelResourcePermission.check(

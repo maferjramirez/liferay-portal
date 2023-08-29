@@ -75,13 +75,11 @@ public class SXPElementServiceImpl extends SXPElementServiceBaseImpl {
 	}
 
 	@Override
-	public SXPElement fetchSXPElementByExternalReferenceCode(
-			String externalReferenceCode, long companyId)
+	public SXPElement fetchSXPElement(long sxpElementId)
 		throws PortalException {
 
-		SXPElement sxpElement =
-			sxpElementLocalService.fetchSXPElementByExternalReferenceCode(
-				externalReferenceCode, companyId);
+		SXPElement sxpElement = sxpElementLocalService.fetchSXPElement(
+			sxpElementId);
 
 		if (sxpElement != null) {
 			_sxpElementModelResourcePermission.check(
@@ -92,11 +90,13 @@ public class SXPElementServiceImpl extends SXPElementServiceBaseImpl {
 	}
 
 	@Override
-	public SXPElement fetchSXPElement(long sxpElementId)
+	public SXPElement fetchSXPElementByExternalReferenceCode(
+			String externalReferenceCode, long companyId)
 		throws PortalException {
 
-		SXPElement sxpElement = sxpElementLocalService.fetchSXPElement(
-			sxpElementId);
+		SXPElement sxpElement =
+			sxpElementLocalService.fetchSXPElementByExternalReferenceCode(
+				externalReferenceCode, companyId);
 
 		if (sxpElement != null) {
 			_sxpElementModelResourcePermission.check(
