@@ -130,19 +130,16 @@ public class SXPBlueprintServiceHttp {
 	}
 
 	public static com.liferay.search.experiences.model.SXPBlueprint
-			fetchSXPBlueprintByExternalReferenceCode(
-				HttpPrincipal httpPrincipal, String externalReferenceCode,
-				long companyId)
+			fetchSXPBlueprint(HttpPrincipal httpPrincipal, long sxpBlueprintId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				SXPBlueprintServiceUtil.class,
-				"fetchSXPBlueprintByExternalReferenceCode",
-				_fetchSXPBlueprintByExternalReferenceCodeParameterTypes2);
+				SXPBlueprintServiceUtil.class, "fetchSXPBlueprint",
+				_fetchSXPBlueprintParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, externalReferenceCode, companyId);
+				methodKey, sxpBlueprintId);
 
 			Object returnObj = null;
 
@@ -173,17 +170,19 @@ public class SXPBlueprintServiceHttp {
 	}
 
 	public static com.liferay.search.experiences.model.SXPBlueprint
-			fetchSXPBlueprintById(
-				HttpPrincipal httpPrincipal, long sxpBlueprintId)
+			fetchSXPBlueprintByExternalReferenceCode(
+				HttpPrincipal httpPrincipal, String externalReferenceCode,
+				long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				SXPBlueprintServiceUtil.class, "fetchSXPBlueprintById",
-				_fetchSXPBlueprintByIdParameterTypes3);
+				SXPBlueprintServiceUtil.class,
+				"fetchSXPBlueprintByExternalReferenceCode",
+				_fetchSXPBlueprintByExternalReferenceCodeParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, sxpBlueprintId);
+				methodKey, externalReferenceCode, companyId);
 
 			Object returnObj = null;
 
@@ -354,12 +353,12 @@ public class SXPBlueprintServiceHttp {
 		};
 	private static final Class<?>[] _deleteSXPBlueprintParameterTypes1 =
 		new Class[] {long.class};
+	private static final Class<?>[] _fetchSXPBlueprintParameterTypes2 =
+		new Class[] {long.class};
 	private static final Class<?>[]
-		_fetchSXPBlueprintByExternalReferenceCodeParameterTypes2 = new Class[] {
+		_fetchSXPBlueprintByExternalReferenceCodeParameterTypes3 = new Class[] {
 			String.class, long.class
 		};
-	private static final Class<?>[] _fetchSXPBlueprintByIdParameterTypes3 =
-		new Class[] {long.class};
 	private static final Class<?>[] _getSXPBlueprintParameterTypes4 =
 		new Class[] {long.class};
 	private static final Class<?>[]

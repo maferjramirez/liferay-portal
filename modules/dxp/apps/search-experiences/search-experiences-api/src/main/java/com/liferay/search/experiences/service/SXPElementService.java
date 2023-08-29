@@ -55,12 +55,11 @@ public interface SXPElementService extends BaseService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SXPElement fetchSXPElementByExternalReferenceCode(
-			String externalReferenceCode, long companyId)
-		throws PortalException;
+	public SXPElement fetchSXPElement(long sxpElementId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SXPElement fetchSXPElementById(long sxpElementId)
+	public SXPElement fetchSXPElementByExternalReferenceCode(
+			String externalReferenceCode, long companyId)
 		throws PortalException;
 
 	/**

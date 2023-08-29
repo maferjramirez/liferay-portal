@@ -55,12 +55,12 @@ public interface SXPBlueprintService extends BaseService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SXPBlueprint fetchSXPBlueprintByExternalReferenceCode(
-			String externalReferenceCode, long companyId)
+	public SXPBlueprint fetchSXPBlueprint(long sxpBlueprintId)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SXPBlueprint fetchSXPBlueprintById(long sxpBlueprintId)
+	public SXPBlueprint fetchSXPBlueprintByExternalReferenceCode(
+			String externalReferenceCode, long companyId)
 		throws PortalException;
 
 	/**

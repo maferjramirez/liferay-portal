@@ -48,18 +48,18 @@ public class SXPBlueprintServiceUtil {
 		return getService().deleteSXPBlueprint(sxpBlueprintId);
 	}
 
+	public static SXPBlueprint fetchSXPBlueprint(long sxpBlueprintId)
+		throws PortalException {
+
+		return getService().fetchSXPBlueprint(sxpBlueprintId);
+	}
+
 	public static SXPBlueprint fetchSXPBlueprintByExternalReferenceCode(
 			String externalReferenceCode, long companyId)
 		throws PortalException {
 
 		return getService().fetchSXPBlueprintByExternalReferenceCode(
 			externalReferenceCode, companyId);
-	}
-
-	public static SXPBlueprint fetchSXPBlueprintById(long sxpBlueprintId)
-		throws PortalException {
-
-		return getService().fetchSXPBlueprintById(sxpBlueprintId);
 	}
 
 	/**

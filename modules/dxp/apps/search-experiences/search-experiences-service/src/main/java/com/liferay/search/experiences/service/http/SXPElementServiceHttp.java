@@ -129,19 +129,16 @@ public class SXPElementServiceHttp {
 	}
 
 	public static com.liferay.search.experiences.model.SXPElement
-			fetchSXPElementByExternalReferenceCode(
-				HttpPrincipal httpPrincipal, String externalReferenceCode,
-				long companyId)
+			fetchSXPElement(HttpPrincipal httpPrincipal, long sxpElementId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				SXPElementServiceUtil.class,
-				"fetchSXPElementByExternalReferenceCode",
-				_fetchSXPElementByExternalReferenceCodeParameterTypes2);
+				SXPElementServiceUtil.class, "fetchSXPElement",
+				_fetchSXPElementParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, externalReferenceCode, companyId);
+				methodKey, sxpElementId);
 
 			Object returnObj = null;
 
@@ -172,16 +169,19 @@ public class SXPElementServiceHttp {
 	}
 
 	public static com.liferay.search.experiences.model.SXPElement
-			fetchSXPElementById(HttpPrincipal httpPrincipal, long sxpElementId)
+			fetchSXPElementByExternalReferenceCode(
+				HttpPrincipal httpPrincipal, String externalReferenceCode,
+				long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				SXPElementServiceUtil.class, "fetchSXPElementById",
-				_fetchSXPElementByIdParameterTypes3);
+				SXPElementServiceUtil.class,
+				"fetchSXPElementByExternalReferenceCode",
+				_fetchSXPElementByExternalReferenceCodeParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, sxpElementId);
+				methodKey, externalReferenceCode, companyId);
 
 			Object returnObj = null;
 
@@ -352,12 +352,12 @@ public class SXPElementServiceHttp {
 		};
 	private static final Class<?>[] _deleteSXPElementParameterTypes1 =
 		new Class[] {long.class};
+	private static final Class<?>[] _fetchSXPElementParameterTypes2 =
+		new Class[] {long.class};
 	private static final Class<?>[]
-		_fetchSXPElementByExternalReferenceCodeParameterTypes2 = new Class[] {
+		_fetchSXPElementByExternalReferenceCodeParameterTypes3 = new Class[] {
 			String.class, long.class
 		};
-	private static final Class<?>[] _fetchSXPElementByIdParameterTypes3 =
-		new Class[] {long.class};
 	private static final Class<?>[] _getSXPElementParameterTypes4 =
 		new Class[] {long.class};
 	private static final Class<?>[]
