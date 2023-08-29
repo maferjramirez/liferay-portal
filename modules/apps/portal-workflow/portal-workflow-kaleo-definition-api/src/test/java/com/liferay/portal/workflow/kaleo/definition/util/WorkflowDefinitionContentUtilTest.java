@@ -95,15 +95,14 @@ public class WorkflowDefinitionContentUtilTest {
 		Element rootElement = document.getDocumentElement();
 
 		Assert.assertEquals("metadata", rootElement.getTagName());
-
 		Assert.assertTrue(rootElement.hasChildNodes());
 
 		Node cdataNode = null;
 
-		NodeList childNodes = rootElement.getChildNodes();
+		NodeList nodeList = rootElement.getChildNodes();
 
-		for (int i = 0; i < childNodes.getLength(); i++) {
-			Node childNode = childNodes.item(i);
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node childNode = nodeList.item(i);
 
 			if (childNode instanceof CDATASection) {
 				cdataNode = childNode;
@@ -114,22 +113,22 @@ public class WorkflowDefinitionContentUtilTest {
 
 		Assert.assertNotNull(cdataNode);
 
-		String cdataContent = cdataNode.getTextContent();
+		String content = cdataNode.getTextContent();
 
-		String[] cdataStrings = cdataContent.split(StringPool.NEW_LINE);
+		String[] contentLines = content.split(StringPool.NEW_LINE);
 
 		Assert.assertTrue(
-			StringUtil.contains(cdataStrings[2], "xy", StringPool.BLANK));
+			StringUtil.contains(contentLines[2], "xy", StringPool.BLANK));
 		Assert.assertTrue(
-			StringUtil.contains(cdataStrings[3], "168", StringPool.BLANK));
+			StringUtil.contains(contentLines[3], "168", StringPool.BLANK));
 		Assert.assertTrue(
-			StringUtil.contains(cdataStrings[4], "36", StringPool.BLANK));
+			StringUtil.contains(contentLines[4], "36", StringPool.BLANK));
 
-		// Assert that 4 contiguous spaces are converted to 1 tab
+		// 4 spaces to 1 tab
 
 		Assert.assertEquals(
-			cdataStrings[1], 3,
-			StringUtils.countMatches(cdataStrings[1], StringPool.TAB));
+			contentLines[1], 3,
+			StringUtils.countMatches(contentLines[1], StringPool.TAB));
 	}
 
 	@Test
@@ -182,7 +181,6 @@ public class WorkflowDefinitionContentUtilTest {
 		JSONObject jsonObject = _toJSONObject("simple-tag.xml");
 
 		Assert.assertEquals("test", jsonObject.getString("#tag-name"));
-
 		Assert.assertEquals("Simple Tag", jsonObject.getString("#value"));
 	}
 
@@ -194,9 +192,9 @@ public class WorkflowDefinitionContentUtilTest {
 
 		Assert.assertEquals("test", rootElement.getTagName());
 
-		String nodeContent = rootElement.getTextContent();
+		String content = rootElement.getTextContent();
 
-		Assert.assertTrue(nodeContent.contains("simple tag"));
+		Assert.assertTrue(content.contains("simple tag"));
 	}
 
 	@Test
@@ -212,7 +210,6 @@ public class WorkflowDefinitionContentUtilTest {
 		JSONObject labelJSONObject = childJSONArray.getJSONObject(0);
 
 		Assert.assertEquals("Label", labelJSONObject.getString("#value"));
-
 		Assert.assertEquals("en_US", labelJSONObject.getString("language-id"));
 	}
 
