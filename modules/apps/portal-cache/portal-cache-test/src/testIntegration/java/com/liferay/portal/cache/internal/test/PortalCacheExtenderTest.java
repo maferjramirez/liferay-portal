@@ -65,23 +65,23 @@ public class PortalCacheExtenderTest {
 
 	@Test
 	public void testRecreateMultiVmConfig() throws Exception {
-		_multiVmXML = _generateXMLContent(12, _TEST_CACHE_MULTI, 1001, 51);
+		_multiVmXML = _generateXMLContent(12, _CACHE_NAME_MULTI, 1001, 51);
 
 		for (int i = 10; i <= 12; i++) {
 			_multiVmXML = StringUtil.replace(
-				_multiVmXML, _TEST_CACHE_MULTI + i,
-				_TEST_CACHE_MULTI_FINDER + (i - 1));
+				_multiVmXML, _CACHE_NAME_MULTI + i,
+				_CACHE_NAME_MULTI_FINDER + (i - 1));
 		}
 
 		_multiVmXML = StringUtil.replaceFirst(
-			_multiVmXML, _TEST_CACHE_MULTI + "9",
-			_TEST_CACHE_MULTI_ENTITY + "9");
+			_multiVmXML, _CACHE_NAME_MULTI + "9",
+			_CACHE_NAME_MULTI_ENTITY + "9");
 
 		_bundle = _installBundle(_BUNDLE_SYMBOLIC_NAME, _multiVmXML, null);
 
 		_assertCacheConfig(
 			PortalCacheManagerNames.MULTI_VM, 1001,
-			_TEST_CACHE_MULTI_FINDER + "9", 51L);
+			_CACHE_NAME_MULTI_FINDER + "9", 51L);
 
 		Bundle overridingBundle = null;
 
@@ -91,7 +91,7 @@ public class PortalCacheExtenderTest {
 
 			_assertCacheConfig(
 				PortalCacheManagerNames.MULTI_VM, 1001,
-				_TEST_CACHE_MULTI_FINDER + "9", 51L);
+				_CACHE_NAME_MULTI_FINDER + "9", 51L);
 		}
 		finally {
 			if ((overridingBundle != null) &&
@@ -104,25 +104,25 @@ public class PortalCacheExtenderTest {
 
 	@Test
 	public void testUpdateConfig() throws Exception {
-		_multiVmXML = _generateXMLContent(1, _TEST_CACHE_MULTI, 1001, 51);
-		_singleVmXML = _generateXMLContent(1, _TEST_CACHE_SINGLE, 1001, 51);
+		_multiVmXML = _generateXMLContent(1, _CACHE_NAME_MULTI, 1001, 51);
+		_singleVmXML = _generateXMLContent(1, _CACHE_NAME_SINGLE, 1001, 51);
 
 		_bundle = _installBundle(
 			_BUNDLE_SYMBOLIC_NAME, _multiVmXML, _singleVmXML);
 
 		_assertCacheConfig(
-			PortalCacheManagerNames.MULTI_VM, 1001, _TEST_CACHE_MULTI + "1",
+			PortalCacheManagerNames.MULTI_VM, 1001, _CACHE_NAME_MULTI + "1",
 			51L);
 		_assertCacheConfig(
-			PortalCacheManagerNames.SINGLE_VM, 1001, _TEST_CACHE_SINGLE + "1",
+			PortalCacheManagerNames.SINGLE_VM, 1001, _CACHE_NAME_SINGLE + "1",
 			51L);
 
 		Bundle overridingBundle = null;
 
 		String multiVmXMLUpdated = _generateXMLContent(
-			1, _TEST_CACHE_MULTI, 2001, 101);
+			1, _CACHE_NAME_MULTI, 2001, 101);
 		String singleVmXMLUpdated = _generateXMLContent(
-			1, _TEST_CACHE_SINGLE, 2001, 101);
+			1, _CACHE_NAME_SINGLE, 2001, 101);
 
 		try {
 			overridingBundle = _installBundle(
@@ -130,11 +130,11 @@ public class PortalCacheExtenderTest {
 				singleVmXMLUpdated);
 
 			_assertCacheConfig(
-				PortalCacheManagerNames.MULTI_VM, 2001, _TEST_CACHE_MULTI + "1",
+				PortalCacheManagerNames.MULTI_VM, 2001, _CACHE_NAME_MULTI + "1",
 				101L);
 			_assertCacheConfig(
 				PortalCacheManagerNames.SINGLE_VM, 2001,
-				_TEST_CACHE_SINGLE + "1", 101L);
+				_CACHE_NAME_SINGLE + "1", 101L);
 		}
 		finally {
 			if ((overridingBundle != null) &&
@@ -305,21 +305,21 @@ public class PortalCacheExtenderTest {
 	private static final String _BUNDLE_SYMBOLIC_NAME =
 		"com.liferay.portal.cache.internal.test.PortalCacheTestModule";
 
-	private static final String _ENTITY_CACHE_GROUP_KEY_PREFIX =
+	private static final String _PREFIX_CACHE_NAME_ENTITY =
 		EntityCache.class.getName() + StringPool.PERIOD;
 
-	private static final String _FINDER_CACHE_GROUP_KEY_PREFIX =
+	private static final String _PREFIX_CACHE_NAME_FINDER =
 		FinderCache.class.getName() + StringPool.PERIOD;
 
-	private static final String _TEST_CACHE_MULTI = "test.cache.multi";
+	private static final String _CACHE_NAME_MULTI = "test.cache.multi";
 
-	private static final String _TEST_CACHE_MULTI_ENTITY =
-		_ENTITY_CACHE_GROUP_KEY_PREFIX + _TEST_CACHE_MULTI;
+	private static final String _CACHE_NAME_MULTI_ENTITY =
+		_PREFIX_CACHE_NAME_ENTITY + _CACHE_NAME_MULTI;
 
-	private static final String _TEST_CACHE_MULTI_FINDER =
-		_FINDER_CACHE_GROUP_KEY_PREFIX + _TEST_CACHE_MULTI;
+	private static final String _CACHE_NAME_MULTI_FINDER =
+		_PREFIX_CACHE_NAME_FINDER + _CACHE_NAME_MULTI;
 
-	private static final String _TEST_CACHE_SINGLE = "test.cache.single";
+	private static final String _CACHE_NAME_SINGLE = "test.cache.single";
 
 	private static Bundle _bundle;
 	private static String _multiVmXML;
