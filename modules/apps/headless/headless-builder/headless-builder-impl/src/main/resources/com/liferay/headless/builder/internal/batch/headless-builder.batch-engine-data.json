@@ -172,7 +172,7 @@
 				{
 					"DBType": "String",
 					"businessType": "Picklist",
-					"externalReferenceCode": "PATH PARAMETER",
+					"externalReferenceCode": "PATH_PARAMETER",
 					"indexed": true,
 					"indexedAsKeyword": false,
 					"label": {
