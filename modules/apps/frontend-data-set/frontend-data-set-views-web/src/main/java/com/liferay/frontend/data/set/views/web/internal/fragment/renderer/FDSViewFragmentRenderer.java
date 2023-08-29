@@ -389,13 +389,17 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 			ObjectEntry fdsViewObjectEntry)
 		throws Exception {
 
-		Collection<ObjectEntry> fdsFilters = new ArrayList<>();
-
 		Map<String, Object> fdsViewProperties =
 			fdsViewObjectEntry.getProperties();
 
-		String fdsFiltersOrder = (String)fdsViewProperties.get(
-			"fdsFiltersOrder");
+		List<Long> idsOrder = ListUtil.toList(
+			Arrays.asList(
+				StringUtil.split(
+					(String)fdsViewProperties.get("fdsFiltersOrder"),
+					StringPool.COMMA)),
+			Long::parseLong);
+
+		Collection<ObjectEntry> fdsFilters = new ArrayList<>();
 
 		fdsFilters.addAll(
 			_getRelatedObjectEntries(
@@ -407,8 +411,13 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 				fdsViewObjectDefinition, fdsViewObjectEntry,
 				"fdsViewFDSDynamicFilterRelationship"));
 
-		Collection<ObjectEntry> fdsFiltersObjectEntries =
-			_sortObjectEntriesByIdsList(fdsFilters, fdsFiltersOrder);
+		List<ObjectEntry> fdsFiltersObjectEntries = new ArrayList<>(fdsFilters);
+
+		Collections.sort(
+			fdsFiltersObjectEntries,
+			Comparator.comparing(
+				ObjectEntry::getId,
+				Comparator.comparingInt(idsOrder::indexOf)));
 
 		if ((fdsFiltersObjectEntries == null) ||
 			fdsFiltersObjectEntries.isEmpty()) {
@@ -529,24 +538,6 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 		}
 
 		return apiUrl;
-	}
-
-	private Collection<ObjectEntry> _sortObjectEntriesByIdsList(
-		Collection<ObjectEntry> objectEntries, String idsOrderString) {
-
-		List<Long> idsOrder = ListUtil.toList(
-			Arrays.asList(StringUtil.split(idsOrderString, StringPool.COMMA)),
-			Long::parseLong);
-
-		List<ObjectEntry> objectEntriesList = new ArrayList<>(objectEntries);
-
-		Collections.sort(
-			objectEntriesList,
-			Comparator.comparing(
-				ObjectEntry::getId,
-				Comparator.comparingInt(idsOrder::indexOf)));
-
-		return objectEntriesList;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
