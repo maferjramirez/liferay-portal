@@ -109,16 +109,15 @@ public class LiferayServiceExtender
 	@Override
 	public void modifiedBundle(
 		Bundle bundle, BundleEvent bundleEvent,
-		Supplier<LiferayServiceExtension> liferayServiceExtensionSupplier) {
+		Supplier<LiferayServiceExtension> supplier) {
 	}
 
 	@Override
 	public void removedBundle(
 		Bundle bundle, BundleEvent bundleEvent,
-		Supplier<LiferayServiceExtension> liferayServiceExtensionSupplier) {
+		Supplier<LiferayServiceExtension> supplier) {
 
-		LiferayServiceExtension liferayServiceExtension =
-			liferayServiceExtensionSupplier.get();
+		LiferayServiceExtension liferayServiceExtension = supplier.get();
 
 		if (liferayServiceExtension != null) {
 			liferayServiceExtension.destroy();
@@ -256,11 +255,11 @@ public class LiferayServiceExtender
 				() -> {
 					_bundleTracker.open();
 
-					Map<Bundle, Supplier<LiferayServiceExtension>> tracked =
+					Map<Bundle, Supplier<LiferayServiceExtension>> map =
 						_bundleTracker.getTracked();
 
 					for (Supplier<LiferayServiceExtension> supplier :
-							tracked.values()) {
+							map.values()) {
 
 						supplier.get();
 					}
