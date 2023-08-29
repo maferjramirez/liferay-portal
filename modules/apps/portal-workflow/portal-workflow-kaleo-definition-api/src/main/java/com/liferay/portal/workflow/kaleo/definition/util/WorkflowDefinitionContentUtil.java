@@ -197,21 +197,20 @@ public class WorkflowDefinitionContentUtil {
 		JSONObject jsonObject = JSONUtil.put("#tag-name", element.getTagName());
 
 		_appendAttributes(element, jsonObject);
-
 		_appendValue(element, jsonObject);
 
-		NodeList childNodes = element.getChildNodes();
+		NodeList nodeList = element.getChildNodes();
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		for (int i = 0; i < childNodes.getLength(); i++) {
-			Node childNode = childNodes.item(i);
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node node = nodeList.item(i);
 
-			if (!(childNode instanceof Element)) {
+			if (!(node instanceof Element)) {
 				continue;
 			}
 
-			jsonArray.put(_toJSONObject((Element)childNode));
+			jsonArray.put(_toJSONObject((Element)node));
 		}
 
 		if (jsonArray.length() > 0) {
