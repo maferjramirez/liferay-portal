@@ -403,8 +403,7 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 
 		Set<ObjectEntry> fdsFiltersObjectEntries = new TreeSet<>(
 			Comparator.comparing(
-				ObjectEntry::getId,
-				Comparator.comparingInt(ids::indexOf)));
+				ObjectEntry::getId, Comparator.comparingInt(ids::indexOf)));
 
 		fdsFiltersObjectEntries.addAll(
 			_getRelatedObjectEntries(
@@ -419,34 +418,18 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 			return _jsonFactory.createJSONArray();
 		}
 
-		try {
-			return JSONUtil.toJSONArray(
-				fdsFiltersObjectEntries,
-				(ObjectEntry fdsFilterObjectEntry) -> {
-					Map<String, Object> fdsFiltersProperties =
-						fdsFilterObjectEntry.getProperties();
+		return JSONUtil.toJSONArray(
+			fdsFiltersObjectEntries,
+			(ObjectEntry fdsFilterObjectEntry) -> {
+				Map<String, Object> fdsFiltersProperties =
+					fdsFilterObjectEntry.getProperties();
 
-					if (fdsFiltersProperties.get(
-							"type"
-						).equals(
-							"date"
-						)) {
-
-						return _getFDSDateFilterJSONObject(
-							fdsFilterObjectEntry);
-					}
-
+				if (!Objects.equals(fdsFiltersProperties.get("type"), "date")) {
 					return null;
-				});
-		}
-		catch (Exception exception) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Unable to generate FDS filters from FDSView", exception);
-			}
+				}
 
-			return _jsonFactory.createJSONArray();
-		}
+				return _getFDSDateFilterJSONObject(fdsFilterObjectEntry);
+			});
 	}
 
 	private ObjectEntry _getObjectEntry(
