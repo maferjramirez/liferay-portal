@@ -60,19 +60,19 @@ public class WorkflowDefinitionContentUtil {
 	}
 
 	public static String toXML(String json) throws WorkflowException {
-		StringBuilder contentSB = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 
-		contentSB.append("<?xml version=\"1.0\"?>");
+		sb.append("<?xml version=\"1.0\"?>");
 
 		try {
-			_toNode(JSONFactoryUtil.createJSONObject(json), contentSB);
+			_toNode(JSONFactoryUtil.createJSONObject(json), sb);
 		}
 		catch (JSONException jsonException) {
 			throw new WorkflowException(
 				"Unable to convert workflow definition", jsonException);
 		}
 
-		return contentSB.toString();
+		return sb.toString();
 	}
 
 	private static void _appendAttributes(
