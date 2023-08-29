@@ -2,11 +2,11 @@
 	"#child-nodes": [
 		{
 			"#tag-name": "repeatable-tag",
-			"#value": "first"
+			"#value": "First"
 		},
 		{
 			"#tag-name": "repeatable-tag",
-			"#value": "second"
+			"#value": "Second"
 		}
 	],
 	"#tag-name": "container-tag"

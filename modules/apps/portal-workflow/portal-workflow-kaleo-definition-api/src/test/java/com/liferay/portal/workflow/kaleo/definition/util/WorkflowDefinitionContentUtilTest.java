@@ -147,13 +147,13 @@ public class WorkflowDefinitionContentUtilTest {
 
 		Assert.assertEquals(
 			"repeatable-tag", childJSONObject.getString("#tag-name"));
-		Assert.assertEquals("first", childJSONObject.getString("#value"));
+		Assert.assertEquals("First", childJSONObject.getString("#value"));
 
 		childJSONObject = childJSONArray.getJSONObject(1);
 
 		Assert.assertEquals(
 			"repeatable-tag", childJSONObject.getString("#tag-name"));
-		Assert.assertEquals("second", childJSONObject.getString("#value"));
+		Assert.assertEquals("Second", childJSONObject.getString("#value"));
 	}
 
 	@Test
@@ -171,11 +171,11 @@ public class WorkflowDefinitionContentUtilTest {
 
 		Node repeatableTagNode = repeatableTagNodeList.item(0);
 
-		Assert.assertEquals("first", repeatableTagNode.getTextContent());
+		Assert.assertEquals("First", repeatableTagNode.getTextContent());
 
 		repeatableTagNode = repeatableTagNodeList.item(1);
 
-		Assert.assertEquals("second", repeatableTagNode.getTextContent());
+		Assert.assertEquals("Second", repeatableTagNode.getTextContent());
 	}
 
 	@Test
@@ -184,7 +184,7 @@ public class WorkflowDefinitionContentUtilTest {
 
 		Assert.assertEquals("test", jsonObject.getString("#tag-name"));
 
-		Assert.assertEquals("simple tag", jsonObject.getString("#value"));
+		Assert.assertEquals("Simple Tag", jsonObject.getString("#value"));
 	}
 
 	@Test

@@ -1,4 +1,4 @@
 <container-tag>
-	<repeatable-tag>first</repeatable-tag>
-	<repeatable-tag>second</repeatable-tag>
+	<repeatable-tag>First</repeatable-tag>
+	<repeatable-tag>Second</repeatable-tag>
 </container-tag>
