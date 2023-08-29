@@ -36,14 +36,6 @@ import org.xml.sax.InputSource;
  */
 public class WorkflowDefinitionContentUtil {
 
-	public static final String CDATA_VALUE = "#cdata-value";
-
-	public static final String CHILD_NODES = "#child-nodes";
-
-	public static final String TAG_NAME = "#tag-name";
-
-	public static final String VALUE = "#value";
-
 	public static String toJSON(String xml) throws WorkflowException {
 		try {
 			DocumentBuilderFactory documentBuilderFactory =
@@ -99,8 +91,8 @@ public class WorkflowDefinitionContentUtil {
 		JSONObject jsonObject, StringBuilder contentSB) {
 
 		for (String key : jsonObject.keySet()) {
-			if (key.equals(CDATA_VALUE) || key.equals(CHILD_NODES) ||
-				key.equals(TAG_NAME) || key.equals(VALUE)) {
+			if (key.equals("#cdata-value") || key.equals("#child-nodes") ||
+				key.equals("#tag-name") || key.equals("#value")) {
 
 				continue;
 			}
@@ -158,18 +150,18 @@ public class WorkflowDefinitionContentUtil {
 					line.replaceAll(StringPool.TAB, StringPool.FOUR_SPACES));
 			}
 
-			jsonObject.put(CDATA_VALUE, jsonArray);
+			jsonObject.put("#cdata-value", jsonArray);
 		}
 		else {
-			jsonObject.put(VALUE, content.replaceAll("[\n\t]", ""));
+			jsonObject.put("#value", content.replaceAll("[\n\t]", ""));
 		}
 	}
 
 	private static void _appendValue(
 		JSONObject jsonObject, StringBuilder contentSB) {
 
-		if (jsonObject.has(CDATA_VALUE)) {
-			JSONArray jsonArray = jsonObject.getJSONArray(CDATA_VALUE);
+		if (jsonObject.has("#cdata-value")) {
+			JSONArray jsonArray = jsonObject.getJSONArray("#cdata-value");
 
 			StringBundler cdataSB = new StringBundler(
 				(jsonArray.length() * 2) + 2);
@@ -190,8 +182,8 @@ public class WorkflowDefinitionContentUtil {
 
 			contentSB.append(cdataSB);
 		}
-		else if (jsonObject.has(VALUE)) {
-			contentSB.append(jsonObject.getString(VALUE));
+		else if (jsonObject.has("#value")) {
+			contentSB.append(jsonObject.getString("#value"));
 		}
 	}
 
@@ -206,7 +198,7 @@ public class WorkflowDefinitionContentUtil {
 	}
 
 	private static JSONObject _toJSONObject(Element element) {
-		JSONObject jsonObject = JSONUtil.put(TAG_NAME, element.getTagName());
+		JSONObject jsonObject = JSONUtil.put("#tag-name", element.getTagName());
 
 		_appendAttributes(element, jsonObject);
 
@@ -227,7 +219,7 @@ public class WorkflowDefinitionContentUtil {
 		}
 
 		if (jsonArray.length() > 0) {
-			jsonObject.put(CHILD_NODES, jsonArray);
+			jsonObject.put("#child-nodes", jsonArray);
 		}
 
 		return jsonObject;
@@ -237,7 +229,7 @@ public class WorkflowDefinitionContentUtil {
 		JSONObject jsonObject, StringBuilder contentSB) {
 
 		contentSB.append(StringPool.LESS_THAN);
-		contentSB.append(jsonObject.getString(TAG_NAME));
+		contentSB.append(jsonObject.getString("#tag-name"));
 
 		_appendAttributes(jsonObject, contentSB);
 
@@ -245,7 +237,7 @@ public class WorkflowDefinitionContentUtil {
 
 		_appendValue(jsonObject, contentSB);
 
-		JSONArray childNodesJSONArray = jsonObject.getJSONArray(CHILD_NODES);
+		JSONArray childNodesJSONArray = jsonObject.getJSONArray("#child-nodes");
 
 		if (childNodesJSONArray != null) {
 			childNodesJSONArray.forEach(
@@ -254,7 +246,7 @@ public class WorkflowDefinitionContentUtil {
 
 		contentSB.append(StringPool.LESS_THAN);
 		contentSB.append(StringPool.FORWARD_SLASH);
-		contentSB.append(jsonObject.getString(TAG_NAME));
+		contentSB.append(jsonObject.getString("#tag-name"));
 		contentSB.append(StringPool.GREATER_THAN);
 	}
 
