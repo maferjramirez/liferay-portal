@@ -107,16 +107,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		_validate = GetterUtil.getBoolean(properties.get("validating"), true);
 	}
 
-	private String _toXML(String content) throws WorkflowException {
-		if (Validator.isNotNull(content) &&
-			content.startsWith(StringPool.OPEN_CURLY_BRACE)) {
-
-			return WorkflowDefinitionContentUtil.toXML(content);
-		}
-
-		return content;
-	}
-
 	private Definition _parse(Document document) throws Exception {
 		Element rootElement = document.getRootElement();
 
@@ -931,6 +921,16 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		for (Element taskElement : taskElements) {
 			_parseTransition(definition, taskElement);
 		}
+	}
+
+	private String _toXML(String content) throws WorkflowException {
+		if (Validator.isNotNull(content) &&
+			content.startsWith(StringPool.OPEN_CURLY_BRACE)) {
+
+			return WorkflowDefinitionContentUtil.toXML(content);
+		}
+
+		return content;
 	}
 
 	private boolean _validate;
