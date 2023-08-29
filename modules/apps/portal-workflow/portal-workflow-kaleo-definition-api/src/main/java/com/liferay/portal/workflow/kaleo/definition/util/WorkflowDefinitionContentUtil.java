@@ -153,9 +153,7 @@ public class WorkflowDefinitionContentUtil {
 		}
 	}
 
-	private static void _appendValue(
-		JSONObject jsonObject, StringBuilder sb) {
-
+	private static void _appendValue(JSONObject jsonObject, StringBuilder sb) {
 		if (jsonObject.has("#cdata-value")) {
 			JSONArray jsonArray = jsonObject.getJSONArray("#cdata-value");
 
@@ -220,9 +218,7 @@ public class WorkflowDefinitionContentUtil {
 		return jsonObject;
 	}
 
-	private static void _toNode(
-		JSONObject jsonObject, StringBuilder sb) {
-
+	private static void _toNode(JSONObject jsonObject, StringBuilder sb) {
 		sb.append(StringPool.LESS_THAN);
 		sb.append(jsonObject.getString("#tag-name"));
 
