@@ -257,8 +257,8 @@ public class APIEndpointRelevantObjectEntryModelListener
 		if (pathParameter == null) {
 			throw new ObjectEntryValuesException.InvalidObjectField(
 				null,
-				"Path parameter can not be null in a single element endpoint",
-				"path-parameter-can-not-be-null-in-a-single-element-endpoint");
+				"Path parameter cannot be null in a single element endpoint",
+				"path-parameter-cannot-be-null-in-a-single-element-endpoint");
 		}
 
 		ObjectField objectField = _objectFieldLocalService.getObjectField(

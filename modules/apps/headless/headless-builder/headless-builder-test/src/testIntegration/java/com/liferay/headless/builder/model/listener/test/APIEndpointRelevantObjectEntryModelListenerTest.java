@@ -226,7 +226,7 @@ public class APIEndpointRelevantObjectEntryModelListenerTest
 				"status", "BAD_REQUEST"
 			).put(
 				"title",
-				"Path parameter can not be null in a single element endpoint."
+				"Path parameter cannot be null in a single element endpoint."
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
 				JSONUtil.put(
