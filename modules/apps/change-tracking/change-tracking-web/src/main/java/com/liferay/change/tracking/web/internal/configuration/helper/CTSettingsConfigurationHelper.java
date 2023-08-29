@@ -14,7 +14,6 @@ import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.osgi.service.component.annotations.Activate;
@@ -100,7 +99,7 @@ public class CTSettingsConfigurationHelper {
 		return ctSettingsConfiguration.unapprovedChangesAllowed();
 	}
 
-	public void save(long companyId, HashMap<String, Object> properties)
+	public void save(long companyId, Map<String, Object> properties)
 		throws PortalException {
 
 		CTSettingsConfiguration ctSettingsConfiguration =
