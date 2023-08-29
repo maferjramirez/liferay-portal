@@ -55,7 +55,7 @@ public class WorkflowDefinitionContentUtil {
 		}
 		catch (Exception exception) {
 			throw new WorkflowException(
-				"Unable to convert workflow definition", exception);
+				"Unable to convert XML to JSON", exception);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class WorkflowDefinitionContentUtil {
 		}
 		catch (JSONException jsonException) {
 			throw new WorkflowException(
-				"Unable to convert workflow definition", jsonException);
+				"Unable to convert JSON to XML", jsonException);
 		}
 
 		return sb.toString();
