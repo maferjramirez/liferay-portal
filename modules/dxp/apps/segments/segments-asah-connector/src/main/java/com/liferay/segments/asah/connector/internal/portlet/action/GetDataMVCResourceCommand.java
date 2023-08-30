@@ -108,7 +108,7 @@ public class GetDataMVCResourceCommand extends BaseMVCResourceCommand {
 			long segmentsExperienceId = ParamUtil.getLong(
 				resourceRequest, "segmentsExperienceId");
 
-			Experiment experiment = _fetchAndSynchExperiment(
+			Experiment experiment = _fetchAndSyncExperiment(
 				layout.getGroupId(), plid, segmentsExperienceId);
 
 			JSONPortletResponseUtil.writeJSON(
@@ -138,7 +138,7 @@ public class GetDataMVCResourceCommand extends BaseMVCResourceCommand {
 		}
 	}
 
-	private Experiment _fetchAndSynchExperiment(
+	private Experiment _fetchAndSyncExperiment(
 			long groupId, long plid, long segmentsExperienceId)
 		throws PortalException {
 
