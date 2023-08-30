@@ -42,9 +42,9 @@ public class ObjectValidationRuleEngineRegistryImplTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testScopedObjectValidationRuleEngine() {
+	public void test() {
 
-		// Scoped by Company
+		// Scope by company
 
 		ServiceRegistration<ObjectValidationRuleEngine>
 			objectValidationRuleEngineServiceRegistration1 = _register(
@@ -67,7 +67,7 @@ public class ObjectValidationRuleEngineRegistryImplTest {
 		_unregister(objectValidationRuleEngineServiceRegistration1);
 		_unregister(objectValidationRuleEngineServiceRegistration2);
 
-		// Scoped by Object Definition
+		// Scope by object definition
 
 		objectValidationRuleEngine = new TestObjectValidationRuleEngine(
 			1, Collections.singletonList("C_Department"));
