@@ -833,7 +833,6 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 		_assertFilterString(
 			"integerProperty", 2,
 			"integerProperty gt 1 or integerProperty lt 1");
-
 		_assertFilterString("integerProperty", 1, "not (integerProperty ge 2)");
 
 		// String functions
