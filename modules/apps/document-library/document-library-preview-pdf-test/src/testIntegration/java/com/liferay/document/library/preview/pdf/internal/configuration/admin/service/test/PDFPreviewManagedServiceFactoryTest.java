@@ -7,7 +7,6 @@ package com.liferay.document.library.preview.pdf.internal.configuration.admin.se
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.function.UnsafeRunnable;
-import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 import com.liferay.portal.configuration.test.util.ConfigurationTemporarySwapper;
 import com.liferay.portal.kernel.model.CompanyConstants;
@@ -19,8 +18,6 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-
-import java.lang.reflect.Method;
 
 import java.util.Dictionary;
 
@@ -243,19 +240,14 @@ public class PDFPreviewManagedServiceFactoryTest {
 				CompanyConstants.SYSTEM));
 	}
 
-	private long _getMaxNumberOfPages(String scope, long scopePK)
+	private int _getMaxNumberOfPages(String scope, long scopePK)
 		throws Exception {
 
-		Object pdfPreviewManagedServiceFactoryHelper =
-			ReflectionTestUtil.getFieldValue(
-				_managedServiceFactory, "_pdfPreviewConfigurationHelper");
-
-		Method method = ReflectionUtil.getDeclaredMethod(
-			pdfPreviewManagedServiceFactoryHelper.getClass(),
-			"getMaxNumberOfPages", String.class, long.class);
-
-		return (int)method.invoke(
-			pdfPreviewManagedServiceFactoryHelper, scope, scopePK);
+		return ReflectionTestUtil.invoke(
+			ReflectionTestUtil.<Object>getFieldValue(
+				_managedServiceFactory, "_pdfPreviewConfigurationHelper"),
+			"getMaxNumberOfPages", new Class<?>[] {String.class, long.class},
+			scope, scopePK);
 	}
 
 	private <E extends Exception> void _withCompanyConfiguration(
