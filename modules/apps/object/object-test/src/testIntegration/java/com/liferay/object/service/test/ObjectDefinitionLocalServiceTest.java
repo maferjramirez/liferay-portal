@@ -1084,7 +1084,6 @@ public class ObjectDefinitionLocalServiceTest {
 		ObjectDefinition objectDefinitionA =
 			ObjectDefinitionTestUtil.addObjectDefinition(
 				"A", _objectDefinitionLocalService);
-
 		ObjectDefinition objectDefinitionAA =
 			ObjectDefinitionTestUtil.addObjectDefinition(
 				"AA", _objectDefinitionLocalService);
@@ -1157,14 +1156,19 @@ public class ObjectDefinitionLocalServiceTest {
 						ObjectFieldConstants.DB_TYPE_STRING,
 						RandomTestUtil.randomString(), StringUtil.randomId())));
 
+		objectDefinition =
+			_objectDefinitionLocalService.updateRootObjectDefinitionId(
+				objectDefinition.getObjectDefinitionId(),
+				objectDefinition.getObjectDefinitionId());
+
+		ObjectDefinition finalObjectDefinition = objectDefinition;
+
 		AssertUtils.assertFailure(
 			ObjectDefinitionRootObjectDefinitionIdException.class,
 			"Object definitions that belong to a hierarchical structure " +
 				"cannot be deleted",
 			() -> _objectDefinitionLocalService.deleteObjectDefinition(
-				_objectDefinitionLocalService.updateRootObjectDefinitionId(
-					objectDefinition.getObjectDefinitionId(),
-					objectDefinition.getObjectDefinitionId())));
+				finalObjectDefinition));
 
 		_objectDefinitionLocalService.publishCustomObjectDefinition(
 			TestPropsValues.getUserId(),
