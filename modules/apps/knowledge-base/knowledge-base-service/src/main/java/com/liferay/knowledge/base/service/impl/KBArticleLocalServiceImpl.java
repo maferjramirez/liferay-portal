@@ -1644,7 +1644,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Publish KB Article ", kbArticle.getKbArticleId(),
+						"Publish knowledge base article ",
+						kbArticle.getKbArticleId(),
 						" with display date ", kbArticle.getDisplayDate()));
 			}
 
