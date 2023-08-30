@@ -50,7 +50,7 @@ public class HttpServletImplBundleActivator implements BundleActivator {
 		_activator.stop(bundleContext);
 	}
 
-	private static final HttpSessionListener _INVALIDATEHTTPSESSION_LISTENER =
+	private static final HttpSessionListener _HTTP_SESSION_LISTENER =
 		new HttpSessionListener() {
 
 			@Override
@@ -97,7 +97,7 @@ public class HttpServletImplBundleActivator implements BundleActivator {
 					httpServletEndpoint.getProperties());
 
 			PortletSessionListenerManager.addHttpSessionListener(
-				_INVALIDATEHTTPSESSION_LISTENER);
+				_HTTP_SESSION_LISTENER);
 
 			return serviceRegistration;
 		}
@@ -114,7 +114,7 @@ public class HttpServletImplBundleActivator implements BundleActivator {
 			ServiceRegistration<HttpServlet> serviceRegistration) {
 
 			PortletSessionListenerManager.removeHttpSessionListener(
-				_INVALIDATEHTTPSESSION_LISTENER);
+				_HTTP_SESSION_LISTENER);
 
 			serviceRegistration.unregister();
 
