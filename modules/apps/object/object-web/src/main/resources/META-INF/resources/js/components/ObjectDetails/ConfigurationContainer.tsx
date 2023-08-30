@@ -84,6 +84,20 @@ export function ConfigurationContainer({
 				}
 				toggled={values.enableObjectEntryHistory}
 			/>
+
+			<Toggle
+				disabled={isReadOnly || !hasUpdateObjectDefinitionPermission}
+				label={Liferay.Language.get(
+					'allow-users-to-save-entries-as-draft'
+				)}
+				name="enableObjectEntryDraft"
+				onToggle={() =>
+					setValues({
+						enableObjectEntryDraft: !values.enableObjectEntryDraft,
+					})
+				}
+				toggled={values.enableObjectEntryDraft}
+			/>
 		</div>
 	);
 }
