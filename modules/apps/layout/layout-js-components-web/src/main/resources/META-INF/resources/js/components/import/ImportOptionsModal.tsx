@@ -50,7 +50,7 @@ function ImportOptionsModal({onCloseModal, onImport}: Props) {
 			<ClayModal.Body>
 				<p className="c-mb-4 text-secondary">
 					{Liferay.Language.get(
-						'one-or-more-items-from-the-zip-already-exist-in-this-location.-what-action-do-you-want-to-take?'
+						'one-or-more-items-from-the-zip-already-exist-in-this-location'
 					)}
 				</p>
 
