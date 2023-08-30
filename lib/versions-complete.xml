@@ -2912,7 +2912,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.search.elasticsearch7.impl.jar!org.apache.commons.logging.jar</file-name>
-				<version>1.2.LIFERAY-PATCHED-1</version>
+				<version>1.2.LIFERAY-PATCHED-2</version>
 				<project-name>Apache Commons Logging</project-name>
 				<project-url>http://commons.apache.org/proper/commons-logging/</project-url>
 				<licenses>
