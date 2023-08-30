@@ -1633,8 +1633,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Publishing file entries with display date previous to ",
-					displayDate, " for company ", company.getCompanyId()));
+					"Publishing knowledge base articles with display date " +
+					"prior to ", displayDate, " for company ",
+					company.getCompanyId()));
 		}
 
 		List<KBArticle> kbArticles = _getKBArticlesByCompanyIdAndDisplayDate(
@@ -1663,8 +1664,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Expiring file entries with expiration date previous to ",
-					expirationDate, " for company ", company.getCompanyId()));
+					"Expiring knowledge base articles with expiration date " +
+					"prior to ", expirationDate, " for company ",
+					company.getCompanyId()));
 		}
 
 		List<KBArticle> kbArticles = _getKBArticlesByCompanyIdAndExpirationDate(
@@ -1674,8 +1676,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Expiring KB Article ", kbArticle.getKbArticleId(),
-						" with expiration date ",
+						"Expiring knowledge base article ",
+						kbArticle.getKbArticleId(), " with expiration date ",
 						kbArticle.getExpirationDate()));
 			}
 
@@ -1693,10 +1695,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Sending review notification for articles with review ",
-					"date between ", _dates.get(company.getCompanyId()),
-					" and ", reviewDate, " for company ",
-					company.getCompanyId()));
+					"Sending review notification for knowledge base articles " +
+					"with review date between ",
+					_dates.get(company.getCompanyId()), " and ", reviewDate,
+					" for company ", company.getCompanyId()));
 		}
 
 		List<KBArticle> kbArticles = _getKBArticlesByCompanyIdAndReviewDate(
@@ -1707,9 +1709,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Sending review notification for article ",
-						kbArticle.getKbArticleId(), " with reviewDate ",
-						kbArticle.getReviewDate()));
+						"Sending review notification for knowledge base " +
+						"article ", kbArticle.getKbArticleId(),
+						" with reviewDate ", kbArticle.getReviewDate()));
 			}
 
 			_notify(
