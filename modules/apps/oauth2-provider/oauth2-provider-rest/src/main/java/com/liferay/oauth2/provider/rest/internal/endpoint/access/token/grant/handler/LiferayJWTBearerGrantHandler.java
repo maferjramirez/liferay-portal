@@ -21,9 +21,9 @@ import com.liferay.portal.kernel.util.MapUtil;
 import java.util.Collections;
 import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -214,11 +214,9 @@ public class LiferayJWTBearerGrantHandler extends BaseAccessTokenGrantHandler {
 		LiferayJWTBearerGrantHandler.class);
 
 	private final Map<String, Dictionary<String, ?>>
-		_configurationPidsProperties = Collections.synchronizedMap(
-			new LinkedHashMap<>());
+		_configurationPidsProperties = new ConcurrentHashMap<>();
 	private final Map<Long, Map<String, Map<String, JwsSignatureVerifier>>>
-		_jwsSignatureVerifiers = Collections.synchronizedMap(
-			new LinkedHashMap<>());
+		_jwsSignatureVerifiers = new ConcurrentHashMap<>();
 
 	@Reference
 	private LiferayOAuthDataProvider _liferayOAuthDataProvider;
@@ -226,7 +224,7 @@ public class LiferayJWTBearerGrantHandler extends BaseAccessTokenGrantHandler {
 	private volatile OAuth2ProviderConfiguration _oAuth2ProviderConfiguration;
 	private ServiceRegistration<ManagedServiceFactory> _serviceRegistration;
 	private final Map<Long, Map<String, String>> _userAuthTypes =
-		Collections.synchronizedMap(new LinkedHashMap<>());
+		new ConcurrentHashMap<>();
 
 	private class CustomJWTBearerGrantHandler extends JwtBearerGrantHandler {
 
