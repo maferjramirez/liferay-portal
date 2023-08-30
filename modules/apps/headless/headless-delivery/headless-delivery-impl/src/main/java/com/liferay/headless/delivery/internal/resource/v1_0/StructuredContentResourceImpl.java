@@ -795,7 +795,10 @@ public class StructuredContentResourceImpl
 		).assetTagNames(
 			assetTagNames
 		).expandoBridgeAttributes(
-			_getExpandoBridgeAttributes(structuredContent)
+			CustomFieldsUtil.toMap(
+			JournalArticle.class.getName(), contextCompany.getCompanyId(),
+			structuredContent.getCustomFields(),
+			contextAcceptLanguage.getPreferredLocale())
 		).permissions(
 			ModelPermissionsUtil.toModelPermissions(
 				contextCompany.getCompanyId(),
@@ -949,15 +952,6 @@ public class StructuredContentResourceImpl
 		DDMTemplate ddmTemplate = ddmTemplates.get(0);
 
 		return ddmTemplate.getTemplateKey();
-	}
-
-	private Map<String, Serializable> _getExpandoBridgeAttributes(
-		StructuredContent structuredContent) {
-
-		return CustomFieldsUtil.toMap(
-			JournalArticle.class.getName(), contextCompany.getCompanyId(),
-			structuredContent.getCustomFields(),
-			contextAcceptLanguage.getPreferredLocale());
 	}
 
 	private List<DDMFormField> _getRootDDMFormFields(

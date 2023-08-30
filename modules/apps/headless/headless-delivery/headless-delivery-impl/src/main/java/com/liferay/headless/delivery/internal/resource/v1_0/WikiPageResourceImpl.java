@@ -326,21 +326,15 @@ public class WikiPageResourceImpl extends BaseWikiPageResourceImpl {
 		).assetTagNames(
 			wikiPage.getKeywords()
 		).expandoBridgeAttributes(
-			_getExpandoBridgeAttributes(wikiPage)
+			CustomFieldsUtil.toMap(
+				com.liferay.wiki.model.WikiPage.class.getName(),
+				contextCompany.getCompanyId(), wikiPage.getCustomFields(),
+				contextAcceptLanguage.getPreferredLocale())
 		).build();
 
 		serviceContext.setCommand(command);
 
 		return serviceContext;
-	}
-
-	private Map<String, Serializable> _getExpandoBridgeAttributes(
-		WikiPage wikiPage) {
-
-		return CustomFieldsUtil.toMap(
-			com.liferay.wiki.model.WikiPage.class.getName(),
-			contextCompany.getCompanyId(), wikiPage.getCustomFields(),
-			contextAcceptLanguage.getPreferredLocale());
 	}
 
 	private String _toFormat(String encodingFormat) {

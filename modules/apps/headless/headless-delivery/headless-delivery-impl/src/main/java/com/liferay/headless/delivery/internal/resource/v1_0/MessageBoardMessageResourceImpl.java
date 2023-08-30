@@ -528,7 +528,10 @@ public class MessageBoardMessageResourceImpl
 			groupId, contextHttpServletRequest,
 			messageBoardMessage.getViewableByAsString()
 		).expandoBridgeAttributes(
-			_getExpandoBridgeAttributes(messageBoardMessage)
+			CustomFieldsUtil.toMap(
+				MBMessage.class.getName(), contextCompany.getCompanyId(),
+				messageBoardMessage.getCustomFields(),
+				contextAcceptLanguage.getPreferredLocale())
 		).build();
 
 		String link = contextHttpServletRequest.getHeader("Link");
@@ -553,15 +556,6 @@ public class MessageBoardMessageResourceImpl
 		}
 
 		return serviceContext;
-	}
-
-	private Map<String, Serializable> _getExpandoBridgeAttributes(
-		MessageBoardMessage messageBoardMessage) {
-
-		return CustomFieldsUtil.toMap(
-			MBMessage.class.getName(), contextCompany.getCompanyId(),
-			messageBoardMessage.getCustomFields(),
-			contextAcceptLanguage.getPreferredLocale());
 	}
 
 	private OrderByComparator<MBMessage> _getMBMessageOrderByComparator(
