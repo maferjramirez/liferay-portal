@@ -119,8 +119,6 @@ import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
 
-import java.io.Serializable;
-
 import java.time.LocalDateTime;
 
 import java.util.ArrayList;
@@ -796,9 +794,9 @@ public class StructuredContentResourceImpl
 			assetTagNames
 		).expandoBridgeAttributes(
 			CustomFieldsUtil.toMap(
-			JournalArticle.class.getName(), contextCompany.getCompanyId(),
-			structuredContent.getCustomFields(),
-			contextAcceptLanguage.getPreferredLocale())
+				JournalArticle.class.getName(), contextCompany.getCompanyId(),
+				structuredContent.getCustomFields(),
+				contextAcceptLanguage.getPreferredLocale())
 		).permissions(
 			ModelPermissionsUtil.toModelPermissions(
 				contextCompany.getCompanyId(),
