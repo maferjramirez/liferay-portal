@@ -458,7 +458,7 @@ public class ObjectDefinitionLocalServiceImpl
 
 		if (objectDefinition.getRootObjectDefinitionId() != 0) {
 			throw new ObjectDefinitionRootObjectDefinitionIdException(
-				"Object Definitions that belong to a hierarchical structure " +
+				"Object definitions that belong to a hierarchical structure " +
 					"cannot be deleted");
 		}
 

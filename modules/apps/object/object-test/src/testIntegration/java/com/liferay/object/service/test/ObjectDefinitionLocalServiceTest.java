@@ -1159,7 +1159,7 @@ public class ObjectDefinitionLocalServiceTest {
 
 		AssertUtils.assertFailure(
 			ObjectDefinitionRootObjectDefinitionIdException.class,
-			"Object Definitions that belong to a hierarchical structure " +
+			"Object definitions that belong to a hierarchical structure " +
 				"cannot be deleted",
 			() -> _objectDefinitionLocalService.deleteObjectDefinition(
 				_objectDefinitionLocalService.updateRootObjectDefinitionId(
