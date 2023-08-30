@@ -2185,7 +2185,7 @@ public class DLFileEntryLocalServiceImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Expiring file entries with expiration date previous to ",
+					"Expiring file entries with expiration date prior to ",
 					expirationDate, " for companyId ", companyId));
 		}
 
