@@ -118,7 +118,7 @@ public class AssetListEntryUsagesManager {
 				_assetListEntryUsageLocalService.getAssetEntryListUsagesByPlid(
 					plid)) {
 
-			if (!_exist(assetListEntryUsage)) {
+			if (!_exists(assetListEntryUsage)) {
 				continue;
 			}
 
@@ -193,7 +193,7 @@ public class AssetListEntryUsagesManager {
 		return liferayRenderRequest;
 	}
 
-	private boolean _exist(AssetListEntryUsage assetListEntryUsage) {
+	private boolean _exists(AssetListEntryUsage assetListEntryUsage) {
 		if (Objects.equals(
 				assetListEntryUsage.getClassName(),
 				AssetListEntry.class.getName())) {
