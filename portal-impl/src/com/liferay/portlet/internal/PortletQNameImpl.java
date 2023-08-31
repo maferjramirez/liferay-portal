@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.xml.QName;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -143,7 +144,10 @@ public class PortletQNameImpl implements PortletQName {
 	public void setPublicRenderParameterIdentifier(
 		String publicRenderParameterName, String identifier) {
 
-		if (!identifier.equals(_identifiers.get(publicRenderParameterName))) {
+		if (!Objects.equals(
+				identifier,
+				_identifiers.get(publicRenderParameterName))) {
+
 			_identifiers.put(publicRenderParameterName, identifier);
 		}
 	}
