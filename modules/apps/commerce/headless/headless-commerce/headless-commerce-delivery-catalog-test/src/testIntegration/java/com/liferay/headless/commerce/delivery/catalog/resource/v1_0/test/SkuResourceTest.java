@@ -76,7 +76,7 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 	public void testGetChannelProductSkusPage() throws Exception {
 		super.testGetChannelProductSkusPage();
 
-		_testGetChannelProductSkusPageWithUOM();
+		_testGetChannelProductSkusPageWithUnitOfMeasure();
 	}
 
 	@Ignore
@@ -179,7 +179,9 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 			BigDecimal.ONE, sku.getSku());
 	}
 
-	private void _testGetChannelProductSkusPageWithUOM() throws Exception {
+	private void _testGetChannelProductSkusPageWithUnitOfMeasure()
+		throws Exception {
+
 		Long channelId = testGetChannelProductSkusPage_getChannelId();
 		Long productId = testGetChannelProductSkusPage_getProductId();
 
