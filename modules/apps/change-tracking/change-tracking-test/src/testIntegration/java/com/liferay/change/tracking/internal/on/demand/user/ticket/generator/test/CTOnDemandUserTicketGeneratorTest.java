@@ -79,11 +79,11 @@ public class CTOnDemandUserTicketGeneratorTest {
 			ctCollection.getCtCollectionId());
 
 		Assert.assertEquals(
-			TicketConstants.TYPE_ON_DEMAND_USER_LOGIN, ticket.getType());
-		Assert.assertEquals(
 			CTCollection.class.getName(), ticket.getClassName());
 		Assert.assertEquals(
 			ctCollection.getCtCollectionId(), ticket.getClassPK());
+		Assert.assertEquals(
+			TicketConstants.TYPE_ON_DEMAND_USER_LOGIN, ticket.getType());
 
 		User onDemandUser = _userLocalService.getUser(
 			Long.valueOf(ticket.getExtraInfo()));
