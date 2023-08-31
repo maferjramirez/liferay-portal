@@ -10,7 +10,7 @@ package com.liferay.layout.page.template.constants;
  */
 public class LayoutPageTemplateConstants {
 
-	public static final long DEFAULT_PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID =
+	public static final long  PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT =
 		0;
 
 	public static final String RESOURCE_NAME =

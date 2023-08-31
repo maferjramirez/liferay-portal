@@ -101,7 +101,7 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 		return addLayoutPageTemplateCollection(
 			userId, groupId,
 			LayoutPageTemplateConstants.
-				DEFAULT_PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID,
+				 PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT,
 			name, description, serviceContext);
 	}
 
