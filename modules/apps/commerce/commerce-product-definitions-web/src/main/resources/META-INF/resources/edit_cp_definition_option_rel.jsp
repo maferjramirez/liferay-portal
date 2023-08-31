@@ -11,9 +11,6 @@
 CPDefinitionOptionRelDisplayContext cpDefinitionOptionRelDisplayContext = (CPDefinitionOptionRelDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CPDefinitionOptionRel cpDefinitionOptionRel = cpDefinitionOptionRelDisplayContext.getCPDefinitionOptionRel();
-long cpDefinitionOptionRelId = cpDefinitionOptionRelDisplayContext.getCPDefinitionOptionRelId();
-List<DDMFormFieldType> ddmFormFieldTypes = cpDefinitionOptionRelDisplayContext.getDDMFormFieldTypes();
-String defaultLanguageId = cpDefinitionOptionRelDisplayContext.getCatalogDefaultLanguageId();
 
 String name = ParamUtil.getString(request, "name", cpDefinitionOptionRel.getName());
 String description = ParamUtil.getString(request, "description", cpDefinitionOptionRel.getDescription());
@@ -28,6 +25,10 @@ String priceType = ParamUtil.getString(request, "priceType", cpDefinitionOptionR
 cpDefinitionOptionRel.setName(name);
 cpDefinitionOptionRel.setDescription(description);
 cpDefinitionOptionRel.setDDMFormFieldTypeName(ddmFormFieldTypeName);
+
+long cpDefinitionOptionRelId = cpDefinitionOptionRelDisplayContext.getCPDefinitionOptionRelId();
+List<DDMFormFieldType> ddmFormFieldTypes = cpDefinitionOptionRelDisplayContext.getDDMFormFieldTypes();
+String defaultLanguageId = cpDefinitionOptionRelDisplayContext.getCatalogDefaultLanguageId();
 %>
 
 <portlet:actionURL name="/cp_definitions/edit_cp_definition_option_rel" var="editProductDefinitionOptionRelActionURL" />
