@@ -118,15 +118,15 @@ public class UserFacetPortlet extends MVCPortlet {
 		userSearchFacetDisplayContextBuilder.setPaginationStartParameterName(
 			_getPaginationStartParameterName(portletSharedSearchResponse));
 
-		userSearchFacetDisplayContextBuilder.setUserLocalService(
-			userLocalService);
-
 		String parameterName = userFacetPortletPreferences.getParameterName();
 
 		userSearchFacetDisplayContextBuilder.setParamName(parameterName);
 		userSearchFacetDisplayContextBuilder.setParamValues(
 			portletSharedSearchResponse.getParameterValues(
 				parameterName, renderRequest));
+
+		userSearchFacetDisplayContextBuilder.setUserLocalService(
+			userLocalService);
 
 		return userSearchFacetDisplayContextBuilder.build();
 	}
