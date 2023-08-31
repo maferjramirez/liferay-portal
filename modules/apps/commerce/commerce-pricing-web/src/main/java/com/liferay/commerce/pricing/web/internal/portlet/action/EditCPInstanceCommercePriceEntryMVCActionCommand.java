@@ -153,12 +153,11 @@ public class EditCPInstanceCommercePriceEntryMVCActionCommand
 			ActionRequest actionRequest)
 		throws Exception {
 
-		boolean bulkPricing = ParamUtil.getBoolean(
-			actionRequest, "bulkPricing");
-
 		long commercePriceEntryId = ParamUtil.getLong(
 			actionRequest, "commercePriceEntryId");
 
+		boolean bulkPricing = ParamUtil.getBoolean(
+			actionRequest, "bulkPricing");
 		BigDecimal price = (BigDecimal)ParamUtil.getNumber(
 			actionRequest, "price", BigDecimal.ZERO);
 		BigDecimal promoPrice = (BigDecimal)ParamUtil.getNumber(
