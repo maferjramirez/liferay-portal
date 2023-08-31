@@ -76,7 +76,7 @@ public class LayoutWarningMessageHelperImpl
 			return _language.format(
 				httpServletRequest,
 				StringBundler.concat(
-					"pagination-is-set-to-none.-this-setting-can-affect-page-",
+					"pagination-is-disabled.-this-setting-can-affect-page-",
 					"performance-severely-if-the-number-of-collection-items-",
 					"is-above-x.-we-strongly-recommend-using-pagination-",
 					"instead"),
