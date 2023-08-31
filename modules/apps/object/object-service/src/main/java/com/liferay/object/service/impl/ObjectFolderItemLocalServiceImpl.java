@@ -38,7 +38,6 @@ public class ObjectFolderItemLocalServiceImpl
 		throws PortalException {
 
 		_objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId);
-
 		_objectFolderPersistence.findByPrimaryKey(objectFolderId);
 
 		ObjectFolderItem objectFolderItem = objectFolderItemPersistence.create(

@@ -1276,10 +1276,6 @@ public class ObjectDefinitionLocalServiceImpl
 
 		objectDefinition = objectDefinitionPersistence.update(objectDefinition);
 
-		_objectFolderItemLocalService.addObjectFolderItem(
-			userId, objectDefinition.getObjectDefinitionId(),
-			objectDefinition.getObjectFolderId(), 0, 0);
-
 		_resourceLocalService.addResources(
 			objectDefinition.getCompanyId(), 0, objectDefinition.getUserId(),
 			ObjectDefinition.class.getName(),
@@ -1327,6 +1323,10 @@ public class ObjectDefinitionLocalServiceImpl
 				}
 			}
 		}
+
+		_objectFolderItemLocalService.addObjectFolderItem(
+			userId, objectDefinition.getObjectDefinitionId(),
+			objectDefinition.getObjectFolderId(), 0, 0);
 
 		objectDefinition = _updateTitleObjectFieldId(
 			objectDefinition, titleObjectFieldName);
@@ -1715,7 +1715,7 @@ public class ObjectDefinitionLocalServiceImpl
 		throws PortalException {
 
 		long oldObjectFolderId = objectDefinition.getObjectFolderId();
-		boolean originalActive = objectDefinition.isActive();
+		boolean oldActive = objectDefinition.isActive();
 
 		_validateExternalReferenceCode(
 			false, externalReferenceCode, objectDefinition.isModifiable(), name,
@@ -1778,7 +1778,7 @@ public class ObjectDefinitionLocalServiceImpl
 		objectDefinition.setPluralLabelMap(pluralLabelMap);
 
 		if (objectDefinition.isApproved()) {
-			if (!active && originalActive) {
+			if (!active && oldActive) {
 				objectDefinitionLocalService.deployInactiveObjectDefinition(
 					objectDefinition);
 			}
@@ -1787,7 +1787,7 @@ public class ObjectDefinitionLocalServiceImpl
 					objectDefinition);
 			}
 
-			if (active != originalActive) {
+			if (active != oldActive) {
 				_updateWorkflowInstances(objectDefinition);
 			}
 
