@@ -113,11 +113,9 @@ public class CTOnDemandUserTicketGeneratorTest {
 		Assert.assertFalse(
 			_ctCollectionModelResourcePermission.contains(
 				permissionChecker, ctCollection, CTActionKeys.PUBLISH));
-
 		Assert.assertTrue(
 			_ctCollectionModelResourcePermission.contains(
 				permissionChecker, ctCollection, ActionKeys.VIEW));
-
 		Assert.assertTrue(
 			_portletPermission.contains(
 				permissionChecker, CTPortletKeys.PUBLICATIONS,
