@@ -18,7 +18,8 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface LayoutWarningMessageHelper {
 
 	public String getCollectionWarningMessage(
-			CollectionStyledLayoutStructureItem collectionItem,
+			CollectionStyledLayoutStructureItem
+				collectionStyledLayoutStructureItem,
 			HttpServletRequest httpServletRequest)
 		throws Exception;
 
