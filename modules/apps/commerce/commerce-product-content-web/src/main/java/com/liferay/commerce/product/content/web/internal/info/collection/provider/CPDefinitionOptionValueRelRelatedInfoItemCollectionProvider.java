@@ -110,13 +110,6 @@ public class CPDefinitionOptionValueRelRelatedInfoItemCollectionProvider
 
 			SearchContext searchContext = new SearchContext();
 
-			KeywordsInfoFilter keywordsInfoFilter =
-				collectionQuery.getInfoFilter(KeywordsInfoFilter.class);
-
-			if (keywordsInfoFilter != null) {
-				searchContext.setKeywords(keywordsInfoFilter.getKeywords());
-			}
-
 			searchContext.setAttributes(
 				HashMapBuilder.<String, Serializable>put(
 					Field.STATUS, WorkflowConstants.STATUS_APPROVED
@@ -131,6 +124,13 @@ public class CPDefinitionOptionValueRelRelatedInfoItemCollectionProvider
 			}
 			else {
 				searchContext.setCompanyId(serviceContext.getCompanyId());
+			}
+
+			KeywordsInfoFilter keywordsInfoFilter =
+				collectionQuery.getInfoFilter(KeywordsInfoFilter.class);
+
+			if (keywordsInfoFilter != null) {
+				searchContext.setKeywords(keywordsInfoFilter.getKeywords());
 			}
 
 			CPQuery cpQuery = new CPQuery();
