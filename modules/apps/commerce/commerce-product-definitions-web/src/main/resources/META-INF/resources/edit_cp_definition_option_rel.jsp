@@ -17,13 +17,13 @@ String defaultLanguageId = cpDefinitionOptionRelDisplayContext.getCatalogDefault
 
 String name = ParamUtil.getString(request, "name", cpDefinitionOptionRel.getName());
 String description = ParamUtil.getString(request, "description", cpDefinitionOptionRel.getDescription());
+String ddmFormFieldTypeName = ParamUtil.getString(request, "ddmFormFieldTypeName", cpDefinitionOptionRel.getDDMFormFieldTypeName());
+String infoItemServiceKey = ParamUtil.getString(request, "infoItemServiceKey", cpDefinitionOptionRel.getInfoItemServiceKey());
 String priority = ParamUtil.getString(request, "priority", String.valueOf(cpDefinitionOptionRel.getPriority()));
 boolean facetable = ParamUtil.getBoolean(request, "facetable", cpDefinitionOptionRel.isFacetable());
 boolean required = ParamUtil.getBoolean(request, "required", cpDefinitionOptionRel.isRequired());
 boolean skuContributor = ParamUtil.getBoolean(request, "skuContributor", cpDefinitionOptionRel.isSkuContributor());
-String ddmFormFieldTypeName = ParamUtil.getString(request, "ddmFormFieldTypeName", cpDefinitionOptionRel.getDDMFormFieldTypeName());
 String priceType = ParamUtil.getString(request, "priceType", cpDefinitionOptionRel.getPriceType());
-String infoItemServiceKey = ParamUtil.getString(request, "infoItemServiceKey", cpDefinitionOptionRel.getInfoItemServiceKey());
 
 cpDefinitionOptionRel.setName(name);
 cpDefinitionOptionRel.setDescription(description);
