@@ -6,11 +6,11 @@
 package com.liferay.object.admin.rest.internal.resource.v1_0;
 
 import com.liferay.object.admin.rest.dto.v1_0.ObjectFolder;
+import com.liferay.object.admin.rest.dto.v1_0.ObjectFolderItem;
 import com.liferay.object.admin.rest.resource.v1_0.ObjectFolderResource;
 import com.liferay.object.constants.ObjectActionKeys;
 import com.liferay.object.constants.ObjectConstants;
 import com.liferay.object.model.ObjectDefinition;
-import com.liferay.object.model.ObjectFolderItem;
 import com.liferay.object.service.ObjectDefinitionLocalService;
 import com.liferay.object.service.ObjectFolderItemLocalService;
 import com.liferay.object.service.ObjectFolderLocalService;
@@ -164,9 +164,10 @@ public class ObjectFolderResourceImpl extends BaseObjectFolderResourceImpl {
 										getObjectDefinitionExternalReferenceCode(),
 									contextUser.getCompanyId());
 
-						ObjectFolderItem serviceBuilderObjectFolderItem =
-							_objectFolderItemLocalService.
-								createObjectFolderItem(0L);
+						com.liferay.object.model.ObjectFolderItem
+							serviceBuilderObjectFolderItem =
+								_objectFolderItemLocalService.
+									createObjectFolderItem(0L);
 
 						serviceBuilderObjectFolderItem.setObjectDefinitionId(
 							objectDefinition.getObjectDefinitionId());
@@ -264,22 +265,21 @@ public class ObjectFolderResourceImpl extends BaseObjectFolderResourceImpl {
 							objectFolder.getObjectFolderId()),
 					objectFolderItem -> _toObjectFolderItem(
 						objectFolder.getObjectFolderId(), objectFolderItem),
-					com.liferay.object.admin.rest.dto.v1_0.ObjectFolderItem.
-						class);
+					ObjectFolderItem.class);
 			}
 		};
 	}
 
-	private com.liferay.object.admin.rest.dto.v1_0.ObjectFolderItem
-			_toObjectFolderItem(
-				long objectFolderId, ObjectFolderItem objectFolderItem)
+	private ObjectFolderItem _toObjectFolderItem(
+			long objectFolderId,
+			com.liferay.object.model.ObjectFolderItem objectFolderItem)
 		throws PortalException {
 
 		if (objectFolderItem == null) {
 			return null;
 		}
 
-		return new com.liferay.object.admin.rest.dto.v1_0.ObjectFolderItem() {
+		return new ObjectFolderItem() {
 			{
 				ObjectDefinition objectDefinition =
 					_objectDefinitionLocalService.getObjectDefinition(
