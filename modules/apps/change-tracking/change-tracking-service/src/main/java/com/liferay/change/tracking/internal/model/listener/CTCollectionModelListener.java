@@ -34,20 +34,20 @@ public class CTCollectionModelListener extends BaseModelListener<CTCollection> {
 			CTCollection originalCTCollection, CTCollection ctCollection)
 		throws ModelListenerException {
 
-		if (ctCollection.isShareable()) {
+		if (ctCollection.isShareable() ||
+			(ctCollection.isShareable() !=
+				originalCTCollection.isShareable())) {
+
 			return;
 		}
 
-		if (ctCollection.isShareable() != originalCTCollection.isShareable()) {
-			for (Ticket ticket :
-					_ticketLocalService.getTickets(
-						ctCollection.getCompanyId(),
-						CTCollection.class.getName(),
-						ctCollection.getCtCollectionId(),
-						TicketConstants.TYPE_ON_DEMAND_USER_LOGIN)) {
+		for (Ticket ticket :
+				_ticketLocalService.getTickets(
+					ctCollection.getCompanyId(), CTCollection.class.getName(),
+					ctCollection.getCtCollectionId(),
+					TicketConstants.TYPE_ON_DEMAND_USER_LOGIN)) {
 
-				_ticketLocalService.deleteTicket(ticket);
-			}
+			_ticketLocalService.deleteTicket(ticket);
 		}
 	}
 
