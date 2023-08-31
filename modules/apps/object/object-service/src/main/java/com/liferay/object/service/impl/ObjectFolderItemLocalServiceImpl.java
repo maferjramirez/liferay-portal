@@ -183,7 +183,7 @@ public class ObjectFolderItemLocalServiceImpl
 		ObjectDefinition objectDefinition =
 			_objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId);
 
-		_updateObjectFolderItem(
+		_updateObjectFolderObjectFolderItem(
 			objectDefinitionId, newObjectFolderId, oldObjectFolderId,
 			objectDefinition.getUserId());
 
@@ -191,14 +191,14 @@ public class ObjectFolderItemLocalServiceImpl
 				ObjectRelationshipUtil.getRelatedObjectDefinitions(
 					objectDefinition)) {
 
-			_updateObjectFolderItem(
+			_updateObjectFolderObjectFolderItem(
 				relatedObjectDefinition.getObjectDefinitionId(),
 				newObjectFolderId, oldObjectFolderId,
 				objectDefinition.getUserId());
 		}
 	}
 
-	private void _updateObjectFolderItem(
+	private void _updateObjectFolderObjectFolderItem(
 			long objectDefinitionId, long newObjectFolderId,
 			long oldObjectFolderId, long userId)
 		throws PortalException {
