@@ -279,17 +279,16 @@ public class ObjectFolderResourceImpl extends BaseObjectFolderResourceImpl {
 			return null;
 		}
 
+		ObjectDefinition objectDefinition =
+			_objectDefinitionLocalService.getObjectDefinition(
+				objectFolderItem.getObjectDefinitionId());
+
 		return new ObjectFolderItem() {
 			{
-				ObjectDefinition objectDefinition =
-					_objectDefinitionLocalService.getObjectDefinition(
-						objectFolderItem.getObjectDefinitionId());
-
 				linkedObjectDefinition =
 					objectDefinition.isLinkedToObjectFolder(objectFolderId);
 				objectDefinitionExternalReferenceCode =
 					objectDefinition.getExternalReferenceCode();
-
 				positionX = objectFolderItem.getPositionX();
 				positionY = objectFolderItem.getPositionY();
 			}
