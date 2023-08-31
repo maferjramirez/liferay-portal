@@ -616,10 +616,6 @@ public class CPDefinitionOptionValueRelLocalServiceImpl
 				String keywords, int start, int end, Sort[] sorts)
 		throws PortalException {
 
-		SearchContext searchContext = _buildSearchContext(
-			companyId, groupId, cpDefinitionOptionRelId, keywords, start, end,
-			sorts);
-
 		CPDefinitionOptionRel cpDefinitionOptionRel =
 			_cpDefinitionOptionRelLocalService.fetchCPDefinitionOptionRel(
 				cpDefinitionOptionRelId);
@@ -633,6 +629,10 @@ public class CPDefinitionOptionValueRelLocalServiceImpl
 					companyId, groupId, cpDefinitionOptionRel, keywords));
 		}
 
+		SearchContext searchContext = _buildSearchContext(
+			companyId, groupId, cpDefinitionOptionRelId, keywords, start, end,
+			sorts);
+
 		return _searchCPOptions(searchContext);
 	}
 
@@ -641,10 +641,6 @@ public class CPDefinitionOptionValueRelLocalServiceImpl
 			long companyId, long groupId, long cpDefinitionOptionRelId,
 			String keywords)
 		throws PortalException {
-
-		SearchContext searchContext = _buildSearchContext(
-			companyId, groupId, cpDefinitionOptionRelId, keywords,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		CPDefinitionOptionRel cpDefinitionOptionRel =
 			_cpDefinitionOptionRelLocalService.fetchCPDefinitionOptionRel(
@@ -655,6 +651,10 @@ public class CPDefinitionOptionValueRelLocalServiceImpl
 				getCPDefinitionOptionValueRelsCount(
 					companyId, groupId, cpDefinitionOptionRel, keywords);
 		}
+
+		SearchContext searchContext = _buildSearchContext(
+			companyId, groupId, cpDefinitionOptionRelId, keywords,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		return _searchCPOptionsCount(searchContext);
 	}
