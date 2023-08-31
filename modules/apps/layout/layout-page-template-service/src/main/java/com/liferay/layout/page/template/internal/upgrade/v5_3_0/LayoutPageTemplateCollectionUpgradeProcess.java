@@ -21,7 +21,7 @@ public class LayoutPageTemplateCollectionUpgradeProcess extends UpgradeProcess {
 		runSQL(
 			"update LayoutPageTemplateCollection set parentLPTCollectionId = " +
 				LayoutPageTemplateConstants.
-					 PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT);
+					PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT);
 		runSQL(
 			"update LayoutPageTemplateCollection set type_ = " +
 				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);

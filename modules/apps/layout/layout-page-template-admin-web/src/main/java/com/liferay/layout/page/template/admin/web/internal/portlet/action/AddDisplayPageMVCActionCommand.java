@@ -105,7 +105,7 @@ public class AddDisplayPageMVCActionCommand extends BaseMVCActionCommand {
 				ParamUtil.getLong(
 					actionRequest, "layoutPageTemplateCollectionId",
 					LayoutPageTemplateConstants.
-						 PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT)
+						PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT)
 			).buildString());
 
 		return HttpComponentsUtil.setParameter(

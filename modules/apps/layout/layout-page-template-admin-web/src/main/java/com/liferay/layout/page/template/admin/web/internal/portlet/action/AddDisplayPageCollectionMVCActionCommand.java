@@ -60,7 +60,7 @@ public class AddDisplayPageCollectionMVCActionCommand
 					ParamUtil.getLong(
 						actionRequest, "layoutPageTemplateCollectionId",
 						LayoutPageTemplateConstants.
-							 PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT),
+							PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT),
 					ParamUtil.getString(actionRequest, "name"),
 					ParamUtil.getString(actionRequest, "description"),
 					ServiceContextFactory.getInstance(actionRequest));

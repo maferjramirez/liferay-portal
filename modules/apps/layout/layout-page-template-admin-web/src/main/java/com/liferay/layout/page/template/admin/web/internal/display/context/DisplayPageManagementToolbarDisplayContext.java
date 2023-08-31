@@ -123,7 +123,7 @@ public class DisplayPageManagementToolbarDisplayContext
 		).setParameter(
 			"layoutPageTemplateCollectionId",
 			LayoutPageTemplateConstants.
-				 PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT
+				PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT
 		).buildString();
 	}
 
