@@ -53,13 +53,14 @@ public class DisplayPageInfoItemFieldSetProviderImpl
 
 	@Override
 	public InfoFieldSet getInfoFieldSet(
-		String itemClassName, String infoItemFormVariationKey,
+		String itemClassName, String infoItemFormVariationKey, String namespace,
 		long scopeGroupId) {
 
 		return InfoFieldSet.builder(
 		).infoFieldSetEntries(
 			_getInfoFieldSetEntries(
-				itemClassName, infoItemFormVariationKey, scopeGroupId)
+				itemClassName, infoItemFormVariationKey, namespace,
+				scopeGroupId)
 		).labelInfoLocalizedValue(
 			InfoLocalizedValue.localize(getClass(), "display-page")
 		).name(
@@ -70,7 +71,8 @@ public class DisplayPageInfoItemFieldSetProviderImpl
 	@Override
 	public List<InfoFieldValue<Object>> getInfoFieldValues(
 			InfoItemReference infoItemReference,
-			String infoItemFormVariationKey, ThemeDisplay themeDisplay)
+			String infoItemFormVariationKey, String namespace,
+			ThemeDisplay themeDisplay)
 		throws Exception {
 
 		if (!FeatureFlagManagerUtil.isEnabled("LPS-183727") ||
@@ -84,7 +86,7 @@ public class DisplayPageInfoItemFieldSetProviderImpl
 		infoFieldValues.add(
 			new InfoFieldValue<>(
 				InfoField.builder(
-					infoItemReference.getClassName()
+					namespace
 				).infoFieldType(
 					URLInfoFieldType.INSTANCE
 				).name(
@@ -197,10 +199,10 @@ public class DisplayPageInfoItemFieldSetProviderImpl
 	}
 
 	private InfoField<InfoFieldType> _getDefaultDisplayPageURLInfoField(
-		String className) {
+		String namespace) {
 
 		return InfoField.builder(
-			className
+			namespace
 		).infoFieldType(
 			_getDisplayPageInfoFieldType()
 		).name(
@@ -215,13 +217,12 @@ public class DisplayPageInfoItemFieldSetProviderImpl
 	}
 
 	private List<InfoFieldSetEntry> _getInfoFieldSetEntries(
-		String itemClassName, String infoItemFormVariationKey,
+		String itemClassName, String infoItemFormVariationKey, String namespace,
 		long scopeGroupId) {
 
 		List<InfoFieldSetEntry> infoFieldSetEntries = new ArrayList<>();
 
-		infoFieldSetEntries.add(
-			_getDefaultDisplayPageURLInfoField(itemClassName));
+		infoFieldSetEntries.add(_getDefaultDisplayPageURLInfoField(namespace));
 
 		List<LayoutPageTemplateEntry> layoutPageTemplateEntries =
 			_layoutPageTemplateEntryService.getLayoutPageTemplateEntries(
