@@ -97,13 +97,7 @@ public class ViewAccountUsersManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addDropdownItem(
-			() -> {
-				if (_hasManageUsersPermission()) {
-					return true;
-				}
-
-				return false;
-			},
+			() -> _hasManageUsersPermission(),
 			dropdownItem -> {
 				dropdownItem.putData("action", "selectAccountUsers");
 				dropdownItem.putData(
@@ -132,13 +126,7 @@ public class ViewAccountUsersManagementToolbarDisplayContext
 					LanguageUtil.get(httpServletRequest, "assign-users"));
 			}
 		).addDropdownItem(
-			() -> {
-				if (_hasInviteUserPermission() || _hasManageUsersPermission()) {
-					return true;
-				}
-
-				return false;
-			},
+			() -> _hasInviteUserPermission() || _hasManageUsersPermission(),
 			dropdownItem -> {
 				dropdownItem.putData("action", "inviteAccountUsers");
 				dropdownItem.putData(
@@ -222,11 +210,7 @@ public class ViewAccountUsersManagementToolbarDisplayContext
 
 	@Override
 	public Boolean isShowCreationMenu() {
-		if (_hasInviteUserPermission() || _hasManageUsersPermission()) {
-			return true;
-		}
-
-		return false;
+		return _hasInviteUserPermission() || _hasManageUsersPermission();
 	}
 
 	@Override
