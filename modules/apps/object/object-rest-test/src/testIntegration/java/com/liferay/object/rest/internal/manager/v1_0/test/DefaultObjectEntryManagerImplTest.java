@@ -2415,7 +2415,6 @@ public class DefaultObjectEntryManagerImplTest
 			() -> _defaultObjectEntryManager.updateObjectEntry(
 				_simpleDTOConverterContext, _objectDefinition3,
 				objectEntry1.getId(), objectEntry1));
-
 		AssertUtils.assertFailure(
 			PrincipalException.MustHavePermission.class,
 			StringBundler.concat(
