@@ -132,11 +132,23 @@ public class DLSizeLimitConfigurationDisplayContext {
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("<a href=\"");
+
+		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
+			RequestBackedPortletURLFactoryUtil.create(_httpServletRequest);
+
 		sb.append(
 			HtmlUtil.escape(
-				_getSystemSettingsUrl(
+				PortletURLBuilder.create(
+					requestBackedPortletURLFactory.createActionURL(
+						ConfigurationAdminPortletKeys.SYSTEM_SETTINGS)
+				).setMVCRenderCommandName(
+					"/configuration_admin/edit_configuration"
+				).setParameter(
+					"factoryPid",
 					"com.liferay.portal.upload.internal.configuration." +
-						"UploadServletRequestConfiguration")));
+						"UploadServletRequestConfiguration"
+				).buildString()));
+
 		sb.append("\">");
 		sb.append(
 			LanguageUtil.get(
@@ -168,20 +180,6 @@ public class DLSizeLimitConfigurationDisplayContext {
 		}
 
 		throw new IllegalArgumentException("Unsupported scope: " + _scope);
-	}
-
-	private String _getSystemSettingsUrl(String factoryPid) {
-		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
-			RequestBackedPortletURLFactoryUtil.create(_httpServletRequest);
-
-		return PortletURLBuilder.create(
-			requestBackedPortletURLFactory.createActionURL(
-				ConfigurationAdminPortletKeys.SYSTEM_SETTINGS)
-		).setMVCRenderCommandName(
-			"/configuration_admin/edit_configuration"
-		).setParameter(
-			"factoryPid", factoryPid
-		).buildString();
 	}
 
 	private final DLSizeLimitConfigurationProvider
