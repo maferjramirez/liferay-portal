@@ -82,7 +82,8 @@ public class HttpServletImplBundleActivator implements BundleActivator {
 		}
 		catch (UnsupportedOperationException unsupportedOperationException) {
 			_log.error(
-				"Could not find the servlet registration for: " + servletName,
+				"Unable to get the servlet registration for servlet name " +
+					servletName,
 				unsupportedOperationException);
 		}
 
