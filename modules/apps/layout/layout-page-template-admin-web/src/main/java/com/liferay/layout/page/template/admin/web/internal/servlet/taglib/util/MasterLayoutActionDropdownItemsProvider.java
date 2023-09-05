@@ -59,16 +59,15 @@ public class MasterLayoutActionDropdownItemsProvider {
 		_layoutPageTemplateEntry = layoutPageTemplateEntry;
 		_renderResponse = renderResponse;
 
+		_draftLayout = LayoutLocalServiceUtil.fetchDraftLayout(
+			layoutPageTemplateEntry.getPlid());
 		_httpServletRequest = PortalUtil.getHttpServletRequest(renderRequest);
 		_itemSelector = (ItemSelector)renderRequest.getAttribute(
 			LayoutPageTemplateAdminWebKeys.ITEM_SELECTOR);
-		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		_draftLayout = LayoutLocalServiceUtil.fetchDraftLayout(
-			layoutPageTemplateEntry.getPlid());
 		_layout = LayoutLocalServiceUtil.fetchLayout(
 			layoutPageTemplateEntry.getPlid());
+		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 	}
 
 	public List<DropdownItem> getActionDropdownItems() throws Exception {
