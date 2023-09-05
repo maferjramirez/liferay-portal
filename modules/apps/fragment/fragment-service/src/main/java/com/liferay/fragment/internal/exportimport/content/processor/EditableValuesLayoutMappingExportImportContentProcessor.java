@@ -157,6 +157,36 @@ public class EditableValuesLayoutMappingExportImportContentProcessor
 		}
 	}
 
+	private boolean _isSkipExportLayout(Layout layout) {
+		if (!layout.isTypeContent()) {
+			return false;
+		}
+
+		LayoutPageTemplateEntry layoutPageTemplateEntry =
+			_layoutPageTemplateEntryLocalService.
+				fetchLayoutPageTemplateEntryByPlid(layout.getPlid());
+
+		if (layoutPageTemplateEntry == null) {
+			layoutPageTemplateEntry =
+				_layoutPageTemplateEntryLocalService.
+					fetchLayoutPageTemplateEntryByPlid(layout.getClassPK());
+		}
+
+		if (layoutPageTemplateEntry == null) {
+			return false;
+		}
+
+		if ((layoutPageTemplateEntry.getType() ==
+				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC) ||
+			(layoutPageTemplateEntry.getType() ==
+				LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	private void _replaceImportLayoutReferences(
 		JSONObject layoutJSONObject, PortletDataContext portletDataContext) {
 
@@ -186,36 +216,6 @@ public class EditableValuesLayoutMappingExportImportContentProcessor
 		).put(
 			"privateLayout", layout.isPrivateLayout()
 		);
-	}
-
-	private boolean _isSkipExportLayout(Layout layout) {
-		if (!layout.isTypeContent()) {
-			return false;
-		}
-
-		LayoutPageTemplateEntry layoutPageTemplateEntry =
-			_layoutPageTemplateEntryLocalService.
-				fetchLayoutPageTemplateEntryByPlid(layout.getPlid());
-
-		if (layoutPageTemplateEntry == null) {
-			layoutPageTemplateEntry =
-				_layoutPageTemplateEntryLocalService.
-					fetchLayoutPageTemplateEntryByPlid(layout.getClassPK());
-		}
-
-		if (layoutPageTemplateEntry == null) {
-			return false;
-		}
-
-		if ((layoutPageTemplateEntry.getType() ==
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC) ||
-			(layoutPageTemplateEntry.getType() ==
-				LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT)) {
-
-			return true;
-		}
-
-		return false;
 	}
 
 	@Reference
