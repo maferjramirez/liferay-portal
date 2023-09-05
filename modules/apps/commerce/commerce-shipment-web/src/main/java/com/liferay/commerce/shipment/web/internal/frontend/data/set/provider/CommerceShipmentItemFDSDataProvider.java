@@ -90,10 +90,10 @@ public class CommerceShipmentItemFDSDataProvider
 				}
 			}
 
+			BigDecimal quantity = commerceOrderItem.getQuantity();
 			BigDecimal shipmentItemQuantity =
 				commerceShipmentItem.getQuantity();
 			BigDecimal shippedQuantity = commerceOrderItem.getShippedQuantity();
-			BigDecimal quantity = commerceOrderItem.getQuantity();
 
 			shipmentItems.add(
 				new ShipmentItem(
