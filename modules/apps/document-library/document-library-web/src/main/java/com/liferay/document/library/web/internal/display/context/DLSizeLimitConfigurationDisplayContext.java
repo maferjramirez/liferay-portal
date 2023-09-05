@@ -78,10 +78,29 @@ public class DLSizeLimitConfigurationDisplayContext {
 	}
 
 	public String[] getFileMaxSizeHelpArguments() {
+		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
+			RequestBackedPortletURLFactoryUtil.create(_httpServletRequest);
+
 		return new String[] {
 			LanguageUtil.get(
 				_httpServletRequest, "overall-maximum-upload-request-size"),
-			_getConfigurationLink()
+			StringBundler.concat(
+				"<a href=\"",
+				PortletURLBuilder.create(
+					requestBackedPortletURLFactory.createActionURL(
+						ConfigurationAdminPortletKeys.SYSTEM_SETTINGS)
+				).setMVCRenderCommandName(
+					"/configuration_admin/edit_configuration"
+				).setParameter(
+					"factoryPid",
+					"com.liferay.portal.upload.internal.configuration." +
+						"UploadServletRequestConfiguration"
+				).buildString(),
+				"\">",
+				LanguageUtil.get(
+					_httpServletRequest,
+					"upload-servlet-request-configuration-name"),
+				"</a>")
 		};
 	}
 
@@ -125,36 +144,6 @@ public class DLSizeLimitConfigurationDisplayContext {
 		}
 
 		throw new IllegalArgumentException("Unsupported scope: " + _scope);
-	}
-
-	private String _getConfigurationLink() {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<a href=\"");
-
-		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
-			RequestBackedPortletURLFactoryUtil.create(_httpServletRequest);
-
-		sb.append(
-			PortletURLBuilder.create(
-				requestBackedPortletURLFactory.createActionURL(
-					ConfigurationAdminPortletKeys.SYSTEM_SETTINGS)
-			).setMVCRenderCommandName(
-				"/configuration_admin/edit_configuration"
-			).setParameter(
-				"factoryPid",
-				"com.liferay.portal.upload.internal.configuration." +
-					"UploadServletRequestConfiguration"
-			).buildString());
-
-		sb.append("\">");
-		sb.append(
-			LanguageUtil.get(
-				_httpServletRequest,
-				"upload-servlet-request-configuration-name"));
-		sb.append("</a>");
-
-		return sb.toString();
 	}
 
 	private Map<String, Long> _getMimeTypeSizeLimit() {
