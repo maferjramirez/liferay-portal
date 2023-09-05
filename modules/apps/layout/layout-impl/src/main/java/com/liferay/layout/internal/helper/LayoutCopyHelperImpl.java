@@ -677,6 +677,8 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 			).fastLoad(
 				sourceLayout.getTypeSettings()
 			).setProperty(
+				"published", Boolean.FALSE.toString()
+			).setProperty(
 				"query-string",
 				typeSettingsUnicodeProperties.getProperty("query-string")
 			).setProperty(
@@ -684,8 +686,6 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 			).setProperty(
 				"targetType",
 				typeSettingsUnicodeProperties.getProperty("targetType")
-			).setProperty(
-				"published", Boolean.FALSE.toString()
 			).buildString();
 		}
 
