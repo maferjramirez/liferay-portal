@@ -137,17 +137,16 @@ public class DLSizeLimitConfigurationDisplayContext {
 			RequestBackedPortletURLFactoryUtil.create(_httpServletRequest);
 
 		sb.append(
-			HtmlUtil.escape(
-				PortletURLBuilder.create(
-					requestBackedPortletURLFactory.createActionURL(
-						ConfigurationAdminPortletKeys.SYSTEM_SETTINGS)
-				).setMVCRenderCommandName(
-					"/configuration_admin/edit_configuration"
-				).setParameter(
-					"factoryPid",
-					"com.liferay.portal.upload.internal.configuration." +
-						"UploadServletRequestConfiguration"
-				).buildString()));
+			PortletURLBuilder.create(
+				requestBackedPortletURLFactory.createActionURL(
+					ConfigurationAdminPortletKeys.SYSTEM_SETTINGS)
+			).setMVCRenderCommandName(
+				"/configuration_admin/edit_configuration"
+			).setParameter(
+				"factoryPid",
+				"com.liferay.portal.upload.internal.configuration." +
+					"UploadServletRequestConfiguration"
+			).buildString());
 
 		sb.append("\">");
 		sb.append(
