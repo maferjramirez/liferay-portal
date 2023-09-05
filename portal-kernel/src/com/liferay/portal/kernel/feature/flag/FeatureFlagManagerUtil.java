@@ -66,8 +66,8 @@ public class FeatureFlagManagerUtil {
 
 		if (_log.isWarnEnabled()) {
 			_log.warn(
-				"No FeatureFlagManager service found. Returning the default " +
-					"value.");
+				"No feature flag manager service found. Returning the " +
+					"default value.");
 		}
 
 		return supplier.get();
