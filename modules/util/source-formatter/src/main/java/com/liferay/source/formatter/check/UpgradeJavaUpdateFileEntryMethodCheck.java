@@ -66,68 +66,67 @@ public class UpgradeJavaUpdateFileEntryMethodCheck extends BaseUpgradeCheck {
 				String className = getVariableTypeName(
 					newContent, newContent, parameterList.get(8), true);
 
-				if (className.equals("byte[]")) {
-					String newMethod = null;
+				if (!className.equals("byte[]")) {
+					continue;
+				}
 
-					String message = StringBundler.concat(
-						"Unable to format method updateFileEntry from ",
-						"DLAppLocalService and DLAppLocalServiceUtil. Fill ",
-						"the new parameters manually, see LPS-194134.");
+				String newMethod = null;
 
-					String parameterClass = getVariableTypeName(
-						content, content, parameterList.get(7));
+				String message = StringBundler.concat(
+					"Unable to format method updateFileEntry from ",
+					"DLAppLocalService and DLAppLocalServiceUtil. Fill the ",
+					"new parameters manually, see LPS-194134.");
 
-					if (parameterClass.equals("DLVersionNumberIncrease")) {
-						String[] parameterTypes = {
-							"long", "long", "String", "String", "String",
-							"String", "String", "DLVersionNumberIncrease",
-							"byte[]", "ServiceContext"
-						};
+				String parameterClass = getVariableTypeName(
+					content, content, parameterList.get(7));
 
-						if (!hasValidParameters(
-								parameterTypes.length, fileName,
-								javaMethodContent, message, parameterList,
-								parameterTypes)) {
+				if (parameterClass.equals("DLVersionNumberIncrease")) {
+					String[] parameterTypes = {
+						"long", "long", "String", "String", "String", "String",
+						"String", "DLVersionNumberIncrease", "byte[]",
+						"ServiceContext"
+					};
 
-							continue;
-						}
+					if (!hasValidParameters(
+							parameterTypes.length, fileName, javaMethodContent,
+							message, parameterList, parameterTypes)) {
 
-						newMethod = JavaSourceUtil.addMethodNewParameters(
-							JavaSourceUtil.getIndent(methodCall),
-							new int[] {5, 10, 11}, matcher.group(),
-							new String[] {null, null, null}, parameterList);
-
-						newContent = StringUtil.replace(
-							newContent, methodCall, newMethod);
+						continue;
 					}
-					else {
-						String[] parameterTypes = {
-							"long", "long", "String", "String", "String",
-							"String", "String", "boolean", "byte[]",
-							"ServiceContext"
-						};
 
-						if (!hasValidParameters(
-								parameterTypes.length, fileName,
-								javaMethodContent, message, parameterList,
-								parameterTypes)) {
+					newMethod = JavaSourceUtil.addMethodNewParameters(
+						JavaSourceUtil.getIndent(methodCall),
+						new int[] {5, 10, 11}, matcher.group(),
+						new String[] {null, null, null}, parameterList);
 
-							continue;
-						}
+					newContent = StringUtil.replace(
+						newContent, methodCall, newMethod);
+				}
+				else {
+					String[] parameterTypes = {
+						"long", "long", "String", "String", "String", "String",
+						"String", "boolean", "byte[]", "ServiceContext"
+					};
 
-						parameterList.remove(7);
+					if (!hasValidParameters(
+							parameterTypes.length, fileName, javaMethodContent,
+							message, parameterList, parameterTypes)) {
 
-						newMethod = JavaSourceUtil.addMethodNewParameters(
-							JavaSourceUtil.getIndent(methodCall),
-							new int[] {5, 8, 10, 11}, matcher.group(),
-							new String[] {
-								null, "dlVersionNumberIncrease", null, null
-							},
-							parameterList);
-
-						newContent = StringUtil.replace(
-							newContent, methodCall, newMethod);
+						continue;
 					}
+
+					parameterList.remove(7);
+
+					newMethod = JavaSourceUtil.addMethodNewParameters(
+						JavaSourceUtil.getIndent(methodCall),
+						new int[] {5, 8, 10, 11}, matcher.group(),
+						new String[] {
+							null, "dlVersionNumberIncrease", null, null
+						},
+						parameterList);
+
+					newContent = StringUtil.replace(
+						newContent, methodCall, newMethod);
 				}
 			}
 		}
