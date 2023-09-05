@@ -135,7 +135,7 @@ public class EditableValuesLayoutMappingExportImportContentProcessor
 
 		if ((layout.isPrivateLayout() !=
 				portletDataContext.isPrivateLayout()) &&
-			!layout.isTypeAssetDisplay() && !_skipExportLayout(layout)) {
+			!layout.isTypeAssetDisplay() && !_isSkipExportLayout(layout)) {
 
 			return;
 		}
@@ -188,7 +188,7 @@ public class EditableValuesLayoutMappingExportImportContentProcessor
 		);
 	}
 
-	private boolean _skipExportLayout(Layout layout) {
+	private boolean _isSkipExportLayout(Layout layout) {
 		if (!layout.isTypeContent()) {
 			return false;
 		}
