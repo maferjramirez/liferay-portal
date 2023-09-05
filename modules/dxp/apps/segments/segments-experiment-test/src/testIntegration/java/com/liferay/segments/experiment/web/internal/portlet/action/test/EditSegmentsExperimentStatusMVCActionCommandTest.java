@@ -77,7 +77,6 @@ public class EditSegmentsExperimentStatusMVCActionCommandTest {
 			_group.getGroupId(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			StringPool.BLANK, SegmentsEntryConstants.SOURCE_DEFAULT);
-
 		Layout layout = LayoutTestUtil.addTypeContentLayout(_group);
 
 		SegmentsExperience defaultSegmentsExperience =
