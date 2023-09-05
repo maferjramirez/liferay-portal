@@ -82,7 +82,7 @@ public class CopyFileShortcutMVCActionCommand extends BaseMVCActionCommand {
 		Group sourceGroup = _groupLocalService.getGroup(sourceGroupId);
 
 		if (group.isDepot() ^ sourceGroup.isDepot()) {
-			long[] groupIds;
+			long[] groupIds = null;
 
 			if (group.isDepot()) {
 				groupIds =
