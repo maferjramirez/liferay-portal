@@ -45,12 +45,12 @@ downloadSrc {
 }
 
 jar {
-	setActions([])
 	dependsOn downloadSrc
 	dependsOn unzip
 	dependsOn compileJava
 	dependsOn jarPatched
 	finalizedBy deleteSrcDirectory
+	setActions([])
 }
 
 jarPatched {
@@ -76,16 +76,12 @@ unzip {
 
 	doLast {
 		srcTmpDir.eachFileRecurse(FileType.FILES) {
-			String dirName = "java"
-
 			if (it.toPath().toString().contains("cmdline") ) {
 				return
 			}
 
 			if (it.name.endsWith(".java")) {
-				File dir = file("src/main/" + dirName)
-
-				File destFile = new File(dir, FileUtil.relativize(it, srcTmpDir))
+				File destFile = new File(file("src/main/java"), FileUtil.relativize(it, srcTmpDir))
 
 				destFile.parentFile.mkdirs()
 
