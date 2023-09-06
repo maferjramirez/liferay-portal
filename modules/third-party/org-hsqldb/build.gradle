@@ -83,7 +83,6 @@ unzip {
 			}
 
 			if (it.name.endsWith(".java")) {
-
 				File dir = file("src/main/" + dirName)
 
 				File destFile = new File(dir, FileUtil.relativize(it, srcTmpDir))
