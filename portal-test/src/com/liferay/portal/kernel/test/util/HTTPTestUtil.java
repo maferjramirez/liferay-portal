@@ -56,9 +56,11 @@ public class HTTPTestUtil {
 			throws T {
 
 			String defaultBaseURL = _baseURL;
+
 			_baseURL = _newBaseURL;
 
 			String defaultCredentials = _credentials;
+
 			_credentials = _newCredentials;
 
 			try {
