@@ -379,35 +379,18 @@ public abstract class BaseSystemObjectRelatedModelsProviderTestCase {
 				_objectRelationship.getObjectRelationshipId()));
 	}
 
-	protected long[] addBaseModels(int count) throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
+	protected abstract long[] addBaseModels(int count) throws Exception;
 
-	protected void assertFailure(long primaryKey) throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
+	protected abstract void assertFailure(long primaryKey) throws Exception;
 
-	protected void deleteBaseModel(long primaryKey) throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
+	protected abstract void deleteBaseModel(long primaryKey) throws Exception;
 
-	protected Object fetchBaseModel(long primaryKey) {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
+	protected abstract Object fetchBaseModel(long primaryKey);
 
-	protected String getName(long primaryKey) throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
+	protected abstract String getName(long primaryKey) throws Exception;
 
-	protected ObjectDefinition getSystemObjectDefinition() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
+	protected abstract ObjectDefinition getSystemObjectDefinition()
+		throws Exception;
 
 	private void _addObjectRelationship(
 			ObjectDefinition objectDefinition1,
