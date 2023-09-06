@@ -294,9 +294,9 @@ public class ObjectDefinitionLocalServiceTest {
 			tree,
 			nodeObjectDefinition -> {
 				Assert.assertFalse(
-					_hasTable(nodeObjectDefinition.getExtensionDBTableName()));
-				Assert.assertFalse(
 					_hasTable(nodeObjectDefinition.getDBTableName()));
+				Assert.assertFalse(
+					_hasTable(nodeObjectDefinition.getExtensionDBTableName()));
 			});
 
 		// Before publish, resources
