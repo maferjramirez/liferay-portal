@@ -476,7 +476,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 				siteNavigationMenuItemSettingsBuilder =
 					new SiteNavigationMenuItemSettingsBuilder();
 
-			HashMap<String, String> stringUtilReplaceValues = new HashMap<>();
+			Map<String, String> stringUtilReplaceValues = new HashMap<>();
 
 			_invoke(() -> _addAccountGroups(serviceContext));
 			_invoke(() -> _addAccounts(serviceContext));
