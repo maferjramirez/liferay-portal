@@ -11,15 +11,6 @@ package com.liferay.portal.vulcan.batch.engine;
 public class Field {
 
 	public static Field of(
-		String description, String name, boolean readOnly, boolean required,
-		String type, boolean writeOnly) {
-
-		return new Field(
-			_toAccessType(readOnly, writeOnly), description, name, null,
-			required, type);
-	}
-
-	public static Field of(
 		String description, String name, boolean readOnly, String ref,
 		boolean required, String type, boolean writeOnly) {
 
