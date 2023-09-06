@@ -62,9 +62,7 @@ public abstract class BaseSystemObjectRelatedModelsProviderTestCase {
 		PermissionThreadLocal.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(TestPropsValues.getUser()));
 
-		PrincipalThreadLocal.setName(
-			TestPropsValues.getUser(
-			).getUserId());
+		PrincipalThreadLocal.setName(TestPropsValues.getUserId());
 	}
 
 	@Test
