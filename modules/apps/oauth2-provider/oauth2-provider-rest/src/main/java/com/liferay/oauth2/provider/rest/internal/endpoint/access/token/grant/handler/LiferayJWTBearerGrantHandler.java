@@ -170,7 +170,7 @@ public class LiferayJWTBearerGrantHandler extends BaseAccessTokenGrantHandler {
 		}
 
 		if (!kidsJWSSignatureVerifiers.containsKey(kid)) {
-			sb.append("No JWS signature key of kid: ");
+			sb.append("No JWS signature key of KID: ");
 			sb.append(kid);
 			sb.append(", for issuer: ");
 			sb.append(issuer);
