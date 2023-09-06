@@ -1583,7 +1583,7 @@ public class ObjectDefinitionLocalServiceImpl
 		if (modifiable && system) {
 			prefix =
 				ObjectDefinitionConstants.
-					EXTERNAL_REFERENCE_CODE_SYSTEM_OBJECT_DEFINITION_PREFIX;
+					EXTERNAL_REFERENCE_CODE_PREFIX_SYSTEM_OBJECT_DEFINITION;
 		}
 
 		return StringBundler.concat(
@@ -2103,7 +2103,7 @@ public class ObjectDefinitionLocalServiceImpl
 		if (!system &&
 			externalReferenceCode.startsWith(
 				ObjectDefinitionConstants.
-					EXTERNAL_REFERENCE_CODE_SYSTEM_OBJECT_DEFINITION_PREFIX)) {
+					EXTERNAL_REFERENCE_CODE_PREFIX_SYSTEM_OBJECT_DEFINITION)) {
 
 			throw new ObjectDefinitionExternalReferenceCodeException.
 				MustNotStartWithPrefix();

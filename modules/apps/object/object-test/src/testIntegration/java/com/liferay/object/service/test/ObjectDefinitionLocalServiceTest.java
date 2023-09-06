@@ -1153,7 +1153,7 @@ public class ObjectDefinitionLocalServiceTest {
 			StringUtil.startsWith(
 				objectDefinition.getDBTableName(),
 				ObjectDefinitionConstants.
-					EXTERNAL_REFERENCE_CODE_SYSTEM_OBJECT_DEFINITION_PREFIX));
+					EXTERNAL_REFERENCE_CODE_PREFIX_SYSTEM_OBJECT_DEFINITION));
 		Assert.assertEquals("/test", objectDefinition.getRESTContextPath());
 		Assert.assertTrue(objectDefinition.isApproved());
 		Assert.assertTrue(objectDefinition.isEnableCategorization());

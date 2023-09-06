@@ -63,7 +63,7 @@ public class ObjectDefinitionExternalReferenceCodeException
 			super(
 				Collections.singletonList(
 					ObjectDefinitionConstants.
-						EXTERNAL_REFERENCE_CODE_SYSTEM_OBJECT_DEFINITION_PREFIX),
+						EXTERNAL_REFERENCE_CODE_PREFIX_SYSTEM_OBJECT_DEFINITION),
 				"The prefix L_ is reserved for Liferay",
 				"the-prefix-x-is-reserved-for-liferay");
 		}
