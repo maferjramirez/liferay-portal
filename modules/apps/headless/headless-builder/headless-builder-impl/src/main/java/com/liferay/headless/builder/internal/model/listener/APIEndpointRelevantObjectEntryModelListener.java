@@ -75,10 +75,10 @@ public class APIEndpointRelevantObjectEntryModelListener
 
 	private boolean _equals(
 		Map<String, Serializable> map1, Map<String, Serializable> map2,
-		String... parameters) {
+		String... keys) {
 
-		for (String parameter : parameters) {
-			if (!Objects.equals(map1.get(parameter), map2.get(parameter))) {
+		for (String key : keys) {
+			if (!Objects.equals(map1.get(key), map2.get(key))) {
 				return false;
 			}
 		}
