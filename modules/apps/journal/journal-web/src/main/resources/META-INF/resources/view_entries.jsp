@@ -6,7 +6,6 @@
 --%>
 
 <%@ include file="/init.jsp" %>
-<%@ taglib uri="http://liferay.com/tld/frontend" prefix="Liferay-frontend" %>
 
 <%
 String referringPortletResource = ParamUtil.getString(request, "referringPortletResource");
