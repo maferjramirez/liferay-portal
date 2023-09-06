@@ -56,10 +56,10 @@ public class StoreAreaOSGiCommands {
 			return true;
 		}
 
-		int fileVersionsCount = _dlFileVersionLocalService.getFileVersionsCount(
+		int count = _dlFileVersionLocalService.getFileVersionsCount(
 			companyId, name.substring(index + 1));
 
-		if (fileVersionsCount > 0) {
+		if (count > 0) {
 			return true;
 		}
 
