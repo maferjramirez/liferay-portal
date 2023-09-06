@@ -38,7 +38,7 @@ String previewFileURL = previewFileURLs[0];
 <clay:alert
 	dismissible="<%= true %>"
 	displayType="info"
-	message="the-document-preview-may-not-show-all-pages-.to-see-the-full-document,-please-download-it"
+	message="the-document-preview-may-not-show-all-pages"
 />
 
 <div id="<portlet:namespace /><%= randomNamespace %>previewDocument">
