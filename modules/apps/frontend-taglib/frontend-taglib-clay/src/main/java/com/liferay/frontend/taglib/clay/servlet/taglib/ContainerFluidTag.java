@@ -20,14 +20,14 @@ public class ContainerFluidTag extends ContainerTag {
 
 		setFluid(true);
 
-		if (Validator.isNull(getSize()) && !getFullWidth()) {
+		if (Validator.isNull(getSize()) && !isFullWidth()) {
 			setSize("xl");
 		}
 
 		return super.doStartTag();
 	}
 
-	public boolean getFullWidth() {
+	public boolean isFullWidth() {
 		return _fullWidth;
 	}
 
