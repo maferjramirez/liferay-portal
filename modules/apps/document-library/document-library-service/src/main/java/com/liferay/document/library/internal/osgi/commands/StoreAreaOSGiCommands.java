@@ -50,14 +50,14 @@ public class StoreAreaOSGiCommands {
 	}
 
 	private boolean _isDLFileVersionReferenced(Long companyId, String name) {
-		int pos = name.lastIndexOf(StringPool.TILDE);
+		int index = name.lastIndexOf(StringPool.TILDE);
 
-		if (pos == -1) {
+		if (index == -1) {
 			return true;
 		}
 
 		int fileVersionsCount = _dlFileVersionLocalService.getFileVersionsCount(
-			companyId, name.substring(pos + 1));
+			companyId, name.substring(index + 1));
 
 		if (fileVersionsCount > 0) {
 			return true;
