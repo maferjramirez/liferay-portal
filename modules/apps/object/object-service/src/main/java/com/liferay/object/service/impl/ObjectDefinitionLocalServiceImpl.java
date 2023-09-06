@@ -799,7 +799,7 @@ public class ObjectDefinitionLocalServiceImpl
 
 		if (objectDefinition.isRootDescendantNode()) {
 			throw new ObjectDefinitionStatusException(
-				"Non root object definitions within a hierarchical structure " +
+				"Nonroot object definitions within a hierarchical structure " +
 					"are ineligible for publication");
 		}
 

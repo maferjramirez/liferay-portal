@@ -384,7 +384,7 @@ public class ObjectDefinitionLocalServiceTest {
 				if (nodeObjectDefinition.isRootDescendantNode()) {
 					AssertUtils.assertFailure(
 						ObjectDefinitionStatusException.class,
-						"Non root object definitions within a hierarchical " +
+						"Nonroot object definitions within a hierarchical " +
 							"structure are ineligible for publication",
 						() ->
 							_objectDefinitionLocalService.
