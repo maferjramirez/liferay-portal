@@ -1837,11 +1837,11 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 			pageTemplateCollectionEntryMap = _getPageTemplateCollectionEntryMap(
 				groupId, zipFile);
 
-		for (Map.Entry<String, PageTemplateCollectionEntry> ptcEntry :
+		for (Map.Entry<String, PageTemplateCollectionEntry> entry1 :
 				pageTemplateCollectionEntryMap.entrySet()) {
 
 			PageTemplateCollectionEntry pageTemplateCollectionEntry =
-				ptcEntry.getValue();
+				entry1.getValue();
 
 			Map<String, PageTemplateEntry> pageTemplatesEntries =
 				pageTemplateCollectionEntry.getPageTemplatesEntries();
@@ -1861,10 +1861,10 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				}
 			}
 
-			for (Map.Entry<String, PageTemplateEntry> ptEntry :
+			for (Map.Entry<String, PageTemplateEntry> entry2 :
 					pageTemplatesEntries.entrySet()) {
 
-				PageTemplateEntry pageTemplateEntry = ptEntry.getValue();
+				PageTemplateEntry pageTemplateEntry = entry2.getValue();
 
 				PageTemplate pageTemplate = pageTemplateEntry.getPageTemplate();
 
