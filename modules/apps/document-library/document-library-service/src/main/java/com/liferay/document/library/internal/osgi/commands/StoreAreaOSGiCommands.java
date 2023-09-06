@@ -32,8 +32,9 @@ public class StoreAreaOSGiCommands {
 	public void cleanUp(long companyId) {
 		if (_storeAreaProcessor == null) {
 			System.out.println(
-				"The selected store " + PropsValues.DL_STORE_IMPL +
-					" does not support store areas. No action taken.");
+				"Do nothing because the selected store " +
+					PropsValues.DL_STORE_IMPL +
+						" does not support store areas.");
 
 			return;
 		}
