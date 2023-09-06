@@ -323,9 +323,8 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 	}
 
 	private LayoutPageTemplateEntry _addLayoutPageTemplateEntry(
-			long classNameId, long classTypeId, long groupId,
-			long layoutPageTemplateCollectionId, String name,
-			int layoutPageTemplateEntryType)
+			long groupId, long layoutPageTemplateCollectionId, long classNameId,
+			long classTypeId, String name, int layoutPageTemplateEntryType)
 		throws PortalException {
 
 		if (classNameId == 0) {
@@ -1213,9 +1212,8 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 
 			if (layoutPageTemplateEntry == null) {
 				layoutPageTemplateEntry = _addLayoutPageTemplateEntry(
-					classNameId, classTypeId, groupId,
-					layoutPageTemplateCollectionId, name,
-					layoutPageTemplateEntryType);
+					groupId, layoutPageTemplateCollectionId, classNameId,
+					classTypeId, name, layoutPageTemplateEntryType);
 				added = true;
 			}
 			else if (Objects.equals(
@@ -1223,8 +1221,8 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 						layoutsImportStrategy)) {
 
 				layoutPageTemplateEntry = _addLayoutPageTemplateEntry(
-					classNameId, classTypeId, groupId,
-					layoutPageTemplateCollectionId,
+					groupId, layoutPageTemplateCollectionId, classNameId,
+					classTypeId,					
 					_layoutPageTemplateEntryLocalService.
 						getUniqueLayoutPageTemplateEntryName(
 							groupId, name, layoutPageTemplateEntryType),
