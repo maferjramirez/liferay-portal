@@ -72,7 +72,7 @@ public class APIApplicationPublisherImpl implements APIApplicationPublisher {
 			apiApplication.getBaseURL(),
 			new ArrayList<ServiceRegistration<?>>() {
 				{
-					add(_registerApplication(apiApplication));
+					add(_registerAPIApplication(apiApplication));
 					add(
 						_registerResource(
 							apiApplication, HeadlessBuilderResourceImpl.class,
@@ -174,7 +174,7 @@ public class APIApplicationPublisherImpl implements APIApplicationPublisher {
 		return baseURL + StringPool.POUND + companyId;
 	}
 
-	private ServiceRegistration<Application> _registerApplication(
+	private ServiceRegistration<Application> _registerAPIApplication(
 		APIApplication apiApplication) {
 
 		ServiceRegistration<Application> applicationServiceRegistration =
