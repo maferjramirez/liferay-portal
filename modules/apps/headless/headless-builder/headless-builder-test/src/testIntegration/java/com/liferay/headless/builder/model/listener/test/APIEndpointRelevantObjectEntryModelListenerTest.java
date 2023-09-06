@@ -405,8 +405,8 @@ public class APIEndpointRelevantObjectEntryModelListenerTest
 				"status", "BAD_REQUEST"
 			).put(
 				"title",
-				"The API Endpoint and the API Schema must be related to the " +
-					"same API Application"
+				"The API endpoint and the API schema must be related to the " +
+					"same API application."
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
 				null,
@@ -424,8 +424,8 @@ public class APIEndpointRelevantObjectEntryModelListenerTest
 				"status", "BAD_REQUEST"
 			).put(
 				"title",
-				"The API Endpoint and the API Schema must be related to the " +
-					"same API Application"
+				"The API endpoint and the API schema must be related to the " +
+					"same API application."
 			).toString(),
 			HTTPTestUtil.invokeToJSONObject(
 				JSONUtil.put(
