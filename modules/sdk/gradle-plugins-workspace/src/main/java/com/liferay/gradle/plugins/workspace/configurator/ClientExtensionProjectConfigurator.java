@@ -141,11 +141,11 @@ public class ClientExtensionProjectConfigurator
 			createClientExtensionConfigTaskProvider,
 			validateClientExtensionIdsTaskProvider, workspaceExtension);
 
+		AtomicBoolean hasThemeCSSClientExtension = new AtomicBoolean(false);
+
 		Map<String, JsonNode> profileJsonNodes =
 			_configureClientExtensionJsonNodes(
 				project, createClientExtensionConfigTaskProvider);
-
-		AtomicBoolean hasThemeCSSClientExtension = new AtomicBoolean(false);
 
 		for (Map.Entry<String, JsonNode> profileJsonNodeEntry :
 				profileJsonNodes.entrySet()) {
