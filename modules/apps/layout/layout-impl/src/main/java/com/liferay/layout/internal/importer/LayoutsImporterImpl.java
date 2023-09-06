@@ -1222,7 +1222,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 
 				layoutPageTemplateEntry = _addLayoutPageTemplateEntry(
 					groupId, layoutPageTemplateCollectionId, classNameId,
-					classTypeId,					
+					classTypeId,
 					_layoutPageTemplateEntryLocalService.
 						getUniqueLayoutPageTemplateEntryName(
 							groupId, name, layoutPageTemplateEntryType),
