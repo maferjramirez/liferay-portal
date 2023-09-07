@@ -273,14 +273,13 @@ public class UserAccountResourcePerformanceTest {
 				HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
 				httpInvoker.body(json, "application/json");
+				httpInvoker.header(
+					"Authorization",
+					_TOKEN_TYPE + " " + _jsonObject.getString("access_token"));
 				httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 				httpInvoker.path(
 					"http://localhost:8080/o/headless-admin-user/v1.0" +
 						"/user-accounts");
-
-				httpInvoker.header(
-					"Authorization",
-					_TOKEN_TYPE + " " + _jsonObject.getString("access_token"));
 
 				httpInvoker.invoke();
 			}
