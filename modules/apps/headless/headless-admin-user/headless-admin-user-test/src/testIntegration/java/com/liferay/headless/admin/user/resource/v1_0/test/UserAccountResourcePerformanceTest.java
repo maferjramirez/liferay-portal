@@ -163,27 +163,21 @@ public class UserAccountResourcePerformanceTest {
 	public void setUp() throws Exception {
 		User user = TestPropsValues.getUser();
 
-		List<GrantType> allowedGrantTypesList = new ArrayList<>(5);
-
-		allowedGrantTypesList.add(GrantType.CLIENT_CREDENTIALS);
-		allowedGrantTypesList.add(GrantType.REFRESH_TOKEN);
-		allowedGrantTypesList.add(GrantType.JWT_BEARER);
-		allowedGrantTypesList.add(GrantType.RESOURCE_OWNER_PASSWORD);
-		allowedGrantTypesList.add(GrantType.AUTHORIZATION_CODE);
-
-		List<String> scopeAliasesList = new ArrayList<>(3);
-
-		scopeAliasesList.add("Liferay.Headless.Admin.User.everything");
-		scopeAliasesList.add("Liferay.Headless.Admin.User.everything.read");
-		scopeAliasesList.add("Liferay.Headless.Admin.User.everything.write");
-
 		_oAuth2Application =
 			_oAuth2ApplicationLocalService.addOAuth2Application(
 				user.getCompanyId(), user.getUserId(), user.getFullName(),
-				allowedGrantTypesList, "client_secret_post", user.getUserId(),
+				Arrays.asList(
+					GrantType.CLIENT_CREDENTIALS, GrantType.REFRESH_TOKEN,
+					GrantType.JWT_BEARER, GrantType.RESOURCE_OWNER_PASSWORD,
+					GrantType.AUTHORIZATION_CODE),
+				"client_secret_post", user.getUserId(),
 				RandomTestUtil.randomString(), 0, RandomTestUtil.randomString(),
 				"", Collections.emptyList(), "", 0, "", "rest_token", "",
-				Arrays.asList("http://localhost:8080"), false, scopeAliasesList,
+				Arrays.asList("http://localhost:8080"), false,
+				Arrays.asList(
+					"Liferay.Headless.Admin.User.everything",
+					"Liferay.Headless.Admin.User.everything.read",
+					"Liferay.Headless.Admin.User.everything.write"),
 				false, new ServiceContext());
 
 		_jsonObject = JSONFactoryUtil.createJSONObject(
