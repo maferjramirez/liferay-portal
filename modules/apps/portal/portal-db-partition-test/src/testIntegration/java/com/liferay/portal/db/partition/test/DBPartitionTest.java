@@ -152,7 +152,7 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 			}
 		}
 
-		ClassName emptyClassName = ReflectionTestUtil.getFieldValue(
+		ClassName nullClassName = ReflectionTestUtil.getFieldValue(
 			ClassNameLocalServiceImpl.class, "_nullClassName");
 
 		long finalClassNameId = classNameId;
@@ -163,7 +163,7 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 				ClassName className = _classNameLocalService.fetchClassName(
 					finalClassNameValue);
 
-				Assert.assertNotEquals(emptyClassName, className);
+				Assert.assertNotEquals(nullClassName, className);
 				Assert.assertEquals(
 					finalClassNameId, className.getClassNameId());
 				Assert.assertEquals(finalClassNameValue, className.getValue());
