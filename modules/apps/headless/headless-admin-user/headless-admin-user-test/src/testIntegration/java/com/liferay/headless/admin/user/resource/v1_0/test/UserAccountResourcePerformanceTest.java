@@ -220,7 +220,7 @@ public class UserAccountResourcePerformanceTest {
 				_log.info(
 					StringBundler.concat(
 						threadsCount, " threads each added ", usersCount,
-						" users in ", endTime, "ms"));
+						" users in ", endTime, " ms"));
 
 				double tps = (double)usersCount * threadsCount / endTime * 1000;
 
@@ -248,7 +248,7 @@ public class UserAccountResourcePerformanceTest {
 				_log.info(
 					StringBundler.concat(
 						"Single thread added ", usersCount, " users in ",
-						endTime, "ms"));
+						endTime, " ms"));
 
 				double tps = (double)usersCount / endTime * 1000;
 
