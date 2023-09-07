@@ -55,8 +55,8 @@ public class MultiCompanyBatchEngineUnitProcessor {
 	}
 
 	public void unregister(Bundle bundle) {
-		_bundleProcessedCompanies.remove(bundle);
 		_bundleBatchEngineUnits.remove(bundle);
+		_bundleProcessedCompanies.remove(bundle);
 	}
 
 	public void unregister(Company company) {
