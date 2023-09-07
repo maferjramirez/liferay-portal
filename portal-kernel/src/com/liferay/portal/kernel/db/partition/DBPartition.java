@@ -18,8 +18,8 @@ public class DBPartition {
 
 	public static boolean isPartitionedModel(Class<?> clazz) {
 		if (isPartitionEnabled() &&
-			(ShardedModel.class.isAssignableFrom(clazz) ||
-			 ClassName.class.isAssignableFrom(clazz))) {
+			(ClassName.class.isAssignableFrom(clazz) ||
+			 ShardedModel.class.isAssignableFrom(clazz))) {
 
 			return true;
 		}
