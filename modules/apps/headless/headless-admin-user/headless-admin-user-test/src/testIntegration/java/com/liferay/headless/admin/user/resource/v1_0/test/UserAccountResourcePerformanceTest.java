@@ -302,13 +302,13 @@ public class UserAccountResourcePerformanceTest {
 
 			jsons.add(
 				StringUtil.replace(
-					json, "[$EMAIL_ADDRESS$]", alternateName + _EMAIL_PREFIX));
+					json, "[$EMAIL_ADDRESS$]",
+					alternateName + "@" +
+						RandomTestUtil.randomString + ".com"));
 		}
 
 		return jsons;
 	}
-
-	private static final String _EMAIL_PREFIX = "@VodafoneIdea.com";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		UserAccountResourcePerformanceTest.class);
