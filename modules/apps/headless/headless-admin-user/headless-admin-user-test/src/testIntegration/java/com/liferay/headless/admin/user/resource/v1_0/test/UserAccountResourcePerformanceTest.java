@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DataGuard;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.PwdGenerator;
 import com.liferay.portal.kernel.util.Validator;
@@ -185,10 +186,11 @@ public class UserAccountResourcePerformanceTest {
 		_oAuth2Application =
 			_oAuth2ApplicationLocalService.addOAuth2Application(
 				companyId, userId, userName, allowedGrantTypesList,
-				_CLIENT_AUTHENTICATION_METHOD, userId, _CLIENT_ID, 0,
-				_CLIENT_SECRET, "", Collections.emptyList(), "", 0, "",
-				"rest_token", "", Arrays.asList("http://localhost:8080"), false,
-				scopeAliasesList, false, new ServiceContext());
+				_CLIENT_AUTHENTICATION_METHOD, userId,
+				RandomTestUtil.randomString(), 0, RandomTestUtil.randomString(),
+				"", Collections.emptyList(), "", 0, "", "rest_token", "",
+				Arrays.asList("http://localhost:8080"), false, scopeAliasesList,
+				false, new ServiceContext());
 
 		_jsonObject = JSONFactoryUtil.createJSONObject(
 			_localOAuthClient.requestTokens(_oAuth2Application, userId));
@@ -309,12 +311,6 @@ public class UserAccountResourcePerformanceTest {
 
 	private static final String _CLIENT_AUTHENTICATION_METHOD =
 		"client_secret_post";
-
-	private static final String _CLIENT_ID =
-		"id-bea359e9-7f19-732a-d423-093137a5515";
-
-	private static final String _CLIENT_SECRET =
-		"secret-1c7a64e0-9de0-22c9-f6ad-17a1dfb6575a";
 
 	private static final String _EMAIL_PREFIX = "@VodafoneIdea.com";
 
