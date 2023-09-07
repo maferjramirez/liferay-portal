@@ -27,6 +27,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = UADAnonymizer.class)
 public class MBThreadUADAnonymizer extends BaseMBThreadUADAnonymizer {
 
+	@Override
 	public void delete(MBThread mbThread) throws PortalException {
 		MBMessage message = _mbMessageLocalService.getMessage(
 			mbThread.getRootMessageId());
