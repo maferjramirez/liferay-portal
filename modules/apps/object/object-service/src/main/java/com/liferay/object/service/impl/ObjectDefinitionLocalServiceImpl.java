@@ -759,6 +759,13 @@ public class ObjectDefinitionLocalServiceImpl
 	}
 
 	@Override
+	public List<ObjectDefinition> getObjectFolderObjectDefinitions(
+		long objectFolderId) {
+
+		return objectDefinitionPersistence.findByObjectFolderId(objectFolderId);
+	}
+
+	@Override
 	public List<ObjectDefinition> getSystemObjectDefinitions() {
 		return objectDefinitionPersistence.findBySystem(true);
 	}

@@ -9,7 +9,6 @@ import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.model.ObjectFolder;
 import com.liferay.object.service.ObjectDefinitionLocalService;
 import com.liferay.object.service.ObjectFolderLocalService;
-import com.liferay.object.service.persistence.ObjectDefinitionPersistence;
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
@@ -35,8 +34,9 @@ public class ObjectFolderModelListener extends BaseModelListener<ObjectFolder> {
 					objectFolder.getCompanyId());
 
 			for (ObjectDefinition objectDefinition :
-					_objectDefinitionPersistence.findByObjectFolderId(
-						objectFolder.getObjectFolderId())) {
+					_objectDefinitionLocalService.
+						getObjectFolderObjectDefinitions(
+							objectFolder.getObjectFolderId())) {
 
 				_objectDefinitionLocalService.updateObjectFolderId(
 					objectDefinition.getObjectDefinitionId(),
@@ -55,8 +55,9 @@ public class ObjectFolderModelListener extends BaseModelListener<ObjectFolder> {
 
 		try {
 			for (ObjectDefinition objectDefinition :
-					_objectDefinitionPersistence.findByObjectFolderId(
-						objectFolder.getObjectFolderId())) {
+					_objectDefinitionLocalService.
+						getObjectFolderObjectDefinitions(
+							objectFolder.getObjectFolderId())) {
 
 				Indexer<ObjectDefinition> indexer =
 					IndexerRegistryUtil.nullSafeGetIndexer(
@@ -72,9 +73,6 @@ public class ObjectFolderModelListener extends BaseModelListener<ObjectFolder> {
 
 	@Reference
 	private ObjectDefinitionLocalService _objectDefinitionLocalService;
-
-	@Reference
-	private ObjectDefinitionPersistence _objectDefinitionPersistence;
 
 	@Reference
 	private ObjectFolderLocalService _objectFolderLocalService;
