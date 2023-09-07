@@ -58,16 +58,16 @@ public abstract class BaseObjectEventHandler extends BaseEventHandler {
 			throw new Exception("Missing build");
 		}
 
-		String name = buildJSONObject.optString("name");
-
-		if (name.isEmpty()) {
-			throw new Exception("Missing name from build");
-		}
-
 		String jenkinsJobName = buildJSONObject.optString("jenkinsJobName");
 
 		if (jenkinsJobName.isEmpty()) {
 			throw new Exception("Missing jenkins job name from build");
+		}
+
+		String name = buildJSONObject.optString("name");
+
+		if (name.isEmpty()) {
+			throw new Exception("Missing name from build");
 		}
 
 		BuildEntity.State state = BuildEntity.State.getByKey(
