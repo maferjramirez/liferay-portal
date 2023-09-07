@@ -71,7 +71,7 @@ public class UserAccountResourcePerformanceTest {
 		_json = JSONUtil.put(
 			"additionalName", ""
 		).put(
-			"alternateName", "@alternateName@"
+			"alternateName", "[$ALTERNATE_NAME$]"
 		).put(
 			"birthDate", "1977-01-01T00:00:00Z"
 		).put(
@@ -83,7 +83,7 @@ public class UserAccountResourcePerformanceTest {
 		).put(
 			"dateModified", "2021-05-19T16:04:46Z"
 		).put(
-			"emailAddress", "@emailAddress@"
+			"emailAddress", "[$EMAIL_ADDRESS$]"
 		).put(
 			"familyName", "Foo"
 		).put(
@@ -144,7 +144,9 @@ public class UserAccountResourcePerformanceTest {
 		).toString();
 
 		_pid = ConfigurationTestUtil.createFactoryConfiguration(
-			_FACTORY_PID,
+			"com.liferay.oauth2.provider.rest.internal.spi.bearer.token." +
+				"provider.configuration." +
+					"DefaultBearerTokenProviderConfiguration",
 			HashMapDictionaryBuilder.<String, Object>put(
 				"access.token.expires.in", Integer.MAX_VALUE
 			).build());
@@ -296,17 +298,15 @@ public class UserAccountResourcePerformanceTest {
 			String alternateName = PwdGenerator.getPassword(8);
 
 			String json = StringUtil.replace(
-				_json, _ALTER_NAME_TOKEN, alternateName);
+				_json, "[$ALTERNATE_NAME$]", alternateName);
 
 			jsons.add(
 				StringUtil.replace(
-					json, _EMAILADDRESS_TOKEN, alternateName + _EMAIL_PREFIX));
+					json, "[$EMAIL_ADDRESS$]", alternateName + _EMAIL_PREFIX));
 		}
 
 		return jsons;
 	}
-
-	private static final String _ALTER_NAME_TOKEN = "@alternateName@";
 
 	private static final String _CLIENT_AUTHENTICATION_METHOD =
 		"client_secret_post";
@@ -318,12 +318,6 @@ public class UserAccountResourcePerformanceTest {
 		"secret-1c7a64e0-9de0-22c9-f6ad-17a1dfb6575a";
 
 	private static final String _EMAIL_PREFIX = "@VodafoneIdea.com";
-
-	private static final String _EMAILADDRESS_TOKEN = "@emailAddress@";
-
-	private static final String _FACTORY_PID =
-		"com.liferay.oauth2.provider.rest.internal.spi.bearer.token.provider." +
-			"configuration.DefaultBearerTokenProviderConfiguration";
 
 	private static final String _OAUTH1_APPLICATION_NAME = "rest_token";
 
