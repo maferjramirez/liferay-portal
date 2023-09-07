@@ -1314,6 +1314,10 @@ public class ServletDataImpl implements ServletData {
 						"query#sku",
 						new ObjectValuePair<>(SkuResourceImpl.class, "getSku"));
 					put(
+						"query#unitOfMeasureSkus",
+						new ObjectValuePair<>(
+							SkuResourceImpl.class, "getUnitOfMeasureSkusPage"));
+					put(
 						"query#skuByExternalReferenceCodeSkuSubscriptionConfiguration",
 						new ObjectValuePair<>(
 							SkuSubscriptionConfigurationResourceImpl.class,
