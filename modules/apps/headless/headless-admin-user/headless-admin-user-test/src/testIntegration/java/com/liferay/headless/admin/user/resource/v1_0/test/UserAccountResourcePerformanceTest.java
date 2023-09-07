@@ -277,7 +277,7 @@ public class UserAccountResourcePerformanceTest {
 				httpInvoker.body(json, "application/json");
 				httpInvoker.header(
 					"Authorization",
-					_TOKEN_TYPE + " " + _jsonObject.getString("access_token"));
+					"Bearer " + _jsonObject.getString("access_token"));
 				httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 				httpInvoker.path(
 					"http://localhost:8080/o/headless-admin-user/v1.0" +
@@ -320,8 +320,6 @@ public class UserAccountResourcePerformanceTest {
 	private static final String _EMAIL_PREFIX = "@VodafoneIdea.com";
 
 	private static final String _OAUTH1_APPLICATION_NAME = "rest_token";
-
-	private static final String _TOKEN_TYPE = "Bearer";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		UserAccountResourcePerformanceTest.class);
