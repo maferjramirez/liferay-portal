@@ -21,8 +21,7 @@ if (Validator.isNull(backURL)) {
 Layout selLayout = layoutsSEODisplayContext.getSelLayout();
 
 UnicodeProperties layoutTypeSettingsUnicodeProperties = selLayout.getTypeSettingsProperties();
-
-boolean nonDefaultDisplayPage = selLayout.isTypeAssetDisplay() && !layoutsSEODisplayContext.isDefaultAssetDisplayPage() && FeatureFlagManagerUtil.isEnabled("LPS-195205");
+boolean nondefaultAssetDisplayPage = selLayout.isTypeAssetDisplay() && !layoutsSEODisplayContext.isDefaultAssetDisplayPage() && FeatureFlagManagerUtil.isEnabled("LPS-195205");
 %>
 
 <liferay-util:html-top>
@@ -195,7 +194,7 @@ boolean nonDefaultDisplayPage = selLayout.isTypeAssetDisplay() && !layoutsSEODis
 					</c:otherwise>
 				</c:choose>
 
-				<c:if test="<%= nonDefaultDisplayPage %>">
+				<c:if test="<%= nondefaultAssetDisplayPage %>">
 					<clay:alert
 						displayType="info"
 						message="robots-can-only-be-defined-for-display-page-templates-marked-as-default"
@@ -204,7 +203,7 @@ boolean nonDefaultDisplayPage = selLayout.isTypeAssetDisplay() && !layoutsSEODis
 					<aui:input disabled="<%= true %>" label="robots" name="" placeholder="robots" type="textarea" value="noindex, nofollow" />
 				</c:if>
 
-				<div class="<%= nonDefaultDisplayPage ? "d-none" : StringPool.BLANK %>">
+				<div class="<%= nondefaultAssetDisplayPage ? "d-none" : StringPool.BLANK %>">
 					<aui:input name="robots" placeholder="robots" />
 				</div>
 			</clay:sheet-section>
@@ -229,7 +228,7 @@ boolean nonDefaultDisplayPage = selLayout.isTypeAssetDisplay() && !layoutsSEODis
 					boolean sitemapInclude = GetterUtil.getBoolean(layoutTypeSettingsUnicodeProperties.getProperty(LayoutTypePortletConstants.SITEMAP_INCLUDE), true);
 					%>
 
-					<c:if test="<%= nonDefaultDisplayPage %>">
+					<c:if test="<%= nondefaultAssetDisplayPage %>">
 						<div class="section-disabled">
 							<clay:alert
 								displayType="info"
@@ -258,7 +257,7 @@ boolean nonDefaultDisplayPage = selLayout.isTypeAssetDisplay() && !layoutsSEODis
 						</div>
 					</c:if>
 
-					<div class="<%= nonDefaultDisplayPage ? "d-none" : StringPool.BLANK %>">
+					<div class="<%= nondefaultAssetDisplayPage ? "d-none" : StringPool.BLANK %>">
 						<aui:select cssClass="propagatable-field" disabled="<%= selLayout.isLayoutPrototypeLinkActive() %>" label="include" name="TypeSettingsProperties--sitemap-include--">
 							<aui:option label="yes" selected="<%= sitemapInclude %>" value="1" />
 							<aui:option label="no" selected="<%= !sitemapInclude %>" value="0" />
