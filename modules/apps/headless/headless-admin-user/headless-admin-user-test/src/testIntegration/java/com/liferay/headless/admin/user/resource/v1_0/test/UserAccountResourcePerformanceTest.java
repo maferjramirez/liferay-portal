@@ -68,7 +68,7 @@ public class UserAccountResourcePerformanceTest {
 	public static void setUpClass() throws Exception {
 		Assume.assumeTrue(Validator.isNull(System.getenv("JENKINS_HOME")));
 
-		_jsonTemplate = JSONUtil.put(
+		_json = JSONUtil.put(
 			"additionalName", ""
 		).put(
 			"alternateName", "@alternateName@"
@@ -297,7 +297,7 @@ public class UserAccountResourcePerformanceTest {
 			String alternateName = PwdGenerator.getPassword(8);
 
 			String json = StringUtil.replace(
-				_jsonTemplate, _ALTER_NAME_TOKEN, alternateName);
+				_json, _ALTER_NAME_TOKEN, alternateName);
 
 			jsons.add(
 				StringUtil.replace(
@@ -333,7 +333,7 @@ public class UserAccountResourcePerformanceTest {
 	private static final Log _log = LogFactoryUtil.getLog(
 		UserAccountResourcePerformanceTest.class);
 
-	private static String _jsonTemplate;
+	private static String _json;
 	private static String _pid;
 
 	@Inject
