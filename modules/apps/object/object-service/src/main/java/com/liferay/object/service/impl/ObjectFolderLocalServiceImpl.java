@@ -78,6 +78,25 @@ public class ObjectFolderLocalServiceImpl
 	}
 
 	@Override
+	public ObjectFolder addOrGetUncategorizedObjectFolder(long companyId)
+		throws PortalException {
+
+		ObjectFolder objectFolder = fetchObjectFolder(
+			companyId, ObjectFolderConstants.NAME_UNCATEGORIZED);
+
+		if (objectFolder != null) {
+			return objectFolder;
+		}
+
+		return objectFolderLocalService.addObjectFolder(
+			ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_UNCATEGORIZED,
+			_userLocalService.getGuestUserId(companyId),
+			LocalizedMapUtil.getLocalizedMap(
+				ObjectFolderConstants.NAME_UNCATEGORIZED),
+			ObjectFolderConstants.NAME_UNCATEGORIZED);
+	}
+
+	@Override
 	public void deleteCompanyObjectFolders(long companyId)
 		throws PortalException {
 
@@ -137,25 +156,6 @@ public class ObjectFolderLocalServiceImpl
 		throws PortalException {
 
 		return objectFolderPersistence.findByC_N(companyId, name);
-	}
-
-	@Override
-	public ObjectFolder addOrGetUncategorizedObjectFolder(long companyId)
-		throws PortalException {
-
-		ObjectFolder objectFolder = fetchObjectFolder(
-			companyId, ObjectFolderConstants.NAME_UNCATEGORIZED);
-
-		if (objectFolder != null) {
-			return objectFolder;
-		}
-
-		return objectFolderLocalService.addObjectFolder(
-			ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_UNCATEGORIZED,
-			_userLocalService.getGuestUserId(companyId),
-			LocalizedMapUtil.getLocalizedMap(
-				ObjectFolderConstants.NAME_UNCATEGORIZED),
-			ObjectFolderConstants.NAME_UNCATEGORIZED);
 	}
 
 	@Indexable(type = IndexableType.REINDEX)
