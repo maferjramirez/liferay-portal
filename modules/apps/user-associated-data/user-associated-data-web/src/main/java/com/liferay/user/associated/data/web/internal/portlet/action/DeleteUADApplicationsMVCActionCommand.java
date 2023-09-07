@@ -62,8 +62,8 @@ public class DeleteUADApplicationsMVCActionCommand
 					}
 					catch (Exception exception) {
 						handleExceptions(
-							actionRequest, actionResponse, uadAnonymizer,
-							exception);
+							actionRequest, actionResponse, exception,
+							uadAnonymizer);
 					}
 				}
 			}

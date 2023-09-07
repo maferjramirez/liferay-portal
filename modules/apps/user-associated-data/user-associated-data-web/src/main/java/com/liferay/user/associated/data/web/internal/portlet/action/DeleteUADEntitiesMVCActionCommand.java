@@ -120,8 +120,8 @@ public class DeleteUADEntitiesMVCActionCommand extends BaseUADMVCActionCommand {
 				}
 				catch (Exception exception) {
 					handleExceptions(
-						actionRequest, actionResponse, entityUADAnonymizer,
-						exception);
+						actionRequest, actionResponse, exception,
+						entityUADAnonymizer);
 				}
 			}
 			else {
@@ -155,8 +155,8 @@ public class DeleteUADEntitiesMVCActionCommand extends BaseUADMVCActionCommand {
 							}
 							catch (Exception exception) {
 								handleExceptions(
-									actionRequest, actionResponse,
-									containerItemUADAnonymizer, exception);
+									actionRequest, actionResponse, exception,
+									containerItemUADAnonymizer);
 							}
 						});
 				}

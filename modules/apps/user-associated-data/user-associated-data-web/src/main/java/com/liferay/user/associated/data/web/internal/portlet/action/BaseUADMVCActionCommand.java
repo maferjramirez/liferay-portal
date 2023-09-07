@@ -212,7 +212,7 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 
 	protected void handleExceptions(
 			ActionRequest actionRequest, ActionResponse actionResponse,
-			UADAnonymizer<Object> uadAnonymizer, Exception exception)
+			Exception exception, UADAnonymizer<Object> uadAnonymizer)
 		throws Exception {
 
 		if (exception instanceof NoSuchModelException) {
