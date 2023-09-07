@@ -197,24 +197,24 @@ public class UserAccountResourcePerformanceTest {
 
 	@Test
 	public void testMultipleThreadsAddUsers() throws Exception {
-		int threadCount = 10;
-		int userCount = 10;
+		int threadsCount = 10;
+		int usersCount = 10;
 
 		List<List<String>> jsonsList = new ArrayList<>();
 
-		for (int i = 0; i < threadCount; i++) {
-			jsonsList.add(_createJSONs(userCount));
+		for (int i = 0; i < threadsCount; i++) {
+			jsonsList.add(_createJSONs(usersCount));
 		}
 
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
 				MailMessageListener.class.getName(), LoggerTestUtil.OFF)) {
 
+			long startTime = System.currentTimeMillis();
+
 			ExecutorService executorService = Executors.newFixedThreadPool(
-				threadCount);
+				threadsCount);
 
 			List<Future<?>> futures = new ArrayList<>();
-
-			long startTime = System.currentTimeMillis();
 
 			for (List<String> jsons : jsonsList) {
 				futures.add(executorService.submit(() -> _addUsers(jsons)));
@@ -224,27 +224,26 @@ public class UserAccountResourcePerformanceTest {
 				future.get();
 			}
 
-			long duration = System.currentTimeMillis() - startTime;
+			long endTime = System.currentTimeMillis() - startTime;
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					StringBundler.concat(
-						threadCount, " threads each added ", userCount,
-						" users, used ", duration, "ms"));
+						threadsCount, " threads each added ", usersCount,
+						" users in ", endTime, "ms"));
 
-				double tps = (double)userCount * threadCount / duration * 1000;
+				double tps = (double)usersCount * threadsCount / endTime * 1000;
 
-				_log.info(
-					"Average speed : " + String.format("%.2f", tps) + " tps");
+				_log.info("TPS: " + String.format("%.2f", tps));
 			}
 		}
 	}
 
 	@Test
 	public void testSingleThreadAddUsers() {
-		int userCount = 100;
+		int usersCount = 100;
 
-		List<String> jsons = _createJSONs(userCount);
+		List<String> jsons = _createJSONs(usersCount);
 
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
 				MailMessageListener.class.getName(), LoggerTestUtil.OFF)) {
@@ -253,18 +252,17 @@ public class UserAccountResourcePerformanceTest {
 
 			_addUsers(jsons);
 
-			long duration = System.currentTimeMillis() - startTime;
+			long endTime = System.currentTimeMillis() - startTime;
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					StringBundler.concat(
-						"Single thread added ", userCount, " users, used ",
-						duration, "ms"));
+						"Single thread added ", usersCount, " users in ",
+						endTime, "ms"));
 
-				double tps = (double)userCount / duration * 1000;
+				double tps = (double)usersCount / endTime * 1000;
 
-				_log.info(
-					"Average speed : " + String.format("%.2f", tps) + " tps");
+				_log.info("TPS: " + String.format("%.2f", tps));
 			}
 		}
 	}
@@ -291,10 +289,10 @@ public class UserAccountResourcePerformanceTest {
 		}
 	}
 
-	private List<String> _createJSONs(int userCount) {
-		List<String> jsons = new ArrayList<>(userCount);
+	private List<String> _createJSONs(int usersCount) {
+		List<String> jsons = new ArrayList<>(usersCount);
 
-		for (int i = 0; i < userCount; i++) {
+		for (int i = 0; i < usersCount; i++) {
 			String alternateName = PwdGenerator.getPassword(8);
 
 			String json = StringUtil.replace(
