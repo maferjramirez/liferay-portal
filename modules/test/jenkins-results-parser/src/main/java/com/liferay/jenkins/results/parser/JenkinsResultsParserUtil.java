@@ -5063,7 +5063,7 @@ public class JenkinsResultsParserUtil {
 			@Override
 			protected String getRetryMessage(int retryCount) {
 				return combine(
-					"Unable to update build description. ",
+					"Unable to update build description: ",
 					super.getRetryMessage(retryCount));
 			}
 
