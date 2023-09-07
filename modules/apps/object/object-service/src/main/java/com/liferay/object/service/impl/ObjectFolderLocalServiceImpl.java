@@ -140,7 +140,7 @@ public class ObjectFolderLocalServiceImpl
 	}
 
 	@Override
-	public ObjectFolder getOrAddUncategorizedObjectFolder(long companyId)
+	public ObjectFolder addOrGetUncategorizedObjectFolder(long companyId)
 		throws PortalException {
 
 		ObjectFolder objectFolder = fetchObjectFolder(

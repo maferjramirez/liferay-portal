@@ -331,10 +331,10 @@ public class ObjectFolderLocalServiceUtil {
 		return getService().getObjectFoldersCount();
 	}
 
-	public static ObjectFolder getOrAddUncategorizedObjectFolder(long companyId)
+	public static ObjectFolder addOrGetUncategorizedObjectFolder(long companyId)
 		throws PortalException {
 
-		return getService().getOrAddUncategorizedObjectFolder(companyId);
+		return getService().addOrGetUncategorizedObjectFolder(companyId);
 	}
 
 	/**

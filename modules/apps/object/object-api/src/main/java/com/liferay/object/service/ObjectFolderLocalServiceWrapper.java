@@ -381,10 +381,10 @@ public class ObjectFolderLocalServiceWrapper
 
 	@Override
 	public com.liferay.object.model.ObjectFolder
-			getOrAddUncategorizedObjectFolder(long companyId)
+			addOrGetUncategorizedObjectFolder(long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _objectFolderLocalService.getOrAddUncategorizedObjectFolder(
+		return _objectFolderLocalService.addOrGetUncategorizedObjectFolder(
 			companyId);
 	}
 

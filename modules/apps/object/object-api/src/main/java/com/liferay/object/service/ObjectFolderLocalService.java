@@ -294,7 +294,7 @@ public interface ObjectFolderLocalService
 	public int getObjectFoldersCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ObjectFolder getOrAddUncategorizedObjectFolder(long companyId)
+	public ObjectFolder addOrGetUncategorizedObjectFolder(long companyId)
 		throws PortalException;
 
 	/**
