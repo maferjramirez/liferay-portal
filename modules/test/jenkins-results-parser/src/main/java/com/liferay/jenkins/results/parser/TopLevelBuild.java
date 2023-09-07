@@ -99,7 +99,7 @@ public abstract class TopLevelBuild extends BaseBuild {
 	}
 
 	public String getAcceptanceUpstreamJobURL() {
-		String upstreamAcceptanceJenkinsMaster;
+		String upstreamAcceptanceJenkinsMaster = null;
 
 		try {
 			upstreamAcceptanceJenkinsMaster =
