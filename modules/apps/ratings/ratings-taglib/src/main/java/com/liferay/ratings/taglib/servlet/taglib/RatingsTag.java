@@ -26,7 +26,6 @@ import com.liferay.ratings.kernel.model.RatingsEntry;
 import com.liferay.ratings.kernel.model.RatingsStats;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalServiceUtil;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalServiceUtil;
-import com.liferay.ratings.taglib.internal.className.provider.RatingsClassNameProviderUtil;
 import com.liferay.ratings.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.taglib.util.IncludeTag;
 
@@ -75,8 +74,14 @@ public class RatingsTag extends IncludeTag {
 	}
 
 	public void setClassName(String className) {
-		_className = RatingsClassNameProviderUtil.getRatingsClassName(
-			className);
+		if (className.equals(DLFileEntry.class.getName()) ||
+			className.equals(FileEntry.class.getName()) ||
+			className.equals(LiferayFileEntry.class.getName())) {
+
+			className = DLFileEntryConstants.getClassName();
+		}
+
+		_className = className;
 	}
 
 	public void setClassPK(long classPK) {
