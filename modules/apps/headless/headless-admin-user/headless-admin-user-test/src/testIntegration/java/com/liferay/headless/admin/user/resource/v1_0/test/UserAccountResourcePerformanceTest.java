@@ -57,7 +57,7 @@ import org.junit.runner.RunWith;
  */
 @DataGuard(scope = DataGuard.Scope.NONE)
 @RunWith(Arquillian.class)
-public class AddUsersByAPIPerformanceTest {
+public class UserAccountResourcePerformanceTest {
 
 	@ClassRule
 	@Rule
@@ -331,7 +331,7 @@ public class AddUsersByAPIPerformanceTest {
 	private static final String _TOKEN_TYPE = "Bearer";
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AddUsersByAPIPerformanceTest.class);
+		UserAccountResourcePerformanceTest.class);
 
 	private static String _jsonTemplate;
 	private static String _pid;
