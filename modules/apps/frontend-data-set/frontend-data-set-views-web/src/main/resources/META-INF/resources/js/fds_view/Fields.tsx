@@ -18,7 +18,6 @@ import {
 	fetch,
 	navigate,
 	openModal,
-	openToast,
 } from 'frontend-js-web';
 import fuzzy from 'fuzzy';
 import React, {useEffect, useRef, useState} from 'react';
@@ -28,6 +27,8 @@ import {IFDSViewSectionInterface} from '../FDSView';
 import {FDSViewType} from '../FDSViews';
 import {getFields} from '../api';
 import OrderableTable from '../components/OrderableTable';
+import openDefaultFailureToast from '../utils/openDefaultFailureToast';
+import openDefaultSuccessToast from '../utils/openDefaultSuccessToast';
 
 import '../../css/FDSEntries.scss';
 
@@ -190,12 +191,7 @@ const SaveFDSFieldsModalContent = ({
 		});
 
 		if (!response.ok) {
-			openToast({
-				message: Liferay.Language.get(
-					'your-request-failed-to-complete'
-				),
-				type: 'danger',
-			});
+			openDefaultFailureToast();
 
 			return;
 		}
@@ -204,12 +200,7 @@ const SaveFDSFieldsModalContent = ({
 
 		closeModal();
 
-		openToast({
-			message: Liferay.Language.get(
-				'your-request-completed-successfully'
-			),
-			type: 'success',
-		});
+		openDefaultSuccessToast();
 
 		onSave({
 			createdFDSFields: createdFDSFields.map((fdsField) => ({
@@ -462,24 +453,16 @@ const EditFDSFieldModalContent = ({
 		);
 
 		if (!response.ok) {
-			openToast({
-				message: Liferay.Language.get(
-					'your-request-failed-to-complete'
-				),
-				type: 'danger',
-			});
+			openDefaultFailureToast();
+
+			return;
 		}
 
 		const editedFDSField = await response.json();
 
 		closeModal();
 
-		openToast({
-			message: Liferay.Language.get(
-				'your-request-completed-successfully'
-			),
-			type: 'success',
-		});
+		openDefaultSuccessToast();
 
 		onSave({editedFDSField});
 	};
@@ -691,12 +674,7 @@ const Fields = ({
 		);
 
 		if (!response.ok) {
-			openToast({
-				message: Liferay.Language.get(
-					'your-request-failed-to-complete'
-				),
-				type: 'danger',
-			});
+			openDefaultFailureToast();
 
 			return null;
 		}
@@ -706,12 +684,7 @@ const Fields = ({
 		const storedFDSFields = responseJSON?.items;
 
 		if (!storedFDSFields) {
-			openToast({
-				message: Liferay.Language.get(
-					'your-request-failed-to-complete'
-				),
-				type: 'danger',
-			});
+			openDefaultFailureToast();
 
 			return null;
 		}
@@ -785,22 +758,12 @@ const Fields = ({
 						const response = await fetch(url, {method: 'DELETE'});
 
 						if (!response.ok) {
-							openToast({
-								message: Liferay.Language.get(
-									'your-request-failed-to-complete'
-								),
-								type: 'danger',
-							});
+							openDefaultFailureToast();
 
 							return;
 						}
 
-						openToast({
-							message: Liferay.Language.get(
-								'your-request-completed-successfully'
-							),
-							type: 'success',
-						});
+						openDefaultSuccessToast();
 
 						setFDSFields(
 							fdsFields?.filter(
@@ -833,12 +796,7 @@ const Fields = ({
 		);
 
 		if (!response.ok) {
-			openToast({
-				message: Liferay.Language.get(
-					'your-request-failed-to-complete'
-				),
-				type: 'danger',
-			});
+			openDefaultFailureToast();
 
 			return null;
 		}
@@ -848,20 +806,10 @@ const Fields = ({
 		const fdsFieldsOrder = responseJSON?.fdsFieldsOrder;
 
 		if (fdsFieldsOrder && fdsFieldsOrder === fdsFieldsOrderRef.current) {
-			openToast({
-				message: Liferay.Language.get(
-					'your-request-completed-successfully'
-				),
-				type: 'success',
-			});
+			openDefaultSuccessToast();
 		}
 		else {
-			openToast({
-				message: Liferay.Language.get(
-					'your-request-failed-to-complete'
-				),
-				type: 'danger',
-			});
+			openDefaultFailureToast();
 		}
 	};
 
