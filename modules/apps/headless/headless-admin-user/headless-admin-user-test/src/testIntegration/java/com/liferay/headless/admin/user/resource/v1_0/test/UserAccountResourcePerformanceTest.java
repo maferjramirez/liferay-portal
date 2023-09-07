@@ -187,9 +187,8 @@ public class UserAccountResourcePerformanceTest {
 				companyId, userId, userName, allowedGrantTypesList,
 				_CLIENT_AUTHENTICATION_METHOD, userId, _CLIENT_ID, 0,
 				_CLIENT_SECRET, "", Collections.emptyList(), "", 0, "",
-				_OAUTH1_APPLICATION_NAME, "",
-				Arrays.asList("http://localhost:8080"), false, scopeAliasesList,
-				false, new ServiceContext());
+				"rest_token", "", Arrays.asList("http://localhost:8080"), false,
+				scopeAliasesList, false, new ServiceContext());
 
 		_jsonObject = JSONFactoryUtil.createJSONObject(
 			_localOAuthClient.requestTokens(_oAuth2Application, userId));
@@ -318,8 +317,6 @@ public class UserAccountResourcePerformanceTest {
 		"secret-1c7a64e0-9de0-22c9-f6ad-17a1dfb6575a";
 
 	private static final String _EMAIL_PREFIX = "@VodafoneIdea.com";
-
-	private static final String _OAUTH1_APPLICATION_NAME = "rest_token";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		UserAccountResourcePerformanceTest.class);
