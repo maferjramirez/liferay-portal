@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DataGuard;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.PwdGenerator;
 import com.liferay.portal.kernel.util.Validator;
@@ -160,14 +161,7 @@ public class UserAccountResourcePerformanceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		long companyId = _companyLocalService.getCompanyIdByUserId(0);
-
-		User user = _userLocalService.getUserByEmailAddress(
-			companyId, "test@liferay.com");
-
-		long userId = user.getUserId();
-
-		String userName = user.getFullName();
+		User user = TestPropsValues.getUser();
 
 		List<GrantType> allowedGrantTypesList = new ArrayList<>(5);
 
@@ -185,14 +179,16 @@ public class UserAccountResourcePerformanceTest {
 
 		_oAuth2Application =
 			_oAuth2ApplicationLocalService.addOAuth2Application(
-				companyId, userId, userName, allowedGrantTypesList,
-				"client_secret_post", userId, RandomTestUtil.randomString(), 0,
-				RandomTestUtil.randomString(), "", Collections.emptyList(), "",
-				0, "", "rest_token", "", Arrays.asList("http://localhost:8080"),
-				false, scopeAliasesList, false, new ServiceContext());
+				user.getCompanyId(), user.getUserId(), user.getFullName(),
+				allowedGrantTypesList, "client_secret_post", user.getUserId(),
+				RandomTestUtil.randomString(), 0, RandomTestUtil.randomString(),
+				"", Collections.emptyList(), "", 0, "", "rest_token", "",
+				Arrays.asList("http://localhost:8080"), false, scopeAliasesList,
+				false, new ServiceContext());
 
 		_jsonObject = JSONFactoryUtil.createJSONObject(
-			_localOAuthClient.requestTokens(_oAuth2Application, userId));
+			_localOAuthClient.requestTokens(
+				_oAuth2Application, user.getUserId()));
 	}
 
 	@Test
@@ -301,8 +297,9 @@ public class UserAccountResourcePerformanceTest {
 			jsons.add(
 				StringUtil.replace(
 					json, "[$EMAIL_ADDRESS$]",
-					alternateName + "@" +
-						RandomTestUtil.randomString + ".com"));
+					StringBundler.concat(
+						alternateName, "@", RandomTestUtil.randomString(),
+						".com")));
 		}
 
 		return jsons;
