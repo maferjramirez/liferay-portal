@@ -108,9 +108,9 @@ public class SynchronousDestinationTestRule
 				testSynchronousDestination = new TestSynchronousDestination();
 			}
 
-			testSynchronousDestination.setName(destinationName);
 			testSynchronousDestination.setMessageListenerRegistry(
 				_serviceTracker.getService());
+			testSynchronousDestination.setName(destinationName);
 
 			return testSynchronousDestination;
 		}
