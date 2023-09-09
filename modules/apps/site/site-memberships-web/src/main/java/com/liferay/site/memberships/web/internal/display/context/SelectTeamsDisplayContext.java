@@ -175,26 +175,26 @@ public class SelectTeamsDisplayContext {
 		).buildPortletURL();
 	}
 
-	public SearchContainer<Team> getTeamSearchSearchContainer()
+	public SearchContainer<Team> getTeamSearchContainer()
 		throws PortalException {
 
-		if (_teamSearch != null) {
-			return _teamSearch;
+		if (_teamSearchContainer != null) {
+			return _teamSearchContainer;
 		}
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer<Team> teamSearch = new SearchContainer<>(
+		SearchContainer<Team> teamSearchContainer = new SearchContainer<>(
 			_renderRequest, getPortletURL(), null, "no-teams-were-found");
 
-		teamSearch.setResultsAndTotal(
+		teamSearchContainer.setResultsAndTotal(
 			TransformUtil.transform(
 				TeamLocalServiceUtil.search(
 					getGroupId(), getKeywords(), getKeywords(),
-					new LinkedHashMap<>(), teamSearch.getStart(),
-					teamSearch.getEnd(), teamSearch.getOrderByComparator()),
+					new LinkedHashMap<>(), teamSearchContainer.getStart(),
+					teamSearchContainer.getEnd(), teamSearchContainer.getOrderByComparator()),
 				team -> {
 					if (!TeamPermissionUtil.contains(
 							themeDisplay.getPermissionChecker(), team,
@@ -206,9 +206,9 @@ public class SelectTeamsDisplayContext {
 					return team;
 				}));
 
-		_teamSearch = teamSearch;
+		_teamSearchContainer = teamSearchContainer;
 
-		return _teamSearch;
+		return _teamSearchContainer;
 	}
 
 	private String _displayStyle;
@@ -220,6 +220,6 @@ public class SelectTeamsDisplayContext {
 	private String _orderByType;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer<Team> _teamSearch;
+	private SearchContainer<Team> _teamSearchContainer;
 
 }

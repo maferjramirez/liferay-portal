@@ -28,7 +28,7 @@ public class SelectTeamsManagementToolbarDisplayContext
 
 		super(
 			httpServletRequest, liferayPortletRequest, liferayPortletResponse,
-			selectTeamsDisplayContext.getTeamSearchSearchContainer());
+			selectTeamsDisplayContext.getTeamSearchContainer());
 
 		_selectTeamsDisplayContext = selectTeamsDisplayContext;
 	}

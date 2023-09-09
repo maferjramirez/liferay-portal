@@ -18,7 +18,7 @@ SelectTeamsDisplayContext selectTeamsDisplayContext = new SelectTeamsDisplayCont
 <aui:form cssClass="container-fluid container-fluid-max-xl" name="fm">
 	<liferay-ui:search-container
 		id="teams"
-		searchContainer="<%= selectTeamsDisplayContext.getTeamSearchSearchContainer() %>"
+		searchContainer="<%= selectTeamsDisplayContext.getTeamSearchContainer() %>"
 	>
 		<liferay-ui:search-container-row
 			className="com.liferay.portal.kernel.model.Team"
