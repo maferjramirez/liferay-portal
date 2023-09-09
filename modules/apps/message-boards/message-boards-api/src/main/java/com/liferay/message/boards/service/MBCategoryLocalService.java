@@ -6,7 +6,6 @@
 package com.liferay.message.boards.service;
 
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
-import com.liferay.message.boards.exception.NoSuchCategoryException;
 import com.liferay.message.boards.model.MBCategory;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
@@ -424,7 +423,7 @@ public interface MBCategoryLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public MBCategory getMBCategory(long groupId, String friendlyURL)
-		throws NoSuchCategoryException;
+		throws PortalException;
 
 	/**
 	 * Returns the message boards category matching the UUID and group.

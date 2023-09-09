@@ -543,7 +543,7 @@ public class MBCategoryLocalServiceUtil {
 	}
 
 	public static MBCategory getMBCategory(long groupId, String friendlyURL)
-		throws com.liferay.message.boards.exception.NoSuchCategoryException {
+		throws PortalException {
 
 		return getService().getMBCategory(groupId, friendlyURL);
 	}

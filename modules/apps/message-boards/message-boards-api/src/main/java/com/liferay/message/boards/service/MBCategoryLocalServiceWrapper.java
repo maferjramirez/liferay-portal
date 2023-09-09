@@ -618,7 +618,7 @@ public class MBCategoryLocalServiceWrapper
 
 	@Override
 	public MBCategory getMBCategory(long groupId, String friendlyURL)
-		throws com.liferay.message.boards.exception.NoSuchCategoryException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _mbCategoryLocalService.getMBCategory(groupId, friendlyURL);
 	}
