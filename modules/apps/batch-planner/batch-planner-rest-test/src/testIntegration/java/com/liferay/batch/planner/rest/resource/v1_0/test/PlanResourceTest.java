@@ -11,7 +11,6 @@ import com.liferay.batch.planner.rest.client.http.HttpInvoker;
 import com.liferay.object.field.builder.TextObjectFieldBuilder;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.rest.test.util.ObjectDefinitionTestUtil;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.rule.DataGuard;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.StringUtil;
