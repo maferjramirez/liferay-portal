@@ -42,7 +42,7 @@ public class ObjectAssetCategoryExceptionMapper
 				AssetCategoryException.AT_LEAST_ONE_CATEGORY) {
 
 			errorMessage =
-				"Select at least one taxonomy category for vocabulary: " +
+				"Select at least one taxonomy category for vocabulary " +
 					vocabularyName;
 		}
 		else if (assetCategoryException.getType() ==
@@ -50,7 +50,7 @@ public class ObjectAssetCategoryExceptionMapper
 
 			errorMessage =
 				"Unable to select more than one taxonomy category for " +
-					"vocabulary" + vocabularyName;
+					"vocabulary " + vocabularyName;
 		}
 
 		return new Problem(
