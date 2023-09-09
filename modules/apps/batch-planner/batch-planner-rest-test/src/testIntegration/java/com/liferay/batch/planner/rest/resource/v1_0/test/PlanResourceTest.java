@@ -62,11 +62,7 @@ public class PlanResourceTest extends BasePlanResourceTestCase {
 		String[] lines = StringUtil.split(
 			httpResponse.getContent(), System.lineSeparator());
 
-		Assert.assertTrue(
-			StringBundler.concat(
-				"The first line '", lines[0], "' does not contain the field '",
-				fieldName, "'"),
-			StringUtil.contains(lines[0], fieldName));
+		Assert.assertTrue(StringUtil.contains(lines[0], fieldName));
 	}
 
 	@Override
