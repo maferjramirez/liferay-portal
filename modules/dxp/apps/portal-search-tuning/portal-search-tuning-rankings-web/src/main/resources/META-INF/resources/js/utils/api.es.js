@@ -20,7 +20,7 @@ export function fetchResponse(url, params) {
 		if (!isNull(value)) {
 
 			// If the value is an array, append each item inside array
-			// separately to prevent ambiguity from a comma-separated string.
+			// separately to prevent ambiguity from a comma separated string.
 
 			if (Array.isArray(value)) {
 				value.forEach((item) =>
