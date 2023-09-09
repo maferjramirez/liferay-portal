@@ -190,8 +190,6 @@ public class PlacedCommerceOrderItemFDSDataProvider
 				_commerceOrderPriceCalculation.getCommerceOrderItemPrice(
 					commerceOrder.getCommerceCurrency(), commerceOrderItem);
 
-			BigDecimal shippedQuantity = commerceOrderItem.getShippedQuantity();
-
 			CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure =
 				_cpInstanceUnitOfMeasureLocalService.
 					fetchCPInstanceUnitOfMeasure(
@@ -219,7 +217,8 @@ public class PlacedCommerceOrderItemFDSDataProvider
 					CommerceOrderItemUtil.formatPromoPrice(
 						commerceOrderItemPrice, locale),
 					_commerceQuantityFormatter.format(
-						cpInstanceUnitOfMeasure, shippedQuantity),
+						cpInstanceUnitOfMeasure,
+						commerceOrderItem.getShippedQuantity()),
 					commerceOrderItem.getSku(),
 					_cpInstanceHelper.getCPInstanceThumbnailSrc(
 						CommerceUtil.getCommerceAccountId(

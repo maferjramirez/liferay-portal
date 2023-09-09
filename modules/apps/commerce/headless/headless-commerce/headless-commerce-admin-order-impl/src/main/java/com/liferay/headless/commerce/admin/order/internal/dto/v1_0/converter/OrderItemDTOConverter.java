@@ -58,7 +58,6 @@ public class OrderItemDTOConverter
 
 		CommerceOrder commerceOrder = commerceOrderItem.getCommerceOrder();
 		CPInstance cpInstance = commerceOrderItem.fetchCPInstance();
-
 		CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure =
 			_cpInstanceUnitOfMeasureLocalService.fetchCPInstanceUnitOfMeasure(
 				commerceOrderItem.getCompanyId(),

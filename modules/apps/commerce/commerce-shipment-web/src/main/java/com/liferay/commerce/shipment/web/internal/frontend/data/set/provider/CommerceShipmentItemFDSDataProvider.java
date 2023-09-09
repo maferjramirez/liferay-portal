@@ -70,6 +70,12 @@ public class CommerceShipmentItemFDSDataProvider
 				_commerceOrderItemService.getCommerceOrderItem(
 					commerceShipmentItem.getCommerceOrderItemId());
 
+			CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure =
+				_cpInstanceUnitOfMeasureLocalService.
+					fetchCPInstanceUnitOfMeasure(
+						commerceOrderItem.getCPInstanceId(),
+						commerceOrderItem.getUnitOfMeasureKey());
+
 			String commerceInventoryWarehouseName = StringPool.BLANK;
 
 			if (commerceShipmentItem.getCommerceInventoryWarehouseId() > 0) {
@@ -92,12 +98,6 @@ public class CommerceShipmentItemFDSDataProvider
 					}
 				}
 			}
-
-			CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure =
-				_cpInstanceUnitOfMeasureLocalService.
-					fetchCPInstanceUnitOfMeasure(
-						commerceOrderItem.getCPInstanceId(),
-						commerceOrderItem.getUnitOfMeasureKey());
 
 			BigDecimal quantity = commerceOrderItem.getQuantity();
 			BigDecimal shipmentItemQuantity =

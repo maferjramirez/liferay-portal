@@ -137,6 +137,14 @@ public class CommerceInventoryWarehouseItemFDSDataProvider
 						commerceOrderItem.getUnitOfMeasureKey());
 
 			if (commerceInventoryWarehouseItem != null) {
+				CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure =
+					_cpInstanceUnitOfMeasureLocalService.
+						fetchCPInstanceUnitOfMeasure(
+							commerceInventoryWarehouseItem.getCompanyId(),
+							commerceInventoryWarehouseItem.
+								getUnitOfMeasureKey(),
+							commerceInventoryWarehouseItem.getSku());
+
 				BigDecimal quantity = BigDecimal.ZERO;
 				BigDecimal commerceInventoryWarehouseItemQuantity =
 					commerceInventoryWarehouseItem.getQuantity();
@@ -148,14 +156,6 @@ public class CommerceInventoryWarehouseItemFDSDataProvider
 				if (BigDecimalUtil.gt(maxShippableQuantity, quantity)) {
 					maxShippableQuantity = quantity;
 				}
-
-				CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure =
-					_cpInstanceUnitOfMeasureLocalService.
-						fetchCPInstanceUnitOfMeasure(
-							commerceInventoryWarehouseItem.getCompanyId(),
-							commerceInventoryWarehouseItem.
-								getUnitOfMeasureKey(),
-							commerceInventoryWarehouseItem.getSku());
 
 				warehouses.add(
 					new Warehouse(
