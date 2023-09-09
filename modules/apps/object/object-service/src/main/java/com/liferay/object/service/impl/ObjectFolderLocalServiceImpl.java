@@ -88,7 +88,7 @@ public class ObjectFolderLocalServiceImpl
 			return objectFolder;
 		}
 
-		synchronized (ObjectFolderConstants.NAME_UNCATEGORIZED) {
+		synchronized (this) {
 			objectFolder = fetchObjectFolder(
 				companyId, ObjectFolderConstants.NAME_UNCATEGORIZED);
 
