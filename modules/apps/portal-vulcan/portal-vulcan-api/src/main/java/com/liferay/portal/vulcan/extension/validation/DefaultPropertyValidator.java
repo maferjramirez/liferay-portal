@@ -75,10 +75,10 @@ public class DefaultPropertyValidator implements PropertyValidator {
 					 (propertyValue instanceof Collection)) {
 
 				valid = true;
-				Object[] propertyValueObject =
-					((Collection<?>)propertyValue).toArray();
 
-				for (Object object : propertyValueObject) {
+				Collection<?> collection = (Collection<?>)propertyValue;
+
+				for (Object object : collection.toArray()) {
 					if (!_isReadable(classes, object)) {
 						valid = false;
 
