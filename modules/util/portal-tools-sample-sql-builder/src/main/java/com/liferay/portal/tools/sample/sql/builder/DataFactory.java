@@ -6657,7 +6657,6 @@ public class DataFactory {
 
 		mbCategoryModel.setDisplayStyle(
 			MBCategoryConstants.DEFAULT_DISPLAY_STYLE);
-
 		mbCategoryModel.setFriendlyURL(
 			StringUtil.replace(name, CharPool.SPACE, StringPool.DASH));
 		mbCategoryModel.setLastPublishDate(new Date());
