@@ -42,29 +42,6 @@ public class LayoutModelDocumentContributor
 			return;
 		}
 
-		document.addText(
-			Field.DEFAULT_LANGUAGE_ID, layout.getDefaultLanguageId());
-		document.addLocalizedText(Field.NAME, layout.getNameMap());
-		document.addText(
-			"privateLayout", String.valueOf(layout.isPrivateLayout()));
-		document.addKeyword(Field.STATUS, _getStatus(layout));
-		document.addText(Field.TYPE, layout.getType());
-
-		for (String languageId : layout.getAvailableLanguageIds()) {
-			Locale locale = LocaleUtil.fromLanguageId(languageId);
-
-			document.addText(
-				Field.getLocalizedName(locale, Field.TITLE),
-				layout.getName(locale));
-		}
-
-		document.addLocalizedKeyword(
-			"localized_title",
-			_localization.populateLocalizationMap(
-				layout.getNameMap(), layout.getDefaultLanguageId(),
-				layout.getGroupId()),
-			true, true);
-
 		List<LayoutLocalization> layoutLocalizations =
 			_layoutLocalizationLocalService.getLayoutLocalizations(
 				layout.getPlid());
@@ -75,6 +52,29 @@ public class LayoutModelDocumentContributor
 					layoutLocalization.getLanguageId(), Field.CONTENT),
 				layoutLocalization.getContent());
 		}
+
+		document.addText(
+			Field.DEFAULT_LANGUAGE_ID, layout.getDefaultLanguageId());
+		document.addLocalizedText(Field.NAME, layout.getNameMap());
+		document.addKeyword(Field.STATUS, _getStatus(layout));
+
+		for (String languageId : layout.getAvailableLanguageIds()) {
+			Locale locale = LocaleUtil.fromLanguageId(languageId);
+
+			document.addText(
+				Field.getLocalizedName(locale, Field.TITLE),
+				layout.getName(locale));
+		}
+
+		document.addText(Field.TYPE, layout.getType());
+		document.addText(
+			"privateLayout", String.valueOf(layout.isPrivateLayout()));
+		document.addLocalizedKeyword(
+			"localized_title",
+			_localization.populateLocalizationMap(
+				layout.getNameMap(), layout.getDefaultLanguageId(),
+				layout.getGroupId()),
+			true, true);
 	}
 
 	private int _getStatus(Layout layout) {
