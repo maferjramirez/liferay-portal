@@ -58,9 +58,9 @@ public class FieldProvider {
 			long companyId, String internalClassName, UriInfo uriInfo)
 		throws Exception {
 
-		int idx = internalClassName.indexOf(StringPool.POUND);
+		int index = internalClassName.indexOf(StringPool.POUND);
 
-		if (idx < 0) {
+		if (index < 0) {
 			OpenAPIYAML openAPIYAML = _openAPIYAMLProvider.getOpenAPIYAML(
 				companyId, internalClassName);
 
@@ -73,7 +73,7 @@ public class FieldProvider {
 
 		ObjectDefinition objectDefinition =
 			_objectDefinitionLocalService.fetchObjectDefinition(
-				companyId, internalClassName.substring(idx + 1));
+				companyId, internalClassName.substring(index + 1));
 
 		ObjectEntryOpenAPIResource objectEntryOpenAPIResource =
 			_objectEntryOpenAPIResourceProvider.getObjectEntryOpenAPIResource(
