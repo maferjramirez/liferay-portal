@@ -52,15 +52,15 @@ public class PlanResourceTest extends BasePlanResourceTestCase {
 						fieldName
 					).build()));
 
-		HttpInvoker.HttpResponse response =
+		HttpInvoker.HttpResponse httpResponse =
 			planResource.getPlanTemplateHttpResponse(
 				"com.liferay.object.rest.dto.v1_0.ObjectEntry" +
 					URLCodec.encodeURL("#") + objectDefinition.getName());
 
-		Assert.assertEquals(200, response.getStatusCode());
+		Assert.assertEquals(200, httpResponse.getStatusCode());
 
 		String[] lines = StringUtil.split(
-			response.getContent(), System.lineSeparator());
+			httpResponse.getContent(), System.lineSeparator());
 
 		Assert.assertTrue(
 			StringBundler.concat(
