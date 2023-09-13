@@ -144,19 +144,21 @@ public class BasicFragmentEntryVerticalCard
 	}
 
 	private boolean _hasWarnings() {
-		FragmentEntryValidator fragmentEntryValidator =
-			(FragmentEntryValidator)_httpServletRequest.getAttribute(
-				FragmentEntryValidator.class.getName());
-
-		FragmentEntryProcessorRegistry fragmentEntryProcessorRegistry =
-			(FragmentEntryProcessorRegistry)_httpServletRequest.getAttribute(
-				FragmentEntryProcessorRegistry.class.getName());
-
 		try {
+			FragmentEntryValidator fragmentEntryValidator =
+				(FragmentEntryValidator)_httpServletRequest.getAttribute(
+					FragmentEntryValidator.class.getName());
+
 			fragmentEntryValidator.validateConfiguration(
 				fragmentEntry.getConfiguration());
 			fragmentEntryValidator.validateTypeOptions(
 				fragmentEntry.getType(), fragmentEntry.getTypeOptions());
+
+			FragmentEntryProcessorRegistry fragmentEntryProcessorRegistry =
+				(FragmentEntryProcessorRegistry)
+					_httpServletRequest.getAttribute(
+						FragmentEntryProcessorRegistry.class.getName());
+
 			fragmentEntryProcessorRegistry.validateFragmentEntryHTML(
 				fragmentEntry.getHtml(), fragmentEntry.getConfiguration());
 		}
