@@ -3725,7 +3725,6 @@ public class ObjectEntryLocalServiceImpl
 		sb.append(" set ");
 
 		int count = 0;
-
 		ObjectEntry objectEntry = fetchObjectEntry(objectEntryId);
 
 		List<ObjectField> objectFields =
@@ -4086,7 +4085,7 @@ public class ObjectEntryLocalServiceImpl
 	}
 
 	private void _validateWorkflowAction(
-			boolean enableObjectEntryDraft, Integer objectEntryStatus,
+			boolean enableObjectEntryDraft, Integer status,
 			Integer workflowAction)
 		throws PortalException {
 
@@ -4096,10 +4095,10 @@ public class ObjectEntryLocalServiceImpl
 			throw new UnsupportedOperationException();
 		}
 
-		if ((workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) &&
-			(((objectEntryStatus != null) &&
-			  (objectEntryStatus != WorkflowConstants.STATUS_DRAFT)) ||
-			 !enableObjectEntryDraft)) {
+		if ((!enableObjectEntryDraft ||
+			 ((status != null) &&
+			  (status != WorkflowConstants.STATUS_DRAFT))) &&
+			(workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT)) {
 
 			throw new ObjectEntryStatusException("Status Not Allowed");
 		}
