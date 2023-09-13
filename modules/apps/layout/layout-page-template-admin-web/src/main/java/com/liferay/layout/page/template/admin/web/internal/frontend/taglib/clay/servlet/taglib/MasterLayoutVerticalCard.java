@@ -102,7 +102,6 @@ public class MasterLayoutVerticalCard
 
 			Layout layout = LayoutLocalServiceUtil.getLayout(
 				_layoutPageTemplateEntry.getPlid());
-
 			PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
 
 			return HttpComponentsUtil.addParameters(
