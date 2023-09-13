@@ -69,7 +69,7 @@ public class AttachmentResourceImpl extends BaseAttachmentResourceImpl {
 
 		if (cpAttachmentFileEntry == null) {
 			throw new NoSuchCPAttachmentFileEntryException(
-				"Unable to find cpAttachmentFileEntry with ID: " + id);
+				"Unable to find attachment " + id);
 		}
 
 		_cpAttachmentFileEntryService.deleteCPAttachmentFileEntry(id);
@@ -86,8 +86,8 @@ public class AttachmentResourceImpl extends BaseAttachmentResourceImpl {
 
 		if (cpAttachmentFileEntry == null) {
 			throw new NoSuchCPAttachmentFileEntryException(
-				"Unable to find cpAttachmentFileEntry with external " +
-					"reference code " + externalReferenceCode);
+				"Unable to find attachment with external reference code " +
+					externalReferenceCode);
 		}
 
 		_cpAttachmentFileEntryService.deleteCPAttachmentFileEntry(
