@@ -132,9 +132,7 @@ public class FDSViewsPortlet extends MVCPortlet {
 			objectField.getObjectFieldSettings());
 	}
 
-	private void _enableObjectDefinitionLocalization(
-		ObjectDefinition objectDefinition) {
-
+	private void _enableLocalization(ObjectDefinition objectDefinition) {
 		if (FeatureFlagManagerUtil.isEnabled("LPS-172017")) {
 			objectDefinition.setEnableLocalization(true);
 
@@ -290,7 +288,7 @@ public class FDSViewsPortlet extends MVCPortlet {
 						ObjectFieldConstants.DB_TYPE_BOOLEAN, true, false, null,
 						_language.get(locale, "sortable"), "sortable", false)));
 
-		_enableObjectDefinitionLocalization(fdsFieldObjectDefinition);
+		_enableLocalization(fdsFieldObjectDefinition);
 
 		_addLocalizedCustomObjectField(
 			_language.get(locale, "column-label"), "label",
@@ -464,7 +462,7 @@ public class FDSViewsPortlet extends MVCPortlet {
 						ObjectFieldConstants.DB_TYPE_STRING, true, false, null,
 						_language.get(locale, "url"), "url", false)));
 
-		_enableObjectDefinitionLocalization(fdsActionObjectDefinition);
+		_enableLocalization(fdsActionObjectDefinition);
 
 		_addLocalizedCustomObjectField(
 			_language.get(locale, "confirmation-message"),
