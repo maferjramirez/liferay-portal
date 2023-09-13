@@ -4428,7 +4428,7 @@ public class ObjectEntryLocalServiceImpl
 			  (status != WorkflowConstants.STATUS_DRAFT))) &&
 			(workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT)) {
 
-			throw new ObjectEntryStatusException("Status Not Allowed");
+			throw new ObjectEntryStatusException();
 		}
 	}
 

@@ -33,7 +33,7 @@ public class ObjectEntryStatusExceptionMapper
 		return new Problem(
 			Response.Status.BAD_REQUEST,
 			_language.get(
-				_acceptLanguage.getPreferredLocale(), "status-not-allowed"));
+				_acceptLanguage.getPreferredLocale(), "status-is-not-allowed"));
 	}
 
 	@Context
