@@ -249,7 +249,7 @@ public class ObjectEntryLocalServiceImpl
 
 		int workflowAction = serviceContext.getWorkflowAction();
 
-		_validateServiceContextWorkflowAction(
+		_validateWorkflowAction(
 			objectDefinition.isEnableObjectEntryDraft(), null, workflowAction);
 
 		User user = _userLocalService.getUser(userId);
@@ -1388,7 +1388,7 @@ public class ObjectEntryLocalServiceImpl
 
 		int workflowAction = serviceContext.getWorkflowAction();
 
-		_validateServiceContextWorkflowAction(
+		_validateWorkflowAction(
 			objectDefinition.isEnableObjectEntryDraft(),
 			objectEntry.getStatus(), workflowAction);
 
@@ -4085,7 +4085,7 @@ public class ObjectEntryLocalServiceImpl
 		}
 	}
 
-	private void _validateServiceContextWorkflowAction(
+	private void _validateWorkflowAction(
 			boolean enableObjectEntryDraft, Integer objectEntryStatus,
 			Integer workflowAction)
 		throws PortalException {
