@@ -4084,26 +4084,6 @@ public class ObjectEntryLocalServiceImpl
 		}
 	}
 
-	private void _validateWorkflowAction(
-			boolean enableObjectEntryDraft, Integer status,
-			Integer workflowAction)
-		throws PortalException {
-
-		if (!FeatureFlagManagerUtil.isEnabled("LPS-181663") &&
-			(workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT)) {
-
-			throw new UnsupportedOperationException();
-		}
-
-		if ((!enableObjectEntryDraft ||
-			 ((status != null) &&
-			  (status != WorkflowConstants.STATUS_DRAFT))) &&
-			(workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT)) {
-
-			throw new ObjectEntryStatusException("Status Not Allowed");
-		}
-	}
-
 	private void _validateTextMaxLength(
 			int defaultMaxLength, String objectEntryValue, long objectFieldId,
 			String objectFieldName)
@@ -4429,6 +4409,26 @@ public class ObjectEntryLocalServiceImpl
 						objectEntry, objectField.getObjectFieldId(), userId);
 				}
 			}
+		}
+	}
+
+	private void _validateWorkflowAction(
+			boolean enableObjectEntryDraft, Integer status,
+			Integer workflowAction)
+		throws PortalException {
+
+		if (!FeatureFlagManagerUtil.isEnabled("LPS-181663") &&
+			(workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT)) {
+
+			throw new UnsupportedOperationException();
+		}
+
+		if ((!enableObjectEntryDraft ||
+			 ((status != null) &&
+			  (status != WorkflowConstants.STATUS_DRAFT))) &&
+			(workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT)) {
+
+			throw new ObjectEntryStatusException("Status Not Allowed");
 		}
 	}
 
