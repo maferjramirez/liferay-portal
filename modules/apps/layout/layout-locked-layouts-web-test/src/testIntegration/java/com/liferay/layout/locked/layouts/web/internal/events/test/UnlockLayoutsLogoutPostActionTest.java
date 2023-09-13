@@ -20,7 +20,7 @@ public class UnlockLayoutsLogoutPostActionTest extends BaseActionTest {
 
 	@Test
 	public void testProcessLifecycleEvent() throws Exception {
-		super.testProcessLifecycleEvent(
+		testProcessLifecycleEvent(
 			getLifecycleAction(
 				"com.liferay.layout.locked.layouts.web.internal.events." +
 					"UnlockLayoutsLogoutPostAction",
