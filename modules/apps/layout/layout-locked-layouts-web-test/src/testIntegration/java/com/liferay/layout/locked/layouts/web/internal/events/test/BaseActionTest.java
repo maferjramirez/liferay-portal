@@ -58,7 +58,6 @@ public class BaseActionTest {
 	@Before
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
-
 		_user = UserTestUtil.addUser();
 	}
 
@@ -79,7 +78,7 @@ public class BaseActionTest {
 			}
 		}
 
-		throw new AssertionError("LifecycleAction is not registered");
+		throw new AssertionError("Lifecycle action is not registered");
 	}
 
 	protected void testProcessLifecycleEvent(LifecycleAction lifecycleAction)

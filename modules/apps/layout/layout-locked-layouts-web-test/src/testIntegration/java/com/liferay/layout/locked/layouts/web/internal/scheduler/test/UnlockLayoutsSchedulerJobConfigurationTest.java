@@ -127,10 +127,10 @@ public class UnlockLayoutsSchedulerJobConfigurationTest {
 						"timeWithoutAutosave", timeWithoutAutosave
 					).build())) {
 
-			UnsafeRunnable<Exception> jobExecutorUnsafeRunnable =
+			UnsafeRunnable<Exception> unsafeRunnable =
 				_schedulerJobConfiguration.getJobExecutorUnsafeRunnable();
 
-			jobExecutorUnsafeRunnable.run();
+			unsafeRunnable.run();
 
 			Lock lock = _lockLocalService.fetchLock(
 				_lock.getClassName(), _lock.getKey());
