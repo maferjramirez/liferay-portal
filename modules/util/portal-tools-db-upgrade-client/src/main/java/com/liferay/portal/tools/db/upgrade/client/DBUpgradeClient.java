@@ -69,13 +69,9 @@ public class DBUpgradeClient {
 			List<String> jvmOpts = new ArrayList<>();
 
 			if (commandLine.hasOption("jvm-opts")) {
-				Collections.addAll(
-					jvmOpts,
-					commandLine.getOptionValue(
-						"jvm-opts"
-					).split(
-						" "
-					));
+				String optionValue = commandLine.getOptionValue("jvm-opts");
+
+				Collections.addAll(jvmOpts, optionValue.split(" "));
 			}
 			else {
 				jvmOpts.add("-Dfile.encoding=UTF8");
