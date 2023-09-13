@@ -226,9 +226,7 @@ public class BatchEngineBrokerTest {
 			ServiceContextTestUtil.getServiceContext(companyId, 0, userId));
 	}
 
-	private void _assertActionsContentNotNull(
-		JsonNode fieldJsonNode, String fieldName) {
-
+	private void _assertActions(JsonNode fieldJsonNode, String fieldName) {
 		JsonNode jsonNode = fieldJsonNode.get(fieldName);
 
 		Assert.assertTrue(!jsonNode.isEmpty());
@@ -241,10 +239,10 @@ public class BatchEngineBrokerTest {
 			JsonNode fieldJsonNode = jsonNode.get(fieldName);
 
 			if (Objects.equals(fieldName, "actions")) {
-				_assertActionsContentNotNull(fieldJsonNode, "delete");
-				_assertActionsContentNotNull(fieldJsonNode, "get");
-				_assertActionsContentNotNull(fieldJsonNode, "permissions");
-				_assertActionsContentNotNull(fieldJsonNode, "update");
+				_assertActions(fieldJsonNode, "delete");
+				_assertActions(fieldJsonNode, "get");
+				_assertActions(fieldJsonNode, "permissions");
+				_assertActions(fieldJsonNode, "update");
 			}
 			else {
 				Assert.assertEquals(
