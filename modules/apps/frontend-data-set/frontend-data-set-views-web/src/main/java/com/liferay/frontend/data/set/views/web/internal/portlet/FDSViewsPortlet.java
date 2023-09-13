@@ -468,13 +468,13 @@ public class FDSViewsPortlet extends MVCPortlet {
 			_language.get(locale, "confirmation-message"),
 			"confirmationMessage", fdsActionObjectDefinition, userId);
 		_addLocalizedCustomObjectField(
+			_language.get(locale, "error-message"), "errorMessage",
+			fdsActionObjectDefinition, userId);
+		_addLocalizedCustomObjectField(
 			_language.get(locale, "label"), "label", fdsActionObjectDefinition,
 			userId);
 		_addLocalizedCustomObjectField(
 			_language.get(locale, "success-message"), "successMessage",
-			fdsActionObjectDefinition, userId);
-		_addLocalizedCustomObjectField(
-			_language.get(locale, "error-message"), "errorMessage",
 			fdsActionObjectDefinition, userId);
 		_addLocalizedCustomObjectField(
 			_language.get(locale, "title"), "title", fdsActionObjectDefinition,
