@@ -1386,16 +1386,16 @@ public class ObjectEntryLocalServiceImpl
 			_objectDefinitionPersistence.findByPrimaryKey(
 				objectEntry.getObjectDefinitionId());
 
+		_validateValues(
+			user.isGuestUser(), objectEntry.getObjectDefinitionId(),
+			objectEntry, objectDefinition.getPortletId(), serviceContext,
+			userId, values);
+
 		int workflowAction = serviceContext.getWorkflowAction();
 
 		_validateWorkflowAction(
 			objectDefinition.isEnableObjectEntryDraft(),
 			objectEntry.getStatus(), workflowAction);
-
-		_validateValues(
-			user.isGuestUser(), objectEntry.getObjectDefinitionId(),
-			objectEntry, objectDefinition.getPortletId(), serviceContext,
-			userId, values);
 
 		Map<String, Serializable> transientValues = objectEntry.getValues();
 
