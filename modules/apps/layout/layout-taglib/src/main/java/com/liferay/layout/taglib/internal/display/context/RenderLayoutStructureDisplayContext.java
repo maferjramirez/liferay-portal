@@ -1069,7 +1069,7 @@ public class RenderLayoutStructureDisplayContext {
 		if (value instanceof WebURL) {
 			WebURL webURL = (WebURL)value;
 
-			String url = webURL.getUrl();
+			String url = webURL.getURL();
 
 			if (Validator.isNotNull(url)) {
 				return url;
