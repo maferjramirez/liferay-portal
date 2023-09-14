@@ -66,18 +66,13 @@ public class AddCommerceOrderItemMVCActionCommand extends BaseMVCActionCommand {
 
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			actionRequest);
-
 		HttpServletResponse httpServletResponse =
 			_portal.getHttpServletResponse(actionResponse);
 
-		BigDecimal quantity = (BigDecimal)ParamUtil.getNumber(
-			actionRequest, "quantity", BigDecimal.ZERO);
-		String unitOfMeasureKey = ParamUtil.getString(
-			actionRequest, "unitOfMeasureKey");
+		long cpInstanceId = ParamUtil.getLong(actionRequest, "cpInstanceId");
+
 		String formFieldValues = ParamUtil.getString(
 			actionRequest, "formFieldValues");
-
-		long cpInstanceId = ParamUtil.getLong(actionRequest, "cpInstanceId");
 
 		if (cpInstanceId == 0) {
 			long cpDefinitionId = ParamUtil.getLong(
@@ -100,6 +95,11 @@ public class AddCommerceOrderItemMVCActionCommand extends BaseMVCActionCommand {
 				commerceOrder = _commerceOrderHttpHelper.addCommerceOrder(
 					httpServletRequest);
 			}
+
+			BigDecimal quantity = (BigDecimal)ParamUtil.getNumber(
+				actionRequest, "quantity", BigDecimal.ZERO);
+			String unitOfMeasureKey = ParamUtil.getString(
+				actionRequest, "unitOfMeasureKey");
 
 			CommerceContext commerceContext =
 				(CommerceContext)httpServletRequest.getAttribute(
