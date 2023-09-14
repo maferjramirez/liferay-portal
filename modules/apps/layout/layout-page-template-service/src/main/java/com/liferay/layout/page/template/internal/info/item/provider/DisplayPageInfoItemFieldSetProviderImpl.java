@@ -139,7 +139,7 @@ public class DisplayPageInfoItemFieldSetProviderImpl
 					).build(),
 					new FunctionInfoLocalizedValue<>(
 						locale -> {
-							WebURL displayPageURL = new WebURL(
+							WebURL webURL = new WebURL(
 								StringBundler.concat(
 									url, layout.getFriendlyURL(locale),
 									StringPool.SLASH,
@@ -148,9 +148,9 @@ public class DisplayPageInfoItemFieldSetProviderImpl
 									StringPool.SLASH,
 									_getInfoItemIdentifier(infoItemReference)));
 
-							displayPageURL.setNofollow(true);
+							webURL.setNofollow(true);
 
-							return displayPageURL;
+							return webURL;
 						})));
 		}
 

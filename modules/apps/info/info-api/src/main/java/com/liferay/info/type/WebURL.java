@@ -17,7 +17,7 @@ public class WebURL {
 		_url = url;
 	}
 
-	public String getUrl() {
+	public String getURL() {
 		return _url;
 	}
 
@@ -41,7 +41,7 @@ public class WebURL {
 
 	@Override
 	public String toString() {
-		return getUrl();
+		return getURL();
 	}
 
 	private Boolean _nofollow;

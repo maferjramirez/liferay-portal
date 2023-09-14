@@ -1059,7 +1059,7 @@ public class RenderLayoutStructureDisplayContext {
 		if (value instanceof WebImage) {
 			WebImage webImage = (WebImage)value;
 
-			String url = webImage.getUrl();
+			String url = webImage.getURL();
 
 			if (Validator.isNotNull(url)) {
 				return url;
