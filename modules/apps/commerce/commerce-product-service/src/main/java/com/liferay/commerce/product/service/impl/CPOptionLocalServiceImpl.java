@@ -390,16 +390,16 @@ public class CPOptionLocalServiceImpl extends CPOptionLocalServiceBaseImpl {
 		CPOptionConfiguration cpOptionConfiguration =
 			_getCPOptionConfiguration();
 
-		String[] commerceOptionTypesAllowed =
-			cpOptionConfiguration.commerceOptionTypesAllowed();
+		String[] allowedCommerceOptionTypes =
+			cpOptionConfiguration.allowedCommerceOptionTypes();
 
 		if (skuContributor) {
-			commerceOptionTypesAllowed =
+			allowedCommerceOptionTypes =
 				CPConstants.PRODUCT_OPTION_SKU_CONTRIBUTOR_FIELD_TYPES;
 		}
 
 		if (ArrayUtil.contains(
-				commerceOptionTypesAllowed, commerceOptionTypeKey)) {
+				allowedCommerceOptionTypes, commerceOptionTypeKey)) {
 
 			return;
 		}

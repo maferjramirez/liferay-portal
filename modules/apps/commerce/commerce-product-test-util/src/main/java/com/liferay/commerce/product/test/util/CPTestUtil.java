@@ -679,7 +679,7 @@ public class CPTestUtil {
 		CPOptionConfiguration cpOptionConfiguration =
 			_getCPOptionConfiguration();
 
-		return cpOptionConfiguration.commerceOptionTypesAllowed();
+		return cpOptionConfiguration.allowedCommerceOptionTypes();
 	}
 
 	public static String getDefaultCommerceOptionTypeKey(boolean skuContributor)
@@ -688,15 +688,15 @@ public class CPTestUtil {
 		CPOptionConfiguration cpOptionConfiguration =
 			_getCPOptionConfiguration();
 
-		String[] commerceOptionTypesAllowed =
-			cpOptionConfiguration.commerceOptionTypesAllowed();
+		String[] allowedCommerceOptionTypes =
+			cpOptionConfiguration.allowedCommerceOptionTypes();
 
 		if (skuContributor) {
-			commerceOptionTypesAllowed =
+			allowedCommerceOptionTypes =
 				CPConstants.PRODUCT_OPTION_SKU_CONTRIBUTOR_FIELD_TYPES;
 		}
 
-		return commerceOptionTypesAllowed[0];
+		return allowedCommerceOptionTypes[0];
 	}
 
 	public static CPDefinitionOptionValueRel

@@ -18,12 +18,12 @@ public class CommerceOptionTypeUtil {
 
 	public static List<CommerceOptionType> getAllowedCommerceOptionTypes(
 		List<CommerceOptionType> commerceOptionTypes,
-		String[] commerceOptionTypesAllowed) {
+		String[] allowedCommerceOptionTypes) {
 
 		return ListUtil.filter(
 			commerceOptionTypes,
 			commerceOptionType -> ArrayUtil.contains(
-				commerceOptionTypesAllowed, commerceOptionType.getKey()));
+				allowedCommerceOptionTypes, commerceOptionType.getKey()));
 	}
 
 }

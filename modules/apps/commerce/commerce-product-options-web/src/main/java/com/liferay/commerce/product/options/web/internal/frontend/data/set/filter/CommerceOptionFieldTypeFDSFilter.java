@@ -52,11 +52,11 @@ public class CommerceOptionFieldTypeFDSFilter extends BaseSelectionFDSFilter {
 			_log.error(configurationException);
 		}
 
-		String[] commerceOptionTypesAllowed =
-			cpOptionConfiguration.commerceOptionTypesAllowed();
+		String[] allowedCommerceOptionTypes =
+			cpOptionConfiguration.allowedCommerceOptionTypes();
 
 		return CommerceOptionTypeUtil.getAllowedCommerceOptionTypes(
-			commerceOptionTypes, commerceOptionTypesAllowed);
+			commerceOptionTypes, allowedCommerceOptionTypes);
 	}
 
 	@Override

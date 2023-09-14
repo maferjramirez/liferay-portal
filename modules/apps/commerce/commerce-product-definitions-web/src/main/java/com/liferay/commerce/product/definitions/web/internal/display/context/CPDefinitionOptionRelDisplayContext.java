@@ -130,7 +130,7 @@ public class CPDefinitionOptionRelDisplayContext
 				new SystemSettingsLocator(CPConstants.SERVICE_NAME_CP_OPTION));
 
 		return StringUtil.merge(
-			cpOptionConfiguration.commerceOptionTypesAllowed(),
+			cpOptionConfiguration.allowedCommerceOptionTypes(),
 			StringPool.COMMA);
 	}
 
@@ -145,11 +145,11 @@ public class CPDefinitionOptionRelDisplayContext
 				CPOptionConfiguration.class,
 				new SystemSettingsLocator(CPConstants.SERVICE_NAME_CP_OPTION));
 
-		String[] commerceOptionTypesAllowed =
-			cpOptionConfiguration.commerceOptionTypesAllowed();
+		String[] allowedCommerceOptionTypes =
+			cpOptionConfiguration.allowedCommerceOptionTypes();
 
 		return CommerceOptionTypeUtil.getAllowedCommerceOptionTypes(
-			commerceOptionTypes, commerceOptionTypesAllowed);
+			commerceOptionTypes, allowedCommerceOptionTypes);
 	}
 
 	public CPDefinitionOptionRel getCPDefinitionOptionRel()

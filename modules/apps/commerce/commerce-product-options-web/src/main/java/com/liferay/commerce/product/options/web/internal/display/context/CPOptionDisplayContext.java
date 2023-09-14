@@ -62,11 +62,11 @@ public class CPOptionDisplayContext {
 				CPOptionConfiguration.class,
 				new SystemSettingsLocator(CPConstants.SERVICE_NAME_CP_OPTION));
 
-		String[] commerceOptionTypesAllowed =
-			cpOptionConfiguration.commerceOptionTypesAllowed();
+		String[] allowedCommerceOptionTypes =
+			cpOptionConfiguration.allowedCommerceOptionTypes();
 
 		return CommerceOptionTypeUtil.getAllowedCommerceOptionTypes(
-			commerceOptionTypes, commerceOptionTypesAllowed);
+			commerceOptionTypes, allowedCommerceOptionTypes);
 	}
 
 	public CPOption getCPOption() {
