@@ -148,7 +148,7 @@ public class CPDefinitionOptionRelDisplayContext
 		String[] commerceOptionTypesAllowed =
 			cpOptionConfiguration.commerceOptionTypesAllowed();
 
-		return CommerceOptionTypeUtil.getCommerceOptionTypesAllowed(
+		return CommerceOptionTypeUtil.getAllowedCommerceOptionTypes(
 			commerceOptionTypes, commerceOptionTypesAllowed);
 	}
 

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class CommerceOptionTypeUtil {
 
-	public static List<CommerceOptionType> getCommerceOptionTypesAllowed(
+	public static List<CommerceOptionType> getAllowedCommerceOptionTypes(
 		List<CommerceOptionType> commerceOptionTypes,
 		String[] commerceOptionTypesAllowed) {
 
