@@ -10,8 +10,6 @@
 <%
 CPDefinitionOptionRelDisplayContext cpDefinitionOptionRelDisplayContext = (CPDefinitionOptionRelDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
-List<CommerceOptionType> commerceOptionTypes = cpDefinitionOptionRelDisplayContext.getCommerceOptionTypes();
-
 CPDefinitionOptionRel cpDefinitionOptionRel = cpDefinitionOptionRelDisplayContext.getCPDefinitionOptionRel();
 
 String name = ParamUtil.getString(request, "name", cpDefinitionOptionRel.getName());
@@ -97,7 +95,7 @@ String defaultLanguageId = cpDefinitionOptionRelDisplayContext.getCatalogDefault
 					<aui:select label="field-type" name="commerceOptionTypeKey" showEmptyOption="<%= true %>">
 
 						<%
-						for (CommerceOptionType commerceOptionType : commerceOptionTypes) {
+						for (CommerceOptionType commerceOptionType : cpDefinitionOptionRelDisplayContext.getCommerceOptionTypes()) {
 						%>
 
 							<aui:option label="<%= commerceOptionType.getLabel(locale) %>" selected="<%= (cpDefinitionOptionRel != null) && cpDefinitionOptionRel.getCommerceOptionTypeKey().equals(commerceOptionType.getKey()) %>" value="<%= commerceOptionType.getKey() %>" />
