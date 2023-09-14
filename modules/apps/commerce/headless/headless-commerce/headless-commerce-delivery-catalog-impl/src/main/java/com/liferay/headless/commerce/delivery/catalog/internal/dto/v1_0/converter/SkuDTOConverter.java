@@ -328,6 +328,8 @@ public class SkuDTOConverter implements DTOConverter<CPInstance, Sku> {
 		CommerceProductPriceRequest commerceProductPriceRequest =
 			new CommerceProductPriceRequest();
 
+		commerceProductPriceRequest.setCalculateTax(
+			_isTaxIncludedInPrice(commerceContext.getCommerceChannelId()));
 		commerceProductPriceRequest.setCommerceContext(commerceContext);
 		commerceProductPriceRequest.setCommerceOptionValues(
 			commerceOptionValues);
@@ -335,11 +337,6 @@ public class SkuDTOConverter implements DTOConverter<CPInstance, Sku> {
 		commerceProductPriceRequest.setQuantity(quantity);
 		commerceProductPriceRequest.setSecure(true);
 		commerceProductPriceRequest.setUnitOfMeasureKey(unitOfMeasureKey);
-
-		boolean taxIncludedInPrice = _isTaxIncludedInPrice(
-			commerceContext.getCommerceChannelId());
-
-		commerceProductPriceRequest.setCalculateTax(taxIncludedInPrice);
 
 		return commerceProductPriceRequest;
 	}
